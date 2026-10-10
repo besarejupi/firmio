@@ -1,0 +1,10 @@
+{
+  "name": "firmio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Firmio – Dokumente per Handy unterschreiben lassen",
+  "type": "module",
+  "dependencies": {
+    "@netlify/blobs": "^11.1.4"
+  }
+}

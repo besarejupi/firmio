@@ -1,0 +1,7 @@
+# Firmio – Netlify-Einstellungen
+[build]
+  publish = "public"
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"

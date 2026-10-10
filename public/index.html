@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' blob: data:; font-src 'self' data:; worker-src 'self' blob:; child-src 'self' blob:; connect-src 'self' blob: data:; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f3f5f6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0c1315" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-title" content="Firmio">
+<title>Dokument unterschreiben · Firmio</title>
+<meta name="description" content="PDF direkt auf dem Handy unterschreiben und per WhatsApp zurückschicken. Ohne Upload, ohne App.">
+<meta property="og:title" content="Firmio – Dokument unterschreiben">
+<meta property="og:site_name" content="Firmio">
+<meta property="og:description" content="PDF direkt auf dem Handy unterschreiben und zurückschicken. Ohne Upload, ohne App.">
+<meta property="og:type" content="website">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="icon" href="icons/favicon-48.png" sizes="48x48" type="image/png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="stylesheet" href="app.css">
+<script src="config.js"></script>
+<script defer src="vendor/pdf.min.js"></script>
+<script defer src="app.js"></script>
+</head>
+<body>
+<noscript><p class="noscript">Bitte aktivieren Sie JavaScript, um Dokumente zu unterschreiben.</p></noscript>
+
+<main id="start" class="screen start">
+  <div class="brand">
+    <img src="icons/icon.svg" alt="" width="36" height="36">
+    <div><b id="brandName">Firmio</b><small id="brandSub">Dokumente sicher unterschreiben</small></div>
+  </div>
+
+  <div id="installBox"></div>
+
+  <div id="reqCard" class="req hidden"></div>
+
+  <div class="hero" aria-hidden="true">
+    <svg viewBox="0 0 320 170" width="320" height="170">
+      <defs>
+        <linearGradient id="hg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" class="hs1"/><stop offset="1" class="hs2"/></linearGradient>
+      </defs>
+      <ellipse class="hshadow" cx="160" cy="158" rx="118" ry="9"/>
+      <rect class="hedge" x="78" y="10" width="164" height="146" rx="10" fill="#fff"/>
+      <rect x="96" y="30" width="78" height="8" rx="4" fill="#cfd8dc"/>
+      <rect x="96" y="48" width="128" height="5" rx="2.5" fill="#e5eaec"/>
+      <rect x="96" y="60" width="116" height="5" rx="2.5" fill="#e5eaec"/>
+      <rect x="96" y="72" width="124" height="5" rx="2.5" fill="#e5eaec"/>
+      <rect x="92" y="96" width="136" height="40" rx="6" fill="rgba(251,191,36,.16)" stroke="#f0a92e" stroke-width="1.4" stroke-dasharray="4 3"/>
+      <line x1="98" y1="129" x2="222" y2="129" stroke="#9aa9b0" stroke-width="1.2"/>
+      <path class="hero-sig" d="M104 125c7-13 13-25 18-23c5 2-5 21 1 21c6 0 10-14 15-13c5 1 0 11 5 11c6 0 9-7 14-8c6-1 7 5 13 4c5-1 9-5 14-6" fill="none" stroke="#1b3a8f" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      <g transform="translate(236 70) rotate(38)">
+        <rect x="-6" y="-52" width="12" height="52" rx="3" fill="url(#hg)"/>
+        <path d="M-6 0h12l-6 14z" fill="#e8b04b"/>
+        <rect x="-6" y="-60" width="12" height="9" rx="3" fill="#1f2d33"/>
+      </g>
+    </svg>
+  </div>
+
+  <h1 id="startTitle">Dokument unterschreiben</h1>
+  <p class="lead" id="startLead">Unterschreiben Sie ein PDF direkt auf Ihrem Handy, ganz ohne Drucker.</p>
+
+  <div id="remoteBox"></div>
+  <label class="btn btn-primary btn-block btn-xl" for="file" id="pickBtn">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M12 12v6M9 15l3-3 3 3"/></svg>
+    <span id="pickLabel">PDF auswählen</span>
+  </label>
+  <input id="file" type="file" accept="application/pdf,.pdf" class="vh" tabindex="-1">
+
+  <p class="stepshead" id="stepsHead">So geht’s</p>
+  <ol class="steps" id="steps"></ol>
+
+
+  <div id="helpBox"></div>
+
+  <div class="trust">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+    <p id="trustText">Ihr Dokument bleibt auf Ihrem Gerät. Es wird nichts hochgeladen und nichts gespeichert.</p>
+  </div>
+
+
+  <footer class="links" id="links"></footer>
+</main>
+
+<section id="viewer" class="screen hidden" aria-label="Dokument">
+  <header class="topbar">
+    <button class="iconbtn" id="backBtn" aria-label="Zurück">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <div class="tt"><b id="docName"></b><span id="pageInfo"></span></div>
+    <span class="modechip" id="modeChip"></span>
+  </header>
+  <div id="pages"></div>
+  <nav class="bar" id="bar"></nav>
+</section>
+
+<main id="done" class="screen start hidden">
+  <div class="okmark" aria-hidden="true">
+    <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+  </div>
+  <h1 id="doneTitle">Fertig unterschrieben</h1>
+  <p class="lead" id="doneLead">Schicken Sie das PDF jetzt zurück, am einfachsten per WhatsApp.</p>
+  <div class="filecard">
+    <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M8.5 16.5c1.2-1.6 2-2.9 2.6-2.6.6.3-.6 2.4 0 2.5.7.1 1.3-1.4 1.9-1.3.5.1 0 1.2.6 1.2.7 0 1.2-.6 1.9-.8"/></svg>
+    <div><b id="outName"></b><span id="outInfo"></span></div>
+  </div>
+  <button class="btn btn-primary btn-block btn-xl" id="shareBtn" type="button">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7"/><path d="M16 6l-4-4-4 4"/><path d="M12 2v13"/></svg>
+    <span id="shareLabel">Per WhatsApp zurückschicken</span>
+  </button>
+  <p class="hint" id="shareHint"></p>
+  <button class="btn btn-ghost btn-block" id="dlBtn" type="button">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>
+    <span id="dlLabel">PDF speichern</span>
+  </button>
+  <div class="donelinks">
+    <button class="linkbtn" id="editBtn" type="button">Zurück zum Dokument</button>
+    <button class="linkbtn" id="newBtn" type="button">Neues Dokument</button>
+  </div>
+</main>
+
+<div id="scrim" class="scrim" hidden></div>
+<div id="sheet" class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle" hidden></div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<div id="busy" class="busy" hidden><div class="spin"></div><p id="busyText">Einen Moment …</p></div>
+</body>
+</html>
