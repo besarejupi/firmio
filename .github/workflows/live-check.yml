@@ -1,0 +1,17 @@
+# Prüft von außen, welche Firmio-Version gerade live ist (nur manuell startbar).
+name: Live-Check
+on:
+  workflow_dispatch:
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Live-Version abfragen
+        run: |
+          B=https://firmio.netlify.app
+          echo "== version.txt"; curl -s -m 20 "$B/version.txt" || true; echo
+          echo "== Kopfzeilen index.html"; curl -s -m 20 -I "$B/" | grep -iE '^(HTTP|etag|age|date|last-modified|x-nf-request-id|cache-control)' || true
+          echo "== index.html Versionsmerkmal"; curl -s -m 20 "$B/" | grep -oE '<html[^>]*>|retryBtn|id="inbox"' | sort | uniq -c || true
+          echo "== app.js Merkmale"; curl -s -m 20 "$B/app.js" | grep -oE 'renderInbox|Fertig – Dokument senden|landet automatisch hier|checkUpdate' | sort | uniq -c || true
+          echo "== sw.js"; curl -s -m 20 "$B/sw.js" | grep -oE "firmio-v[0-9]+" | head -1 || true
+          echo "== API"; curl -s -m 20 "$B/api/status" || true; echo
