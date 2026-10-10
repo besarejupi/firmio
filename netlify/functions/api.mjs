@@ -26,9 +26,17 @@
  *   POST   /api/doc/:id/signed/done (Token) -> Rückgabe abschließen
  *   GET    /api/doc/:id/signed/:n   (PIN)   -> Teil n des unterschriebenen PDFs
  *   DELETE /api/doc/:id             (PIN, Token nur solange offen) -> alles löschen
+ *
+ *   Benachrichtigungen (Web Push) für den Absender:
+ *   GET    /api/push/key                    -> öffentlicher VAPID-Schlüssel
+ *   POST   /api/push/sub            (PIN)   -> Gerät anmelden { sub }
+ *   POST   /api/push/unsub          (PIN)   -> Gerät abmelden { endpoint }
+ *   POST   /api/push/test           (PIN)   -> Test-Benachrichtigung
+ *   Die Benachrichtigung enthält nur die zufällige Kennung der Anfrage, keine Kundendaten.
  */
 import { getStore } from '@netlify/blobs';
 import { randomBytes, createHash, timingSafeEqual } from 'node:crypto';
+import webpush from 'web-push';
 
 const MAX_CHUNK = 3 * 1024 * 1024 + 1024; // Bytes pro Teil
 const MAX_CHUNKS = 12;                     // zusammen gut 36 MB
@@ -76,6 +84,53 @@ const tokenOk = (req, meta) => {
 };
 const statusOf = meta => meta.status === 'signed' ? 'signed' : 'open';
 
+/* ---------- Web Push ---------- */
+const PUSH_HOSTS = ['fcm.googleapis.com', 'android.googleapis.com', 'push.services.mozilla.com', 'web.push.apple.com', 'notify.windows.com'];
+const pushHostOk = h => PUSH_HOSTS.some(x => h === x || h.endsWith('.' + x));
+const B64U = /^[A-Za-z0-9_-]+={0,2}$/;
+async function vapidKeys() {
+  const c = conf();
+  let k = await c.get('vapid', { type: 'json' });
+  if (k && k.publicKey && k.privateKey) return k;
+  const fresh = Object.assign(webpush.generateVAPIDKeys(), { created: Date.now() });
+  const res = await c.setJSON('vapid', fresh, { onlyIfNew: true });
+  if (res && res.modified === false) k = await c.get('vapid', { type: 'json' });
+  return k && k.publicKey ? k : fresh;
+}
+function subOk(sub) {
+  if (!sub || typeof sub.endpoint !== 'string' || sub.endpoint.length > 1024 || !sub.keys) return null;
+  const { p256dh, auth } = sub.keys;
+  if (typeof p256dh !== 'string' || typeof auth !== 'string' || !B64U.test(p256dh) || !B64U.test(auth) || p256dh.length < 80 || p256dh.length > 100 || auth.length < 16 || auth.length > 32) return null;
+  let u;
+  try { u = new URL(sub.endpoint); } catch (e) { return null; }
+  const devOk = process.env.FIRMIO_DEV_PUSH && u.hostname === '127.0.0.1'; // nur für lokale Tests
+  if (u.protocol !== 'https:' || !(devOk || pushHostOk(u.hostname))) return null;
+  return { endpoint: sub.endpoint, keys: { p256dh, auth } };
+}
+const getSubs = async () => (await conf().get('push-subs', { type: 'json' })) || [];
+async function notifyAll(data, origin) {
+  const subs = await getSubs();
+  if (!subs.length) return { sent: 0, failed: 0 };
+  const k = await vapidKeys();
+  const subject = /^https:\/\//.test(origin) && !/\/\/(localhost|127\.)/.test(origin) ? origin : 'mailto:firmio@example.org';
+  const opts = { vapidDetails: { subject, publicKey: k.publicKey, privateKey: k.privateKey }, TTL: 86400, urgency: 'high', timeout: 6000 };
+  const payload = JSON.stringify(data);
+  let sent = 0, failed = 0;
+  const gone = [];
+  await Promise.all(subs.map(async sub => {
+    try { await webpush.sendNotification(sub, payload, opts); sent++; } catch (e) {
+      failed++;
+      if (e && (e.statusCode === 404 || e.statusCode === 410)) gone.push(sub.endpoint);
+      else console.error('firmio push', e && e.statusCode, e && e.body);
+    }
+  }));
+  if (gone.length) await conf().setJSON('push-subs', (await getSubs()).filter(x => !gone.includes(x.endpoint)));
+  return { sent, failed };
+}
+
+// Verschlüsselte Angaben zur Anfrage: base64url, höchstens ~8 KB
+const headOk = h => h === undefined || h === '' || (typeof h === 'string' && /^[A-Za-z0-9_-]{24,11000}$/.test(h));
+
 async function removeParts(s, id, prefix, count) {
   const jobs = [];
   for (let i = 0; i < count; i++) jobs.push(s.delete(id + prefix + i));
@@ -108,7 +163,8 @@ export default async function handler(req) {
   const method = req.method;
   try {
     if (parts[0] === 'status' && method === 'GET') {
-      return json(200, { ok: true, pin: await pinIsSet(), v: 2, ttlDays: 7, keepDays: 30, maxBytes: MAX_CHUNK * MAX_CHUNKS });
+      // v4: kurze Links (Kennung, Schlüssel und Token werden im Browser aus einem Geheimnis abgeleitet)
+      return json(200, { ok: true, pin: await pinIsSet(), v: 4, push: true, ttlDays: 7, keepDays: 30, maxBytes: MAX_CHUNK * MAX_CHUNKS });
     }
 
     if (parts[0] === 'pin' && method === 'POST') {
@@ -145,15 +201,49 @@ export default async function handler(req) {
       return json(200, { states });
     }
 
+    // Benachrichtigungen
+    if (parts[0] === 'push') {
+      if (parts[1] === 'key' && method === 'GET') return json(200, { key: (await vapidKeys()).publicKey });
+      if (method !== 'POST' || !['sub', 'unsub', 'test'].includes(parts[1])) return json(404, { error: 'not_found' });
+      const denied = await needPin(req);
+      if (denied) return denied;
+      const body = await req.json().catch(() => ({}));
+      if (parts[1] === 'sub') {
+        const sub = subOk(body.sub);
+        if (!sub) return json(400, { error: 'bad_sub' });
+        const list = (await getSubs()).filter(x => x.endpoint !== sub.endpoint);
+        list.push(Object.assign(sub, { created: Date.now() }));
+        await conf().setJSON('push-subs', list.slice(-10));
+        return json(200, { ok: true, devices: Math.min(list.length, 10) });
+      }
+      if (parts[1] === 'unsub') {
+        const list = await getSubs();
+        await conf().setJSON('push-subs', list.filter(x => x.endpoint !== String(body.endpoint || '')));
+        return json(200, { ok: true });
+      }
+      return json(200, await notifyAll({ t: 'test' }, url.origin));
+    }
+
     if (parts[0] !== 'doc') return json(404, { error: 'not_found' });
 
     // Neues Dokument anlegen (Absender)
     if (parts.length === 1 && method === 'POST') {
       const denied = await needPin(req);
       if (denied) return denied;
-      const ok = sizeOk(await req.json().catch(() => ({})));
+      const body = await req.json().catch(() => ({}));
+      const ok = sizeOk(body);
       if (!ok) return json(400, { error: 'too_large' });
-      const id = randId(), del = randId(), now = Date.now();
+      const now = Date.now();
+      // Kurzer Link: Der Browser wählt Kennung und Token-Prüfsumme selbst (abgeleitet aus dem Geheimnis im Link)
+      // und legt die Angaben zur Anfrage verschlüsselt dazu (head).
+      if (body.id !== undefined) {
+        if (!ID_RE.test(String(body.id)) || !/^[0-9a-f]{64}$/.test(String(body.tok || '')) || !headOk(body.head)) return json(400, { error: 'bad_request' });
+        const meta = { chunks: ok.chunks, size: ok.size, created: now, expires: now + TTL_OPEN, del: String(body.tok), status: 'open', head: body.head || '' };
+        const res = await docs().setJSON(body.id + '/meta', meta, { onlyIfNew: true });
+        if (res && res.modified === false) return json(409, { error: 'exists' });
+        return json(200, { id: body.id, expires: now + TTL_OPEN });
+      }
+      const id = randId(), del = randId();
       await docs().setJSON(id + '/meta', { chunks: ok.chunks, size: ok.size, created: now, expires: now + TTL_OPEN, del: sha256(del), status: 'open' });
       return json(200, { id, del, expires: now + TTL_OPEN });
     }
@@ -170,11 +260,25 @@ export default async function handler(req) {
     const status = statusOf(meta);
     const signedPath = parts[2] === 'signed';
 
-    // Infos
+    // Infos (head = verschlüsselte Angaben zur Anfrage, nur mit dem Schlüssel aus dem Link lesbar)
     if (parts.length === 2 && method === 'GET') {
-      return json(200, status === 'signed'
+      const info = status === 'signed'
         ? { status, chunks: 0, expires: meta.expires, signedAt: meta.signedAt }
-        : { status, chunks: meta.chunks, size: meta.size, expires: meta.expires });
+        : { status, chunks: meta.chunks, size: meta.size, expires: meta.expires };
+      if (meta.head) info.head = meta.head;
+      return json(200, info);
+    }
+
+    // Angaben zur Anfrage ändern (Absender, z. B. andere Sprache), solange noch nicht unterschrieben
+    if (parts.length === 3 && parts[2] === 'head' && method === 'PUT') {
+      const denied = await needPin(req);
+      if (denied) return denied;
+      const body = await req.json().catch(() => ({}));
+      if (!headOk(body.head) || !body.head) return json(400, { error: 'bad_request' });
+      if (status !== 'open') return json(409, { error: 'signed' });
+      meta.head = body.head;
+      await s.setJSON(id + '/meta', meta);
+      return json(200, { ok: true });
     }
 
     // Original hochladen (Absender)
@@ -223,6 +327,8 @@ export default async function handler(req) {
       const now = Date.now();
       Object.assign(meta, { status: 'signed', signedAt: now, expires: now + TTL_SIGNED, chunks: 0 });
       await s.setJSON(id + '/meta', meta);
+      // Absender benachrichtigen (nur die Kennung, keine Inhalte); höchstens kurz warten
+      await Promise.race([notifyAll({ t: 'signed', id }, url.origin).catch(e => console.error('firmio push', e)), sleep(4000)]);
       return json(200, { ok: true, signedAt: now });
     }
 

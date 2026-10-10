@@ -9,6 +9,8 @@ Dokumente per Handy unterschreiben lassen. Der Kunde öffnet einen Link, untersc
 - Unterschreibt der Kunde, wird das fertige PDF **auf seinem Handy mit demselben Schlüssel verschlüsselt** und für den Absender bereitgelegt. Das Original wird dann gelöscht.
 - Die App des Absenders holt das unterschriebene PDF ab, entschlüsselt es und speichert es **nur auf diesem Gerät**. Danach wird es auf dem Server gelöscht. Übrig bleibt nur ein leerer Vermerk (Zeitpunkte, keine Inhalte), damit der Kunde beim erneuten Öffnen „bereits unterschrieben“ sieht.
 - Offene Anfragen werden nach 7 Tagen gelöscht, nicht abgeholte unterschriebene nach 30 Tagen (tägliche Bereinigung).
+- Der Link ist kurz: Hinter dem `#` steht nur ein zufälliges Geheimnis (22 Zeichen). Daraus leitet der Browser die Kennung beim Server, den Schlüssel und das Rückgabe-Token ab. Alle Angaben zur Anfrage (Absender, Sprache, markierte Stellen) liegen verschlüsselt beim Server.
+- Benachrichtigungen (Web Push) aufs Handy des Absenders enthalten nur die zufällige Kennung der Anfrage, keine Namen oder Inhalte. Den Kundennamen setzt das Handy selbst aus der lokalen Übersicht ein.
 - Hochladen, Abfragen und Abholen gehen nur mit der Absender-PIN.
 
 ## Aufbau
@@ -39,4 +41,4 @@ Dokumente per Handy unterschreiben lassen. Der Kunde öffnet einen Link, untersc
 
 Firmio erzeugt eine **einfache elektronische Signatur**. Wo das Gesetz die Schriftform verlangt, reicht sie nicht. Impressum und eigener Datenschutztext lassen sich in `public/config.js` eintragen.
 
-Lizenzen: pdf.js (Apache 2.0), pdf-lib (MIT), @netlify/blobs (MIT). Siehe `public/lizenzen`.
+Lizenzen: pdf.js (Apache 2.0), pdf-lib (MIT), @netlify/blobs (MIT), web-push (MPL 2.0), Source Sans 3 und Source Serif 4 (SIL OFL 1.1). Siehe `public/lizenzen`.

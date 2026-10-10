@@ -75,7 +75,6 @@
     "Sie wurden gebeten, ein Dokument zu unterschreiben.": "Ju është kërkuar të nënshkruani një dokument.",
     "Die Stelle zum Unterschreiben ist schon markiert.": "Vendi për nënshkrim është shënuar tashmë.",
     "{n} Stellen zum Unterschreiben sind schon markiert.": "{n} vende për nënshkrim janë shënuar tashmë.",
-    "Das Dokument ist im Link enthalten.": "Dokumenti ndodhet në link.",
     "Wählen Sie unten das PDF aus, das Sie bekommen haben.": "Zgjidhni më poshtë PDF-në që keni marrë.",
     "So finden Sie das PDF auf dem iPhone": "Si ta gjeni PDF-në në iPhone",
     "In WhatsApp das PDF <b>antippen</b>.": "Në WhatsApp <b>prekni</b> PDF-në.",
@@ -212,9 +211,175 @@
     "<p><b>Ende-zu-Ende verschlüsselt.</b> Das PDF, Ihr Name und Ihre Unterschrift werden nur in Ihrem Browser verarbeitet. Übertragen wird nur das fertige Dokument, und zwar verschlüsselt: Lesen können es nur Sie und der Absender.</p>": "<p><b>I enkriptuar nga skaji në skaj.</b> PDF-ja, emri dhe nënshkrimi juaj përpunohen vetëm në shfletuesin tuaj. Transmetohet vetëm dokumenti përfundimtar, dhe atë i enkriptuar: mund ta lexoni vetëm ju dhe dërguesi.</p>",
     "<p><b>Dokumente per Link:</b> Das Dokument wurde auf dem Gerät des Absenders verschlüsselt und liegt nur verschlüsselt bei Netlify. Der Schlüssel steckt ausschließlich im Link (hinter dem #) und wird nie an den Server übertragen. Wenn Sie auf „Fertig“ tippen, wird das unterschriebene Dokument auf Ihrem Gerät mit diesem Schlüssel verschlüsselt und für den Absender bereitgelegt. Danach wird das Original gelöscht. Das unterschriebene Dokument wird gelöscht, sobald der Absender es abgeholt hat, spätestens nach 30 Tagen. Nicht unterschriebene Dokumente werden nach 7 Tagen gelöscht.</p>": "<p><b>Dokumente me link:</b> Dokumenti është enkriptuar në pajisjen e dërguesit dhe ruhet te Netlify vetëm i enkriptuar. Çelësi ndodhet vetëm në link (pas shenjës #) dhe nuk i dërgohet kurrë serverit. Kur prekni „Gati“, dokumenti i nënshkruar enkriptohet në pajisjen tuaj me këtë çelës dhe i vihet në dispozicion dërguesit. Pastaj origjinali fshihet. Dokumenti i nënshkruar fshihet sapo dërguesi ta ketë marrë, e më së voni pas 30 ditësh. Dokumentet e panënshkruara fshihen pas 7 ditësh.</p>"
   };
-  // Übersetzung der Kundenseite (Deutsch = Schlüssel). Fehlt eine Übersetzung, bleibt es Deutsch.
+  // Kundenseite in Du-Form (Deutsch). Schlüssel = Sie-Text. Fehlt ein Eintrag, gilt der Sie-Text (meist neutral).
+  const DU = {
+    "Ihr Dokument steckt schon im Link. Sie müssen nichts speichern und nichts herunterladen.": "Dein Dokument steckt schon im Link. Du musst nichts speichern und nichts herunterladen.",
+    "Unterschreiben Sie ein PDF direkt auf Ihrem Handy, ganz ohne Drucker.": "Unterschreib ein PDF direkt auf deinem Handy, ganz ohne Drucker.",
+    "Ende-zu-Ende verschlüsselt. Ihre Unterschrift wird nicht hochgeladen, und das Dokument wird nach dem Zurückschicken gelöscht.": "Ende-zu-Ende verschlüsselt. Deine Unterschrift wird nicht hochgeladen, und das Dokument wird nach dem Zurückschicken gelöscht.",
+    "Ihr Dokument bleibt auf Ihrem Gerät. Es wird nichts hochgeladen und nichts gespeichert.": "Dein Dokument bleibt auf deinem Gerät. Es wird nichts hochgeladen und nichts gespeichert.",
+    "Danach schieben Sie die Unterschrift an die richtige Stelle.": "Danach schiebst du die Unterschrift an die richtige Stelle.",
+    "Das Dokument, das Sie per WhatsApp oder E-Mail bekommen haben.": "Das Dokument, das du per WhatsApp oder E-Mail bekommen hast.",
+    "<b>{who}</b> bittet Sie um Ihre Unterschrift.": "<b>{who}</b> bittet dich um deine Unterschrift.",
+    "Sie wurden gebeten, ein Dokument zu unterschreiben.": "Du wurdest gebeten, ein Dokument zu unterschreiben.",
+    "Wählen Sie unten das PDF aus, das Sie bekommen haben.": "Wähl unten das PDF aus, das du bekommen hast.",
+    "So finden Sie das PDF auf dem iPhone": "So findest du das PDF auf dem iPhone",
+    "So finden Sie das PDF auf Android": "So findest du das PDF auf Android",
+    "Speichern Sie den Anhang und wählen Sie ihn hier mit „PDF auswählen“ aus.": "Speichere den Anhang und wähl ihn hier mit „PDF auswählen“ aus.",
+    "<p><b>Ihr Dokument bleibt auf Ihrem Gerät.</b> Das PDF, Ihr Name und Ihre Unterschrift werden nur in Ihrem Browser verarbeitet. Nichts davon wird hochgeladen, gespeichert oder an Dritte übermittelt.</p>": "<p><b>Dein Dokument bleibt auf deinem Gerät.</b> Das PDF, dein Name und deine Unterschrift werden nur in deinem Browser verarbeitet. Nichts davon wird hochgeladen, gespeichert oder an Dritte übermittelt.</p>",
+    "<p><b>Dokumente per Link:</b> Schickt Ihnen jemand ein Dokument per Link, wurde es auf seinem Gerät verschlüsselt und liegt nur verschlüsselt bei Netlify. Der Schlüssel steckt ausschließlich im Link (hinter dem #) und wird nie an den Server übertragen. Niemand außer Ihnen und dem Absender kann das Dokument lesen. Es wird gelöscht, sobald Sie es unterschrieben zurückgeschickt haben, spätestens nach 7 Tagen.</p>": "<p><b>Dokumente per Link:</b> Schickt dir jemand ein Dokument per Link, wurde es auf seinem Gerät verschlüsselt und liegt nur verschlüsselt bei Netlify. Der Schlüssel steckt ausschließlich im Link (hinter dem #) und wird nie an den Server übertragen. Niemand außer dir und dem Absender kann das Dokument lesen. Es wird gelöscht, sobald du es unterschrieben zurückgeschickt hast, spätestens nach 7 Tagen.</p>",
+    "<p>Das unterschriebene PDF verschicken Sie selbst, zum Beispiel per WhatsApp. Dafür gelten die Datenschutzbestimmungen des jeweiligen Dienstes.</p>": "<p>Das unterschriebene PDF verschickst du selbst, zum Beispiel per WhatsApp. Dafür gelten die Datenschutzbestimmungen des jeweiligen Dienstes.</p>",
+    "Dieser Link ist abgelaufen oder das Dokument wurde schon unterschrieben zurückgeschickt. Bitten Sie {who} um einen neuen Link.": "Dieser Link ist abgelaufen oder das Dokument wurde schon unterschrieben zurückgeschickt. Frag {who} nach einem neuen Link.",
+    "Der Link ist unvollständig. Bitte öffnen Sie ihn noch einmal direkt aus WhatsApp.": "Der Link ist unvollständig. Bitte öffne ihn noch einmal direkt aus WhatsApp.",
+    "Das Dokument konnte nicht geladen werden. Bitte prüfen Sie Ihre Internetverbindung.": "Das Dokument konnte nicht geladen werden. Bitte prüf deine Internetverbindung.",
+    "Haben Sie das PDF auf dem Handy? Dann können Sie es auch selbst auswählen.": "Hast du das PDF auf dem Handy? Dann kannst du es auch selbst auswählen.",
+    "Diese Datei ist kein PDF. Bitte wählen Sie das PDF-Dokument aus.": "Diese Datei ist kein PDF. Bitte wähl das PDF-Dokument aus.",
+    "Die Seite wurde nicht vollständig geladen. Bitte laden Sie sie neu.": "Die Seite wurde nicht vollständig geladen. Bitte lade sie neu.",
+    "Dieses PDF passt nicht zur Anfrage (andere Seitenzahl). Bitte prüfen Sie, ob Sie das richtige Dokument gewählt haben. Sie können trotzdem unterschreiben und die Unterschrift selbst platzieren.": "Dieses PDF passt nicht zur Anfrage (andere Seitenzahl). Bitte prüf, ob du das richtige Dokument gewählt hast. Du kannst trotzdem unterschreiben und die Unterschrift selbst platzieren.",
+    "Dieses PDF ist nicht genau das angeforderte Dokument. Wählen Sie am besten das PDF aus der Nachricht. Sie können trotzdem unterschreiben.": "Dieses PDF ist nicht genau das angeforderte Dokument. Wähl am besten das PDF aus der Nachricht. Du kannst trotzdem unterschreiben.",
+    "Die markierten Stellen sind ausgefüllt. Prüfen Sie kurz alles und tippen Sie dann auf „Fertig“.": "Die markierten Stellen sind ausgefüllt. Prüf kurz alles und tipp dann auf „Fertig“.",
+    "Schieben Sie die Unterschrift an die richtige Stelle. Größe ändern: blauen Punkt ziehen.": "Schieb die Unterschrift an die richtige Stelle. Größe ändern: blauen Punkt ziehen.",
+    "Danke! Sie können die Seite jetzt schließen.": "Danke! Du kannst die Seite jetzt schließen.",
+    "Dokument schließen? Ihre Unterschrift geht dabei verloren.": "Dokument schließen? Deine Unterschrift geht dabei verloren.",
+    "Das PDF konnte nicht erstellt werden. Bitte versuchen Sie es noch einmal.": "Das PDF konnte nicht erstellt werden. Bitte versuch es noch einmal.",
+    "Ihr Name": "Dein Name",
+    "Ihre Unterschrift": "Deine Unterschrift",
+    "Mit „Übernehmen“ bestätigen Sie, dass dies Ihre Unterschrift ist. Damit unterschreiben Sie das Dokument elektronisch.": "Mit „Übernehmen“ bestätigst du, dass dies deine Unterschrift ist. Damit unterschreibst du das Dokument elektronisch.",
+    "Bitte geben Sie Ihren Namen ein.": "Bitte gib deinen Namen ein.",
+    "Bitte unterschreiben Sie im weißen Feld.": "Bitte unterschreib im weißen Feld.",
+    "Zum Beispiel Ihr Name in Druckschrift": "Zum Beispiel dein Name in Druckschrift",
+    "Schicken Sie das PDF jetzt an {who} zurück, am einfachsten per WhatsApp.": "Schick das PDF jetzt an {who} zurück, am einfachsten per WhatsApp.",
+    "Schicken Sie das PDF jetzt zurück, am einfachsten per WhatsApp.": "Schick das PDF jetzt zurück, am einfachsten per WhatsApp.",
+    "Im nächsten Schritt WhatsApp wählen und dann den Chat, aus dem Sie das Dokument bekommen haben.": "Im nächsten Schritt WhatsApp wählen und dann den Chat, aus dem du das Dokument bekommen hast.",
+    "Speichern Sie das PDF und hängen Sie es in WhatsApp über die Büroklammer als „Dokument“ an.": "Speichere das PDF und häng es in WhatsApp über die Büroklammer als „Dokument“ an.",
+    "Ende-zu-Ende verschlüsselt. Nur Sie und {who} können das Dokument lesen.": "Ende-zu-Ende verschlüsselt. Nur du und {who} könnt das Dokument lesen.",
+    "Ende-zu-Ende verschlüsselt. Nur Sie und der Absender können das Dokument lesen.": "Ende-zu-Ende verschlüsselt. Nur du und der Absender könnt das Dokument lesen.",
+    "Das unterschriebene Dokument geht automatisch an {who}. Sie müssen nichts zurückschicken.": "Das unterschriebene Dokument geht automatisch an {who}. Du musst nichts zurückschicken.",
+    "Das unterschriebene Dokument geht automatisch an den Absender. Sie müssen nichts zurückschicken.": "Das unterschriebene Dokument geht automatisch an den Absender. Du musst nichts zurückschicken.",
+    "Ihr unterschriebenes Dokument ist bei {who} angekommen. Sie müssen nichts mehr tun.": "Dein unterschriebenes Dokument ist bei {who} angekommen. Du musst nichts mehr tun.",
+    "Ihr unterschriebenes Dokument ist beim Absender angekommen. Sie müssen nichts mehr tun.": "Dein unterschriebenes Dokument ist beim Absender angekommen. Du musst nichts mehr tun.",
+    "Sie können die Seite jetzt schließen.": "Du kannst die Seite jetzt schließen.",
+    "Das Senden hat nicht geklappt. Bitte prüfen Sie Ihre Internetverbindung und versuchen Sie es noch einmal.": "Das Senden hat nicht geklappt. Bitte prüf deine Internetverbindung und versuch es noch einmal.",
+    "Der Link ist abgelaufen. Bitte schicken Sie das PDF per WhatsApp zurück.": "Der Link ist abgelaufen. Bitte schick das PDF per WhatsApp zurück.",
+    "Für diesen Link wurde schon ein unterschriebenes Dokument übermittelt. Möchten Sie etwas ändern, schicken Sie das PDF bitte per WhatsApp.": "Für diesen Link wurde schon ein unterschriebenes Dokument übermittelt. Möchtest du etwas ändern, schick das PDF bitte per WhatsApp.",
+    "Das Dokument ist zu groß zum Senden. Bitte schicken Sie das PDF per WhatsApp zurück.": "Das Dokument ist zu groß zum Senden. Bitte schick das PDF per WhatsApp zurück.",
+    "Dieses Dokument wurde bereits unterschrieben und an {who} übermittelt. Sie müssen nichts mehr tun.": "Dieses Dokument wurde bereits unterschrieben und an {who} übermittelt. Du musst nichts mehr tun.",
+    "Dieses Dokument wurde bereits unterschrieben und an den Absender übermittelt. Sie müssen nichts mehr tun.": "Dieses Dokument wurde bereits unterschrieben und an den Absender übermittelt. Du musst nichts mehr tun.",
+    "<p><b>Ende-zu-Ende verschlüsselt.</b> Das PDF, Ihr Name und Ihre Unterschrift werden nur in Ihrem Browser verarbeitet. Übertragen wird nur das fertige Dokument, und zwar verschlüsselt: Lesen können es nur Sie und der Absender.</p>": "<p><b>Ende-zu-Ende verschlüsselt.</b> Das PDF, dein Name und deine Unterschrift werden nur in deinem Browser verarbeitet. Übertragen wird nur das fertige Dokument, und zwar verschlüsselt: Lesen können es nur du und der Absender.</p>",
+    "<p><b>Dokumente per Link:</b> Das Dokument wurde auf dem Gerät des Absenders verschlüsselt und liegt nur verschlüsselt bei Netlify. Der Schlüssel steckt ausschließlich im Link (hinter dem #) und wird nie an den Server übertragen. Wenn Sie auf „Fertig“ tippen, wird das unterschriebene Dokument auf Ihrem Gerät mit diesem Schlüssel verschlüsselt und für den Absender bereitgelegt. Danach wird das Original gelöscht. Das unterschriebene Dokument wird gelöscht, sobald der Absender es abgeholt hat, spätestens nach 30 Tagen. Nicht unterschriebene Dokumente werden nach 7 Tagen gelöscht.</p>": "<p><b>Dokumente per Link:</b> Das Dokument wurde auf dem Gerät des Absenders verschlüsselt und liegt nur verschlüsselt bei Netlify. Der Schlüssel steckt ausschließlich im Link (hinter dem #) und wird nie an den Server übertragen. Wenn du auf „Fertig“ tippst, wird das unterschriebene Dokument auf deinem Gerät mit diesem Schlüssel verschlüsselt und für den Absender bereitgelegt. Danach wird das Original gelöscht. Das unterschriebene Dokument wird gelöscht, sobald der Absender es abgeholt hat, spätestens nach 30 Tagen. Nicht unterschriebene Dokumente werden nach 7 Tagen gelöscht.</p>"
+  };
+  // Kundenseite in Du-Form (Albanisch, „ti“). Schlüssel = deutscher Sie-Text. Fehlt ein Eintrag, gilt SQ.
+  const SQ_TI = {
+    "Dokument unterschreiben": "Nënshkruaje dokumentin",
+    "Ihr Dokument steckt schon im Link. Sie müssen nichts speichern und nichts herunterladen.": "Dokumenti yt ndodhet tashmë në link. Nuk ke nevojë të ruash apo të shkarkosh asgjë.",
+    "Unterschreiben Sie ein PDF direkt auf Ihrem Handy, ganz ohne Drucker.": "Nënshkruaj një PDF direkt në telefonin tënd, pa pasur nevojë për printer.",
+    "Ende-zu-Ende verschlüsselt. Ihre Unterschrift wird nicht hochgeladen, und das Dokument wird nach dem Zurückschicken gelöscht.": "I enkriptuar nga skaji në skaj. Nënshkrimi yt nuk ngarkohet askund dhe dokumenti fshihet pasi ta kesh kthyer të nënshkruar.",
+    "Ihr Dokument bleibt auf Ihrem Gerät. Es wird nichts hochgeladen und nichts gespeichert.": "Dokumenti yt mbetet në pajisjen tënde. Asgjë nuk ngarkohet dhe asgjë nuk ruhet.",
+    "Dokument öffnen": "Hape dokumentin",
+    "Mit dem Finger unterschreiben": "Nënshkruaj me gisht",
+    "Danach schieben Sie die Unterschrift an die richtige Stelle.": "Pastaj e zhvendos nënshkrimin në vendin e duhur.",
+    "Zurückschicken": "Ktheje dokumentin",
+    "Das unterschriebene PDF direkt per WhatsApp senden.": "Dërgoje PDF-në e nënshkruar direkt me WhatsApp.",
+    "PDF auswählen": "Zgjidh PDF-në",
+    "Das Dokument, das Sie per WhatsApp oder E-Mail bekommen haben.": "Dokumentin që e ke marrë me WhatsApp ose me e-mail.",
+    "<b>{who}</b> bittet Sie um Ihre Unterschrift.": "<b>{who}</b> të kërkon nënshkrimin tënd.",
+    "Sie wurden gebeten, ein Dokument zu unterschreiben.": "Të është kërkuar të nënshkruash një dokument.",
+    "Wählen Sie unten das PDF aus, das Sie bekommen haben.": "Zgjidh më poshtë PDF-në që ke marrë.",
+    "So finden Sie das PDF auf dem iPhone": "Si ta gjesh PDF-në në iPhone",
+    "In WhatsApp das PDF <b>antippen</b>.": "Në WhatsApp <b>prek</b> PDF-në.",
+    "Auf <b>Teilen</b> tippen (Kästchen mit Pfeil) und <b>„In Dateien sichern“</b> wählen.": "Prek <b>„Teilen“</b> (katrori me shigjetë) dhe zgjidh <b>„In Dateien sichern“</b>.",
+    "Hier auf <b>„PDF auswählen“</b> tippen, dann unter <b>„Zuletzt“</b> oder <b>„Durchsuchen“</b> das PDF antippen.": "Këtu prek <b>„Zgjidh PDF-në“</b>, pastaj te <b>„Zuletzt“</b> ose <b>„Durchsuchen“</b> prek PDF-në.",
+    "So finden Sie das PDF auf Android": "Si ta gjesh PDF-në në Android",
+    "In WhatsApp das PDF einmal <b>antippen</b>, damit es geladen ist.": "Në WhatsApp <b>prek</b> PDF-në një herë, që të shkarkohet.",
+    "Hier auf <b>„PDF auswählen“</b> tippen.": "Këtu prek <b>„Zgjidh PDF-në“</b>.",
+    "Unter <b>„Zuletzt“</b> oder <b>„Dokumente“</b> das PDF antippen. Es liegt meist im Ordner <b>„WhatsApp Documents“</b>.": "Te <b>„Zuletzt“</b> ose <b>„Dokumente“</b> prek PDF-në. Zakonisht ndodhet në dosjen <b>„WhatsApp Documents“</b>.",
+    "Das PDF kam per E-Mail?": "PDF-ja të erdhi me e-mail?",
+    "Speichern Sie den Anhang und wählen Sie ihn hier mit „PDF auswählen“ aus.": "Ruaje shtojcën dhe zgjidhe këtu me „Zgjidh PDF-në“.",
+    "<p><b>Ihr Dokument bleibt auf Ihrem Gerät.</b> Das PDF, Ihr Name und Ihre Unterschrift werden nur in Ihrem Browser verarbeitet. Nichts davon wird hochgeladen, gespeichert oder an Dritte übermittelt.</p>": "<p><b>Dokumenti yt mbetet në pajisjen tënde.</b> PDF-ja, emri dhe nënshkrimi yt përpunohen vetëm në shfletuesin tënd. Asgjë prej tyre nuk ngarkohet, nuk ruhet dhe nuk u jepet palëve të treta.</p>",
+    "<p>Beim Aufruf der Seite verarbeitet der Hosting-Anbieter (Netlify) technisch notwendige Verbindungsdaten wie die IP-Adresse, um die Seite auszuliefern.</p>": "<p>Kur hap faqen, ofruesi i hostingut (Netlify) përpunon të dhënat teknike të lidhjes, si adresën IP, për ta shfaqur faqen.</p>",
+    "<p><b>Dokumente per Link:</b> Schickt Ihnen jemand ein Dokument per Link, wurde es auf seinem Gerät verschlüsselt und liegt nur verschlüsselt bei Netlify. Der Schlüssel steckt ausschließlich im Link (hinter dem #) und wird nie an den Server übertragen. Niemand außer Ihnen und dem Absender kann das Dokument lesen. Es wird gelöscht, sobald Sie es unterschrieben zurückgeschickt haben, spätestens nach 7 Tagen.</p>": "<p><b>Dokumente me link:</b> Nëse dikush të dërgon një dokument me link, ai është enkriptuar në pajisjen e tij dhe ruhet te Netlify vetëm i enkriptuar. Çelësi ndodhet vetëm në link (pas shenjës #) dhe nuk i dërgohet kurrë serverit. Askush përveç teje dhe dërguesit nuk mund ta lexojë dokumentin. Ai fshihet sapo ta kesh kthyer të nënshkruar, e më së voni pas 7 ditësh.</p>",
+    "<p>Das unterschriebene PDF verschicken Sie selbst, zum Beispiel per WhatsApp. Dafür gelten die Datenschutzbestimmungen des jeweiligen Dienstes.</p>": "<p>PDF-në e nënshkruar e dërgon vetë, për shembull me WhatsApp. Për këtë vlejnë rregullat e privatësisë së shërbimit përkatës.</p>",
+    "<p>Verantwortlich: siehe Impressum.</p>": "<p>Përgjegjësi: shih Impressum.</p>",
+    "Dieser Link ist abgelaufen oder das Dokument wurde schon unterschrieben zurückgeschickt. Bitten Sie {who} um einen neuen Link.": "Ky link ka skaduar ose dokumenti është kthyer tashmë i nënshkruar. Kërko një link të ri nga {who}.",
+    "Der Link ist unvollständig. Bitte öffnen Sie ihn noch einmal direkt aus WhatsApp.": "Linku është i paplotë. Të lutem hape edhe një herë direkt nga WhatsApp.",
+    "Das Dokument konnte nicht geladen werden. Bitte prüfen Sie Ihre Internetverbindung.": "Dokumenti nuk mund të ngarkohej. Të lutem kontrollo lidhjen me internetin.",
+    "Erneut versuchen": "Provo përsëri",
+    "Haben Sie das PDF auf dem Handy? Dann können Sie es auch selbst auswählen.": "E ke PDF-në në telefon? Atëherë mund ta zgjedhësh edhe vetë.",
+    "Diese Datei ist kein PDF. Bitte wählen Sie das PDF-Dokument aus.": "Ky skedar nuk është PDF. Të lutem zgjidh dokumentin PDF.",
+    "Falsches Passwort. Bitte noch einmal eingeben:": "Fjalëkalim i gabuar. Të lutem shkruaje përsëri:",
+    "Das PDF ist mit einem Passwort geschützt. Bitte Passwort eingeben:": "PDF-ja është e mbrojtur me fjalëkalim. Të lutem shkruaj fjalëkalimin:",
+    "Die Seite wurde nicht vollständig geladen. Bitte laden Sie sie neu.": "Faqja nuk u ngarkua plotësisht. Të lutem ringarkoje.",
+    "Dieses PDF passt nicht zur Anfrage (andere Seitenzahl). Bitte prüfen Sie, ob Sie das richtige Dokument gewählt haben. Sie können trotzdem unterschreiben und die Unterschrift selbst platzieren.": "Ky PDF nuk përputhet me kërkesën (numër tjetër faqesh). Të lutem kontrollo nëse ke zgjedhur dokumentin e duhur. Gjithsesi mund të nënshkruash dhe ta vendosësh nënshkrimin vetë.",
+    "Dieses PDF ist nicht genau das angeforderte Dokument. Wählen Sie am besten das PDF aus der Nachricht. Sie können trotzdem unterschreiben.": "Ky PDF nuk është saktësisht dokumenti i kërkuar. Më mirë zgjidh PDF-në nga mesazhi. Gjithsesi mund të nënshkruash.",
+    "Die gelb markierte Stelle wird nach dem Unterschreiben automatisch ausgefüllt.": "Vendi i shënuar me të verdhë plotësohet automatikisht pasi të nënshkruash.",
+    "Die {n} gelb markierten Stellen werden nach dem Unterschreiben automatisch ausgefüllt.": "{n} vendet e shënuara me të verdhë plotësohen automatikisht pasi të nënshkruash.",
+    "Die markierten Stellen sind ausgefüllt. Prüfen Sie kurz alles und tippen Sie dann auf „Fertig“.": "Vendet e shënuara u plotësuan. Kontrollo shkurt gjithçka dhe pastaj prek „Gati“.",
+    "Hier unterschreiben": "Nënshkruaj këtu",
+    "Ort und Datum einsetzen": "Vendos vendin dhe datën",
+    "Jetzt unterschreiben": "Nënshkruaj tani",
+    "Unterschreiben": "Nënshkruaj",
+    "Unterschrift einsetzen": "Vendos nënshkrimin",
+    "Fertig – PDF erstellen": "Gati – krijo PDF-në",
+    "Hinzufügen": "Shto",
+    "Entfernen": "Hiq",
+    "Eingesetzt. Zum Verschieben ziehen.": "U vendos. Tërhiqe për ta zhvendosur.",
+    "Unterschrift an {n} Stellen eingesetzt. Bitte kurz prüfen.": "Nënshkrimi u vendos në {n} vende. Të lutem kontrollo shkurt.",
+    "Unterschrift eingesetzt. Bitte kurz prüfen.": "Nënshkrimi u vendos. Të lutem kontrollo shkurt.",
+    "Schieben Sie die Unterschrift an die richtige Stelle. Größe ändern: blauen Punkt ziehen.": "Zhvendose nënshkrimin në vendin e duhur. Për madhësinë: tërhiq pikën blu.",
+    "Zum Verschieben ziehen. Nochmal antippen zum Ändern.": "Tërhiqe për ta zhvendosur. Preke përsëri për ta ndryshuar.",
+    "Bitte zuerst unterschreiben.": "Të lutem nënshkruaj fillimisht.",
+    "Danke! Sie können die Seite jetzt schließen.": "Faleminderit! Tani mund ta mbyllësh faqen.",
+    "Teilen hat nicht geklappt. Bitte „PDF speichern“ nutzen.": "Dërgimi nuk funksionoi. Të lutem përdor „Ruaj PDF-në“.",
+    "Dokument schließen? Ihre Unterschrift geht dabei verloren.": "Ta mbyllësh dokumentin? Nënshkrimi yt do të humbasë.",
+    "Das PDF konnte nicht erstellt werden. Bitte versuchen Sie es noch einmal.": "PDF-ja nuk mund të krijohej. Të lutem provo përsëri.",
+    "Unterschrift ändern": "Ndrysho nënshkrimin",
+    "Ihr Name": "Emri yt",
+    "Ihre Unterschrift": "Nënshkrimi yt",
+    "Löschen": "Fshij",
+    "Hier mit dem Finger unterschreiben": "Nënshkruaj këtu me gisht",
+    "Mit „Übernehmen“ bestätigen Sie, dass dies Ihre Unterschrift ist. Damit unterschreiben Sie das Dokument elektronisch.": "Me „Konfirmo“ vërteton se ky është nënshkrimi yt. Kështu e nënshkruan dokumentin në mënyrë elektronike.",
+    "Bitte geben Sie Ihren Namen ein.": "Të lutem shkruaj emrin tënd.",
+    "Bitte unterschreiben Sie im weißen Feld.": "Të lutem nënshkruaj në fushën e bardhë.",
+    "Unterschrift einfügen": "Shto nënshkrimin",
+    "Auf Seite {n}, dann an die Stelle schieben": "Në faqen {n}, pastaj zhvendose në vend",
+    "Ort und Datum einfügen": "Shto vendin dhe datën",
+    "Text einfügen": "Shto tekst",
+    "Zum Beispiel Ihr Name in Druckschrift": "Për shembull emrin tënd me shkronja shtypi",
+    "Unterschrift neu zeichnen": "Vizato nënshkrimin përsëri",
+    "Text ändern": "Ndrysho tekstin",
+    "Text eingeben": "Shkruaj tekstin",
+    "Schicken Sie das PDF jetzt an {who} zurück, am einfachsten per WhatsApp.": "Tani dërgoje PDF-në te {who}, më së lehti me WhatsApp.",
+    "Schicken Sie das PDF jetzt zurück, am einfachsten per WhatsApp.": "Tani ktheje PDF-në, më së lehti me WhatsApp.",
+    "Per WhatsApp zurückschicken": "Dërgoje me WhatsApp",
+    "Im nächsten Schritt WhatsApp wählen und dann den Chat mit {who}.": "Në hapin tjetër zgjidh WhatsApp dhe pastaj bisedën me {who}.",
+    "Im nächsten Schritt WhatsApp wählen und dann den Chat, aus dem Sie das Dokument bekommen haben.": "Në hapin tjetër zgjidh WhatsApp dhe pastaj bisedën nga e cila e more dokumentin.",
+    "Speichern Sie das PDF und hängen Sie es in WhatsApp über die Büroklammer als „Dokument“ an.": "Ruaje PDF-në dhe bashkëngjite në WhatsApp përmes kapëses si „Dokument“.",
+    "PDF speichern": "Ruaj PDF-në",
+    "Zurück zum Dokument": "Kthehu te dokumenti",
+    "Ende-zu-Ende verschlüsselt. Nur Sie und {who} können das Dokument lesen.": "I enkriptuar nga skaji në skaj. Vetëm ti dhe {who} mund ta lexoni dokumentin.",
+    "Ende-zu-Ende verschlüsselt. Nur Sie und der Absender können das Dokument lesen.": "I enkriptuar nga skaji në skaj. Vetëm ti dhe dërguesi mund ta lexoni dokumentin.",
+    "Fertig tippen": "Prek „Gati“",
+    "Das unterschriebene Dokument geht automatisch an {who}. Sie müssen nichts zurückschicken.": "Dokumenti i nënshkruar dërgohet automatikisht te {who}. Nuk ke nevojë ta kthesh vetë.",
+    "Das unterschriebene Dokument geht automatisch an den Absender. Sie müssen nichts zurückschicken.": "Dokumenti i nënshkruar dërgohet automatikisht te dërguesi. Nuk ke nevojë ta kthesh vetë.",
+    "Fertig – Dokument senden": "Gati – dërgo dokumentin",
+    "Ihr unterschriebenes Dokument ist bei {who} angekommen. Sie müssen nichts mehr tun.": "Dokumenti yt i nënshkruar mbërriti te {who}. Nuk ke nevojë të bësh asgjë tjetër.",
+    "Ihr unterschriebenes Dokument ist beim Absender angekommen. Sie müssen nichts mehr tun.": "Dokumenti yt i nënshkruar mbërriti te dërguesi. Nuk ke nevojë të bësh asgjë tjetër.",
+    "Sie können die Seite jetzt schließen.": "Tani mund ta mbyllësh faqen.",
+    "Kopie für mich speichern": "Ruaj një kopje për vete",
+    "Das Senden hat nicht geklappt. Bitte prüfen Sie Ihre Internetverbindung und versuchen Sie es noch einmal.": "Dërgimi nuk funksionoi. Të lutem kontrollo lidhjen me internetin dhe provo përsëri.",
+    "Der Link ist abgelaufen. Bitte schicken Sie das PDF per WhatsApp zurück.": "Linku ka skaduar. Të lutem dërgoje PDF-në me WhatsApp.",
+    "Für diesen Link wurde schon ein unterschriebenes Dokument übermittelt. Möchten Sie etwas ändern, schicken Sie das PDF bitte per WhatsApp.": "Për këtë link është dërguar tashmë një dokument i nënshkruar. Nëse do të ndryshosh diçka, të lutem dërgoje PDF-në me WhatsApp.",
+    "Das Dokument ist zu groß zum Senden. Bitte schicken Sie das PDF per WhatsApp zurück.": "Dokumenti është shumë i madh për t’u dërguar. Të lutem dërgoje PDF-në me WhatsApp.",
+    "Erneut senden": "Dërgo përsëri",
+    "Dieses Dokument wurde bereits unterschrieben und an {who} übermittelt. Sie müssen nichts mehr tun.": "Ky dokument është nënshkruar tashmë dhe është dërguar te {who}. Nuk ke nevojë të bësh asgjë tjetër.",
+    "Dieses Dokument wurde bereits unterschrieben und an den Absender übermittelt. Sie müssen nichts mehr tun.": "Ky dokument është nënshkruar tashmë dhe është dërguar te dërguesi. Nuk ke nevojë të bësh asgjë tjetër.",
+    "<p><b>Ende-zu-Ende verschlüsselt.</b> Das PDF, Ihr Name und Ihre Unterschrift werden nur in Ihrem Browser verarbeitet. Übertragen wird nur das fertige Dokument, und zwar verschlüsselt: Lesen können es nur Sie und der Absender.</p>": "<p><b>I enkriptuar nga skaji në skaj.</b> PDF-ja, emri dhe nënshkrimi yt përpunohen vetëm në shfletuesin tënd. Transmetohet vetëm dokumenti përfundimtar, dhe atë i enkriptuar: mund ta lexoni vetëm ti dhe dërguesi.</p>",
+    "<p><b>Dokumente per Link:</b> Das Dokument wurde auf dem Gerät des Absenders verschlüsselt und liegt nur verschlüsselt bei Netlify. Der Schlüssel steckt ausschließlich im Link (hinter dem #) und wird nie an den Server übertragen. Wenn Sie auf „Fertig“ tippen, wird das unterschriebene Dokument auf Ihrem Gerät mit diesem Schlüssel verschlüsselt und für den Absender bereitgelegt. Danach wird das Original gelöscht. Das unterschriebene Dokument wird gelöscht, sobald der Absender es abgeholt hat, spätestens nach 30 Tagen. Nicht unterschriebene Dokumente werden nach 7 Tagen gelöscht.</p>": "<p><b>Dokumente me link:</b> Dokumenti është enkriptuar në pajisjen e dërguesit dhe ruhet te Netlify vetëm i enkriptuar. Çelësi ndodhet vetëm në link (pas shenjës #) dhe nuk i dërgohet kurrë serverit. Kur prek „Gati“, dokumenti i nënshkruar enkriptohet në pajisjen tënde me këtë çelës dhe i vihet në dispozicion dërguesit. Pastaj origjinali fshihet. Dokumenti i nënshkruar fshihet sapo dërguesi ta ketë marrë, e më së voni pas 30 ditësh. Dokumentet e panënshkruara fshihen pas 7 ditësh.</p>"
+  };
+  // Übersetzung der Kundenseite (Deutsch mit „Sie“ = Schlüssel). Mit S.du in Du-Form.
   function tr(str, vars) {
-    let out = S.lang === 'sq' && SQ[str] ? SQ[str] : str;
+    let out = str;
+    if (S.lang === 'sq') out = (S.du && SQ_TI[str]) || SQ[str] || str;
+    else if (S.du && DU[str]) out = DU[str];
     if (vars) Object.keys(vars).forEach(k => { out = out.split('{' + k + '}').join(vars[k]); });
     return out;
   }
@@ -271,13 +436,16 @@
     remote: null,       // Kunde: Dokument aus dem Link { id, del, name, bytes, expires, deleted }
     fileIsRemote: false,
     lang: 'de',         // Sprache der Kundenseite: 'de' oder 'sq'
+    du: false,          // Kundenseite duzt (aus dem Link)
     sendLang: 'de',     // Absender: gewählte Sprache für den Kunden
+    sendDu: true,       // Absender: Kunden duzen
     server: null,       // Absender: { ok, pin, v } – gibt es den Server-Teil?
     sent: null,         // Absender: hochgeladenes Dokument { id, del, key, expires, track }
     sentBack: null,     // Kunde: Ergebnis der Rückgabe { ok, code, at }
     remoteSigned: null, // Kunde: Link wurde schon unterschrieben zurückgegeben { signedAt }
     view: null,         // Absender: angezeigtes unterschriebenes PDF (ID aus der Übersicht)
-    inbox: { list: [], ok: true, err: '', last: 0, filter: 'all' }
+    inbox: { list: [], ok: true, err: '', last: 0, filter: 'all' },
+    short: null         // Kunde: Geheimnis aus einem kurzen Link (#xxxxxxxxxxxxxxxxxxxxxx)
   };
   const LS_PIN = 'firmio.pin.v1';
   const LS_FILTER = 'firmio.filter.v1';
@@ -292,8 +460,11 @@
   function init() {
     const h = location.hash || '';
     if (/^#absender\b/i.test(h)) S.mode = 'send';
-    S.req = S.mode === 'sign' ? parseReq(h) : null;
+    S.short = S.mode === 'sign' ? shortSecret(h) : null;
+    S.req = S.mode === 'sign' && !S.short ? parseReq(h) : null;
+    if (S.short) $('#start').classList.add('pending'); // Sprache und Absender kommen erst mit den verschlüsselten Angaben
     S.lang = S.req && S.req.l === 'sq' ? 'sq' : 'de';
+    S.du = !!(S.req && S.req.u === 1);
     applyStatic();
     setupStart();
 
@@ -325,8 +496,27 @@
     if (S.mode === 'send' && 'serviceWorker' in navigator && window.isSecureContext) {
       navigator.serviceWorker.register('sw.js').catch(err => console.warn('Service Worker:', err));
     }
-    if (S.req && S.req.d && S.req.k) loadRemote();
-    if (S.mode === 'send') initInbox();
+    if (S.short) loadShort();
+    else if (S.req && S.req.d && S.req.k) loadRemote();
+    if (S.mode === 'send') {
+      const openM = /[#&]open=([A-Za-z0-9_-]{22})/.exec(h);
+      if (openM) {
+        pendingOpen = openM[1];
+        try { history.replaceState(null, '', location.pathname + location.search + '#absender'); } catch (e) { /* egal */ }
+      }
+      const sb = $('#settingsBtn');
+      if (sb) { sb.classList.remove('hidden'); sb.addEventListener('click', openSettings); }
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.addEventListener('message', e => {
+          const d = e.data || {};
+          if (S.inViewer) return;
+          if (d.firmio === 'signed') refreshInbox();
+          if (d.firmio === 'open') refreshInbox().then(() => { if (d.id) openRecord(d.id); });
+        });
+      }
+      initInbox();
+      keepPushAlive();
+    }
     document.addEventListener('visibilitychange', () => {
       if (document.visibilityState !== 'visible' || S.mode !== 'send') return;
       checkUpdate();
@@ -340,11 +530,19 @@
     });
   }
 
+  // Kurzer Link: nur ein zufälliges Geheimnis (16 Byte) hinter dem #
+  function shortSecret(h) {
+    const m = /^#([A-Za-z0-9_-]{22})$/.exec(h);
+    return m ? m[1] : null;
+  }
   function parseReq(h) {
     const m = /(?:^#|&)r=([A-Za-z0-9_-]+)/.exec(h);
     if (!m) return null;
+    try { return parseReqObj(JSON.parse(fromB64url(m[1]))); } catch (e) { return null; }
+  }
+  // Angaben zur Anfrage prüfen (aus einem langen Link oder aus den verschlüsselten Angaben eines kurzen Links)
+  function parseReqObj(o) {
     try {
-      const o = JSON.parse(fromB64url(m[1]));
       if (!o || o.v !== 1) return null;
       const s = Array.isArray(o.s) ? o.s.filter(a => Array.isArray(a) && a.length === 6 && (a[0] === 's' || a[0] === 'd') &&
         a.slice(1).every(v => typeof v === 'number' && isFinite(v) && v >= 0)).slice(0, 40) : [];
@@ -358,7 +556,9 @@
         k: typeof o.k === 'string' && /^[A-Za-z0-9_-]{43}$/.test(o.k) ? o.k : '',
         t: typeof o.t === 'string' && /^[A-Za-z0-9_-]{22}$/.test(o.t) ? o.t : '',
         l: o.l === 'sq' ? 'sq' : 'de',
-        b: o.b === 1 ? 1 : 0
+        b: o.b === 1 ? 1 : 0,
+        u: o.u === 1 ? 1 : 0,
+        z: typeof o.z === 'string' ? o.z.replace(/\s+/g, ' ').trim().slice(0, 60) : ''
       };
     } catch (e) { return null; }
   }
@@ -404,17 +604,52 @@
     else if (S.remote) renderRemoteReady();
   }
 
+  function setText(sel, t) { const n = $(sel); if (n) n.textContent = t; }
+  const STROKE = '<svg class="lh-stroke" viewBox="0 0 170 20" width="170" height="20" aria-hidden="true"><path d="M3 13.5c14-6 24-9.5 35-8.4 11 1.1 9.5 8.6 20 8.8 12 .2 15-9.4 28-9.6 13-.2 13 9 26 9.2 14 .2 22-6.6 38-7.4 7-.4 12 .4 16 1.6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>';
+  // Briefkopf: Absender (Kunde sieht den Namen aus dem Link, der Absender seinen eigenen)
+  function renderLetterhead() {
+    let name, sub;
+    if (S.mode === 'send') {
+      const p = loadSender();
+      name = p.name || 'Firmio';
+      sub = p.name ? (p.sub || '') : 'Unterschriften per WhatsApp anfordern';
+    } else if (S.req && S.req.f) {
+      name = S.req.f;
+      sub = S.req.z || '';
+    } else if (CFG.anbieter) {
+      name = CFG.anbieter;
+      sub = tr('mit Firmio sicher unterschreiben');
+    } else {
+      name = 'Firmio';
+      sub = tr('Dokumente sicher unterschreiben');
+    }
+    setText('#lhName', name);
+    setText('#lhSub', sub);
+    const mark = $('.appmark');
+    if (mark) mark.style.visibility = name === 'Firmio' ? 'hidden' : '';
+    const head = $('.apphead');
+    if (head) head.classList.toggle('hidden', name === 'Firmio' && S.mode !== 'send');
+  }
+
   function setupStart() {
     const send = S.mode === 'send';
-    $('#brandSub').textContent = tr('Dokumente sicher unterschreiben');
-    if (CFG.anbieter) { $('#brandName').textContent = CFG.anbieter; $('#brandSub').textContent = tr('mit Firmio sicher unterschreiben'); }
+    renderLetterhead();
     document.title = (send ? 'Unterschrift anfordern' : tr('Dokument unterschreiben')) + ' · Firmio';
     $('#startTitle').textContent = send ? 'Unterschrift anfordern' : tr('Dokument unterschreiben');
     const inLink = !!(S.req && S.req.d && S.req.k);
-    $('#startLead').textContent = send
-      ? 'Markieren Sie, wo unterschrieben werden soll, und schicken Sie den Link per WhatsApp. Das unterschriebene PDF landet automatisch hier.'
-      : inLink ? tr('Ihr Dokument steckt schon im Link. Sie müssen nichts speichern und nichts herunterladen.')
-        : tr('Unterschreiben Sie ein PDF direkt auf Ihrem Handy, ganz ohne Drucker.');
+    const nSigReq = S.req ? S.req.s.filter(a => a[0] === 's').length : 0;
+    const lead = $('#startLead');
+    if (send) {
+      lead.textContent = 'Markieren Sie, wo unterschrieben werden soll, und schicken Sie den Link per WhatsApp. Das unterschriebene PDF landet automatisch hier.';
+    } else if (S.req) {
+      const who = S.req.f;
+      const first = who ? tr('<b>{who}</b> bittet Sie um Ihre Unterschrift.', { who: esc(who) }) : esc(tr('Sie wurden gebeten, ein Dokument zu unterschreiben.'));
+      const second = nSigReq ? (nSigReq === 1 ? tr('Die Stelle zum Unterschreiben ist schon markiert.') : tr('{n} Stellen zum Unterschreiben sind schon markiert.', { n: nSigReq }))
+        : inLink ? tr('Ihr Dokument steckt schon im Link. Sie müssen nichts speichern und nichts herunterladen.') : tr('Wählen Sie unten das PDF aus, das Sie bekommen haben.');
+      lead.innerHTML = first + ' ' + esc(second);
+    } else {
+      lead.textContent = tr('Unterschreiben Sie ein PDF direkt auf Ihrem Handy, ganz ohne Drucker.');
+    }
     const back = linkBack(), whoNom = S.req && S.req.f;
     $('#trustText').textContent = send
       ? 'Ende-zu-Ende verschlüsselt. Unterschriebene Dokumente werden nur auf diesem Gerät gespeichert.'
@@ -440,20 +675,6 @@
     const ol = $('#steps');
     ol.innerHTML = '';
     steps.forEach((s, i) => ol.append(el('li', null, el('span', { class: 'n', text: String(i + 1) }), el('div', null, el('b', { text: s[0] }), el('span', { text: s[1] })))));
-
-    const card = $('#reqCard');
-    if (S.req) {
-      const who = S.req.f;
-      const initials = who ? who.split(' ').filter(Boolean).slice(0, 2).map(w => w[0].toUpperCase()).join('') : '';
-      card.innerHTML = '';
-      card.append(
-        el('div', { class: 'av', html: initials ? esc(initials) : I.pen }),
-        el('div', null,
-          el('p', { html: who ? tr('<b>{who}</b> bittet Sie um Ihre Unterschrift.', { who: esc(who) }) : tr('Sie wurden gebeten, ein Dokument zu unterschreiben.') }),
-          el('p', { text: nSig ? (nSig === 1 ? tr('Die Stelle zum Unterschreiben ist schon markiert.') : tr('{n} Stellen zum Unterschreiben sind schon markiert.', { n: nSig }))
-            : inLink ? tr('Das Dokument ist im Link enthalten.') : tr('Wählen Sie unten das PDF aus, das Sie bekommen haben.') })));
-      card.classList.remove('hidden');
-    }
 
     renderHelp(!send && !inLink);
 
@@ -706,6 +927,28 @@
     const head = JSON.parse(new TextDecoder().decode(plain.subarray(9, 9 + hl)));
     return { name: String(head.name || 'Dokument.pdf'), bytes: plain.slice(9 + hl), head: head && typeof head === 'object' ? head : {} };
   }
+  // Kurzer Link: Aus dem Geheimnis werden im Browser abgeleitet: Kennung beim Server, Schlüssel und Rückgabe-Token.
+  // Der Server bekommt nur die Kennung und die Prüfsumme des Tokens – nie das Geheimnis oder den Schlüssel.
+  async function deriveLink(secret) {
+    const base = await crypto.subtle.importKey('raw', b64urlToBytes(secret), 'HKDF', false, ['deriveBits']);
+    const salt = new TextEncoder().encode('firmio');
+    const bits = async (info, n) => new Uint8Array(await crypto.subtle.deriveBits({ name: 'HKDF', hash: 'SHA-256', salt: salt, info: new TextEncoder().encode(info) }, base, n * 8));
+    return { id: bytesToB64url(await bits('id', 16)), key: bytesToB64url(await bits('key', 32)), tok: bytesToB64url(await bits('tok', 16)) };
+  }
+  async function sealHead(obj, keyB64) {
+    const iv = crypto.getRandomValues(new Uint8Array(12));
+    const ck = await crypto.subtle.importKey('raw', b64urlToBytes(keyB64), 'AES-GCM', false, ['encrypt']);
+    const ct = new Uint8Array(await crypto.subtle.encrypt({ name: 'AES-GCM', iv: iv }, ck, new TextEncoder().encode(JSON.stringify(obj))));
+    return bytesToB64url(concatBytes([iv, ct]));
+  }
+  async function openHead(str, keyB64) {
+    const data = b64urlToBytes(str);
+    const ck = await crypto.subtle.importKey('raw', b64urlToBytes(keyB64), 'AES-GCM', false, ['decrypt']);
+    const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: data.subarray(0, 12) }, ck, data.subarray(12));
+    return JSON.parse(new TextDecoder().decode(pt));
+  }
+  const shortLinks = () => !!(S.server && S.server.v >= 4 && window.crypto && crypto.subtle);
+
   // Mehrere Versuche bei Funklöchern (nicht bei klaren Ablehnungen des Servers)
   async function apiRetry(method, path, opt, tries) {
     for (let i = 1; ; i++) {
@@ -717,15 +960,34 @@
     }
   }
 
-  async function uploadDoc(pin, onProgress) {
-    const enc = await encryptDoc(S.file.bytes, S.file.name);
+  async function uploadDoc(pin, onProgress, info) {
     const CH = 3 * 1024 * 1024;
-    const chunks = Math.ceil(enc.payload.length / CH);
-    const created = await apiJSON('POST', '/api/doc', { pin: pin, json: { size: enc.payload.length, chunks: chunks } });
-    for (let i = 0; i < chunks; i++) {
-      await apiFetch('PUT', '/api/doc/' + created.id + '/' + i, { pin: pin, body: new Blob([enc.payload.slice(i * CH, (i + 1) * CH)]) });
-      if (onProgress) onProgress((i + 1) / chunks);
+    const putParts = async (id, payload) => {
+      const chunks = Math.ceil(payload.length / CH);
+      for (let i = 0; i < chunks; i++) {
+        await apiRetry('PUT', '/api/doc/' + id + '/' + i, { pin: pin, body: new Blob([payload.slice(i * CH, (i + 1) * CH)]) });
+        if (onProgress) onProgress((i + 1) / chunks);
+      }
+    };
+    if (info && shortLinks()) {
+      // Kurzer Link: Geheimnis würfeln, alles daraus ableiten, Angaben verschlüsselt mitschicken
+      for (let attempt = 0; attempt < 2; attempt++) {
+        const secret = bytesToB64url(crypto.getRandomValues(new Uint8Array(16)));
+        const d = await deriveLink(secret);
+        const payload = await sealDoc(S.file.bytes, { name: S.file.name }, b64urlToBytes(d.key));
+        const head = await sealHead(info, d.key);
+        const tok = await sha256(new TextEncoder().encode(d.tok));
+        let created;
+        try {
+          created = await apiJSON('POST', '/api/doc', { pin: pin, json: { size: payload.length, chunks: Math.ceil(payload.length / CH), id: d.id, tok: tok, head: head } });
+        } catch (e) { if (e.code === 'exists' && attempt === 0) continue; throw e; }
+        await putParts(d.id, payload);
+        return { id: d.id, del: d.tok, key: d.key, secret: secret, expires: created.expires, hash: S.file.hash, headSig: JSON.stringify(info) };
+      }
     }
+    const enc = await encryptDoc(S.file.bytes, S.file.name);
+    const created = await apiJSON('POST', '/api/doc', { pin: pin, json: { size: enc.payload.length, chunks: Math.ceil(enc.payload.length / CH) } });
+    await putParts(created.id, enc.payload);
     return { id: created.id, del: created.del, key: enc.key, expires: created.expires, hash: S.file.hash };
   }
 
@@ -737,15 +999,46 @@
       const res = await fetch('/api/status', { cache: 'no-store', credentials: 'omit', signal: ctl ? ctl.signal : undefined });
       clearTimeout(timer);
       const j = res.ok ? await res.json() : null;
-      S.server = j && j.ok ? { ok: true, pin: !!j.pin, v: Number(j.v) || 1 } : { ok: false };
+      S.server = j && j.ok ? { ok: true, pin: !!j.pin, v: Number(j.v) || 1, push: !!j.push } : { ok: false };
     } catch (e) { S.server = { ok: false }; }
     return S.server;
   }
   function getPin() { try { return localStorage.getItem(LS_PIN) || ''; } catch (e) { return ''; } }
   function setPin(v) { try { if (v) localStorage.setItem(LS_PIN, v); else localStorage.removeItem(LS_PIN); } catch (e) { /* egal */ } }
 
+  // Kunde: kurzer Link – erst die verschlüsselten Angaben (Absender, Sprache, Stellen), dann das Dokument
+  async function loadShort() {
+    const box = $('#remoteBox');
+    $('#pickBtn').classList.add('hidden');
+    box.innerHTML = '';
+    box.append(el('div', { class: 'remote waiting' }, el('div', { class: 'spin sm' })));
+    let meta = null;
+    try {
+      const d = await deriveLink(S.short);
+      meta = await apiJSON('GET', '/api/doc/' + d.id);
+      let info = null;
+      try { info = meta.head ? parseReqObj(await openHead(meta.head, d.key)) : null; } catch (e) { info = null; }
+      S.req = Object.assign(info || parseReqObj({ v: 1 }), { d: d.id, k: d.key, t: d.tok });
+      if (!info) S.req.b = 1;
+      S.lang = S.req.l === 'sq' ? 'sq' : 'de';
+      S.du = S.req.u === 1;
+    } catch (e) {
+      console.warn('Kurzer Link:', e);
+      $('#start').classList.remove('pending');
+      applyStatic();
+      setupStart();
+      renderRemoteError(e && e.code);
+      return;
+    }
+    $('#start').classList.remove('pending');
+    applyStatic();
+    setupStart();
+    await loadRemote(meta);
+  }
+  const retryLoad = () => (S.short && !(S.req && S.req.d) ? loadShort() : loadRemote());
+
   // Kunde: Dokument aus dem Link laden
-  async function loadRemote() {
+  async function loadRemote(known) {
     const r = S.req;
     const box = $('#remoteBox');
     $('#pickBtn').classList.add('hidden');
@@ -755,7 +1048,7 @@
       el('div', { class: 'spin sm' }),
       el('div', { class: 'grow' }, el('b', { text: tr('Dokument wird geladen …') }), el('div', { class: 'prog' }, fill))));
     try {
-      const meta = await apiJSON('GET', '/api/doc/' + r.d);
+      const meta = known || await apiJSON('GET', '/api/doc/' + r.d);
       if (meta.status === 'signed') { S.remoteSigned = { signedAt: meta.signedAt }; renderRemoteSigned(); return; }
       const parts = [];
       for (let i = 0; i < meta.chunks; i++) {
@@ -814,7 +1107,7 @@
     const card = el('div', { class: 'banner warn' }, el('span', { html: I.warn }), el('p', { text: text }));
     box.append(card);
     if (code !== 'not_found' && code !== 'expired' && code !== 'http_404' && code !== 'http_410' && code !== 'key') {
-      box.append(el('button', { type: 'button', class: 'btn btn-primary btn-block btn-xl', text: tr('Erneut versuchen'), onclick: loadRemote }));
+      box.append(el('button', { type: 'button', class: 'btn btn-primary btn-block btn-xl', text: tr('Erneut versuchen'), onclick: () => retryLoad() }));
     }
     box.append(el('p', { class: 'hint', text: tr('Haben Sie das PDF auf dem Handy? Dann können Sie es auch selbst auswählen.') }));
     const pick = $('#pickBtn');
@@ -848,7 +1141,7 @@
 
   /* ---------------- Ansicht ---------------- */
   async function openViewer() {
-    S.items = []; S.spots = []; S.sel = null; S.out = null; S.dirty = false; S.hashMatch = null; S.cur = 0; S.sig = null; S.sent = null; S.sendLang = 'de'; S.sentBack = null; S.custLabel = '';
+    S.items = []; S.spots = []; S.sel = null; S.out = null; S.dirty = false; S.hashMatch = null; S.cur = 0; S.sig = null; S.sent = null; S.sendLang = 'de'; S.sendDu = loadSender().du !== false; S.sentBack = null; S.custLabel = '';
     showScreen('viewer');
     $('#docName').textContent = S.file.name;
     $('#modeChip').textContent = S.view ? 'Unterschrieben' : S.mode === 'send' ? 'Anfordern' : '';
@@ -1572,44 +1865,66 @@
   function saveSender(o) { try { localStorage.setItem(LS_SENDER, JSON.stringify(o)); } catch (e) { /* egal */ } }
   function baseUrl() { return location.href.split('#')[0].split('?')[0]; }
 
-  function requestLink(name, proof, withDoc) {
+  // Angaben zur Anfrage: Stellen, Absender, Sprache, Anrede (bei kurzen Links verschlüsselt beim Server, sonst im Link)
+  function requestInfo(name, proof, back) {
     const o = { v: 1, p: S.pages.length, s: S.spots.map(sp => [sp.k, sp.page + 1, Math.round(sp.x), Math.round(sp.y), Math.round(sp.w), Math.round(sp.h)]) };
     if (S.file.hash) o.h = S.file.hash.slice(0, 16);
     if (name) o.f = name.slice(0, 60);
+    const zusatz = loadSender().sub;
+    if (name && zusatz) o.z = String(zusatz).slice(0, 60);
     if (!proof) o.n = 0;
-    if (withDoc && S.sent) { o.d = S.sent.id; o.k = S.sent.key; o.t = S.sent.del; if (S.sent.track) o.b = 1; }
+    if (back) o.b = 1;
     if (S.sendLang === 'sq') o.l = 'sq';
+    if (S.sendDu) o.u = 1;
+    return o;
+  }
+  function requestLink(name, proof, withDoc) {
+    if (withDoc && S.sent && S.sent.secret) return baseUrl() + '#' + S.sent.secret; // kurz: alles Weitere steckt verschlüsselt beim Server
+    const o = requestInfo(name, proof, false);
+    if (withDoc && S.sent) { o.d = S.sent.id; o.k = S.sent.key; o.t = S.sent.del; if (S.sent.track) o.b = 1; }
     return baseUrl() + '#r=' + toB64url(JSON.stringify(o));
   }
 
+  // Nachrichten an den Kunden: ohne Begrüßung (es wird meist schon vorher geschrieben), Du oder Sie, Dank am Schluss
+  function msgThanks(lang, du) {
+    return lang === 'sq' ? (du ? 'Faleminderit për besimin tënd!' : 'Faleminderit për besimin tuaj!')
+      : (du ? 'Vielen Dank für dein Vertrauen!' : 'Vielen Dank für Ihr Vertrauen!');
+  }
+  function msgValid(lang, expires) {
+    if (!expires) return '';
+    return lang === 'sq' ? 'Linku është i vlefshëm deri më ' + fmtDate(new Date(expires)) + '.\n\n' : 'Der Link ist bis ' + fmtDate(new Date(expires)) + ' gültig.\n\n';
+  }
+  const sign = name => name ? '\n' + name : '';
+
   function sendMessage(link, name) {
-    if (S.sendLang === 'sq') {
-      return 'Përshëndetje, ju lutem nënshkruani dokumentin në shtojcë. Kjo bëhet direkt në telefon:\n\n' +
-        '1. Prekni PDF-në dhe ruajeni (iPhone: „Teilen“ → „In Dateien sichern“)\n' +
-        '2. Hapni këtë link:\n' + link + '\n' +
-        '3. Zgjidhni PDF-në, nënshkruajeni dhe ma dërgoni përsëri këtu.\n\n' +
-        'Faleminderit!' + (name ? '\n' + name : '');
+    const sq = S.sendLang === 'sq', du = S.sendDu;
+    if (sq) {
+      return (du ? 'Ja dokumenti yt për ta nënshkruar. Bëhet direkt në telefon:\n\n' +
+          '1. Preke PDF-në dhe ruaje (iPhone: „Teilen“ → „In Dateien sichern“)\n2. Hape këtë link:\n' + link + '\n3. Zgjidhe PDF-në, nënshkruaje dhe ma dërgo përsëri këtu.\n\n'
+        : 'Ja dokumenti juaj për ta nënshkruar. Bëhet direkt në telefon:\n\n' +
+          '1. Prekni PDF-në dhe ruajeni (iPhone: „Teilen“ → „In Dateien sichern“)\n2. Hapni këtë link:\n' + link + '\n3. Zgjidhni PDF-në, nënshkruajeni dhe ma dërgoni përsëri këtu.\n\n') +
+        msgThanks('sq', du) + sign(name);
     }
-    return 'Hallo, bitte unterschreiben Sie das Dokument im Anhang. Das geht direkt auf dem Handy:\n\n' +
+    return (du ? 'Hier ist dein Dokument zum Unterschreiben. Das geht direkt auf dem Handy:\n\n' : 'Hier ist Ihr Dokument zum Unterschreiben. Das geht direkt auf dem Handy:\n\n') +
       '1. Das PDF antippen und speichern (iPhone: Teilen → „In Dateien sichern“)\n' +
       '2. Diesen Link öffnen:\n' + link + '\n' +
       '3. Das PDF auswählen, unterschreiben und mir hier zurückschicken.\n\n' +
-      'Vielen Dank!' + (name ? '\n' + name : '');
+      msgThanks('de', du) + sign(name);
   }
 
   function linkMessage(link, name, expires, back) {
-    if (S.sendLang === 'sq') {
-      return 'Përshëndetje, ju lutem nënshkruani këtë dokument. ' +
-        (back ? 'Thjesht hapeni linkun dhe nënshkruajeni me gisht. Dokumenti më vjen pastaj automatikisht:\n\n' : 'Thjesht hapeni linkun, nënshkruajeni me gisht dhe ma dërgoni përsëri këtu:\n\n') +
-        link + '\n\n' +
-        (expires ? 'Linku është i vlefshëm deri më ' + fmtDate(new Date(expires)) + '.\n\n' : '') +
-        'Faleminderit!' + (name ? '\n' + name : '');
+    const sq = S.sendLang === 'sq', du = S.sendDu;
+    let intro;
+    if (sq) {
+      intro = du
+        ? (back ? 'Ja dokumenti yt për ta nënshkruar. Hape linkun dhe nënshkruaje me gisht, pastaj më vjen automatikisht:' : 'Ja dokumenti yt për ta nënshkruar. Hape linkun, nënshkruaje me gisht dhe ma dërgo përsëri këtu:')
+        : (back ? 'Ja dokumenti juaj për ta nënshkruar. Hapeni linkun dhe nënshkruajeni me gisht, pastaj më vjen automatikisht:' : 'Ja dokumenti juaj për ta nënshkruar. Hapeni linkun, nënshkruajeni me gisht dhe ma dërgoni përsëri këtu:');
+    } else {
+      intro = du
+        ? (back ? 'Hier ist dein Dokument zum Unterschreiben. Öffne einfach den Link und unterschreib mit dem Finger, danach kommt es automatisch bei mir an:' : 'Hier ist dein Dokument zum Unterschreiben. Öffne einfach den Link, unterschreib mit dem Finger und schick es mir hier zurück:')
+        : (back ? 'Hier ist Ihr Dokument zum Unterschreiben. Öffnen Sie einfach den Link und unterschreiben Sie mit dem Finger, danach kommt es automatisch bei mir an:' : 'Hier ist Ihr Dokument zum Unterschreiben. Öffnen Sie einfach den Link, unterschreiben Sie mit dem Finger und schicken Sie es mir hier zurück:');
     }
-    return 'Hallo, bitte unterschreiben Sie dieses Dokument. ' +
-      (back ? 'Einfach den Link öffnen und mit dem Finger unterschreiben. Das Dokument kommt dann automatisch bei mir an:\n\n' : 'Einfach den Link öffnen, mit dem Finger unterschreiben und mir hier zurückschicken:\n\n') +
-      link + '\n\n' +
-      (expires ? 'Der Link ist bis ' + fmtDate(new Date(expires)) + ' gültig.\n\n' : '') +
-      'Vielen Dank!' + (name ? '\n' + name : '');
+    return intro + '\n' + link + '\n\n' + msgThanks(sq ? 'sq' : 'de', du) + sign(name);
   }
 
   async function openSendSheet() {
@@ -1629,8 +1944,16 @@
         edited = false;
         refresh(true);
       } }));
-    const langRow = el('div', { class: 'fld' }, el('span', { text: 'Sprache für den Kunden' }), el('div', { class: 'segrow' }, langBtns[0], langBtns[1]),
-      el('small', { text: 'Ihr Kunde sieht die Seite und Ihre Nachricht in dieser Sprache. Die Nachweisseite im PDF bleibt Deutsch.' }));
+    const duBtns = [true, false].map(v => el('button', { type: 'button', class: 'seg' + (S.sendDu === v ? ' on' : ''), 'aria-pressed': S.sendDu === v ? 'true' : 'false', text: v ? 'Du' : 'Sie',
+      onclick: () => {
+        S.sendDu = v;
+        duBtns.forEach((b, i) => { const on = [true, false][i] === v; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on ? 'true' : 'false'); });
+        edited = false;
+        refresh(true);
+      } }));
+    const langRow = el('div', { class: 'fld' }, el('span', { text: 'Sprache und Anrede' }),
+      el('div', { class: 'segpair' }, el('div', { class: 'segrow' }, langBtns[0], langBtns[1]), el('div', { class: 'segrow' }, duBtns[0], duBtns[1])),
+      el('small', { text: 'So sieht Ihr Kunde die Nachricht und die Seite zum Unterschreiben. Die Nachweisseite im PDF bleibt Deutsch.' }));
     const viaLink = el('input', { type: 'checkbox' });
     viaLink.checked = srv.ok && cfg.viaLink !== false;
     const pinIn = el('input', { class: 'in', type: 'password', placeholder: 'mindestens 6 Zeichen', autocomplete: 'current-password', maxlength: '64' });
@@ -1649,13 +1972,30 @@
     const willTrack = () => S.sent ? !!S.sent.track : (srv.v || 1) >= 2 && S.inbox.ok;
     const currentLink = () => linkMode() ? (S.sent ? requestLink(name.value.trim(), proof.checked, true) : LINK_PLACEHOLDER) : requestLink(name.value.trim(), proof.checked, false);
     const template = l => linkMode() ? linkMessage(l, name.value.trim(), S.sent && S.sent.expires, willTrack()) : sendMessage(l, name.value.trim());
+    // Kurzer Link: Ändert sich Sprache, Anrede, Name oder Nachweisseite, werden die verschlüsselten Angaben beim Server erneuert
+    let headTimer = 0;
+    const pushHead = () => {
+      if (!S.sent || !S.sent.secret || !S.file) return;
+      const sent = S.sent;
+      const info = requestInfo(name.value.trim(), proof.checked, !!sent.track); // jetzt erfassen, solange das Dokument offen ist
+      const sig = JSON.stringify(info);
+      clearTimeout(headTimer);
+      if (sig === sent.headSig) return;
+      headTimer = setTimeout(async () => {
+        try {
+          await apiFetch('PUT', '/api/doc/' + sent.id + '/head', { pin: getPin(), json: { head: await sealHead(info, sent.key) } });
+          sent.headSig = sig;
+        } catch (e) { console.warn('Angaben aktualisieren:', e); }
+      }, 350);
+    };
     const refresh = (force) => {
+      pushHead();
       const nl = currentLink();
       if (edited && !force && link) msg.value = msg.value.split(link).join(nl);
       else msg.value = template(nl);
       link = nl;
-      saveSender({ name: name.value.trim(), proof: proof.checked, viaLink: viaLink.checked });
-      if (S.sent && S.sent.track && linkMode()) Store.patch(S.sent.id, { link: nl, lang: S.sendLang }).catch(() => {});
+      saveSender(Object.assign(loadSender(), { name: name.value.trim(), proof: proof.checked, viaLink: viaLink.checked })); // Anrede gilt nur für diese Anfrage
+      if (S.sent && S.sent.track && linkMode()) Store.patch(S.sent.id, { link: nl, lang: S.sendLang, du: S.sendDu }).catch(() => {});
       render();
     };
     name.addEventListener('input', () => refresh(false));
@@ -1680,18 +2020,20 @@
         setPin(pin);
         srv.pin = true;
         busy('Dokument wird verschlüsselt …');
-        S.sent = await uploadDoc(pin, p => busy('Wird hochgeladen … ' + Math.round(p * 100) + ' %'));
+        const back = willTrack();
+        S.sent = await uploadDoc(pin, p => busy('Wird hochgeladen … ' + Math.round(p * 100) + ' %'), requestInfo(name.value.trim(), proof.checked, back));
         S.sent.track = false;
         if ((srv.v || 1) >= 2) {
           // In der Übersicht merken (nur auf diesem Gerät). Dann kommt das PDF direkt hierher zurück.
           try {
-            await Store.put({ id: S.sent.id, key: S.sent.key, del: S.sent.del, label: cleanLabel(cust.value), file: S.file.name, pages: S.pages.length,
-              created: Date.now(), expires: S.sent.expires, lang: S.sendLang, status: 'open', link: '' });
+            await Store.put({ id: S.sent.id, key: S.sent.key, del: S.sent.del, secret: S.sent.secret || '', label: cleanLabel(cust.value), file: S.file.name, pages: S.pages.length,
+              created: Date.now(), expires: S.sent.expires, lang: S.sendLang, du: S.sendDu, status: 'open', link: '' });
             S.sent.track = true;
             S.dirty = false;
             askPersist();
           } catch (x) { console.warn('Übersicht nicht verfügbar:', x); }
         }
+        if (S.sent.secret && back && !S.sent.track) pushHead(); // Übersicht ging nicht: Kunde schickt dann per WhatsApp zurück
         unbusy();
         refresh(false);
         setTimeout(() => { try { actions.scrollIntoView({ block: 'end', behavior: 'smooth' }); } catch (x) { /* egal */ } }, 60);
@@ -1921,10 +2263,13 @@
     return S.inbox.list;
   }
 
+  let pendingOpen = null;
   function initInbox() {
     try { S.inbox.filter = localStorage.getItem(LS_FILTER) || 'all'; } catch (e) { /* egal */ }
     if (!/^(all|open|signed)$/.test(S.inbox.filter)) S.inbox.filter = 'all';
-    loadInbox().then(() => { renderInbox(); refreshInbox(); });
+    loadInbox().then(() => { renderInbox(); return refreshInbox(); }).then(() => {
+      if (pendingOpen) { const id = pendingOpen; pendingOpen = null; openRecord(id); }
+    });
   }
 
   function whenText(ts) {
@@ -1955,6 +2300,7 @@
     const send = S.mode === 'send';
     const list = send ? S.inbox.list.slice() : [];
     const has = list.length > 0;
+    if (send) setText('#pickLabel', has ? 'Neue Anfrage' : 'PDF auswählen');
     box.classList.toggle('hidden', !send || (!has && S.inbox.ok));
     const start = $('#start');
     if (start) start.classList.toggle('has-inbox', send && has);
@@ -1981,6 +2327,13 @@
         el('h2', { text: 'Ihre Anfragen' }),
         el('button', { type: 'button', class: 'iconbtn sm' + (refreshing ? ' turning' : ''), 'aria-label': 'Aktualisieren', html: I.refresh, onclick: () => refreshInbox(true) })),
       el('div', { class: 'segrow' }, segs[0], segs[1], segs[2]));
+    if (pushAskVisible()) {
+      box.append(el('div', { class: 'askpush' },
+        el('span', { html: I.bell }),
+        el('div', { class: 'grow' }, el('b', { text: 'Bescheid bekommen?' }), el('span', { text: 'Eine Benachrichtigung, sobald ein Kunde unterschrieben hat.' })),
+        el('button', { type: 'button', class: 'btn btn-primary btn-sm', text: 'Einschalten', onclick: () => enablePush() }),
+        el('button', { type: 'button', class: 'x', 'aria-label': 'Hinweis ausblenden', text: '×', onclick: () => { setLS(LS_PUSHASK, '1'); renderInbox(); } })));
+    }
     if (rows.length) {
       const ul = el('ul', { class: 'iblist' });
       rows.forEach(r => ul.append(el('li', null, itemButton(r))));
@@ -1997,24 +2350,24 @@
 
   function itemButton(r) {
     const st = r.status, title = recTitle(r);
-    let line, cls, icon;
+    let cls, icon, pill, when;
     if (st === 'signed') {
-      cls = 'ok'; icon = I.check;
-      line = 'Unterschrieben ' + whenText(r.signedAt) + (r.signer && title !== r.signer ? ' · ' + r.signer : '');
-      if (!r.local) line += r.lost ? ' · PDF nicht mehr abrufbar' : ' · wird geladen …';
+      cls = 'ok'; icon = I.check; pill = 'Unterschrieben';
+      when = whenText(r.signedAt) + (r.signer && title !== r.signer ? ', ' + r.signer : '');
+      if (!r.local) when += r.lost ? ', PDF nicht mehr abrufbar' : ', wird geladen …';
     } else if (st === 'open') {
-      cls = 'open'; icon = I.clock;
-      line = 'Offen · gesendet ' + whenText(r.created) + ' · ' + leftText(r.expires);
+      cls = 'open'; icon = I.clock; pill = 'Offen';
+      when = 'gesendet ' + whenText(r.created) + ', ' + leftText(r.expires);
     } else {
-      cls = 'gone'; icon = I.xc;
-      line = r.gone === 'withdrawn' ? 'Zurückgezogen' : 'Abgelaufen, nicht unterschrieben';
+      cls = 'gone'; icon = I.xc; pill = r.gone === 'withdrawn' ? 'Zurückgezogen' : 'Abgelaufen';
+      when = 'nicht unterschrieben';
     }
     return el('button', { type: 'button', class: 'ibitem ' + cls, onclick: () => openRecord(r.id) },
       el('span', { class: 'ic', html: icon }),
       el('span', { class: 'tx' },
-        el('b', null, el('span', { class: 'ttl', text: title }), st === 'signed' && r.local && !r.seen ? el('i', { class: 'new', text: 'Neu' }) : null),
+        el('b', null, el('span', { class: 'ttl', text: title }), st === 'signed' && r.local && !r.seen ? el('i', { class: 'pill new', text: 'Neu' }) : null),
         title !== r.file ? el('small', { text: r.file }) : null,
-        el('span', { class: 'st', text: line })),
+        el('span', { class: 'st' }, el('i', { class: 'pill ' + cls, text: pill }), el('span', { text: when }))),
       el('span', { class: 'chev', html: I.chev }));
   }
 
@@ -2165,13 +2518,11 @@
 
   function reminderMessage(r) {
     const name = loadSender().name || '';
-    const until = r.expires ? fmtDate(new Date(r.expires)) : '';
-    if (r.lang === 'sq') {
-      return 'Përshëndetje, një kujtesë e vogël: ju lutem nënshkruani këtë dokument. Thjesht hapeni linkun dhe nënshkruajeni me gisht:\n\n' +
-        r.link + '\n\n' + (until ? 'Linku është i vlefshëm deri më ' + until + '.\n\n' : '') + 'Faleminderit!' + (name ? '\n' + name : '');
-    }
-    return 'Hallo, kurze Erinnerung: Bitte unterschreiben Sie noch dieses Dokument. Einfach den Link öffnen und mit dem Finger unterschreiben:\n\n' +
-      r.link + '\n\n' + (until ? 'Der Link ist bis ' + until + ' gültig.\n\n' : '') + 'Vielen Dank!' + (name ? '\n' + name : '');
+    const du = r.du !== false, sq = r.lang === 'sq';
+    const intro = sq
+      ? (du ? 'Një kujtesë e vogël: dokumenti yt pret ende nënshkrimin tënd. Hape linkun dhe nënshkruaje me gisht:' : 'Një kujtesë e vogël: dokumenti juaj pret ende nënshkrimin tuaj. Hapeni linkun dhe nënshkruajeni me gisht:')
+      : (du ? 'Kurze Erinnerung: Dein Dokument wartet noch auf deine Unterschrift. Öffne einfach den Link und unterschreib mit dem Finger:' : 'Kurze Erinnerung: Ihr Dokument wartet noch auf Ihre Unterschrift. Öffnen Sie einfach den Link und unterschreiben Sie mit dem Finger:');
+    return intro + '\n' + r.link + '\n\n' + msgValid(sq ? 'sq' : 'de', r.expires) + (sq ? 'Faleminderit!' : 'Vielen Dank!') + sign(name);
   }
 
   async function withPdf(r, fn) {
@@ -2296,6 +2647,135 @@
         el('button', { type: 'button', class: 'btn btn-ghost btn-block', text: 'Aus der Übersicht entfernen', onclick: () => removeRecord(r) }));
     }
     openSheet(recTitle(r), body);
+  }
+
+  /* ---------------- Benachrichtigungen (Web Push) ---------------- */
+  const LS_PUSH = 'firmio.push.v1', LS_PUSHASK = 'firmio.pushask.v1', LS_PUSHSYNC = 'firmio.pushsync.v1';
+  function getLS(k) { try { return localStorage.getItem(k) || ''; } catch (e) { return ''; } }
+  function setLS(k, v) { try { if (v) localStorage.setItem(k, v); else localStorage.removeItem(k); } catch (e) { /* egal */ } }
+  const pushSupported = () => 'serviceWorker' in navigator && 'PushManager' in window && 'Notification' in window && window.isSecureContext;
+  const pushOn = () => pushSupported() && getLS(LS_PUSH) === '1' && Notification.permission === 'granted';
+  const pushAskVisible = () => S.mode === 'send' && pushSupported() && !pushOn() && Notification.permission !== 'denied' && !getLS(LS_PUSHASK);
+
+  async function pushSubscribe(pin) {
+    const reg = await navigator.serviceWorker.ready;
+    const key = b64urlToBytes((await apiJSON('GET', '/api/push/key')).key);
+    let sub = await reg.pushManager.getSubscription();
+    if (sub) {
+      const old = sub.options && sub.options.applicationServerKey ? new Uint8Array(sub.options.applicationServerKey) : null;
+      const same = !!old && old.length === key.length && old.every((v, i) => v === key[i]);
+      if (!same) { try { await sub.unsubscribe(); } catch (e) { /* egal */ } sub = null; }
+    }
+    if (!sub) sub = await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: key });
+    await apiJSON('POST', '/api/push/sub', { pin: pin, json: { sub: sub.toJSON() } });
+    setLS(LS_PUSHSYNC, String(Date.now()));
+    return sub;
+  }
+  async function enablePush() {
+    if (!pushSupported()) { toast('Benachrichtigungen gehen in diesem Browser nicht.'); return false; }
+    let perm = Notification.permission;
+    if (perm === 'default') perm = await Notification.requestPermission();
+    if (perm !== 'granted') { toast('Benachrichtigungen wurden nicht erlaubt.'); renderInbox(); return false; }
+    const pin = getPin() || await askPin();
+    if (!pin) return false;
+    busy('Benachrichtigungen werden eingerichtet …');
+    try {
+      await pushSubscribe(pin);
+      setLS(LS_PUSH, '1');
+      unbusy();
+      apiJSON('POST', '/api/push/test', { pin: pin, json: {} }).catch(() => {});
+      toast('Benachrichtigungen sind an.');
+      renderInbox();
+      return true;
+    } catch (e) {
+      unbusy();
+      console.warn('Benachrichtigungen:', e);
+      toast(e && e.code === 'pin_wrong' ? 'Die PIN stimmt nicht.' : 'Hat nicht geklappt. Bitte später noch einmal versuchen.');
+      return false;
+    }
+  }
+  async function disablePush() {
+    setLS(LS_PUSH, '');
+    try {
+      const reg = await navigator.serviceWorker.ready;
+      const sub = await reg.pushManager.getSubscription();
+      if (sub) {
+        const pin = getPin();
+        if (pin) await apiJSON('POST', '/api/push/unsub', { pin: pin, json: { endpoint: sub.endpoint } }).catch(() => {});
+        await sub.unsubscribe().catch(() => {});
+      }
+    } catch (e) { /* egal */ }
+    toast('Benachrichtigungen sind aus.');
+    renderInbox();
+  }
+  // Anmeldung beim Server einmal am Tag auffrischen (falls sie dort verloren ging)
+  async function keepPushAlive() {
+    if (!pushOn() || Date.now() - Number(getLS(LS_PUSHSYNC) || 0) < DAY) return;
+    const pin = getPin();
+    if (!pin) return;
+    try { await pushSubscribe(pin); } catch (e) { console.warn('Benachrichtigungen auffrischen:', e); }
+  }
+
+  /* ---------------- Einstellungen (Absender) ---------------- */
+  function openSettings() {
+    const p = loadSender();
+    const clean = v => v.replace(/\s+/g, ' ').trim().slice(0, 60);
+    const name = el('input', { class: 'in', type: 'text', value: p.name || '', placeholder: 'Vor- und Nachname', autocomplete: 'name', maxlength: '60' });
+    const sub = el('input', { class: 'in', type: 'text', value: p.sub || '', placeholder: 'z. B. Versicherungen', autocomplete: 'off', maxlength: '60' });
+    const prevName = el('p', { class: 'lh-name' }), prevSub = el('p', { class: 'lh-sub' });
+    const preview = el('div', { class: 'lh-preview', 'aria-hidden': 'true' }, prevName, prevSub);
+    preview.insertAdjacentHTML('beforeend', STROKE);
+    const upd = () => {
+      prevName.textContent = clean(name.value) || 'Firmio';
+      prevSub.textContent = clean(sub.value);
+      saveSender(Object.assign(loadSender(), { name: clean(name.value), sub: clean(sub.value) }));
+      renderLetterhead();
+    };
+    name.addEventListener('input', upd);
+    sub.addEventListener('input', upd);
+    const duBtns = [true, false].map(v => el('button', { type: 'button', class: 'seg' + ((p.du !== false) === v ? ' on' : ''), 'aria-pressed': (p.du !== false) === v ? 'true' : 'false', text: v ? 'Du' : 'Sie',
+      onclick: () => {
+        saveSender(Object.assign(loadSender(), { du: v }));
+        duBtns.forEach((b, i) => { const on = [true, false][i] === v; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on ? 'true' : 'false'); });
+      } }));
+    const pushBox = el('div');
+    const renderPush = () => {
+      pushBox.innerHTML = '';
+      if (!pushSupported()) {
+        pushBox.append(el('p', { class: 'prose', text: isIOS
+          ? 'Auf dem iPhone geht das, wenn Firmio als App auf dem Home-Bildschirm liegt und Sie es von dort öffnen.'
+          : 'In diesem Browser nicht möglich. Öffnen Sie Firmio in Chrome oder als installierte App.' }));
+        return;
+      }
+      const denied = Notification.permission === 'denied', on = pushOn();
+      pushBox.append(el('div', { class: 'setrow' },
+        el('div', { class: 'grow' }, el('b', { text: 'Wenn ein Kunde unterschrieben hat' }),
+          el('span', { text: denied ? 'Im Browser blockiert. Erlauben Sie Benachrichtigungen in den Einstellungen des Browsers für diese Seite.' : 'Kurze Nachricht auf dieses Handy, auch wenn Firmio geschlossen ist.' })),
+        el('span', { class: 'state' + (on ? ' on' : ''), text: denied ? 'Blockiert' : on ? 'An' : 'Aus' })));
+      if (denied) return;
+      if (on) {
+        pushBox.append(el('div', { class: 'btnrow' },
+          el('button', { type: 'button', class: 'btn btn-ghost', html: I.bell + '<span>Test senden</span>', onclick: async () => {
+            const pin = getPin();
+            try { await apiJSON('POST', '/api/push/test', { pin: pin, json: {} }); toast('Test gesendet.'); } catch (e) { toast('Hat nicht geklappt.'); }
+          } }),
+          el('button', { type: 'button', class: 'btn btn-ghost', text: 'Ausschalten', onclick: async () => { await disablePush(); renderPush(); } })));
+      } else {
+        pushBox.append(el('button', { type: 'button', class: 'btn btn-primary btn-block', html: I.bell + '<span>Einschalten</span>', onclick: async () => { await enablePush(); renderPush(); } }));
+      }
+    };
+    renderPush();
+    upd();
+    openSheet('Einstellungen', el('div', null,
+      el('p', { class: 'prose', text: 'Ihr Briefkopf steht oben auf der Seite, die Ihr Kunde zum Unterschreiben öffnet.' }),
+      preview,
+      el('label', { class: 'fld' }, el('span', { text: 'Name' }), name),
+      el('label', { class: 'fld' }, el('span', { text: 'Zusatz (optional)' }), sub, el('small', { text: 'Steht klein unter dem Namen, zum Beispiel Ihr Beruf oder Ihr Büro.' })),
+      el('h3', { text: 'Anrede' }),
+      el('div', { class: 'fld' }, el('div', { class: 'segrow' }, duBtns[0], duBtns[1]),
+        el('small', { text: 'Gilt für neue Anfragen. Beim Senden können Sie sie für einzelne Kunden ändern.' })),
+      el('h3', { text: 'Benachrichtigungen' }),
+      pushBox));
   }
 
   /* ---------------- PDF erstellen ---------------- */
@@ -2643,7 +3123,7 @@
     S.fileIsRemote = false;
     S.view = null;
     showScreen('start');
-    if (S.mode === 'send') { loadInbox().then(renderInbox); refreshInbox(); reloadIfIdle(); }
+    if (S.mode === 'send') { renderLetterhead(); loadInbox().then(renderInbox); refreshInbox(); reloadIfIdle(); }
     if (S.remoteSigned) renderRemoteSigned();
     else if (S.remote) renderRemoteReady();
     window.scrollTo(0, 0);
