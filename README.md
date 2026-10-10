@@ -1,22 +1,23 @@
 # Firmio
 
-Dokumente per Handy unterschreiben lassen. Der Kunde öffnet einen Link, unterschreibt mit dem Finger und schickt das PDF per WhatsApp zurück. Die Kundenseite gibt es auf Deutsch und Albanisch.
+Dokumente per Handy unterschreiben lassen. Der Kunde öffnet einen Link, unterschreibt mit dem Finger und tippt auf „Fertig“. Das unterschriebene PDF landet automatisch in der Übersicht des Absenders. Die Kundenseite gibt es auf Deutsch und Albanisch.
 
 ## So funktioniert der Datenschutz
 
 - Das PDF wird **auf dem Handy des Absenders verschlüsselt** (AES-256-GCM), bevor es hochgeladen wird.
 - Der Schlüssel steckt nur im Link hinter dem `#` und wird nie an den Server übertragen. Netlify speichert nur verschlüsselte Daten.
-- Das Dokument wird gelöscht, sobald der Kunde es zurückgeschickt hat, spätestens nach 7 Tagen (tägliche Bereinigung).
-- Unterschrift, Name und das unterschriebene PDF des Kunden werden nie hochgeladen.
-- Hochladen geht nur mit der Absender-PIN.
+- Unterschreibt der Kunde, wird das fertige PDF **auf seinem Handy mit demselben Schlüssel verschlüsselt** und für den Absender bereitgelegt. Das Original wird dann gelöscht.
+- Die App des Absenders holt das unterschriebene PDF ab, entschlüsselt es und speichert es **nur auf diesem Gerät**. Danach wird es auf dem Server gelöscht. Übrig bleibt nur ein leerer Vermerk (Zeitpunkte, keine Inhalte), damit der Kunde beim erneuten Öffnen „bereits unterschrieben“ sieht.
+- Offene Anfragen werden nach 7 Tagen gelöscht, nicht abgeholte unterschriebene nach 30 Tagen (tägliche Bereinigung).
+- Hochladen, Abfragen und Abholen gehen nur mit der Absender-PIN.
 
 ## Aufbau
 
 | Ordner / Datei | Inhalt |
 | --- | --- |
-| `public/` | Die App (Startseite, Unterschreiben, Absender-Modus unter `#absender`) |
-| `netlify/functions/api.mjs` | Nimmt verschlüsselte Dokumente an, gibt sie aus, löscht sie |
-| `netlify/functions/cleanup.mjs` | Löscht täglich abgelaufene Dokumente |
+| `public/` | Die App (Startseite, Unterschreiben, Absender-Modus mit Übersicht unter `#absender`) |
+| `netlify/functions/api.mjs` | Nimmt verschlüsselte Dokumente und Rückgaben an, gibt sie aus, löscht sie |
+| `netlify/functions/cleanup.mjs` | Löscht täglich abgelaufene Anfragen |
 | `netlify.toml` | Netlify-Einstellungen (Ordner `public`, Functions) |
 
 ## Einrichtung bei Netlify (einmalig)
@@ -28,9 +29,11 @@ Dokumente per Handy unterschreiben lassen. Der Kunde öffnet einen Link, untersc
 
 ## Benutzung
 
-- **Anfordern:** `https://<dein-projekt>.netlify.app/#absender` öffnen, PDF wählen, Felder auf die Linien ziehen, „Weiter“, Sprache (Deutsch/Shqip) wählen, „Link erstellen“, „Per WhatsApp senden“.
-- **Kunde:** öffnet den Link, unterschreibt, schickt das PDF per WhatsApp zurück.
-- Ohne Server-Teil (z. B. reiner Upload per Netlify Drop) funktioniert die App weiter: Dann schickt man PDF und Link getrennt.
+- **Anfordern:** `https://<dein-projekt>.netlify.app/#absender` öffnen, PDF wählen, Felder auf die Linien ziehen, „Weiter“, Kunde/Notiz eintragen, Sprache (Deutsch/Shqip) wählen, „Link erstellen“, „Per WhatsApp senden“.
+- **Kunde:** öffnet den Link, unterschreibt und tippt auf „Fertig – Dokument senden“. Er muss nichts speichern und nichts zurückschicken.
+- **Übersicht:** Auf der Startseite des Absenders stehen alle Anfragen mit Filter „Offen“ und „Erledigt“. Ein Tipp auf eine erledigte Anfrage zeigt das PDF; von dort lässt es sich teilen oder speichern. Offene Anfragen lassen sich erinnern oder zurückziehen.
+- Die Übersicht liegt nur auf dem Gerät, auf dem der Link erstellt wurde. Unterschriebene PDFs am besten gleich weiterleiten oder sichern. Auf dem iPhone die App über „Zum Home-Bildschirm“ installieren und dann immer von dort aus senden (Safari und App haben getrennte Speicher).
+- Ohne Server-Teil (z. B. reiner Upload per Netlify Drop) funktioniert die App weiter: Dann schickt man PDF und Link getrennt, und der Kunde schickt das PDF per WhatsApp zurück.
 
 ## Rechtliches
 

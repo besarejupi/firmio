@@ -70,6 +70,8 @@
   </label>
   <input id="file" type="file" accept="application/pdf,.pdf" class="vh" tabindex="-1">
 
+  <section id="inbox" class="inbox hidden"></section>
+
   <p class="stepshead" id="stepsHead">So geht’s</p>
   <ol class="steps" id="steps"></ol>
 
@@ -98,7 +100,7 @@
 </section>
 
 <main id="done" class="screen start hidden">
-  <div class="okmark" aria-hidden="true">
+  <div class="okmark" id="doneMark" aria-hidden="true">
     <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
   </div>
   <h1 id="doneTitle">Fertig unterschrieben</h1>
@@ -107,6 +109,10 @@
     <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M8.5 16.5c1.2-1.6 2-2.9 2.6-2.6.6.3-.6 2.4 0 2.5.7.1 1.3-1.4 1.9-1.3.5.1 0 1.2.6 1.2.7 0 1.2-.6 1.9-.8"/></svg>
     <div><b id="outName"></b><span id="outInfo"></span></div>
   </div>
+  <button class="btn btn-primary btn-block btn-xl hidden" id="retryBtn" type="button">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 4v7h-7"/></svg>
+    <span id="retryLabel">Erneut senden</span>
+  </button>
   <button class="btn btn-primary btn-block btn-xl" id="shareBtn" type="button">
     <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7"/><path d="M16 6l-4-4-4 4"/><path d="M12 2v13"/></svg>
     <span id="shareLabel">Per WhatsApp zurückschicken</span>

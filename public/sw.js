@@ -1,6 +1,6 @@
 /* Firmio – Service Worker: macht die App installierbar und offline startfähig.
    Wird nur im Absender-Modus registriert. Speichert nur die App-Dateien, keine Dokumente. */
-const CACHE = 'firmio-v2';
+const CACHE = 'firmio-v3';
 const SHELL = ['./', './index.html', './app.js', './app.css', './config.js', './manifest.webmanifest',
   './icons/icon.svg', './icons/icon-192.png', './vendor/pdf.min.js', './vendor/pdf.worker.min.js', './vendor/pdf-lib.min.js'];
 

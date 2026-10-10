@@ -1,6 +1,7 @@
 /*
  * Firmio – tägliche Bereinigung
- * Löscht abgelaufene Dokumente (älter als 7 Tage) und Reste abgebrochener Uploads.
+ * Löscht abgelaufene Anfragen (offen: nach 7 Tagen, unterschrieben und nicht
+ * abgeholt: nach 30 Tagen) und Reste abgebrochener Uploads.
  */
 import { getStore } from '@netlify/blobs';
 

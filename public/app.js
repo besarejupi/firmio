@@ -1,6 +1,7 @@
 /*
  * Firmio – Dokumente per Handy unterschreiben
- * Alles läuft im Browser: Das PDF wird nicht hochgeladen, nichts wird gespeichert.
+ * Alles läuft im Browser. Was über den Server geht (Dokument im Link, Rückgabe),
+ * ist Ende-zu-Ende verschlüsselt; der Schlüssel steckt nur im Link hinter dem #.
  * Bibliotheken: pdf.js (Anzeige), pdf-lib (Unterschrift ins PDF schreiben).
  */
 'use strict';
@@ -184,7 +185,32 @@
     "PDF speichern": "Ruani PDF-në",
     "Zurück zum Dokument": "Kthehuni te dokumenti",
     "Neues Dokument": "Dokument i ri",
-    "Dokument": "Dokumenti"
+    "Dokument": "Dokumenti",
+    "Ende-zu-Ende verschlüsselt. Nur Sie und {who} können das Dokument lesen.": "I enkriptuar nga skaji në skaj. Vetëm ju dhe {who} mund ta lexoni dokumentin.",
+    "Ende-zu-Ende verschlüsselt. Nur Sie und der Absender können das Dokument lesen.": "I enkriptuar nga skaji në skaj. Vetëm ju dhe dërguesi mund ta lexoni dokumentin.",
+    "Fertig tippen": "Prekni „Gati“",
+    "Das unterschriebene Dokument geht automatisch an {who}. Sie müssen nichts zurückschicken.": "Dokumenti i nënshkruar dërgohet automatikisht te {who}. Nuk keni nevojë ta ktheni vetë.",
+    "Das unterschriebene Dokument geht automatisch an den Absender. Sie müssen nichts zurückschicken.": "Dokumenti i nënshkruar dërgohet automatikisht te dërguesi. Nuk keni nevojë ta ktheni vetë.",
+    "Fertig – Dokument senden": "Gati – dërgoni dokumentin",
+    "Wird verschlüsselt gesendet …": "Po dërgohet i enkriptuar …",
+    "Wird verschlüsselt gesendet … {p} %": "Po dërgohet i enkriptuar … {p} %",
+    "Erledigt!": "U krye!",
+    "Ihr unterschriebenes Dokument ist bei {who} angekommen. Sie müssen nichts mehr tun.": "Dokumenti juaj i nënshkruar mbërriti te {who}. Nuk keni nevojë të bëni asgjë tjetër.",
+    "Ihr unterschriebenes Dokument ist beim Absender angekommen. Sie müssen nichts mehr tun.": "Dokumenti juaj i nënshkruar mbërriti te dërguesi. Nuk keni nevojë të bëni asgjë tjetër.",
+    "Sie können die Seite jetzt schließen.": "Tani mund ta mbyllni faqen.",
+    "Kopie für mich speichern": "Ruani një kopje për vete",
+    "Noch nicht gesendet": "Ende nuk është dërguar",
+    "Das Senden hat nicht geklappt. Bitte prüfen Sie Ihre Internetverbindung und versuchen Sie es noch einmal.": "Dërgimi nuk funksionoi. Ju lutemi kontrolloni lidhjen me internetin dhe provoni përsëri.",
+    "Der Link ist abgelaufen. Bitte schicken Sie das PDF per WhatsApp zurück.": "Linku ka skaduar. Ju lutemi dërgojeni PDF-në me WhatsApp.",
+    "Für diesen Link wurde schon ein unterschriebenes Dokument übermittelt. Möchten Sie etwas ändern, schicken Sie das PDF bitte per WhatsApp.": "Për këtë link është dërguar tashmë një dokument i nënshkruar. Nëse doni të ndryshoni diçka, ju lutemi dërgojeni PDF-në me WhatsApp.",
+    "Das Dokument ist zu groß zum Senden. Bitte schicken Sie das PDF per WhatsApp zurück.": "Dokumenti është shumë i madh për t’u dërguar. Ju lutemi dërgojeni PDF-në me WhatsApp.",
+    "Erneut senden": "Dërgoni përsëri",
+    "Dieses Dokument wurde bereits unterschrieben und an {who} übermittelt. Sie müssen nichts mehr tun.": "Ky dokument është nënshkruar tashmë dhe është dërguar te {who}. Nuk keni nevojë të bëni asgjë tjetër.",
+    "Dieses Dokument wurde bereits unterschrieben und an den Absender übermittelt. Sie müssen nichts mehr tun.": "Ky dokument është nënshkruar tashmë dhe është dërguar te dërguesi. Nuk keni nevojë të bëni asgjë tjetër.",
+    "Bereits unterschrieben": "Tashmë i nënshkruar",
+    "Unterschrieben am {date} um {time} Uhr.": "Nënshkruar më {date} në orën {time}.",
+    "<p><b>Ende-zu-Ende verschlüsselt.</b> Das PDF, Ihr Name und Ihre Unterschrift werden nur in Ihrem Browser verarbeitet. Übertragen wird nur das fertige Dokument, und zwar verschlüsselt: Lesen können es nur Sie und der Absender.</p>": "<p><b>I enkriptuar nga skaji në skaj.</b> PDF-ja, emri dhe nënshkrimi juaj përpunohen vetëm në shfletuesin tuaj. Transmetohet vetëm dokumenti përfundimtar, dhe atë i enkriptuar: mund ta lexoni vetëm ju dhe dërguesi.</p>",
+    "<p><b>Dokumente per Link:</b> Das Dokument wurde auf dem Gerät des Absenders verschlüsselt und liegt nur verschlüsselt bei Netlify. Der Schlüssel steckt ausschließlich im Link (hinter dem #) und wird nie an den Server übertragen. Wenn Sie auf „Fertig“ tippen, wird das unterschriebene Dokument auf Ihrem Gerät mit diesem Schlüssel verschlüsselt und für den Absender bereitgelegt. Danach wird das Original gelöscht. Das unterschriebene Dokument wird gelöscht, sobald der Absender es abgeholt hat, spätestens nach 30 Tagen. Nicht unterschriebene Dokumente werden nach 7 Tagen gelöscht.</p>": "<p><b>Dokumente me link:</b> Dokumenti është enkriptuar në pajisjen e dërguesit dhe ruhet te Netlify vetëm i enkriptuar. Çelësi ndodhet vetëm në link (pas shenjës #) dhe nuk i dërgohet kurrë serverit. Kur prekni „Gati“, dokumenti i nënshkruar enkriptohet në pajisjen tuaj me këtë çelës dhe i vihet në dispozicion dërguesit. Pastaj origjinali fshihet. Dokumenti i nënshkruar fshihet sapo dërguesi ta ketë marrë, e më së voni pas 30 ditësh. Dokumentet e panënshkruara fshihen pas 7 ditësh.</p>"
   };
   // Übersetzung der Kundenseite (Deutsch = Schlüssel). Fehlt eine Übersetzung, bleibt es Deutsch.
   function tr(str, vars) {
@@ -216,7 +242,16 @@
     copy: svgI('<rect x="9" y="9" width="12" height="12" rx="2.5"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/>', 19),
     download: svgI('<path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/>', 19),
     arrow: svgI('<path d="M5 12h14M13 6l6 6-6 6"/>', 20, 2.2),
-    resize: svgI('<path d="M8 8l8 8"/><path d="M16 9.5V16H9.5"/>', 16, 2.6)
+    resize: svgI('<path d="M8 8l8 8"/><path d="M16 9.5V16H9.5"/>', 16, 2.6),
+    checkL: svgI('<path d="M5 12.5l4.5 4.5L19 7.5"/>', 40, 2.6),
+    warnL: svgI('<path d="M12 7v6.5M12 17.2h.01"/>', 40, 2.8),
+    clock: svgI('<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/>', 20),
+    xc: svgI('<circle cx="12" cy="12" r="8.5"/><path d="M9.2 9.2l5.6 5.6M14.8 9.2l-5.6 5.6"/>', 20),
+    refresh: svgI('<path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 4v7h-7"/>', 20, 2.2),
+    eye: svgI('<path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/>', 20),
+    bell: svgI('<path d="M6 9a6 6 0 0 1 12 0c0 6 2.5 7.5 2.5 7.5h-17S6 15 6 9z"/><path d="M10 20a2.2 2.2 0 0 0 4 0"/>', 20),
+    chev: svgI('<path d="M9 6l6 6-6 6"/>', 18, 2.2),
+    doc: svgI('<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M8.5 16.5c1.2-1.6 2-2.9 2.6-2.6.6.3-.6 2.4 0 2.5.7.1 1.3-1.4 1.9-1.3.5.1 0 1.2.6 1.2.7 0 1.2-.6 1.9-.8"/>', 30, 1.8)
   };
 
   /* ---------------- Zustand ---------------- */
@@ -237,10 +272,16 @@
     fileIsRemote: false,
     lang: 'de',         // Sprache der Kundenseite: 'de' oder 'sq'
     sendLang: 'de',     // Absender: gewählte Sprache für den Kunden
-    server: null,       // Absender: { ok, pin } – gibt es den Server-Teil?
-    sent: null          // Absender: hochgeladenes Dokument { id, del, key, expires }
+    server: null,       // Absender: { ok, pin, v } – gibt es den Server-Teil?
+    sent: null,         // Absender: hochgeladenes Dokument { id, del, key, expires, track }
+    sentBack: null,     // Kunde: Ergebnis der Rückgabe { ok, code, at }
+    remoteSigned: null, // Kunde: Link wurde schon unterschrieben zurückgegeben { signedAt }
+    view: null,         // Absender: angezeigtes unterschriebenes PDF (ID aus der Übersicht)
+    inbox: { list: [], ok: true, err: '', last: 0, filter: 'all' }
   };
   const LS_PIN = 'firmio.pin.v1';
+  const LS_FILTER = 'firmio.filter.v1';
+  const DAY = 864e5;
   const LINK_PLACEHOLDER = '[Der Link wird beim Erstellen eingefügt]';
   let padMem = null;
   let io = null;
@@ -260,6 +301,7 @@
     $('#backBtn').addEventListener('click', () => history.back());
     $('#scrim').addEventListener('click', () => closeSheet());
     $('#shareBtn').addEventListener('click', shareResult);
+    $('#retryBtn').addEventListener('click', () => { if (S.out && backMode()) sendBack(); });
     $('#dlBtn').addEventListener('click', () => { download(S.out.bytes, S.out.name); S.dirty = false; deleteRemote(); toast(tr('PDF wird gespeichert.')); });
     $('#editBtn').addEventListener('click', () => { showScreen('viewer'); renderBar(); requestAnimationFrame(relayout); });
     $('#newBtn').addEventListener('click', () => {
@@ -280,6 +322,10 @@
       navigator.serviceWorker.register('sw.js').catch(err => console.warn('Service Worker:', err));
     }
     if (S.req && S.req.d && S.req.k) loadRemote();
+    if (S.mode === 'send') initInbox();
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible' && S.mode === 'send' && !S.inViewer) refreshInbox();
+    });
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape') closeSheet();
       if ((e.key === 'Delete' || e.key === 'Backspace') && S.sel && !S.sheetOpen && !/INPUT|TEXTAREA/.test(document.activeElement.tagName)) {
@@ -305,7 +351,8 @@
         d: typeof o.d === 'string' && /^[A-Za-z0-9_-]{22}$/.test(o.d) ? o.d : '',
         k: typeof o.k === 'string' && /^[A-Za-z0-9_-]{43}$/.test(o.k) ? o.k : '',
         t: typeof o.t === 'string' && /^[A-Za-z0-9_-]{22}$/.test(o.t) ? o.t : '',
-        l: o.l === 'sq' ? 'sq' : 'de'
+        l: o.l === 'sq' ? 'sq' : 'de',
+        b: o.b === 1 ? 1 : 0
       };
     } catch (e) { return null; }
   }
@@ -324,6 +371,11 @@
     return new TextDecoder().decode(bytes);
   }
 
+  // Link mit Dokument, dessen Rückgabe direkt an die Übersicht des Absenders geht
+  const linkBack = () => !!(S.req && S.req.b && S.req.d && S.req.k && S.req.t);
+  // … und das Dokument aus diesem Link ist gerade geöffnet
+  const backMode = () => linkBack() && S.fileIsRemote && !!S.remote;
+
   function applyStatic() {
     document.documentElement.lang = S.lang;
     $('#stepsHead').textContent = tr('So geht’s');
@@ -334,6 +386,7 @@
     $('#dlLabel').textContent = tr('PDF speichern');
     $('#editBtn').textContent = tr('Zurück zum Dokument');
     $('#newBtn').textContent = tr('Neues Dokument');
+    $('#retryLabel').textContent = tr('Erneut senden');
     $('#viewer').setAttribute('aria-label', tr('Dokument'));
   }
 
@@ -341,7 +394,8 @@
     S.lang = l === 'sq' ? 'sq' : 'de';
     applyStatic();
     setupStart();
-    if (S.remote) renderRemoteReady();
+    if (S.remoteSigned) renderRemoteSigned();
+    else if (S.remote) renderRemoteReady();
   }
 
   function setupStart() {
@@ -352,22 +406,26 @@
     $('#startTitle').textContent = send ? 'Unterschrift anfordern' : tr('Dokument unterschreiben');
     const inLink = !!(S.req && S.req.d && S.req.k);
     $('#startLead').textContent = send
-      ? 'Markieren Sie, wo unterschrieben werden soll. Dann schicken Sie Ihrem Kunden einen Link per WhatsApp.'
+      ? 'Markieren Sie, wo unterschrieben werden soll, und schicken Sie den Link per WhatsApp. Das unterschriebene PDF landet automatisch hier.'
       : inLink ? tr('Ihr Dokument steckt schon im Link. Sie müssen nichts speichern und nichts herunterladen.')
         : tr('Unterschreiben Sie ein PDF direkt auf Ihrem Handy, ganz ohne Drucker.');
-    $('#trustText').textContent = inLink
-      ? tr('Ende-zu-Ende verschlüsselt. Ihre Unterschrift wird nicht hochgeladen, und das Dokument wird nach dem Zurückschicken gelöscht.')
-      : tr('Ihr Dokument bleibt auf Ihrem Gerät. Es wird nichts hochgeladen und nichts gespeichert.');
+    const back = linkBack(), whoNom = S.req && S.req.f;
+    $('#trustText').textContent = send
+      ? 'Ende-zu-Ende verschlüsselt. Unterschriebene Dokumente werden nur auf diesem Gerät gespeichert.'
+      : back ? (whoNom ? tr('Ende-zu-Ende verschlüsselt. Nur Sie und {who} können das Dokument lesen.', { who: whoNom }) : tr('Ende-zu-Ende verschlüsselt. Nur Sie und der Absender können das Dokument lesen.'))
+        : inLink ? tr('Ende-zu-Ende verschlüsselt. Ihre Unterschrift wird nicht hochgeladen, und das Dokument wird nach dem Zurückschicken gelöscht.')
+          : tr('Ihr Dokument bleibt auf Ihrem Gerät. Es wird nichts hochgeladen und nichts gespeichert.');
 
     const nSig = S.req ? S.req.s.filter(a => a[0] === 's').length : 0;
     const steps = send ? [
       ['PDF auswählen', 'Das Dokument, das Ihr Kunde unterschreiben soll.'],
       ['Stellen markieren', 'Felder für Unterschrift und Ort/Datum auf das Dokument ziehen.'],
-      ['Per WhatsApp senden', 'Ihr Kunde öffnet den Link, unterschreibt und schickt das PDF zurück.']
+      ['Per WhatsApp senden', 'Ihr Kunde unterschreibt über den Link. Das PDF landet danach automatisch hier in Ihrer Übersicht.']
     ] : inLink ? [
       [tr('Dokument öffnen'), tr('Es ist schon im Link enthalten und öffnet sich von selbst.')],
       [tr('Mit dem Finger unterschreiben'), nSig ? tr('Die markierten Stellen werden automatisch ausgefüllt.') : tr('Danach schieben Sie die Unterschrift an die richtige Stelle.')],
-      [tr('Zurückschicken'), tr('Das unterschriebene PDF direkt per WhatsApp senden.')]
+      back ? [tr('Fertig tippen'), whoNom ? tr('Das unterschriebene Dokument geht automatisch an {who}. Sie müssen nichts zurückschicken.', { who: whoNom }) : tr('Das unterschriebene Dokument geht automatisch an den Absender. Sie müssen nichts zurückschicken.')]
+        : [tr('Zurückschicken'), tr('Das unterschriebene PDF direkt per WhatsApp senden.')]
     ] : [
       [tr('PDF auswählen'), tr('Das Dokument, das Sie per WhatsApp oder E-Mail bekommen haben.')],
       [tr('Mit dem Finger unterschreiben'), nSig ? tr('Die markierten Stellen werden automatisch ausgefüllt.') : tr('Danach schieben Sie die Unterschrift an die richtige Stelle.')],
@@ -457,7 +515,7 @@
     } else if (isIOS) {
       box.append(el('div', { class: 'install' },
         el('img', { src: 'icons/icon-192.png', alt: '', width: '42', height: '42' }),
-        el('div', { class: 'grow', html: '<b>Firmio als App</b><span>Unten auf <b>Teilen</b> tippen, dann <b>„Zum Home-Bildschirm“</b>.</span>' })));
+        el('div', { class: 'grow', html: '<b>Firmio als App</b><span>Unten auf <b>Teilen</b> tippen, dann <b>„Zum Home-Bildschirm“</b>. Danach immer aus der App senden, dann bleibt Ihre Übersicht vollständig.</span>' })));
     }
   }
 
@@ -466,14 +524,18 @@
       openSheet('Impressum', el('div', { class: 'prose pre', text: CFG.impressum }));
       return;
     }
+    const back = linkBack() || S.mode === 'send';
     const body = CFG.datenschutz
       ? el('div', { class: 'prose pre', text: CFG.datenschutz })
       : el('div', { class: 'prose', html:
-        tr('<p><b>Ihr Dokument bleibt auf Ihrem Gerät.</b> Das PDF, Ihr Name und Ihre Unterschrift werden nur in Ihrem Browser verarbeitet. Nichts davon wird hochgeladen, gespeichert oder an Dritte übermittelt.</p>') +
+        (back ? tr('<p><b>Ende-zu-Ende verschlüsselt.</b> Das PDF, Ihr Name und Ihre Unterschrift werden nur in Ihrem Browser verarbeitet. Übertragen wird nur das fertige Dokument, und zwar verschlüsselt: Lesen können es nur Sie und der Absender.</p>')
+          : tr('<p><b>Ihr Dokument bleibt auf Ihrem Gerät.</b> Das PDF, Ihr Name und Ihre Unterschrift werden nur in Ihrem Browser verarbeitet. Nichts davon wird hochgeladen, gespeichert oder an Dritte übermittelt.</p>')) +
         tr('<p>Diese Seite verwendet keine Cookies, kein Tracking und keine Analysedienste. Sie ist technisch so eingestellt, dass sie keine Daten an fremde Server senden kann.</p>') +
         tr('<p>Beim Aufruf der Seite verarbeitet der Hosting-Anbieter (Netlify) technisch notwendige Verbindungsdaten wie die IP-Adresse, um die Seite auszuliefern.</p>') +
-        tr('<p><b>Dokumente per Link:</b> Schickt Ihnen jemand ein Dokument per Link, wurde es auf seinem Gerät verschlüsselt und liegt nur verschlüsselt bei Netlify. Der Schlüssel steckt ausschließlich im Link (hinter dem #) und wird nie an den Server übertragen. Niemand außer Ihnen und dem Absender kann das Dokument lesen. Es wird gelöscht, sobald Sie es unterschrieben zurückgeschickt haben, spätestens nach 7 Tagen.</p>') +
-        tr('<p>Das unterschriebene PDF verschicken Sie selbst, zum Beispiel per WhatsApp. Dafür gelten die Datenschutzbestimmungen des jeweiligen Dienstes.</p>') +
+        (back ? tr('<p><b>Dokumente per Link:</b> Das Dokument wurde auf dem Gerät des Absenders verschlüsselt und liegt nur verschlüsselt bei Netlify. Der Schlüssel steckt ausschließlich im Link (hinter dem #) und wird nie an den Server übertragen. Wenn Sie auf „Fertig“ tippen, wird das unterschriebene Dokument auf Ihrem Gerät mit diesem Schlüssel verschlüsselt und für den Absender bereitgelegt. Danach wird das Original gelöscht. Das unterschriebene Dokument wird gelöscht, sobald der Absender es abgeholt hat, spätestens nach 30 Tagen. Nicht unterschriebene Dokumente werden nach 7 Tagen gelöscht.</p>')
+          : tr('<p><b>Dokumente per Link:</b> Schickt Ihnen jemand ein Dokument per Link, wurde es auf seinem Gerät verschlüsselt und liegt nur verschlüsselt bei Netlify. Der Schlüssel steckt ausschließlich im Link (hinter dem #) und wird nie an den Server übertragen. Niemand außer Ihnen und dem Absender kann das Dokument lesen. Es wird gelöscht, sobald Sie es unterschrieben zurückgeschickt haben, spätestens nach 7 Tagen.</p>') +
+            tr('<p>Das unterschriebene PDF verschicken Sie selbst, zum Beispiel per WhatsApp. Dafür gelten die Datenschutzbestimmungen des jeweiligen Dienstes.</p>')) +
+        (S.mode === 'send' ? '<p><b>Ihre Übersicht</b> (Kundennotizen, Schlüssel und unterschriebene PDFs) wird nur auf diesem Gerät gespeichert. Unterschriebene Dokumente werden vom Server gelöscht, sobald Firmio sie abgeholt hat.</p>' : '') +
         (CFG.impressum ? tr('<p>Verantwortlich: siehe Impressum.</p>') : '') });
     openSheet(tr('Datenschutz'), body);
   }
@@ -613,17 +675,21 @@
   }
   const MAGIC = [70, 73, 82, 77, 49]; // "FIRM1"
 
-  // Dokument + Dateiname verpacken und mit AES-GCM verschlüsseln. Schlüssel bleibt im Link.
+  // Dokument + Kopfdaten verpacken und mit AES-GCM verschlüsseln (neuer Zufalls-IV pro Aufruf)
+  async function sealDoc(bytes, head, keyBytes) {
+    const iv = crypto.getRandomValues(new Uint8Array(12));
+    const h = new TextEncoder().encode(JSON.stringify(head));
+    const len = new Uint8Array(4);
+    new DataView(len.buffer).setUint32(0, h.length);
+    const plain = concatBytes([new Uint8Array(MAGIC), len, h, bytes]);
+    const ck = await crypto.subtle.importKey('raw', keyBytes, 'AES-GCM', false, ['encrypt']);
+    const ct = new Uint8Array(await crypto.subtle.encrypt({ name: 'AES-GCM', iv: iv }, ck, plain));
+    return concatBytes([iv, ct]);
+  }
+  // Neues Dokument: neuer Schlüssel, der nur im Link steht
   async function encryptDoc(bytes, name) {
     const key = crypto.getRandomValues(new Uint8Array(32));
-    const iv = crypto.getRandomValues(new Uint8Array(12));
-    const head = new TextEncoder().encode(JSON.stringify({ name: name }));
-    const len = new Uint8Array(4);
-    new DataView(len.buffer).setUint32(0, head.length);
-    const plain = concatBytes([new Uint8Array(MAGIC), len, head, bytes]);
-    const ck = await crypto.subtle.importKey('raw', key, 'AES-GCM', false, ['encrypt']);
-    const ct = new Uint8Array(await crypto.subtle.encrypt({ name: 'AES-GCM', iv: iv }, ck, plain));
-    return { key: bytesToB64url(key), payload: concatBytes([iv, ct]) };
+    return { key: bytesToB64url(key), payload: await sealDoc(bytes, { name: name }, key) };
   }
   async function decryptDoc(payload, keyB64) {
     const ck = await crypto.subtle.importKey('raw', b64urlToBytes(keyB64), 'AES-GCM', false, ['decrypt']);
@@ -631,7 +697,17 @@
     for (let i = 0; i < MAGIC.length; i++) if (plain[i] !== MAGIC[i]) throw new Error('format');
     const hl = new DataView(plain.buffer, plain.byteOffset + 5, 4).getUint32(0);
     const head = JSON.parse(new TextDecoder().decode(plain.subarray(9, 9 + hl)));
-    return { name: String(head.name || 'Dokument.pdf'), bytes: plain.slice(9 + hl) };
+    return { name: String(head.name || 'Dokument.pdf'), bytes: plain.slice(9 + hl), head: head && typeof head === 'object' ? head : {} };
+  }
+  // Mehrere Versuche bei Funklöchern (nicht bei klaren Ablehnungen des Servers)
+  async function apiRetry(method, path, opt, tries) {
+    for (let i = 1; ; i++) {
+      try { return await apiFetch(method, path, opt); } catch (e) {
+        const temp = e.code === 'offline' || (e.status >= 500 && e.status !== 501);
+        if (!temp || i >= (tries || 3)) throw e;
+        await new Promise(r => setTimeout(r, 700 * i));
+      }
+    }
   }
 
   async function uploadDoc(pin, onProgress) {
@@ -654,7 +730,7 @@
       const res = await fetch('/api/status', { cache: 'no-store', credentials: 'omit', signal: ctl ? ctl.signal : undefined });
       clearTimeout(timer);
       const j = res.ok ? await res.json() : null;
-      S.server = j && j.ok ? { ok: true, pin: !!j.pin } : { ok: false };
+      S.server = j && j.ok ? { ok: true, pin: !!j.pin, v: Number(j.v) || 1 } : { ok: false };
     } catch (e) { S.server = { ok: false }; }
     return S.server;
   }
@@ -673,6 +749,7 @@
       el('div', { class: 'grow' }, el('b', { text: tr('Dokument wird geladen …') }), el('div', { class: 'prog' }, fill))));
     try {
       const meta = await apiJSON('GET', '/api/doc/' + r.d);
+      if (meta.status === 'signed') { S.remoteSigned = { signedAt: meta.signedAt }; renderRemoteSigned(); return; }
       const parts = [];
       for (let i = 0; i < meta.chunks; i++) {
         const res = await apiFetch('GET', '/api/doc/' + r.d + '/' + i);
@@ -686,8 +763,28 @@
       await openBytes(doc.bytes, S.remote.name, true);
     } catch (e) {
       console.warn('Dokument aus dem Link:', e);
+      if (e && e.code === 'signed') { S.remoteSigned = { signedAt: 0 }; renderRemoteSigned(); return; }
       renderRemoteError(e && e.code);
     }
+  }
+
+  // Kunde: Dieser Link wurde schon unterschrieben zurückgegeben
+  function renderRemoteSigned() {
+    const box = $('#remoteBox');
+    const who = S.req && S.req.f;
+    const at = S.remoteSigned && S.remoteSigned.signedAt ? new Date(S.remoteSigned.signedAt) : null;
+    box.innerHTML = '';
+    ['#pickBtn', '#reqCard', '#stepsHead', '#steps'].forEach(s => $(s).classList.add('hidden'));
+    $('#helpBox').innerHTML = '';
+    $('#startTitle').textContent = tr('Bereits unterschrieben');
+    document.title = tr('Bereits unterschrieben') + ' · Firmio';
+    $('#startLead').textContent = who ? tr('Dieses Dokument wurde bereits unterschrieben und an {who} übermittelt. Sie müssen nichts mehr tun.', { who: who })
+      : tr('Dieses Dokument wurde bereits unterschrieben und an den Absender übermittelt. Sie müssen nichts mehr tun.');
+    box.append(el('div', { class: 'remote ok' },
+      el('div', { class: 'okmark sm', html: I.check }),
+      el('div', { class: 'grow' },
+        el('b', { text: S.remote && S.remote.name ? S.remote.name : tr('Dokument') }),
+        el('p', { text: at ? tr('Unterschrieben am {date} um {time} Uhr.', { date: fmtDate(at), time: fmtTime(at) }) : tr('Bereits unterschrieben') }))));
   }
 
   function renderRemoteReady() {
@@ -722,7 +819,7 @@
 
   function deleteRemote() {
     const r = S.remote;
-    if (!S.fileIsRemote || !r || r.deleted || !r.del) return;
+    if (!S.fileIsRemote || !r || r.deleted || !r.del || backMode()) return;
     r.deleted = true;
     apiFetch('DELETE', '/api/doc/' + r.id, { del: r.del }).catch(e => { r.deleted = false; console.warn('Löschen:', e); });
   }
@@ -744,12 +841,14 @@
 
   /* ---------------- Ansicht ---------------- */
   async function openViewer() {
-    S.items = []; S.spots = []; S.sel = null; S.out = null; S.dirty = false; S.hashMatch = null; S.cur = 0; S.sig = null; S.sent = null; S.sendLang = 'de';
+    S.items = []; S.spots = []; S.sel = null; S.out = null; S.dirty = false; S.hashMatch = null; S.cur = 0; S.sig = null; S.sent = null; S.sendLang = 'de'; S.sentBack = null; S.custLabel = '';
     showScreen('viewer');
     $('#docName').textContent = S.file.name;
-    $('#modeChip').textContent = S.mode === 'send' ? 'Anfordern' : '';
+    $('#modeChip').textContent = S.view ? 'Unterschrieben' : S.mode === 'send' ? 'Anfordern' : '';
     await buildPages();
-    if (S.mode === 'send') {
+    if (S.view) {
+      // nur ansehen
+    } else if (S.mode === 'send') {
       banner('info', 'Tippen Sie unten auf „Unterschrift“ und ziehen Sie das gelbe Feld auf die Unterschriftslinie. Mit dem Punkt unten rechts ändern Sie die Größe.');
     } else {
       applyRequest();
@@ -1426,7 +1525,11 @@
     const bar = $('#bar');
     bar.innerHTML = '';
     const row = el('div', { class: 'row' });
-    if (S.mode === 'send') {
+    if (S.view) {
+      row.append(
+        el('button', { type: 'button', class: 'btn btn-ghost btn-xl', onclick: () => download(S.file.bytes, S.file.name), html: I.download + '<span>Speichern</span>' }),
+        el('button', { type: 'button', class: 'btn btn-primary btn-xl', onclick: () => shareFile(S.file.bytes, S.file.name), html: I.share + '<span>Teilen</span>' }));
+    } else if (S.mode === 'send') {
       row.append(
         el('button', { type: 'button', class: 'btn btn-soft cmp', onclick: () => addSpot('s'), html: I.pen + '<span>Unterschrift</span>' }),
         el('button', { type: 'button', class: 'btn btn-soft cmp', onclick: () => addSpot('d'), html: I.cal + '<span>Ort/Datum</span>' }),
@@ -1441,7 +1544,7 @@
     } else {
       row.append(
         el('button', { type: 'button', class: 'btn btn-ghost btn-xl sq', 'aria-label': tr('Hinzufügen'), onclick: openAddSheet, html: I.plus }),
-        el('button', { type: 'button', class: 'btn btn-primary btn-xl', onclick: finish, html: I.check + '<span>' + tr('Fertig – PDF erstellen') + '</span>' }));
+        el('button', { type: 'button', class: 'btn btn-primary btn-xl', onclick: finish, html: I.check + '<span>' + (backMode() ? tr('Fertig – Dokument senden') : tr('Fertig – PDF erstellen')) + '</span>' }));
     }
     bar.append(row);
   }
@@ -1467,7 +1570,7 @@
     if (S.file.hash) o.h = S.file.hash.slice(0, 16);
     if (name) o.f = name.slice(0, 60);
     if (!proof) o.n = 0;
-    if (withDoc && S.sent) { o.d = S.sent.id; o.k = S.sent.key; o.t = S.sent.del; }
+    if (withDoc && S.sent) { o.d = S.sent.id; o.k = S.sent.key; o.t = S.sent.del; if (S.sent.track) o.b = 1; }
     if (S.sendLang === 'sq') o.l = 'sq';
     return baseUrl() + '#r=' + toB64url(JSON.stringify(o));
   }
@@ -1487,14 +1590,16 @@
       'Vielen Dank!' + (name ? '\n' + name : '');
   }
 
-  function linkMessage(link, name, expires) {
+  function linkMessage(link, name, expires, back) {
     if (S.sendLang === 'sq') {
-      return 'Përshëndetje, ju lutem nënshkruani këtë dokument. Thjesht hapeni linkun, nënshkruajeni me gisht dhe ma dërgoni përsëri këtu:\n\n' +
+      return 'Përshëndetje, ju lutem nënshkruani këtë dokument. ' +
+        (back ? 'Thjesht hapeni linkun dhe nënshkruajeni me gisht. Dokumenti më vjen pastaj automatikisht:\n\n' : 'Thjesht hapeni linkun, nënshkruajeni me gisht dhe ma dërgoni përsëri këtu:\n\n') +
         link + '\n\n' +
         (expires ? 'Linku është i vlefshëm deri më ' + fmtDate(new Date(expires)) + '.\n\n' : '') +
         'Faleminderit!' + (name ? '\n' + name : '');
     }
-    return 'Hallo, bitte unterschreiben Sie dieses Dokument. Einfach den Link öffnen, mit dem Finger unterschreiben und mir hier zurückschicken:\n\n' +
+    return 'Hallo, bitte unterschreiben Sie dieses Dokument. ' +
+      (back ? 'Einfach den Link öffnen und mit dem Finger unterschreiben. Das Dokument kommt dann automatisch bei mir an:\n\n' : 'Einfach den Link öffnen, mit dem Finger unterschreiben und mir hier zurückschicken:\n\n') +
       link + '\n\n' +
       (expires ? 'Der Link ist bis ' + fmtDate(new Date(expires)) + ' gültig.\n\n' : '') +
       'Vielen Dank!' + (name ? '\n' + name : '');
@@ -1524,18 +1629,26 @@
     const pinIn = el('input', { class: 'in', type: 'password', placeholder: 'mindestens 6 Zeichen', autocomplete: 'current-password', maxlength: '64' });
     const pinBox = el('label', { class: 'fld' }, el('span', { text: srv.pin ? 'Ihre Absender-PIN' : 'Absender-PIN festlegen' }), pinIn,
       el('small', { text: srv.pin ? 'Einmal eingeben, dieses Gerät merkt sie sich.' : 'Schützt Ihren Speicher: Nur mit dieser PIN können Dokumente hochgeladen werden. Dieses Gerät merkt sie sich.' }));
+    const cust = el('input', { class: 'in', type: 'text', value: S.custLabel || '', placeholder: 'z. B. Max Mustermann, Kfz-Antrag', autocomplete: 'off', maxlength: '80' });
+    const custBox = el('label', { class: 'fld' }, el('span', { text: 'Kunde / Notiz (nur für Ihre Übersicht)' }), cust);
+    cust.addEventListener('input', () => {
+      S.custLabel = cust.value;
+      if (S.sent && S.sent.track) Store.patch(S.sent.id, { label: cleanLabel(cust.value) }).catch(() => {});
+    });
     const err = el('p', { class: 'err', role: 'alert' });
     const msg = el('textarea', { class: 'in', rows: '9' });
     let edited = false, link = '';
     const linkMode = () => srv.ok && viaLink.checked;
+    const willTrack = () => S.sent ? !!S.sent.track : (srv.v || 1) >= 2 && S.inbox.ok;
     const currentLink = () => linkMode() ? (S.sent ? requestLink(name.value.trim(), proof.checked, true) : LINK_PLACEHOLDER) : requestLink(name.value.trim(), proof.checked, false);
-    const template = l => linkMode() ? linkMessage(l, name.value.trim(), S.sent && S.sent.expires) : sendMessage(l, name.value.trim());
+    const template = l => linkMode() ? linkMessage(l, name.value.trim(), S.sent && S.sent.expires, willTrack()) : sendMessage(l, name.value.trim());
     const refresh = (force) => {
       const nl = currentLink();
       if (edited && !force && link) msg.value = msg.value.split(link).join(nl);
       else msg.value = template(nl);
       link = nl;
       saveSender({ name: name.value.trim(), proof: proof.checked, viaLink: viaLink.checked });
+      if (S.sent && S.sent.track && linkMode()) Store.patch(S.sent.id, { link: nl, lang: S.sendLang }).catch(() => {});
       render();
     };
     name.addEventListener('input', () => refresh(false));
@@ -1561,6 +1674,17 @@
         srv.pin = true;
         busy('Dokument wird verschlüsselt …');
         S.sent = await uploadDoc(pin, p => busy('Wird hochgeladen … ' + Math.round(p * 100) + ' %'));
+        S.sent.track = false;
+        if ((srv.v || 1) >= 2) {
+          // In der Übersicht merken (nur auf diesem Gerät). Dann kommt das PDF direkt hierher zurück.
+          try {
+            await Store.put({ id: S.sent.id, key: S.sent.key, del: S.sent.del, label: cleanLabel(cust.value), file: S.file.name, pages: S.pages.length,
+              created: Date.now(), expires: S.sent.expires, lang: S.sendLang, status: 'open', link: '' });
+            S.sent.track = true;
+            S.dirty = false;
+            askPersist();
+          } catch (x) { console.warn('Übersicht nicht verfügbar:', x); }
+        }
         unbusy();
         refresh(false);
         setTimeout(() => { try { actions.scrollIntoView({ block: 'end', behavior: 'smooth' }); } catch (x) { /* egal */ } }, 60);
@@ -1575,12 +1699,7 @@
     }
 
     async function shareText() {
-      const text = msg.value;
-      if (navigator.share) {
-        try { await navigator.share({ text: text }); S.dirty = false; return; } catch (e) { if (e && e.name === 'AbortError') return; }
-      }
-      window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank', 'noopener');
-      S.dirty = false;
+      if (await shareMessage(msg.value)) S.dirty = false;
     }
 
     async function shareWithPdf() {
@@ -1604,18 +1723,22 @@
     function render() {
       const lm = linkMode();
       pinBox.classList.toggle('hidden', !lm || !!S.sent || !!getPin());
+      custBox.classList.toggle('hidden', !lm);
       actions.innerHTML = '';
       linkInfo.innerHTML = '';
       if (lm && !S.sent) {
         actions.append(el('button', { type: 'button', class: 'btn btn-primary btn-block btn-xl', html: I.check + '<span>Link erstellen</span>', onclick: createLink }));
       } else if (lm) {
         linkInfo.append(el('div', { class: 'banner' }, el('span', { html: I.check }),
-          el('p', { text: 'Link erstellt. Das Dokument liegt verschlüsselt bereit, bis ' + fmtDate(new Date(S.sent.expires)) + ' oder bis Ihr Kunde es zurückgeschickt hat.' })));
+          el('p', { text: S.sent.track
+            ? 'Link erstellt. Sobald Ihr Kunde unterschrieben hat, finden Sie das PDF in Ihrer Übersicht unter „Erledigt“.'
+            : 'Link erstellt. Das Dokument liegt verschlüsselt bereit, bis ' + fmtDate(new Date(S.sent.expires)) + ' oder bis Ihr Kunde es zurückgeschickt hat.' })));
         actions.append(el('button', { type: 'button', class: 'btn btn-primary btn-block btn-xl', html: I.share + '<span>Per WhatsApp senden</span>', onclick: shareText }),
           el('div', { class: 'btnrow' },
             el('button', { type: 'button', class: 'btn btn-ghost', html: I.copy + '<span>Text kopieren</span>', onclick: () => copyText(msg.value, 'Nachricht kopiert.') }),
             el('button', { type: 'button', class: 'btn btn-ghost', html: I.copy + '<span>Link kopieren</span>', onclick: () => copyText(link, 'Link kopiert.') })),
           el('div', { class: 'donelinks' },
+            S.sent.track ? el('button', { type: 'button', class: 'linkbtn strong', text: 'Zur Übersicht', onclick: () => { closeSheet(true); history.back(); } }) : null,
             el('a', { class: 'linkbtn', href: '#', text: 'Link als Kunde testen', onclick: e => { e.preventDefault(); window.open(link, '_blank', 'noopener'); } })));
       } else {
         actions.append(el('button', { type: 'button', class: 'btn btn-primary btn-block btn-xl', html: I.share + '<span>PDF + Nachricht senden</span>', onclick: shareWithPdf }),
@@ -1629,9 +1752,12 @@
 
     const body = el('div', null,
       el('div', { class: 'banner' + (nS ? '' : ' warn') }, el('span', { html: nS ? I.check : I.info }), el('p', { text: summary + ' ' + S.pages.length + ' ' + plural(S.pages.length, 'Seite', 'Seiten') + '.' })),
+      custBox,
       el('label', { class: 'fld' }, el('span', { text: 'Ihr Name (sieht der Kunde)' }), name),
       langRow,
-      srv.ok ? el('label', { class: 'check' }, viaLink, el('span', null, 'Dokument im Link mitschicken', el('small', { text: 'Ihr Kunde muss nichts speichern: Er tippt auf den Link und das Dokument ist da. Ende-zu-Ende verschlüsselt, nach dem Zurückschicken bzw. nach 7 Tagen gelöscht.' }))) : null,
+      srv.ok ? el('label', { class: 'check' }, viaLink, el('span', null, 'Dokument im Link mitschicken', el('small', { text: willTrack()
+        ? 'Ihr Kunde muss nichts speichern und nichts zurückschicken: Er unterschreibt über den Link, das PDF landet direkt in Ihrer Übersicht. Ende-zu-Ende verschlüsselt.'
+        : 'Ihr Kunde muss nichts speichern: Er tippt auf den Link und das Dokument ist da. Ende-zu-Ende verschlüsselt, nach dem Zurückschicken bzw. nach 7 Tagen gelöscht.' }))) : null,
       el('label', { class: 'check' }, proof, el('span', null, 'Nachweisseite anhängen', el('small', { text: 'Eine Seite mit Name, Zeitpunkt und Prüfsumme kommt ans Ende. Damit lässt sich zeigen, wer was wann unterschrieben hat.' }))),
       pinBox,
       linkInfo,
@@ -1667,6 +1793,477 @@
     setTimeout(() => URL.revokeObjectURL(url), 60000);
   }
 
+  // Text teilen (WhatsApp & Co.), sonst wa.me öffnen. true = geteilt bzw. geöffnet
+  async function shareMessage(text) {
+    if (navigator.share) {
+      try { await navigator.share({ text: text }); return true; } catch (e) { if (e && e.name === 'AbortError') return false; }
+    }
+    window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank', 'noopener');
+    return true;
+  }
+  // PDF teilen, sonst herunterladen
+  async function shareFile(bytes, name) {
+    let file = null;
+    try { file = new File([bytes], name, { type: 'application/pdf' }); } catch (e) { file = null; }
+    if (file && navigator.canShare && navigator.share && navigator.canShare({ files: [file] })) {
+      try { await navigator.share({ files: [file] }); return; } catch (e) { if (e && e.name === 'AbortError') return; }
+    }
+    download(bytes, name);
+    toast('PDF wird gespeichert.');
+  }
+
+  /* ---------------- Absender: Übersicht (liegt nur auf diesem Gerät) ---------------- */
+  let idbP = null;
+  function idb() {
+    if (!idbP) {
+      idbP = new Promise((res, rej) => {
+        if (!window.indexedDB) { rej(new Error('noidb')); return; }
+        let r;
+        try { r = indexedDB.open('firmio', 1); } catch (e) { rej(e); return; }
+        r.onupgradeneeded = () => {
+          const db = r.result;
+          if (!db.objectStoreNames.contains('req')) db.createObjectStore('req', { keyPath: 'id' });
+          if (!db.objectStoreNames.contains('pdf')) db.createObjectStore('pdf', { keyPath: 'id' });
+        };
+        r.onsuccess = () => {
+          const db = r.result;
+          db.onversionchange = () => { db.close(); idbP = null; };
+          db.onclose = () => { idbP = null; };
+          res(db);
+        };
+        r.onerror = () => rej(r.error || new Error('idb'));
+        r.onblocked = () => rej(new Error('blocked'));
+      });
+      idbP.catch(() => { idbP = null; });
+    }
+    return idbP;
+  }
+  async function idbRun(stores, mode, fn, again) {
+    try {
+      const db = await idb();
+      return await new Promise((res, rej) => {
+        const t = db.transaction(stores, mode);
+        let out;
+        const r = fn(t);
+        if (r && 'onsuccess' in r) r.onsuccess = () => { out = r.result; };
+        t.oncomplete = () => res(out);
+        t.onerror = () => rej(t.error || new Error('idb'));
+        t.onabort = () => rej(t.error || new Error('abort'));
+      });
+    } catch (e) {
+      if (again) throw e;
+      idbP = null; // Safari verliert die Verbindung manchmal: einmal neu versuchen
+      return idbRun(stores, mode, fn, true);
+    }
+  }
+  const Store = {
+    all: () => idbRun('req', 'readonly', t => t.objectStore('req').getAll()),
+    get: id => idbRun('req', 'readonly', t => t.objectStore('req').get(id)),
+    put: rec => idbRun('req', 'readwrite', t => t.objectStore('req').put(rec)),
+    patch: (id, changes) => idbRun('req', 'readwrite', t => {
+      const st = t.objectStore('req');
+      const g = st.get(id);
+      g.onsuccess = () => { if (g.result) st.put(Object.assign(g.result, changes)); };
+    }),
+    pdf: id => idbRun('pdf', 'readonly', t => t.objectStore('pdf').get(id)),
+    putPdf: (id, bytes) => idbRun('pdf', 'readwrite', t => t.objectStore('pdf').put({ id: id, bytes: bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength) })),
+    remove: id => idbRun(['req', 'pdf'], 'readwrite', t => { t.objectStore('req').delete(id); t.objectStore('pdf').delete(id); })
+  };
+  function askPersist() {
+    try { if (navigator.storage && navigator.storage.persist) navigator.storage.persist().catch(() => {}); } catch (e) { /* egal */ }
+  }
+  const cleanLabel = v => String(v || '').replace(/\s+/g, ' ').trim().slice(0, 80);
+  const txt = (v, n) => typeof v === 'string' ? v.replace(/\s+/g, ' ').trim().slice(0, n) : '';
+
+  async function loadInbox() {
+    try {
+      const list = await Store.all();
+      S.inbox.list = Array.isArray(list) ? list : [];
+      S.inbox.ok = true;
+    } catch (e) {
+      console.warn('Übersicht:', e);
+      S.inbox.ok = false;
+      S.inbox.list = [];
+    }
+    return S.inbox.list;
+  }
+
+  function initInbox() {
+    try { S.inbox.filter = localStorage.getItem(LS_FILTER) || 'all'; } catch (e) { /* egal */ }
+    if (!/^(all|open|signed)$/.test(S.inbox.filter)) S.inbox.filter = 'all';
+    loadInbox().then(() => { renderInbox(); refreshInbox(); });
+  }
+
+  function whenText(ts) {
+    const d = new Date(ts), now = new Date();
+    const day = x => new Date(x.getFullYear(), x.getMonth(), x.getDate()).getTime();
+    const diff = Math.round((day(now) - day(d)) / DAY);
+    const t = fmtTime(d);
+    if (diff === 0) return 'heute, ' + t;
+    if (diff === 1) return 'gestern, ' + t;
+    return pad2(d.getDate()) + '.' + pad2(d.getMonth() + 1) + '.' + (d.getFullYear() !== now.getFullYear() ? d.getFullYear() : '') + ', ' + t;
+  }
+  function leftText(exp) {
+    const days = Math.ceil((exp - Date.now()) / DAY);
+    return days <= 0 ? 'läuft heute ab' : days === 1 ? 'noch 1 Tag gültig' : 'noch ' + days + ' Tage gültig';
+  }
+  const recTitle = r => r.label || (r.status === 'signed' && r.signer) || r.file || 'Dokument';
+  const pending = r => r.status === 'open' || (r.status === 'signed' && !r.local && !r.lost);
+
+  function setFilter(f) {
+    S.inbox.filter = f;
+    try { localStorage.setItem(LS_FILTER, f); } catch (e) { /* egal */ }
+    renderInbox();
+  }
+
+  function renderInbox() {
+    const box = $('#inbox');
+    if (!box) return;
+    const send = S.mode === 'send';
+    const list = send ? S.inbox.list.slice() : [];
+    const has = list.length > 0;
+    box.classList.toggle('hidden', !send || (!has && S.inbox.ok));
+    $('#start').classList.toggle('has-inbox', send && has);
+    box.innerHTML = '';
+    if (!send) return;
+    box.setAttribute('aria-label', 'Ihre Anfragen');
+    if (!S.inbox.ok) {
+      box.append(el('div', { class: 'banner warn' }, el('span', { html: I.warn }),
+        el('p', { text: 'Die Übersicht kann in diesem Browser nicht gespeichert werden (zum Beispiel im privaten Modus). Links funktionieren trotzdem, Ihr Kunde schickt das PDF dann per WhatsApp zurück.' })));
+      return;
+    }
+    if (!has) return;
+    const nOpen = list.filter(r => r.status === 'open').length;
+    const nDone = list.filter(r => r.status === 'signed').length;
+    const nNew = list.filter(r => r.status === 'signed' && r.local && !r.seen).length;
+    const f = S.inbox.filter;
+    const segs = [['all', 'Alle', list.length], ['open', 'Offen', nOpen], ['signed', 'Erledigt', nDone]].map(x =>
+      el('button', { type: 'button', class: 'seg' + (f === x[0] ? ' on' : ''), 'aria-pressed': f === x[0] ? 'true' : 'false', onclick: () => setFilter(x[0]) },
+        x[1], el('span', { class: 'cnt' + (x[0] === 'signed' && nNew ? ' new' : ''), text: String(x[2]) })));
+    const rows = list.filter(r => f === 'all' || r.status === f)
+      .sort((a, b) => (b.status === 'signed' && b.local && !b.seen) - (a.status === 'signed' && a.local && !a.seen) || (b.signedAt || b.created) - (a.signedAt || a.created));
+    box.append(
+      el('div', { class: 'ibhead' },
+        el('h2', { text: 'Ihre Anfragen' }),
+        el('button', { type: 'button', class: 'iconbtn sm' + (refreshing ? ' turning' : ''), 'aria-label': 'Aktualisieren', html: I.refresh, onclick: () => refreshInbox(true) })),
+      el('div', { class: 'segrow' }, segs[0], segs[1], segs[2]));
+    if (rows.length) {
+      const ul = el('ul', { class: 'iblist' });
+      rows.forEach(r => ul.append(el('li', null, itemButton(r))));
+      box.append(ul);
+    } else {
+      box.append(el('p', { class: 'ibempty', text: f === 'open' ? 'Keine offenen Anfragen.' : 'Noch nichts unterschrieben.' }));
+    }
+    const err = S.inbox.err;
+    box.append(el('p', { class: 'ibnote' + (err ? ' warn' : ''), text:
+      err === 'pin' ? 'Für den Abgleich fehlt die PIN. Tippen Sie oben auf Aktualisieren.'
+        : err === 'offline' ? 'Keine Verbindung' + (S.inbox.last ? ', Stand ' + fmtTime(new Date(S.inbox.last)) + ' Uhr.' : '.') + ' Unterschriebene PDFs liegen nur auf diesem Gerät.'
+          : (S.inbox.last ? 'Aktualisiert ' + fmtTime(new Date(S.inbox.last)) + ' Uhr. ' : '') + 'Unterschriebene PDFs liegen nur auf diesem Gerät.' }));
+  }
+
+  function itemButton(r) {
+    const st = r.status, title = recTitle(r);
+    let line, cls, icon;
+    if (st === 'signed') {
+      cls = 'ok'; icon = I.check;
+      line = 'Unterschrieben ' + whenText(r.signedAt) + (r.signer && title !== r.signer ? ' · ' + r.signer : '');
+      if (!r.local) line += r.lost ? ' · PDF nicht mehr abrufbar' : ' · wird geladen …';
+    } else if (st === 'open') {
+      cls = 'open'; icon = I.clock;
+      line = 'Offen · gesendet ' + whenText(r.created) + ' · ' + leftText(r.expires);
+    } else {
+      cls = 'gone'; icon = I.xc;
+      line = r.gone === 'withdrawn' ? 'Zurückgezogen' : 'Abgelaufen, nicht unterschrieben';
+    }
+    return el('button', { type: 'button', class: 'ibitem ' + cls, onclick: () => openRecord(r.id) },
+      el('span', { class: 'ic', html: icon }),
+      el('span', { class: 'tx' },
+        el('b', null, el('span', { class: 'ttl', text: title }), st === 'signed' && r.local && !r.seen ? el('i', { class: 'new', text: 'Neu' }) : null),
+        title !== r.file ? el('small', { text: r.file }) : null,
+        el('span', { class: 'st', text: line })),
+      el('span', { class: 'chev', html: I.chev }));
+  }
+
+  // Stand beim Server abfragen, neu unterschriebene PDFs abholen und dort löschen
+  let refreshing = null, pollT = 0;
+  function refreshInbox(manual) {
+    if (S.mode !== 'send') return Promise.resolve();
+    if (refreshing) return refreshing;
+    refreshing = syncInbox(!!manual)
+      .catch(e => console.warn('Abgleich:', e))
+      .then(() => { refreshing = null; renderInbox(); schedulePoll(); });
+    renderInbox();
+    return refreshing;
+  }
+  function schedulePoll() {
+    clearTimeout(pollT);
+    if (S.mode !== 'send' || !S.inbox.list.some(pending)) return;
+    pollT = setTimeout(() => {
+      if (document.visibilityState === 'visible' && !S.inViewer) refreshInbox(); else schedulePoll();
+    }, 30000);
+  }
+
+  async function syncInbox(manual) {
+    await loadInbox();
+    if (!S.inbox.ok) return;
+    const now = Date.now();
+    for (const r of S.inbox.list) {
+      if (r.status === 'gone' && now - (r.goneAt || r.expires || now) > 30 * DAY) await Store.remove(r.id).catch(() => {});
+    }
+    const ask = S.inbox.list.filter(pending);
+    const tidy = S.inbox.list.filter(r => r.status === 'signed' && r.local && !r.serverGone);
+    if (!ask.length && !tidy.length) { S.inbox.err = ''; await loadInbox(); return; }
+    let pin = getPin();
+    if (!pin) {
+      if (manual) pin = await askPin();
+      if (!pin) { S.inbox.err = 'pin'; return; }
+    }
+    let states = {};
+    if (ask.length) {
+      try {
+        states = (await apiJSON('POST', '/api/state', { pin: pin, json: { ids: ask.map(r => r.id) } })).states || {};
+      } catch (e) {
+        S.inbox.err = e.code === 'pin_wrong' ? 'pin' : 'offline';
+        if (e.code === 'pin_wrong') setPin('');
+        return;
+      }
+    }
+    S.inbox.err = '';
+    S.inbox.last = Date.now();
+    const fresh = [];
+    for (const r of ask) {
+      if (!Object.prototype.hasOwnProperty.call(states, r.id)) continue;
+      const st = states[r.id];
+      if (!st) {
+        // Beim Server nicht (mehr) vorhanden
+        if (r.status === 'open') await Store.patch(r.id, { status: 'gone', gone: 'expired', goneAt: now });
+        else await Store.patch(r.id, { lost: true });
+      } else if (st.status === 'signed' && !st.chunks) {
+        // Unterschrieben, aber nichts mehr zum Abholen da
+        await Store.patch(r.id, { status: 'signed', signedAt: st.signedAt, lost: true });
+      } else if (st.status === 'signed') {
+        if (r.status !== 'signed') await Store.patch(r.id, { status: 'signed', signedAt: st.signedAt, seen: false });
+        fresh.push(Object.assign({}, r, { signedAt: st.signedAt, sChunks: st.chunks }));
+      } else if (st.expires && st.expires !== r.expires) {
+        await Store.patch(r.id, { expires: st.expires });
+      }
+    }
+    await loadInbox();
+    renderInbox();
+    const names = [];
+    for (const r of fresh) {
+      try {
+        const rec = await fetchSigned(r, pin);
+        names.push(recTitle(rec));
+      } catch (e) { console.warn('Abholen:', e); }
+      await loadInbox();
+      renderInbox();
+    }
+    for (const r of tidy) await deleteServerCopy(r.id, pin);
+    await loadInbox();
+    if (names.length) toast(names.length === 1 ? 'Neu unterschrieben: ' + names[0] : names.length + ' Dokumente neu unterschrieben', 4500);
+  }
+
+  async function fetchSigned(r, pin) {
+    const n = Number(r.sChunks) || 0;
+    if (!n) throw new Error('chunks');
+    const parts = [];
+    for (let i = 0; i < n; i++) {
+      const res = await apiRetry('GET', '/api/doc/' + encodeURIComponent(r.id) + '/signed/' + i, { pin: pin });
+      parts.push(new Uint8Array(await res.arrayBuffer()));
+    }
+    const doc = await decryptDoc(concatBytes(parts), r.key);
+    if (!looksLikePdf(doc.bytes)) throw new Error('format');
+    await Store.putPdf(r.id, doc.bytes);
+    const chk = await Store.pdf(r.id);
+    if (!chk || !chk.bytes || chk.bytes.byteLength !== doc.bytes.length) throw new Error('save');
+    const h = doc.head || {};
+    const changes = {
+      status: 'signed', local: true, lost: false, seen: false,
+      outName: cleanName(txt(h.name, 120) || r.file),
+      signer: txt(h.signer, 80), ort: txt(h.ort, 60),
+      outPages: Number.isInteger(h.pages) && h.pages > 0 ? h.pages : 0,
+      size: doc.bytes.length,
+      signedAt: r.signedAt || Date.parse(h.signedAt) || Date.now()
+    };
+    await Store.patch(r.id, changes);
+    await deleteServerCopy(r.id, pin); // liegt jetzt nur noch auf diesem Gerät
+    return Object.assign({}, r, changes);
+  }
+  async function deleteServerCopy(id, pin) {
+    try { await apiFetch('DELETE', '/api/doc/' + encodeURIComponent(id), { pin: pin }); } catch (e) {
+      if (e.status !== 404 && e.status !== 410) return false;
+    }
+    await Store.patch(id, { serverGone: true }).catch(() => {});
+    return true;
+  }
+
+  function askPin() {
+    return new Promise(resolve => {
+      let settled = false;
+      const done = v => { if (!settled) { settled = true; resolve(v); } };
+      const input = el('input', { class: 'in', type: 'password', placeholder: 'Ihre Absender-PIN', autocomplete: 'current-password', maxlength: '64' });
+      const err = el('p', { class: 'err', role: 'alert' });
+      const go = async () => {
+        const pin = input.value.trim();
+        if (pin.length < 6) { err.textContent = 'Die PIN hat mindestens 6 Zeichen.'; return; }
+        busy('PIN wird geprüft …');
+        try {
+          await apiJSON('POST', '/api/pin', { json: { pin: pin } });
+          unbusy();
+          setPin(pin);
+          done(pin);
+          closeSheet();
+        } catch (e) {
+          unbusy();
+          err.textContent = e.code === 'pin_wrong' ? 'Die PIN stimmt nicht.' : 'Keine Verbindung. Bitte später noch einmal versuchen.';
+        }
+      };
+      input.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); go(); } });
+      openSheet('PIN eingeben', el('div', null,
+        el('p', { class: 'prose', text: 'Damit Firmio den Stand Ihrer Anfragen abrufen kann, braucht dieses Gerät Ihre Absender-PIN.' }),
+        el('label', { class: 'fld' }, el('span', { text: 'Absender-PIN' }), input), err,
+        el('button', { type: 'button', class: 'btn btn-primary btn-block', html: I.check + '<span>Weiter</span>', onclick: go })),
+      { onClose: () => done('') });
+      setTimeout(() => { try { input.focus(); } catch (e) { /* egal */ } }, 330);
+    });
+  }
+
+  function reminderMessage(r) {
+    const name = loadSender().name || '';
+    const until = r.expires ? fmtDate(new Date(r.expires)) : '';
+    if (r.lang === 'sq') {
+      return 'Përshëndetje, një kujtesë e vogël: ju lutem nënshkruani këtë dokument. Thjesht hapeni linkun dhe nënshkruajeni me gisht:\n\n' +
+        r.link + '\n\n' + (until ? 'Linku është i vlefshëm deri më ' + until + '.\n\n' : '') + 'Faleminderit!' + (name ? '\n' + name : '');
+    }
+    return 'Hallo, kurze Erinnerung: Bitte unterschreiben Sie noch dieses Dokument. Einfach den Link öffnen und mit dem Finger unterschreiben:\n\n' +
+      r.link + '\n\n' + (until ? 'Der Link ist bis ' + until + ' gültig.\n\n' : '') + 'Vielen Dank!' + (name ? '\n' + name : '');
+  }
+
+  async function withPdf(r, fn) {
+    let p = null;
+    try { p = await Store.pdf(r.id); } catch (e) { p = null; }
+    if (!p || !p.bytes) { toast('Das PDF ist auf diesem Gerät nicht vorhanden.'); return; }
+    await fn(new Uint8Array(p.bytes), r.outName || r.file);
+  }
+
+  async function viewRecord(r) {
+    let p = null;
+    try { p = await Store.pdf(r.id); } catch (e) { p = null; }
+    if (!p || !p.bytes) { toast('Das PDF ist auf diesem Gerät nicht vorhanden.'); return; }
+    closeSheet(true);
+    S.view = r.id;
+    const ok = await openBytes(new Uint8Array(p.bytes), r.outName || r.file, false);
+    if (!ok) S.view = null;
+  }
+
+  async function removeRecord(r) {
+    const local = r.status === 'signed' && r.local;
+    if (!confirm(local ? 'Unterschriebenes PDF von diesem Gerät löschen? Haben Sie es weitergeleitet oder gespeichert?' : 'Aus der Übersicht entfernen?')) return;
+    if (r.status === 'signed' && !r.serverGone) {
+      const pin = getPin();
+      if (pin) await deleteServerCopy(r.id, pin);
+    }
+    try { await Store.remove(r.id); } catch (e) { toast('Löschen hat nicht geklappt.'); return; }
+    closeSheet();
+    await loadInbox();
+    renderInbox();
+    toast(local ? 'PDF gelöscht.' : 'Entfernt.');
+  }
+
+  async function withdrawRecord(r) {
+    if (!confirm('Anfrage zurückziehen? Der Link funktioniert danach nicht mehr.')) return;
+    const pin = getPin() || await askPin();
+    if (!pin) return;
+    busy('Einen Moment …');
+    try {
+      const st = ((await apiJSON('POST', '/api/state', { pin: pin, json: { ids: [r.id] } })).states || {})[r.id];
+      if (st && st.status === 'signed') {
+        unbusy();
+        closeSheet();
+        toast('Ihr Kunde hat gerade unterschrieben.');
+        refreshInbox(true);
+        return;
+      }
+      if (st) await apiFetch('DELETE', '/api/doc/' + encodeURIComponent(r.id), { pin: pin });
+      await Store.patch(r.id, { status: 'gone', gone: 'withdrawn', goneAt: Date.now() });
+      unbusy();
+      closeSheet();
+      await loadInbox();
+      renderInbox();
+      toast('Anfrage zurückgezogen.');
+    } catch (e) {
+      unbusy();
+      toast(e.code === 'pin_wrong' ? 'Die PIN stimmt nicht.' : 'Hat nicht geklappt. Bitte Internetverbindung prüfen.');
+    }
+  }
+
+  async function openRecord(id) {
+    let r = null;
+    try { r = await Store.get(id); } catch (e) { r = null; }
+    if (!r) { await loadInbox(); renderInbox(); return; }
+    if (r.status === 'signed' && r.local && !r.seen) {
+      Store.patch(id, { seen: true }).then(loadInbox).then(renderInbox).catch(() => {});
+    }
+    const kv = el('dl', { class: 'kv' });
+    const row = (k, v) => { if (v) kv.append(el('dt', { text: k }), el('dd', { text: v })); };
+    const dt = ts => fmtDate(new Date(ts)) + ', ' + fmtTime(new Date(ts)) + ' Uhr';
+    const label = el('input', { class: 'in', type: 'text', value: r.label || '', placeholder: 'z. B. Max Mustermann, Kfz-Antrag', maxlength: '80', autocomplete: 'off' });
+    label.addEventListener('change', () => { Store.patch(id, { label: cleanLabel(label.value) }).then(loadInbox).then(renderInbox).catch(() => {}); });
+    const note = el('label', { class: 'fld' }, el('span', { text: 'Kunde / Notiz (nur für Sie)' }), label);
+    const body = el('div', { class: 'recdetail' });
+    if (r.status === 'signed') {
+      row('Unterschrieben von', r.signer);
+      row('Zeitpunkt', r.signedAt ? dt(r.signedAt) : '');
+      row('Ort', r.ort);
+      row('Angefordert', fmtDate(new Date(r.created)));
+      if (r.local) {
+        const info = (r.outPages ? (r.outPages === 1 ? '1 Seite' : r.outPages + ' Seiten') + ' · ' : '') + fmtSize(r.size || 0);
+        body.append(
+          el('div', { class: 'filecard' }, el('span', { html: I.doc }), el('div', null, el('b', { text: r.outName || r.file }), el('span', { text: info }))),
+          kv,
+          el('button', { type: 'button', class: 'btn btn-primary btn-block btn-xl', html: I.eye + '<span>Ansehen</span>', onclick: () => viewRecord(r) }),
+          el('div', { class: 'btnrow' },
+            el('button', { type: 'button', class: 'btn btn-ghost', html: I.share + '<span>Teilen</span>', onclick: () => withPdf(r, shareFile) }),
+            el('button', { type: 'button', class: 'btn btn-ghost', html: I.download + '<span>Speichern</span>', onclick: () => withPdf(r, (b, n) => { download(b, n); toast('PDF wird gespeichert.'); }) })),
+          el('p', { class: 'hint left', text: 'Das PDF liegt nur auf diesem Gerät. Leiten Sie es am besten gleich weiter, zum Beispiel in die Kundenakte.' }),
+          note,
+          el('div', { class: 'donelinks' }, el('button', { type: 'button', class: 'linkbtn danger', text: 'Von diesem Gerät löschen', onclick: () => removeRecord(r) })));
+      } else {
+        body.append(kv,
+          el('div', { class: 'banner' + (r.lost ? ' warn' : '') }, el('span', { html: r.lost ? I.warn : I.info }),
+            el('p', { text: r.lost ? 'Das unterschriebene PDF ist auf dem Server nicht mehr vorhanden. Bitten Sie Ihren Kunden, es per WhatsApp zu schicken.' : 'Ihr Kunde hat unterschrieben. Das PDF wird gerade abgeholt.' })),
+          r.lost ? null : el('button', { type: 'button', class: 'btn btn-primary btn-block', html: I.download + '<span>Jetzt abholen</span>', onclick: async () => { closeSheet(); await refreshInbox(true); openRecord(id); } }),
+          note,
+          el('div', { class: 'donelinks' }, el('button', { type: 'button', class: 'linkbtn danger', text: 'Aus der Übersicht entfernen', onclick: () => removeRecord(r) })));
+      }
+    } else if (r.status === 'open') {
+      row('Dokument', r.file);
+      row('Gesendet', dt(r.created));
+      row('Gültig bis', fmtDate(new Date(r.expires)));
+      row('Sprache', r.lang === 'sq' ? 'Shqip (Albanisch)' : 'Deutsch');
+      body.append(
+        el('div', { class: 'banner' }, el('span', { html: I.clock }), el('p', { text: 'Noch nicht unterschrieben. Sobald Ihr Kunde fertig ist, erscheint das PDF hier.' })),
+        kv,
+        r.link ? el('button', { type: 'button', class: 'btn btn-primary btn-block btn-xl', html: I.bell + '<span>Erinnerung senden</span>', onclick: () => shareMessage(reminderMessage(r)) }) : null,
+        el('div', { class: 'btnrow' },
+          r.link ? el('button', { type: 'button', class: 'btn btn-ghost', html: I.copy + '<span>Link kopieren</span>', onclick: () => copyText(r.link, 'Link kopiert.') }) : null,
+          el('button', { type: 'button', class: 'btn btn-ghost', html: I.refresh + '<span>Status prüfen</span>', onclick: () => { closeSheet(); refreshInbox(true); } })),
+        note,
+        el('div', { class: 'donelinks' }, el('button', { type: 'button', class: 'linkbtn danger', text: 'Anfrage zurückziehen', onclick: () => withdrawRecord(r) })));
+    } else {
+      row('Dokument', r.file);
+      row('Gesendet', dt(r.created));
+      body.append(
+        el('div', { class: 'banner warn' }, el('span', { html: I.warn }), el('p', { text: r.gone === 'withdrawn'
+          ? 'Sie haben diese Anfrage zurückgezogen. Der Link funktioniert nicht mehr.'
+          : 'Der Link ist abgelaufen, ohne dass unterschrieben wurde. Wählen Sie das PDF erneut aus, um eine neue Anfrage zu senden.' })),
+        kv, note,
+        el('button', { type: 'button', class: 'btn btn-ghost btn-block', text: 'Aus der Übersicht entfernen', onclick: () => removeRecord(r) }));
+    }
+    openSheet(recTitle(r), body);
+  }
+
   /* ---------------- PDF erstellen ---------------- */
   async function finish() {
     const sigs = S.items.filter(i => i.type === 'sig');
@@ -1681,6 +2278,7 @@
     try {
       S.out = await buildSignedPdf();
       S.dirty = true;
+      if (backMode()) { await sendBack(); return; }
       unbusy();
       showDone();
     } catch (e) {
@@ -1688,6 +2286,31 @@
       unbusy();
       alert(tr('Das PDF konnte nicht erstellt werden. Bitte versuchen Sie es noch einmal.') + '\n\n(' + (e && e.message ? e.message : e) + ')');
     }
+  }
+
+  // Kunde: unterschriebenes PDF verschlüsselt für den Absender bereitlegen
+  async function sendBack() {
+    const r = S.remote, id = encodeURIComponent(r.id);
+    busy(tr('Wird verschlüsselt gesendet …'));
+    try {
+      const head = { name: S.out.name, signer: S.name, ort: S.ort, signedAt: new Date().toISOString(), pages: S.out.pages, match: S.hashMatch };
+      const payload = await sealDoc(S.out.bytes, head, b64urlToBytes(S.req.k));
+      const CH = 3 * 1024 * 1024, chunks = Math.ceil(payload.length / CH);
+      await apiRetry('POST', '/api/doc/' + id + '/signed', { del: r.del, json: { size: payload.length, chunks: chunks } });
+      for (let i = 0; i < chunks; i++) {
+        await apiRetry('PUT', '/api/doc/' + id + '/signed/' + i, { del: r.del, body: new Blob([payload.slice(i * CH, (i + 1) * CH)]) });
+        busy(tr('Wird verschlüsselt gesendet … {p} %', { p: Math.round((i + 1) / chunks * 100) }));
+      }
+      const res = await (await apiRetry('POST', '/api/doc/' + id + '/signed/done', { del: r.del, json: {} })).json();
+      S.sentBack = { ok: true, at: res.signedAt || Date.now() };
+      S.remoteSigned = { signedAt: S.sentBack.at };
+      S.dirty = false;
+    } catch (e) {
+      console.warn('Zurücksenden:', e);
+      S.sentBack = { ok: false, code: (e && e.code) || 'error' };
+    }
+    unbusy();
+    showDone();
   }
 
   function inv(m) {
@@ -1877,7 +2500,7 @@
     if (S.ort) row('Ort', S.ort);
     row('Zeitpunkt', fmtDate(now) + ', ' + fmtTime(now, true) + ' Uhr (' + tzLabel(now) + ')');
     row('Unterschrift auf', placementText());
-    if (S.fileIsRemote) row('Übermittlung', 'Per Ende-zu-Ende-verschlüsseltem Link erhalten');
+    if (S.fileIsRemote) row('Übermittlung', backMode() ? 'Ende-zu-Ende verschlüsselt per Link erhalten und zurückgegeben' : 'Per Ende-zu-Ende-verschlüsseltem Link erhalten');
     row('Gerät', deviceLabel());
     page.drawText(safe('Unterschrift'), { x: X, y: y, size: 9, font: F.bold, color: cMuted });
     const sc = Math.min(230 / S.sig.bw, 72 / S.sig.bh);
@@ -1889,7 +2512,8 @@
     page.drawLine({ start: { x: V, y: y }, end: { x: V + 230, y: y }, thickness: 0.6, color: cLine });
     y -= 34;
     const para = 'Art der Unterschrift: einfache elektronische Signatur. Die Unterschrift wurde mit dem Finger auf dem Touchscreen gezeichnet und im Browser des Unterzeichners in das Dokument eingesetzt. ' +
-      (S.fileIsRemote ? 'Das Originaldokument kam Ende-zu-Ende-verschlüsselt per Link; das unterschriebene Dokument wurde nicht hochgeladen. ' : 'Das Dokument wurde dabei nicht hochgeladen. ') +
+      (backMode() ? 'Das Originaldokument kam Ende-zu-Ende-verschlüsselt per Link; das unterschriebene Dokument geht auf demselben Weg verschlüsselt an den Absender zurück. '
+        : S.fileIsRemote ? 'Das Originaldokument kam Ende-zu-Ende-verschlüsselt per Link; das unterschriebene Dokument wurde nicht hochgeladen. ' : 'Das Dokument wurde dabei nicht hochgeladen. ') +
       'Die Prüfsumme gehört zum Dokument vor dem Unterschreiben. Mit ihr lässt sich prüfen, ob genau dieses Dokument unterschrieben wurde. Die Zeitangabe stammt von der Uhr des verwendeten Geräts.' +
       (raster ? ' Das Originaldokument war gegen Änderungen geschützt und wurde deshalb als Bild übernommen.' : '');
     wrapText(safe(para), F.reg, 8.8, R - X).forEach(ln => {
@@ -1909,9 +2533,48 @@
     $('#outInfo').textContent = (S.out.pages === 1 ? tr('1 Seite') : tr('{n} Seiten', { n: S.out.pages })) + ' · ' + fmtSize(S.out.bytes.length);
     let can = false;
     try { can = !!(navigator.canShare && navigator.share && navigator.canShare({ files: [outFile()] })); } catch (e) { can = false; }
-    $('#shareBtn').classList.toggle('hidden', !can);
-    $('#dlBtn').className = 'btn btn-block ' + (can ? 'btn-ghost' : 'btn-primary btn-xl');
     const who = S.req && S.req.f;
+    const sb = backMode() ? S.sentBack : null;
+    const mark = $('#doneMark'), retry = $('#retryBtn'), share = $('#shareBtn'), dl = $('#dlBtn');
+    mark.classList.toggle('bad', !!(sb && !sb.ok));
+    mark.innerHTML = sb && !sb.ok ? I.warnL : I.checkL;
+    $('#editBtn').classList.toggle('hidden', !!(sb && sb.ok));
+    $('#newBtn').classList.toggle('hidden', !!sb);
+    retry.classList.add('hidden');
+    $('#dlLabel').textContent = tr('PDF speichern');
+    if (sb && sb.ok) {
+      // Erledigt: Das PDF ist schon beim Absender
+      $('#doneTitle').textContent = tr('Erledigt!');
+      $('#doneLead').textContent = who ? tr('Ihr unterschriebenes Dokument ist bei {who} angekommen. Sie müssen nichts mehr tun.', { who: who })
+        : tr('Ihr unterschriebenes Dokument ist beim Absender angekommen. Sie müssen nichts mehr tun.');
+      share.classList.add('hidden');
+      $('#shareHint').textContent = tr('Sie können die Seite jetzt schließen.');
+      dl.className = 'btn btn-block btn-ghost';
+      $('#dlLabel').textContent = tr('Kopie für mich speichern');
+      return;
+    }
+    if (sb) {
+      // Senden hat nicht geklappt: noch einmal versuchen oder per WhatsApp
+      const c = sb.code;
+      const gone = c === 'not_found' || c === 'expired' || c === 'http_404' || c === 'http_410';
+      const big = c === 'too_large' || c === 'http_413';
+      const taken = c === 'signed' || c === 'http_409' || c === 'forbidden';
+      $('#doneTitle').textContent = tr('Noch nicht gesendet');
+      $('#doneLead').textContent = gone ? tr('Der Link ist abgelaufen. Bitte schicken Sie das PDF per WhatsApp zurück.')
+        : taken ? tr('Für diesen Link wurde schon ein unterschriebenes Dokument übermittelt. Möchten Sie etwas ändern, schicken Sie das PDF bitte per WhatsApp.')
+          : big ? tr('Das Dokument ist zu groß zum Senden. Bitte schicken Sie das PDF per WhatsApp zurück.')
+            : tr('Das Senden hat nicht geklappt. Bitte prüfen Sie Ihre Internetverbindung und versuchen Sie es noch einmal.');
+      const canRetry = !gone && !big && !taken;
+      retry.classList.toggle('hidden', !canRetry);
+      share.classList.toggle('hidden', !can);
+      share.className = 'btn btn-block ' + (canRetry ? 'btn-ghost' : 'btn-primary btn-xl') + (can ? '' : ' hidden');
+      dl.className = 'btn btn-block btn-ghost';
+      $('#shareHint').textContent = '';
+      return;
+    }
+    $('#doneTitle').textContent = tr('Fertig unterschrieben');
+    share.className = 'btn btn-primary btn-block btn-xl' + (can ? '' : ' hidden');
+    dl.className = 'btn btn-block ' + (can ? 'btn-ghost' : 'btn-primary btn-xl');
     $('#doneLead').textContent = who ? tr('Schicken Sie das PDF jetzt an {who} zurück, am einfachsten per WhatsApp.', { who: who }) : tr('Schicken Sie das PDF jetzt zurück, am einfachsten per WhatsApp.');
     $('#shareHint').textContent = can
       ? (who ? tr('Im nächsten Schritt WhatsApp wählen und dann den Chat mit {who}.', { who: who }) : tr('Im nächsten Schritt WhatsApp wählen und dann den Chat, aus dem Sie das Dokument bekommen haben.'))
@@ -1922,7 +2585,7 @@
     try {
       await navigator.share({ files: [outFile()] });
       S.dirty = false;
-      deleteRemote();
+      deleteRemote(); // nur im alten Ablauf ohne Rückgabe
       toast(tr('Danke! Sie können die Seite jetzt schließen.'), 4000);
     } catch (e) {
       if (!e || e.name !== 'AbortError') toast(tr('Teilen hat nicht geklappt. Bitte „PDF speichern“ nutzen.'), 4500);
@@ -1942,15 +2605,18 @@
     S.pdf = null;
     S.file = null;
     S.fileIsRemote = false;
+    S.view = null;
     showScreen('start');
-    if (S.remote) renderRemoteReady();
+    if (S.mode === 'send') { loadInbox().then(renderInbox); refreshInbox(); }
+    if (S.remoteSigned) renderRemoteSigned();
+    else if (S.remote) renderRemoteReady();
     window.scrollTo(0, 0);
   }
 
   function onPop() {
     if (S.sheetOpen) { closeSheet(); history.pushState({ unterschrift: 1 }, ''); return; }
     if (!S.inViewer) return;
-    if (S.dirty && !confirm(tr('Dokument schließen? Ihre Unterschrift geht dabei verloren.'))) {
+    if (S.dirty && !confirm(S.mode === 'send' ? 'Dokument schließen? Die markierten Felder gehen dabei verloren.' : tr('Dokument schließen? Ihre Unterschrift geht dabei verloren.'))) {
       history.pushState({ unterschrift: 1 }, '');
       return;
     }
