@@ -96,6 +96,7 @@
     "<p>Verantwortlich: siehe Impressum.</p>": "<p>Përgjegjësi: shihni Impressum.</p>",
     "Dokument wird geladen …": "Dokumenti po ngarkohet …",
     "{name} · gültig bis {date}": "{name} · i vlefshëm deri më {date}",
+    "gültig bis {date}": "i vlefshëm deri më {date}",
     "Dieser Link ist abgelaufen oder das Dokument wurde schon unterschrieben zurückgeschickt. Bitten Sie {who} um einen neuen Link.": "Ky link ka skaduar ose dokumenti është kthyer tashmë i nënshkruar. Kërkoni një link të ri nga {who}.",
     "den Absender": "dërguesi",
     "Der Link ist unvollständig. Bitte öffnen Sie ihn noch einmal direkt aus WhatsApp.": "Linku është i paplotë. Ju lutemi hapeni edhe një herë direkt nga WhatsApp.",
@@ -194,6 +195,9 @@
     "Wird verschlüsselt gesendet …": "Po dërgohet i enkriptuar …",
     "Wird verschlüsselt gesendet … {p} %": "Po dërgohet i enkriptuar … {p} %",
     "Erledigt!": "U krye!",
+    "Fertig!": "Gati!",
+    "Vor Ort": "Në vend",
+    "Danke! Sie können das Handy jetzt zurückgeben.": "Faleminderit! Tani mund ta ktheni telefonin.",
     "Ihr unterschriebenes Dokument ist bei {who} angekommen. Sie müssen nichts mehr tun.": "Dokumenti juaj i nënshkruar mbërriti te {who}. Nuk keni nevojë të bëni asgjë tjetër.",
     "Ihr unterschriebenes Dokument ist beim Absender angekommen. Sie müssen nichts mehr tun.": "Dokumenti juaj i nënshkruar mbërriti te dërguesi. Nuk keni nevojë të bëni asgjë tjetër.",
     "Sie können die Seite jetzt schließen.": "Tani mund ta mbyllni faqen.",
@@ -239,6 +243,7 @@
     "Die markierten Stellen sind ausgefüllt. Prüfen Sie kurz alles und tippen Sie dann auf „Fertig“.": "Die markierten Stellen sind ausgefüllt. Prüf kurz alles und tipp dann auf „Fertig“.",
     "Schieben Sie die Unterschrift an die richtige Stelle. Größe ändern: blauen Punkt ziehen.": "Schieb die Unterschrift an die richtige Stelle. Größe ändern: blauen Punkt ziehen.",
     "Danke! Sie können die Seite jetzt schließen.": "Danke! Du kannst die Seite jetzt schließen.",
+    "Danke! Sie können das Handy jetzt zurückgeben.": "Danke! Du kannst das Handy jetzt zurückgeben.",
     "Dokument schließen? Ihre Unterschrift geht dabei verloren.": "Dokument schließen? Deine Unterschrift geht dabei verloren.",
     "Das PDF konnte nicht erstellt werden. Bitte versuchen Sie es noch einmal.": "Das PDF konnte nicht erstellt werden. Bitte versuch es noch einmal.",
     "Ihr Name": "Dein Name",
@@ -270,6 +275,7 @@
   // Kundenseite in Du-Form (Albanisch, „ti“). Schlüssel = deutscher Sie-Text. Fehlt ein Eintrag, gilt SQ.
   const SQ_TI = {
     "Dokument unterschreiben": "Nënshkruaje dokumentin",
+    "Danke! Sie können das Handy jetzt zurückgeben.": "Faleminderit! Tani mund ta kthesh telefonin.",
     "Ihr Dokument steckt schon im Link. Sie müssen nichts speichern und nichts herunterladen.": "Dokumenti yt ndodhet tashmë në link. Nuk ke nevojë të ruash apo të shkarkosh asgjë.",
     "Unterschreiben Sie ein PDF direkt auf Ihrem Handy, ganz ohne Drucker.": "Nënshkruaj një PDF direkt në telefonin tënd, pa pasur nevojë për printer.",
     "Ende-zu-Ende verschlüsselt. Ihre Unterschrift wird nicht hochgeladen, und das Dokument wird nach dem Zurückschicken gelöscht.": "I enkriptuar nga skaji në skaj. Nënshkrimi yt nuk ngarkohet askund dhe dokumenti fshihet pasi ta kesh kthyer të nënshkruar.",
@@ -416,7 +422,14 @@
     eye: svgI('<path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/>', 20),
     bell: svgI('<path d="M6 9a6 6 0 0 1 12 0c0 6 2.5 7.5 2.5 7.5h-17S6 15 6 9z"/><path d="M10 20a2.2 2.2 0 0 0 4 0"/>', 20),
     chev: svgI('<path d="M9 6l6 6-6 6"/>', 18, 2.2),
-    doc: svgI('<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M8.5 16.5c1.2-1.6 2-2.9 2.6-2.6.6.3-.6 2.4 0 2.5.7.1 1.3-1.4 1.9-1.3.5.1 0 1.2.6 1.2.7 0 1.2-.6 1.9-.8"/>', 30, 1.8)
+    doc: svgI('<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M8.5 16.5c1.2-1.6 2-2.9 2.6-2.6.6.3-.6 2.4 0 2.5.7.1 1.3-1.4 1.9-1.3.5.1 0 1.2.6 1.2.7 0 1.2-.6 1.9-.8"/>', 30, 1.8),
+    docS: svgI('<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M8.5 16.5c1.2-1.6 2-2.9 2.6-2.6.6.3-.6 2.4 0 2.5.7.1 1.3-1.4 1.9-1.3.5.1 0 1.2.6 1.2.7 0 1.2-.6 1.9-.8"/>', 22, 1.9),
+    search: svgI('<circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.3-4.3"/>', 19, 2.2),
+    phone: svgI('<rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M9.5 15c1-1.6 1.7-2.8 2.3-2.5.6.3-.5 2.3.1 2.4.6.1 1.1-1.2 1.7-1.1.5.1 0 1 .6 1"/>', 20),
+    link: svgI('<path d="M10 14a4.5 4.5 0 0 0 6.4 0l3-3a4.5 4.5 0 0 0-6.4-6.4l-1.2 1.2"/><path d="M14 10a4.5 4.5 0 0 0-6.4 0l-3 3a4.5 4.5 0 0 0 6.4 6.4l1.2-1.2"/>', 20),
+    tpl: svgI('<rect x="4" y="3" width="16" height="18" rx="2.5"/><path d="M8 8h8M8 12h5"/><rect x="8" y="15" width="8" height="3" rx="1"/>', 20),
+    save: svgI('<path d="M12 3v11"/><path d="M7.5 9.5 12 14l4.5-4.5"/><path d="M4 15v3a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-3"/>', 20),
+    restore: svgI('<path d="M12 14V3"/><path d="M7.5 7.5 12 3l4.5 4.5"/><path d="M4 15v3a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-3"/>', 20)
   };
 
   /* ---------------- Zustand ---------------- */
@@ -444,8 +457,11 @@
     sentBack: null,     // Kunde: Ergebnis der Rückgabe { ok, code, at }
     remoteSigned: null, // Kunde: Link wurde schon unterschrieben zurückgegeben { signedAt }
     view: null,         // Absender: angezeigtes unterschriebenes PDF (ID aus der Übersicht)
-    inbox: { list: [], ok: true, err: '', last: 0, filter: 'all' },
-    short: null         // Kunde: Geheimnis aus einem kurzen Link (#xxxxxxxxxxxxxxxxxxxxxx)
+    inbox: { list: [], ok: true, err: '', last: 0, filter: 'all', q: '' },
+    short: null,        // Kunde: Geheimnis aus einem kurzen Link (#xxxxxxxxxxxxxxxxxxxxxx)
+    intent: 'link',     // Absender: 'link' (per WhatsApp) oder 'local' (vor Ort auf diesem Handy)
+    local: null,        // Vor-Ort-Unterschrift: { label, note, lang, du, saved }
+    tpl: null           // Absender: angewendete Vorlage { id, name, spots }
   };
   const LS_PIN = 'firmio.pin.v1';
   const LS_FILTER = 'firmio.filter.v1';
@@ -470,8 +486,11 @@
 
     $('#file').addEventListener('change', onFile);
     // Während die Dateiauswahl offen ist, nicht neu laden (siehe reloadIfIdle)
-    $('#pickBtn').addEventListener('click', () => { picking = Date.now(); });
+    $('#pickBtn').addEventListener('click', () => { picking = Date.now(); S.intent = 'link'; });
     $('#file').addEventListener('cancel', () => { picking = 0; });
+    $('#localBtn').addEventListener('click', () => { picking = Date.now(); S.intent = 'local'; $('#file').click(); });
+    $('#lhLink').addEventListener('click', () => openSettings());
+    $('#overBtn').addEventListener('click', () => { const id = S.local && S.local.saved; toStart(); if (id) openRecord(id); });
     $('#backBtn').addEventListener('click', () => history.back());
     $('#scrim').addEventListener('click', () => closeSheet());
     $('#shareBtn').addEventListener('click', shareResult);
@@ -499,9 +518,10 @@
     if (S.short) loadShort();
     else if (S.req && S.req.d && S.req.k) loadRemote();
     if (S.mode === 'send') {
-      const openM = /[#&]open=([A-Za-z0-9_-]{22})/.exec(h);
-      if (openM) {
-        pendingOpen = openM[1];
+      const openM = /[#&]open=([A-Za-z0-9_-]{22})/.exec(h), filterM = /[#&]filter=(all|open|signed)\b/.exec(h);
+      if (openM) pendingOpen = openM[1];
+      if (filterM) { try { localStorage.setItem(LS_FILTER, filterM[1]); } catch (e) { /* egal */ } }
+      if (openM || filterM) {
         try { history.replaceState(null, '', location.pathname + location.search + '#absender'); } catch (e) { /* egal */ }
       }
       const sb = $('#settingsBtn');
@@ -511,7 +531,7 @@
           const d = e.data || {};
           if (S.inViewer) return;
           if (d.firmio === 'signed') refreshInbox();
-          if (d.firmio === 'open') refreshInbox().then(() => { if (d.id) openRecord(d.id); });
+          if (d.firmio === 'open') refreshInbox().then(() => { if (d.id) openRecord(d.id); else if (d.filter) setFilter(d.filter); });
         });
       }
       initInbox();
@@ -558,7 +578,8 @@
         l: o.l === 'sq' ? 'sq' : 'de',
         b: o.b === 1 ? 1 : 0,
         u: o.u === 1 ? 1 : 0,
-        z: typeof o.z === 'string' ? o.z.replace(/\s+/g, ' ').trim().slice(0, 60) : ''
+        z: typeof o.z === 'string' ? o.z.replace(/\s+/g, ' ').trim().slice(0, 60) : '',
+        c: typeof o.c === 'string' ? o.c.replace(/\s+/g, ' ').trim().slice(0, 80) : ''
       };
     } catch (e) { return null; }
   }
@@ -606,11 +627,27 @@
 
   function setText(sel, t) { const n = $(sel); if (n) n.textContent = t; }
   const STROKE = '<svg class="lh-stroke" viewBox="0 0 170 20" width="170" height="20" aria-hidden="true"><path d="M3 13.5c14-6 24-9.5 35-8.4 11 1.1 9.5 8.6 20 8.8 12 .2 15-9.4 28-9.6 13-.2 13 9 26 9.2 14 .2 22-6.6 38-7.4 7-.4 12 .4 16 1.6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>';
+  // Füllfederhalter-Spitze (Briefkopf ohne eigenen Namen)
+  const NIB = '<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21.2 6.7 12.1c-.4-.7-.3-1.6.3-2.1L9.1 8V3.6h5.8V8l2.1 2c.6.5.7 1.4.3 2.1z"/><path d="M12 21.2v-7.6"/><circle cx="12" cy="12.2" r="1.4"/><path d="M9.1 6.2h5.8"/></svg>';
+  // Initialen für das Monogramm: „Max Mustermann“ → „MM“
+  function initials(name) {
+    let parts;
+    try { parts = String(name).replace(/[^\p{L}\s-]/gu, ' ').trim().split(/[\s-]+/).filter(Boolean); } catch (e) { parts = String(name).trim().split(/\s+/); }
+    if (!parts.length) return '';
+    return (Array.from(parts[0])[0] + (parts.length > 1 ? Array.from(parts[parts.length - 1])[0] : '')).toUpperCase();
+  }
+  function fillMono(node, name) {
+    if (!node) return;
+    node.innerHTML = '';
+    if (!name || name === 'Firmio') node.innerHTML = NIB;
+    else node.textContent = initials(name);
+  }
   // Briefkopf: Absender (Kunde sieht den Namen aus dem Link, der Absender seinen eigenen)
   function renderLetterhead() {
     let name, sub;
-    if (S.mode === 'send') {
-      const p = loadSender();
+    const send = S.mode === 'send';
+    const p = send ? loadSender() : {};
+    if (send) {
       name = p.name || 'Firmio';
       sub = p.name ? (p.sub || '') : 'Unterschriften per WhatsApp anfordern';
     } else if (S.req && S.req.f) {
@@ -625,22 +662,27 @@
     }
     setText('#lhName', name);
     setText('#lhSub', sub);
+    fillMono($('#lhMono'), name);
+    const own = name !== 'Firmio';
     const mark = $('.appmark');
-    if (mark) mark.style.visibility = name === 'Firmio' ? 'hidden' : '';
+    if (mark) mark.style.visibility = own ? '' : 'hidden';
     const head = $('.apphead');
-    if (head) head.classList.toggle('hidden', name === 'Firmio' && S.mode !== 'send');
+    if (head) head.classList.toggle('hidden', !own && !send);
+    const link = $('#lhLink');
+    if (link) link.classList.toggle('hidden', !send || !!p.name);
   }
 
   function setupStart() {
     const send = S.mode === 'send';
     renderLetterhead();
+    $('#localBtn').classList.toggle('hidden', !send);
     document.title = (send ? 'Unterschrift anfordern' : tr('Dokument unterschreiben')) + ' · Firmio';
     $('#startTitle').textContent = send ? 'Unterschrift anfordern' : tr('Dokument unterschreiben');
     const inLink = !!(S.req && S.req.d && S.req.k);
     const nSigReq = S.req ? S.req.s.filter(a => a[0] === 's').length : 0;
     const lead = $('#startLead');
     if (send) {
-      lead.textContent = 'Markieren Sie, wo unterschrieben werden soll, und schicken Sie den Link per WhatsApp. Das unterschriebene PDF landet automatisch hier.';
+      lead.textContent = 'Felder markieren, dann den Link per WhatsApp schicken oder direkt hier auf dem Handy unterschreiben lassen. Das unterschriebene PDF landet automatisch in Ihrer Übersicht.';
     } else if (S.req) {
       const who = S.req.f;
       const first = who ? tr('<b>{who}</b> bittet Sie um Ihre Unterschrift.', { who: esc(who) }) : esc(tr('Sie wurden gebeten, ein Dokument zu unterschreiben.'));
@@ -660,8 +702,8 @@
     const nSig = S.req ? S.req.s.filter(a => a[0] === 's').length : 0;
     const steps = send ? [
       ['PDF auswählen', 'Das Dokument, das Ihr Kunde unterschreiben soll.'],
-      ['Stellen markieren', 'Felder für Unterschrift und Ort/Datum auf das Dokument ziehen.'],
-      ['Per WhatsApp senden', 'Ihr Kunde unterschreibt über den Link. Das PDF landet danach automatisch hier in Ihrer Übersicht.']
+      ['Stellen markieren', 'Felder für Unterschrift und Ort/Datum auf das Dokument ziehen. Wiederkehrende Formulare merkt sich Firmio als Vorlage.'],
+      ['Senden oder vor Ort', 'Per WhatsApp-Link oder direkt hier auf dem Handy. Das unterschriebene PDF landet automatisch in Ihrer Übersicht.']
     ] : inLink ? [
       [tr('Dokument öffnen'), tr('Es ist schon im Link enthalten und öffnet sich von selbst.')],
       [tr('Mit dem Finger unterschreiben'), nSig ? tr('Die markierten Stellen werden automatisch ausgefüllt.') : tr('Danach schieben Sie die Unterschrift an die richtige Stelle.')],
@@ -762,7 +804,9 @@
         (back ? tr('<p><b>Dokumente per Link:</b> Das Dokument wurde auf dem Gerät des Absenders verschlüsselt und liegt nur verschlüsselt bei Netlify. Der Schlüssel steckt ausschließlich im Link (hinter dem #) und wird nie an den Server übertragen. Wenn Sie auf „Fertig“ tippen, wird das unterschriebene Dokument auf Ihrem Gerät mit diesem Schlüssel verschlüsselt und für den Absender bereitgelegt. Danach wird das Original gelöscht. Das unterschriebene Dokument wird gelöscht, sobald der Absender es abgeholt hat, spätestens nach 30 Tagen. Nicht unterschriebene Dokumente werden nach 7 Tagen gelöscht.</p>')
           : tr('<p><b>Dokumente per Link:</b> Schickt Ihnen jemand ein Dokument per Link, wurde es auf seinem Gerät verschlüsselt und liegt nur verschlüsselt bei Netlify. Der Schlüssel steckt ausschließlich im Link (hinter dem #) und wird nie an den Server übertragen. Niemand außer Ihnen und dem Absender kann das Dokument lesen. Es wird gelöscht, sobald Sie es unterschrieben zurückgeschickt haben, spätestens nach 7 Tagen.</p>') +
             tr('<p>Das unterschriebene PDF verschicken Sie selbst, zum Beispiel per WhatsApp. Dafür gelten die Datenschutzbestimmungen des jeweiligen Dienstes.</p>')) +
-        (S.mode === 'send' ? '<p><b>Ihre Übersicht</b> (Kundennotizen, Schlüssel und unterschriebene PDFs) wird nur auf diesem Gerät gespeichert. Unterschriebene Dokumente werden vom Server gelöscht, sobald Firmio sie abgeholt hat.</p>' : '') +
+        (S.mode === 'send' ? '<p><b>Ihre Übersicht</b> (Kundennotizen, Schlüssel und unterschriebene PDFs) wird nur auf diesem Gerät gespeichert. Unterschriebene Dokumente werden vom Server gelöscht, sobald Firmio sie abgeholt hat. Vor Ort unterschriebene Dokumente werden gar nicht hochgeladen.</p>' +
+          '<p><b>Vorlagen</b> merken sich nur, wo die Felder liegen, und zum Wiedererkennen kurze Prüfsummen der Wörter – keinen Text und keine Kundendaten. <b>Sicherungen</b> erstellen Sie selbst als Datei; wo Sie sie ablegen, entscheiden Sie.</p>' +
+          '<p><b>Erinnerungen:</b> Der Server merkt sich nur, zu welchen zufälligen Kennungen er schon erinnert hat. Die Benachrichtigung enthält keine Namen; die setzt Ihr Handy selbst ein.</p>' : '') +
         (CFG.impressum ? tr('<p>Verantwortlich: siehe Impressum.</p>') : '') });
     openSheet(tr('Datenschutz'), body);
   }
@@ -1091,9 +1135,12 @@
     const box = $('#remoteBox');
     box.innerHTML = '';
     $('#pickBtn').classList.add('hidden');
-    box.append(el('button', { type: 'button', class: 'btn btn-primary btn-block btn-xl', html: I.check + '<span>' + tr('Dokument öffnen') + '</span>',
-      onclick: () => openBytes(S.remote.bytes, S.remote.name, true) }),
-    el('p', { class: 'hint', text: tr('{name} · gültig bis {date}', { name: S.remote.name, date: fmtDate(new Date(S.remote.expires)) }) }));
+    const n = S.req && S.req.p ? S.req.p : 0;
+    const info = (n ? (n === 1 ? tr('1 Seite') : tr('{n} Seiten', { n: n })) + ' · ' : '') + tr('gültig bis {date}', { date: fmtDate(new Date(S.remote.expires)) });
+    box.append(
+      el('div', { class: 'doccard' }, el('span', { class: 'ic', html: I.docS }), el('div', null, el('b', { text: S.remote.name }), el('span', { text: info }))),
+      el('button', { type: 'button', class: 'btn btn-primary btn-block btn-xl', html: I.pen + '<span>' + tr('Dokument öffnen') + '</span>',
+        onclick: () => openBytes(S.remote.bytes, S.remote.name, true) }));
   }
 
   function renderRemoteError(code) {
@@ -1141,15 +1188,18 @@
 
   /* ---------------- Ansicht ---------------- */
   async function openViewer() {
-    S.items = []; S.spots = []; S.sel = null; S.out = null; S.dirty = false; S.hashMatch = null; S.cur = 0; S.sig = null; S.sent = null; S.sendLang = 'de'; S.sendDu = loadSender().du !== false; S.sentBack = null; S.custLabel = '';
+    S.items = []; S.spots = []; S.sel = null; S.out = null; S.dirty = false; S.hashMatch = null; S.cur = 0; S.sig = null; S.sent = null; S.sendLang = 'de'; S.sendDu = loadSender().du !== false; S.sentBack = null; S.custLabel = ''; S.custNote = ''; S.custName = ''; S.tpl = null; S.docSig = null;
     showScreen('viewer');
     $('#docName').textContent = S.file.name;
-    $('#modeChip').textContent = S.view ? 'Unterschrieben' : S.mode === 'send' ? 'Anfordern' : '';
+    $('#modeChip').textContent = S.view ? 'Unterschrieben' : S.mode === 'send' ? (S.intent === 'local' ? 'Vor Ort' : 'Anfordern') : '';
     await buildPages();
     if (S.view) {
       // nur ansehen
     } else if (S.mode === 'send') {
-      banner('info', 'Tippen Sie unten auf „Unterschrift“ und ziehen Sie das gelbe Feld auf die Unterschriftslinie. Mit dem Punkt unten rechts ändern Sie die Größe.');
+      banner('info', S.intent === 'local'
+        ? 'Markieren Sie mit „Unterschrift“ und „Ort/Datum“, wo Ihr Kunde unterschreiben soll. Dann „Weiter“ und das Handy übergeben.'
+        : 'Tippen Sie unten auf „Unterschrift“ und ziehen Sie das gelbe Feld auf die Unterschriftslinie. Mit dem Punkt unten rechts ändern Sie die Größe.');
+      checkTemplates().catch(e => console.warn('Vorlagen:', e));
     } else {
       applyRequest();
     }
@@ -1195,7 +1245,7 @@
   function queueRender(pg) {
     pg.state = 1;
     const doc = S.pdf;
-    renderQueue = renderQueue.then(() => doc === S.pdf ? renderPage(pg, doc) : null).catch(err => { console.warn(err); pg.state = 0; });
+    renderQueue = renderQueue.then(() => doc === S.pdf ? renderPage(pg, doc) : null).catch(err => { if (!err || err.name !== 'RenderingCancelledException') console.warn(err); pg.state = 0; });
   }
 
   async function renderPage(pg, doc) {
@@ -1271,14 +1321,16 @@
     $('#pageInfo').textContent = tr('Seite {a} von {b}', { a: best + 1, b: S.pages.length });
   }
 
-  function banner(type, text) {
+  // Hinweis über dem Dokument; action = { label, fn } für einen Knopf im Hinweis
+  function banner(type, text, action) {
     const box = $('#bannerBox');
     if (!box) return;
     box.innerHTML = '';
     if (!text) return;
-    const b = el('div', { class: 'banner' + (type === 'warn' ? ' warn' : ''), role: type === 'warn' ? 'alert' : 'note' },
-      el('span', { html: type === 'warn' ? I.warn : I.info }),
+    const b = el('div', { class: 'banner' + (type === 'warn' ? ' warn' : type === 'ok' ? ' ok' : ''), role: type === 'warn' ? 'alert' : 'note' },
+      el('span', { html: type === 'warn' ? I.warn : type === 'ok' ? I.check : I.info }),
       el('p', { text: text }),
+      action ? el('button', { type: 'button', class: 'act', text: action.label, onclick: () => { box.innerHTML = ''; action.fn(); } }) : null,
       el('button', { type: 'button', class: 'x', 'aria-label': tr('Hinweis schließen'), text: '×', onclick: () => { box.innerHTML = ''; } }));
     box.append(b);
   }
@@ -1713,7 +1765,7 @@
 
   function openPad(opts) {
     opts = opts || {};
-    const name = el('input', { class: 'in', type: 'text', autocomplete: 'name', autocapitalize: 'words', enterkeyhint: 'next', placeholder: tr('Vor- und Nachname'), value: S.name, maxlength: '80' });
+    const name = el('input', { class: 'in', type: 'text', autocomplete: S.local ? 'off' : 'name', autocapitalize: 'words', enterkeyhint: 'next', placeholder: tr('Vor- und Nachname'), value: S.name || (S.req && S.req.c) || '', maxlength: '80' });
     const ort = el('input', { class: 'in', type: 'text', autocomplete: 'address-level2', autocapitalize: 'words', enterkeyhint: 'done', placeholder: tr('z. B. Remscheid'), value: S.ort, maxlength: '60' });
     const pad = makePad(padMem);
     const err = el('p', { class: 'err', role: 'alert' });
@@ -1865,9 +1917,11 @@
   function saveSender(o) { try { localStorage.setItem(LS_SENDER, JSON.stringify(o)); } catch (e) { /* egal */ } }
   function baseUrl() { return location.href.split('#')[0].split('?')[0]; }
 
-  // Angaben zur Anfrage: Stellen, Absender, Sprache, Anrede (bei kurzen Links verschlüsselt beim Server, sonst im Link)
-  function requestInfo(name, proof, back) {
-    const o = { v: 1, p: S.pages.length, s: S.spots.map(sp => [sp.k, sp.page + 1, Math.round(sp.x), Math.round(sp.y), Math.round(sp.w), Math.round(sp.h)]) };
+  const spotList = () => S.spots.map(sp => [sp.k, sp.page + 1, Math.round(sp.x), Math.round(sp.y), Math.round(sp.w), Math.round(sp.h)]);
+  // Angaben zur Anfrage: Stellen, Absender, Sprache, Anrede (bei kurzen Links verschlüsselt beim Server, sonst im Link).
+  // cust (Name des Kunden zum Vorausfüllen) nur in verschlüsselten Angaben oder vor Ort – nie in einem Link.
+  function requestInfo(name, proof, back, cust) {
+    const o = { v: 1, p: S.pages.length, s: spotList() };
     if (S.file.hash) o.h = S.file.hash.slice(0, 16);
     if (name) o.f = name.slice(0, 60);
     const zusatz = loadSender().sub;
@@ -1876,6 +1930,7 @@
     if (back) o.b = 1;
     if (S.sendLang === 'sq') o.l = 'sq';
     if (S.sendDu) o.u = 1;
+    if (cust) o.c = String(cust).slice(0, 80);
     return o;
   }
   function requestLink(name, proof, withDoc) {
@@ -1934,7 +1989,24 @@
     unbusy();
     const cfg = loadSender();
     const nS = S.spots.filter(s => s.k === 's').length, nD = S.spots.filter(s => s.k === 'd').length;
+    let way = S.sent ? 'link' : S.intent === 'local' ? 'local' : 'link';
+    const isLocal = () => way === 'local';
+
+    // Absender: steht im Briefkopf beim Kunden
     const name = el('input', { class: 'in', type: 'text', value: cfg.name || '', placeholder: 'z. B. Max Muster', autocomplete: 'name', maxlength: '60' });
+    const nameBox = el('label', { class: 'fld' }, el('span', { text: 'Ihr Name (sieht der Kunde)' }), name);
+    // Kunde: Name (Übersicht, auf Wunsch beim Unterschreiben vorausgefüllt) und Notiz (nur Übersicht)
+    const cust = el('input', { id: 'custName', class: 'in', type: 'text', value: S.custLabel || '', placeholder: 'z. B. Max Mustermann', autocomplete: 'off', autocapitalize: 'words', maxlength: '80' });
+    const prefill = el('input', { id: 'prefill', type: 'checkbox' });
+    prefill.checked = cfg.prefill !== false;
+    const prefillRow = el('label', { class: 'check tight' }, prefill, el('span', { text: 'Name beim Unterschreiben schon eintragen' }));
+    const note = el('input', { id: 'custNote', class: 'in', type: 'text', value: S.custNote || '', placeholder: 'z. B. Kfz-Antrag', autocomplete: 'off', maxlength: '80' });
+    const custBox = el('div', null,
+      el('label', { class: 'fld' }, el('span', { text: 'Kunde' }), cust),
+      prefillRow,
+      el('label', { class: 'fld' }, el('span', { text: 'Notiz (optional, nur für Sie)' }), note));
+    const custForHead = () => prefill.checked ? cleanLabel(cust.value) : '';
+
     const proof = el('input', { type: 'checkbox' });
     proof.checked = cfg.proof !== false;
     const langBtns = ['de', 'sq'].map(l => el('button', { type: 'button', class: 'seg' + (S.sendLang === l ? ' on' : ''), 'aria-pressed': S.sendLang === l ? 'true' : 'false', text: l === 'de' ? 'Deutsch' : 'Shqip',
@@ -1951,33 +2023,58 @@
         edited = false;
         refresh(true);
       } }));
+    const langHint = el('small');
     const langRow = el('div', { class: 'fld' }, el('span', { text: 'Sprache und Anrede' }),
       el('div', { class: 'segpair' }, el('div', { class: 'segrow' }, langBtns[0], langBtns[1]), el('div', { class: 'segrow' }, duBtns[0], duBtns[1])),
-      el('small', { text: 'So sieht Ihr Kunde die Nachricht und die Seite zum Unterschreiben. Die Nachweisseite im PDF bleibt Deutsch.' }));
+      langHint);
     const viaLink = el('input', { type: 'checkbox' });
     viaLink.checked = srv.ok && cfg.viaLink !== false;
+    const viaHint = el('small');
+    const viaRow = el('label', { class: 'check' }, viaLink, el('span', null, 'Dokument im Link mitschicken', viaHint));
+    const proofRow = el('label', { class: 'check' }, proof, el('span', null, 'Nachweisseite anhängen', el('small', { text: 'Eine Seite mit Name, Zeitpunkt und Prüfsumme kommt ans Ende. Damit lässt sich zeigen, wer was wann unterschrieben hat.' })));
     const pinIn = el('input', { class: 'in', type: 'password', placeholder: 'mindestens 6 Zeichen', autocomplete: 'current-password', maxlength: '64' });
     const pinBox = el('label', { class: 'fld' }, el('span', { text: srv.pin ? 'Ihre Absender-PIN' : 'Absender-PIN festlegen' }), pinIn,
       el('small', { text: srv.pin ? 'Einmal eingeben, dieses Gerät merkt sie sich.' : 'Schützt Ihren Speicher: Nur mit dieser PIN können Dokumente hochgeladen werden. Dieses Gerät merkt sie sich.' }));
-    const cust = el('input', { class: 'in', type: 'text', value: S.custLabel || '', placeholder: 'z. B. Max Mustermann, Kfz-Antrag', autocomplete: 'off', maxlength: '80' });
-    const custBox = el('label', { class: 'fld' }, el('span', { text: 'Kunde / Notiz (nur für Ihre Übersicht)' }), cust);
-    cust.addEventListener('input', () => {
+
+    // Vorlage: Felder für dieses Formular merken (oder eine angewendete Vorlage aktualisieren)
+    const tplChanged = () => !S.tpl || JSON.stringify(spotList()) !== S.tpl.sig;
+    const tplOn = el('input', { id: 'tplOn', type: 'checkbox' });
+    const tplName = el('input', { id: 'tplName', class: 'in', type: 'text', value: defaultTplName(), maxlength: '50', autocomplete: 'off' });
+    const tplNameBox = el('label', { class: 'fld' }, el('span', { text: 'Name der Vorlage' }), tplName);
+    const tplRow = el('label', { class: 'check' }, tplOn, el('span', null, S.tpl ? 'Vorlage „' + S.tpl.name + '“ mit diesen Feldern aktualisieren' : 'Felder als Vorlage merken',
+      el('small', { text: S.tpl ? 'Beim nächsten Mal werden die Felder so gesetzt wie jetzt.' : 'Kommt dieses Formular wieder, setzt Firmio die Felder automatisch.' })));
+    const tplBox = el('div', null, tplRow, tplNameBox);
+    tplOn.addEventListener('change', () => render());
+    let tplDone = false;
+    const maybeSaveTpl = async () => {
+      if (tplDone || !tplOn.checked || !S.spots.length) return;
+      tplDone = true;
+      if (!(await saveTemplate(S.tpl ? S.tpl.name : (cleanLabel(tplName.value) || defaultTplName())))) toast('Die Vorlage konnte nicht gespeichert werden.');
+    };
+
+    const onCust = () => {
       S.custLabel = cust.value;
-      if (S.sent && S.sent.track) Store.patch(S.sent.id, { label: cleanLabel(cust.value) }).catch(() => {});
-    });
+      S.custNote = note.value;
+      if (S.sent && S.sent.track) Store.patch(S.sent.id, { label: cleanLabel(cust.value), note: cleanLabel(note.value) }).catch(() => {});
+      pushHead();
+    };
+    cust.addEventListener('input', onCust);
+    note.addEventListener('input', onCust);
+    prefill.addEventListener('change', () => { saveSender(Object.assign(loadSender(), { prefill: prefill.checked })); pushHead(); });
     const err = el('p', { class: 'err', role: 'alert' });
     const msg = el('textarea', { class: 'in', rows: '9' });
+    const msgBox = el('label', { class: 'fld' }, el('span', { text: 'Nachricht an den Kunden' }), msg);
     let edited = false, link = '';
-    const linkMode = () => srv.ok && viaLink.checked;
+    const linkMode = () => !isLocal() && srv.ok && viaLink.checked;
     const willTrack = () => S.sent ? !!S.sent.track : (srv.v || 1) >= 2 && S.inbox.ok;
     const currentLink = () => linkMode() ? (S.sent ? requestLink(name.value.trim(), proof.checked, true) : LINK_PLACEHOLDER) : requestLink(name.value.trim(), proof.checked, false);
     const template = l => linkMode() ? linkMessage(l, name.value.trim(), S.sent && S.sent.expires, willTrack()) : sendMessage(l, name.value.trim());
-    // Kurzer Link: Ändert sich Sprache, Anrede, Name oder Nachweisseite, werden die verschlüsselten Angaben beim Server erneuert
+    // Kurzer Link: Ändert sich Sprache, Anrede, Name, Kunde oder Nachweisseite, werden die verschlüsselten Angaben beim Server erneuert
     let headTimer = 0;
     const pushHead = () => {
       if (!S.sent || !S.sent.secret || !S.file) return;
       const sent = S.sent;
-      const info = requestInfo(name.value.trim(), proof.checked, !!sent.track); // jetzt erfassen, solange das Dokument offen ist
+      const info = requestInfo(name.value.trim(), proof.checked, !!sent.track, custForHead()); // jetzt erfassen, solange das Dokument offen ist
       const sig = JSON.stringify(info);
       clearTimeout(headTimer);
       if (sig === sent.headSig) return;
@@ -1989,13 +2086,15 @@
       }, 350);
     };
     const refresh = (force) => {
-      pushHead();
-      const nl = currentLink();
-      if (edited && !force && link) msg.value = msg.value.split(link).join(nl);
-      else msg.value = template(nl);
-      link = nl;
+      if (!isLocal()) {
+        pushHead();
+        const nl = currentLink();
+        if (edited && !force && link) msg.value = msg.value.split(link).join(nl);
+        else msg.value = template(nl);
+        link = nl;
+        if (S.sent && S.sent.track && linkMode()) Store.patch(S.sent.id, { link: nl, lang: S.sendLang, du: S.sendDu }).catch(() => {});
+      }
       saveSender(Object.assign(loadSender(), { name: name.value.trim(), proof: proof.checked, viaLink: viaLink.checked })); // Anrede gilt nur für diese Anfrage
-      if (S.sent && S.sent.track && linkMode()) Store.patch(S.sent.id, { link: nl, lang: S.sendLang, du: S.sendDu }).catch(() => {});
       render();
     };
     name.addEventListener('input', () => refresh(false));
@@ -2003,9 +2102,19 @@
     viaLink.addEventListener('change', () => { edited = false; refresh(true); });
     msg.addEventListener('input', () => { edited = true; });
 
-    const summary = nS || nD
+    const summary = (nS || nD
       ? (nS ? nS + ' ' + plural(nS, 'Unterschriftsfeld', 'Unterschriftsfelder') : '') + (nS && nD ? ' und ' : '') + (nD ? nD + ' ' + plural(nD, 'Ort/Datum-Feld', 'Ort/Datum-Felder') : '') + ' markiert.'
-      : 'Keine Felder markiert. Der Kunde setzt die Unterschrift dann selbst an die richtige Stelle.';
+      : 'Keine Felder markiert. Der Kunde setzt die Unterschrift dann selbst an die richtige Stelle.') + ' ' + S.pages.length + ' ' + plural(S.pages.length, 'Seite', 'Seiten') + '.' +
+      (S.tpl && !tplChanged() ? ' Vorlage „' + S.tpl.name + '“.' : '');
+
+    const wayBtns = [['link', I.link, 'Per Link'], ['local', I.phone, 'Hier vor Ort']].map(w => el('button', { type: 'button', class: 'seg', html: w[1] + '<span>' + w[2] + '</span>',
+      onclick: () => { if (S.sent || way === w[0]) return; way = w[0]; S.intent = way; err.textContent = ''; edited = false; refresh(true); } }));
+    const waySel = el('div', { class: 'segrow waysel', role: 'group', 'aria-label': 'Wie soll unterschrieben werden?' }, wayBtns[0], wayBtns[1]);
+    const localInfo = el('div', { class: 'banner' }, el('span', { html: I.phone }),
+      el('p', { text: 'Ihr Kunde unterschreibt gleich hier auf diesem Handy. Das unterschriebene PDF landet direkt in Ihrer Übersicht – ohne Upload, auch ohne Internet.' }));
+    const more = el('details', { class: 'more' }, el('summary', { text: 'Weitere Optionen' }));
+    if (cfg.name) more.append(nameBox);
+    more.append(viaRow, proofRow);
 
     const actions = el('div');
     const linkInfo = el('div');
@@ -2021,19 +2130,20 @@
         srv.pin = true;
         busy('Dokument wird verschlüsselt …');
         const back = willTrack();
-        S.sent = await uploadDoc(pin, p => busy('Wird hochgeladen … ' + Math.round(p * 100) + ' %'), requestInfo(name.value.trim(), proof.checked, back));
+        S.sent = await uploadDoc(pin, p => busy('Wird hochgeladen … ' + Math.round(p * 100) + ' %'), requestInfo(name.value.trim(), proof.checked, back, custForHead()));
         S.sent.track = false;
         if ((srv.v || 1) >= 2) {
           // In der Übersicht merken (nur auf diesem Gerät). Dann kommt das PDF direkt hierher zurück.
           try {
-            await Store.put({ id: S.sent.id, key: S.sent.key, del: S.sent.del, secret: S.sent.secret || '', label: cleanLabel(cust.value), file: S.file.name, pages: S.pages.length,
-              created: Date.now(), expires: S.sent.expires, lang: S.sendLang, du: S.sendDu, status: 'open', link: '' });
+            await Store.put({ id: S.sent.id, key: S.sent.key, del: S.sent.del, secret: S.sent.secret || '', label: cleanLabel(cust.value), note: cleanLabel(note.value), file: S.file.name, pages: S.pages.length,
+              created: Date.now(), expires: S.sent.expires, lang: S.sendLang, du: S.sendDu, status: 'open', link: '', tpl: S.tpl ? S.tpl.id : '' });
             S.sent.track = true;
             S.dirty = false;
             askPersist();
           } catch (x) { console.warn('Übersicht nicht verfügbar:', x); }
         }
         if (S.sent.secret && back && !S.sent.track) pushHead(); // Übersicht ging nicht: Kunde schickt dann per WhatsApp zurück
+        await maybeSaveTpl();
         unbusy();
         refresh(false);
         setTimeout(() => { try { actions.scrollIntoView({ block: 'end', behavior: 'smooth' }); } catch (x) { /* egal */ } }, 60);
@@ -2042,16 +2152,25 @@
         unbusy();
         if (e.code === 'pin_wrong') { setPin(''); err.textContent = 'Die PIN stimmt nicht.'; render(); }
         else if (e.code === 'pin_short') err.textContent = 'Die PIN muss mindestens 6 Zeichen haben.';
-        else if (e.code === 'too_large' || e.code === 'http_413') err.textContent = 'Das Dokument ist zu groß für den Link. Schalten Sie „Dokument im Link mitschicken“ aus und senden Sie das PDF als Anhang.';
+        else if (e.code === 'too_large' || e.code === 'http_413') err.textContent = 'Das Dokument ist zu groß für den Link. Schalten Sie unter „Weitere Optionen“ „Dokument im Link mitschicken“ aus und senden Sie das PDF als Anhang.';
         else err.textContent = 'Hochladen hat nicht geklappt. Bitte Internetverbindung prüfen und noch einmal versuchen.';
       }
     }
 
+    async function goLocal() {
+      err.textContent = '';
+      await maybeSaveTpl();
+      saveSender(Object.assign(loadSender(), { name: name.value.trim(), proof: proof.checked, prefill: prefill.checked }));
+      startLocal({ label: cleanLabel(cust.value), note: cleanLabel(note.value), info: requestInfo(name.value.trim(), proof.checked, false, custForHead()) });
+    }
+
     async function shareText() {
+      await maybeSaveTpl();
       if (await shareMessage(msg.value)) S.dirty = false;
     }
 
     async function shareWithPdf() {
+      await maybeSaveTpl();
       const file = new File([S.file.bytes], S.file.name, { type: 'application/pdf' });
       const data = { files: [file], text: msg.value };
       if (navigator.canShare && navigator.share && navigator.canShare(data)) {
@@ -2070,12 +2189,28 @@
     }
 
     function render() {
-      const lm = linkMode();
+      const loc = isLocal(), lm = linkMode();
+      wayBtns.forEach((b, i) => { const on = (i === 1) === loc; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on ? 'true' : 'false'); });
+      waySel.classList.toggle('hidden', !!S.sent);
+      setText('#sheetTitle', loc ? 'Vor Ort unterschreiben' : 'Per WhatsApp senden');
+      custBox.classList.toggle('hidden', !(loc || (lm && willTrack())));
+      prefillRow.classList.toggle('hidden', !(loc || (lm && shortLinks())));
+      langHint.textContent = loc ? 'So sieht Ihr Kunde die Seite zum Unterschreiben. Die Nachweisseite im PDF bleibt Deutsch.'
+        : 'So sieht Ihr Kunde die Nachricht und die Seite zum Unterschreiben. Die Nachweisseite im PDF bleibt Deutsch.';
+      viaRow.classList.toggle('hidden', loc || !srv.ok || !!S.sent);
+      viaHint.textContent = willTrack()
+        ? 'Ihr Kunde muss nichts speichern und nichts zurückschicken: Er unterschreibt über den Link, das PDF landet direkt in Ihrer Übersicht. Ende-zu-Ende verschlüsselt.'
+        : 'Ihr Kunde muss nichts speichern: Er tippt auf den Link und das Dokument ist da. Ende-zu-Ende verschlüsselt, nach dem Zurückschicken bzw. nach 7 Tagen gelöscht.';
+      tplBox.classList.toggle('hidden', tplDone || !S.spots.length || !tplChanged());
+      tplNameBox.classList.toggle('hidden', !tplOn.checked || !!S.tpl);
+      localInfo.classList.toggle('hidden', !loc);
+      msgBox.classList.toggle('hidden', loc);
       pinBox.classList.toggle('hidden', !lm || !!S.sent || !!getPin());
-      custBox.classList.toggle('hidden', !lm);
       actions.innerHTML = '';
       linkInfo.innerHTML = '';
-      if (lm && !S.sent) {
+      if (loc) {
+        actions.append(el('button', { type: 'button', class: 'btn btn-primary btn-block btn-xl', html: I.pen + '<span>Jetzt unterschreiben lassen</span>', onclick: goLocal }));
+      } else if (lm && !S.sent) {
         actions.append(el('button', { type: 'button', class: 'btn btn-primary btn-block btn-xl', html: I.check + '<span>Link erstellen</span>', onclick: createLink }));
       } else if (lm) {
         linkInfo.append(el('div', { class: 'banner' }, el('span', { html: I.check }),
@@ -2100,21 +2235,21 @@
     }
 
     const body = el('div', null,
-      el('div', { class: 'banner' + (nS ? '' : ' warn') }, el('span', { html: nS ? I.check : I.info }), el('p', { text: summary + ' ' + S.pages.length + ' ' + plural(S.pages.length, 'Seite', 'Seiten') + '.' })),
+      el('div', { class: 'banner' + (nS ? '' : ' warn') }, el('span', { html: nS ? I.check : I.info }), el('p', { text: summary })),
+      waySel,
       custBox,
-      el('label', { class: 'fld' }, el('span', { text: 'Ihr Name (sieht der Kunde)' }), name),
+      cfg.name ? null : nameBox,
       langRow,
-      srv.ok ? el('label', { class: 'check' }, viaLink, el('span', null, 'Dokument im Link mitschicken', el('small', { text: willTrack()
-        ? 'Ihr Kunde muss nichts speichern und nichts zurückschicken: Er unterschreibt über den Link, das PDF landet direkt in Ihrer Übersicht. Ende-zu-Ende verschlüsselt.'
-        : 'Ihr Kunde muss nichts speichern: Er tippt auf den Link und das Dokument ist da. Ende-zu-Ende verschlüsselt, nach dem Zurückschicken bzw. nach 7 Tagen gelöscht.' }))) : null,
-      el('label', { class: 'check' }, proof, el('span', null, 'Nachweisseite anhängen', el('small', { text: 'Eine Seite mit Name, Zeitpunkt und Prüfsumme kommt ans Ende. Damit lässt sich zeigen, wer was wann unterschrieben hat.' }))),
+      tplBox,
+      localInfo,
       pinBox,
       linkInfo,
-      el('label', { class: 'fld' }, el('span', { text: 'Nachricht an den Kunden' }), msg),
+      msgBox,
+      more,
       err,
       actions);
+    openSheet(isLocal() ? 'Vor Ort unterschreiben' : 'Per WhatsApp senden', body);
     refresh(true);
-    openSheet('Per WhatsApp senden', body);
   }
 
   function copyText(text, okMsg) {
@@ -2159,6 +2294,183 @@
     }
     download(bytes, name);
     toast('PDF wird gespeichert.');
+  }
+
+  /* ---------------- Vorlagen: Felder für wiederkehrende Formulare (nur auf diesem Gerät) ---------------- */
+  const LS_TPL = 'firmio.vorlagen.v1';
+  function loadTpls() {
+    try {
+      const a = JSON.parse(localStorage.getItem(LS_TPL));
+      return Array.isArray(a) ? a.filter(t => t && typeof t.id === 'string' && Array.isArray(t.spots) && Array.isArray(t.sizes)) : [];
+    } catch (e) { return []; }
+  }
+  function saveTpls(list) {
+    try { localStorage.setItem(LS_TPL, JSON.stringify(list)); return true; } catch (e) { return false; }
+  }
+  function defaultTplName() {
+    return String(S.file ? S.file.name : '').replace(/\.pdf$/i, '').replace(/[_]+/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 50) || 'Formular';
+  }
+  // Wörter der ersten Seiten nur als kurze Prüfsummen merken: kein Klartext, keine Kundendaten im Speicher
+  function wordHash(w) {
+    let h = 0x811c9dc5;
+    for (let i = 0; i < w.length; i++) { h ^= w.charCodeAt(i); h = Math.imul(h, 0x01000193); }
+    return (h >>> 0).toString(36);
+  }
+  // Fingerabdruck eines Formulars: Seitenzahl, Seitenformate, Wörter
+  async function docSig(pdf) {
+    const sizes = S.pages.slice(0, 60).map(p => [Math.round(p.W), Math.round(p.H)]);
+    const words = [], seen = new Set();
+    for (let i = 1; i <= Math.min(pdf.numPages, 4) && words.length < 800; i++) {
+      try {
+        const tc = await (await pdf.getPage(i)).getTextContent();
+        for (const it of tc.items) {
+          for (const w of fold(it.str || '').split(/[^a-z0-9]+/)) {
+            if (w.length < 4 || /^\d+$/.test(w)) continue;
+            const h = wordHash(w);
+            if (!seen.has(h)) { seen.add(h); words.push(h); }
+            if (words.length >= 800) break;
+          }
+          if (words.length >= 800) break;
+        }
+      } catch (e) { /* Seite ohne Text (z. B. eingescannt) */ }
+    }
+    return { pages: S.pages.length, sizes: sizes, words: words };
+  }
+  // Ähnlichkeit 0…1 (Jaccard über die Wörter), -1 = passt nicht (andere Seitenzahl oder anderes Format)
+  function tplScore(t, sig) {
+    if (t.pages !== sig.pages) return -1;
+    for (let i = 0; i < Math.min(t.sizes.length, sig.sizes.length); i++) {
+      if (Math.abs(t.sizes[i][0] - sig.sizes[i][0]) > 3 || Math.abs(t.sizes[i][1] - sig.sizes[i][1]) > 3) return -1;
+    }
+    const tw = Array.isArray(t.words) ? t.words : [];
+    if (!tw.length && !sig.words.length) return 0.3; // eingescannt: nur Format bekannt, daher nur vorschlagen
+    if (!tw.length || !sig.words.length) return 0;
+    const a = new Set(tw);
+    let inter = 0;
+    sig.words.forEach(w => { if (a.has(w)) inter++; });
+    return inter / (a.size + sig.words.length - inter);
+  }
+  async function checkTemplates() {
+    const list = loadTpls();
+    if (!list.length || S.mode !== 'send' || S.view) return;
+    const pdf = S.pdf;
+    const sig = await docSig(pdf);
+    if (pdf !== S.pdf || S.mode !== 'send') return;
+    S.docSig = sig;
+    const scored = list.map(t => ({ t: t, s: tplScore(t, sig) })).filter(x => x.s >= 0).sort((a, b) => b.s - a.s || (b.t.used || 0) - (a.t.used || 0));
+    if (!scored.length || S.spots.length) return;
+    const best = scored[0];
+    if (best.s >= 0.45 && !S.sheetOpen) applyTpl(best.t);
+    else if (best.s >= 0.45) banner('info', 'Sieht aus wie Ihre Vorlage „' + best.t.name + '“.', { label: 'Felder setzen', fn: () => applyTpl(best.t) });
+    else if (best.s >= 0.2) banner('info', 'Sieht aus wie Ihre Vorlage „' + best.t.name + '“.', { label: 'Felder setzen', fn: () => applyTpl(best.t) });
+    else banner('info', 'Tippen Sie unten auf „Unterschrift“ und ziehen Sie das gelbe Feld auf die Unterschriftslinie.', { label: 'Vorlage wählen', fn: () => pickTpl(scored.map(x => x.t)) });
+  }
+  function pickTpl(list) {
+    const body = el('div', { class: 'menu' });
+    list.forEach(t => body.append(el('button', { type: 'button', onclick: () => { closeSheet(); setTimeout(() => applyTpl(t), 80); } },
+      el('span', { class: 'ic', html: I.tpl }),
+      el('span', null, el('b', { text: t.name }), el('small', { text: t.spots.length + ' ' + plural(t.spots.length, 'Feld', 'Felder') + ' · ' + t.pages + ' ' + plural(t.pages, 'Seite', 'Seiten') })))));
+    openSheet('Vorlage wählen', body);
+  }
+  function applyTpl(t) {
+    undoTpl(true);
+    const ids = [];
+    t.spots.forEach(a => {
+      const pg = S.pages[a[1] - 1];
+      if (!pg || (a[0] !== 's' && a[0] !== 'd')) return;
+      const w = clamp(a[4], 12, pg.W), h = clamp(a[5], 8, pg.H);
+      const sp = { id: nid(), type: 'spot', k: a[0], page: a[1] - 1, x: clamp(a[2], 0, pg.W - w), y: clamp(a[3], 0, pg.H - h), w: w, h: h };
+      S.spots.push(sp);
+      renderSpot(sp);
+      ids.push(sp.id);
+    });
+    S.tpl = { id: t.id, name: t.name, ids: ids, sig: JSON.stringify(spotList()) };
+    const list = loadTpls(), x = list.find(v => v.id === t.id);
+    if (x) { x.used = Date.now(); x.n = (x.n || 0) + 1; saveTpls(list); }
+    S.dirty = true;
+    banner('ok', 'Vorlage „' + t.name + '“: ' + ids.length + ' ' + plural(ids.length, 'Feld', 'Felder') + ' gesetzt. Bitte kurz prüfen.', { label: 'Rückgängig', fn: () => undoTpl() });
+    renderBar();
+    window.scrollTo(0, 0);
+  }
+  function undoTpl(silent) {
+    if (!S.tpl) return;
+    const ids = S.tpl.ids;
+    S.spots.filter(sp => ids.indexOf(sp.id) >= 0).forEach(sp => removeObj(sp));
+    S.tpl = null;
+    if (!silent) banner('info', 'Felder entfernt. Setzen Sie sie unten mit „Unterschrift“ und „Ort/Datum“.');
+  }
+  async function saveTemplate(name) {
+    try {
+      const sig = S.docSig || await docSig(S.pdf);
+      S.docSig = sig;
+      let list = loadTpls();
+      const spots = spotList();
+      const old = S.tpl ? list.find(t => t.id === S.tpl.id) : null;
+      if (old) {
+        Object.assign(old, { spots: spots, sizes: sig.sizes, pages: sig.pages, words: sig.words.length ? sig.words : old.words, updated: Date.now(), used: Date.now() });
+      } else {
+        const t = { id: 't' + Date.now().toString(36) + Math.random().toString(36).slice(2, 7), name: String(name).slice(0, 50), pages: sig.pages, sizes: sig.sizes, words: sig.words, spots: spots, created: Date.now(), used: Date.now(), n: 1 };
+        list.unshift(t);
+        S.tpl = { id: t.id, name: t.name, ids: S.spots.map(s => s.id), sig: JSON.stringify(spots) };
+      }
+      if (list.length > 40) list = list.sort((a, b) => (b.used || 0) - (a.used || 0)).slice(0, 40);
+      return saveTpls(list);
+    } catch (e) { console.warn('Vorlage:', e); return false; }
+  }
+
+  /* ---------------- Vor Ort: Kunde unterschreibt auf diesem Handy ---------------- */
+  function startLocal(o) {
+    const req = parseReqObj(o.info);
+    if (!req) return;
+    closeSheet(true);
+    S.spots.forEach(sp => { if (sp.node) sp.node.remove(); });
+    S.items.forEach(it => { if (it.node) it.node.remove(); });
+    S.spots = []; S.items = []; S.sel = null; S.sig = null; S.out = null;
+    S.name = ''; S.ort = ''; padMem = null; // nichts vom vorigen Kunden übernehmen
+    S.local = { label: o.label, note: o.note, saved: '', tpl: S.tpl ? S.tpl.id : '', lang: req.l, du: req.u === 1 };
+    S.mode = 'sign';
+    S.req = req;
+    S.lang = req.l === 'sq' ? 'sq' : 'de';
+    S.du = req.u === 1;
+    S.fileIsRemote = false;
+    applyStatic();
+    $('#modeChip').textContent = tr('Vor Ort');
+    applyRequest();
+    renderBar();
+    S.dirty = false;
+    window.scrollTo(0, 0);
+    if (S.spots.length) setTimeout(() => scrollToObj(S.spots[0]), 150);
+    toast('Jetzt das Handy an Ihren Kunden geben.', 3500);
+  }
+  // Nach der Vor-Ort-Unterschrift wieder in den Absender-Modus
+  function endLocal() {
+    if (!S.local) return;
+    S.local = null;
+    S.mode = 'send';
+    S.req = null;
+    S.lang = 'de';
+    S.du = false;
+    S.name = ''; S.ort = ''; padMem = null;
+    applyStatic();
+    setupStart();
+  }
+  async function saveLocal() {
+    const L = S.local, now = Date.now();
+    const id = bytesToB64url(crypto.getRandomValues(new Uint8Array(16)));
+    try {
+      await Store.putPdf(id, S.out.bytes);
+      await Store.put({ id: id, key: '', del: '', secret: '', label: L.label, note: L.note, file: S.file.name, pages: S.pages.length, created: now, expires: 0,
+        lang: L.lang, du: L.du, status: 'signed', link: '', local: true, inPerson: true, seen: true, serverGone: true,
+        signedAt: now, signer: S.name, ort: S.ort, outName: S.out.name, outPages: S.out.pages, size: S.out.bytes.length, tpl: L.tpl });
+      L.saved = id;
+      S.dirty = false;
+      askPersist();
+    } catch (e) {
+      console.warn('Vor Ort speichern:', e);
+      L.saved = '';
+    }
+    unbusy();
+    showDone();
   }
 
   /* ---------------- Neue Version: installierte App lädt sich beim Öffnen selbst neu ---------------- */
@@ -2289,9 +2601,48 @@
   const pending = r => r.status === 'open' || (r.status === 'signed' && !r.local && !r.lost);
 
   function setFilter(f) {
+    if (!/^(all|open|signed)$/.test(String(f))) return;
     S.inbox.filter = f;
     try { localStorage.setItem(LS_FILTER, f); } catch (e) { /* egal */ }
     renderInbox();
+  }
+
+  // Suchfeld bleibt beim Neuzeichnen stehen (behält beim Tippen den Fokus)
+  let searchWrap = null;
+  function searchBox() {
+    if (searchWrap) return searchWrap;
+    const q = el('input', { class: 'in', type: 'search', placeholder: 'Suchen: Kunde, Notiz, Datei …', 'aria-label': 'Anfragen durchsuchen', autocomplete: 'off', enterkeyhint: 'search', maxlength: '60' });
+    q.addEventListener('input', () => { S.inbox.q = q.value; renderInbox(); });
+    q.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); q.blur(); } });
+    searchWrap = el('div', { class: 'search', role: 'search' }, el('span', { html: I.search }), q);
+    return searchWrap;
+  }
+  const fold = s => String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/ß/g, 'ss');
+  function matches(r, words) {
+    if (!words.length) return true;
+    const hay = fold([r.label, r.note, r.file, r.outName, r.signer, r.ort, r.created ? fmtDate(new Date(r.created)) : '', r.signedAt ? fmtDate(new Date(r.signedAt)) : ''].join(' '));
+    return words.every(w => hay.indexOf(w) >= 0);
+  }
+
+  function renderTiles(list) {
+    const tiles = $('#tiles');
+    if (!tiles) return;
+    tiles.innerHTML = '';
+    const show = S.mode === 'send' && S.inbox.ok && list.length > 0;
+    tiles.classList.toggle('hidden', !show);
+    if (!show) return;
+    const f = S.inbox.filter;
+    const nNew = list.filter(r => r.status === 'signed' && r.local && !r.seen).length;
+    [['all', 'Alle', list.length], ['open', 'Offen', list.filter(r => r.status === 'open').length], ['signed', 'Erledigt', list.filter(r => r.status === 'signed').length]].forEach(x => {
+      tiles.append(el('button', { type: 'button', class: 'tile' + (f === x[0] ? ' on' : ''), 'aria-pressed': f === x[0] ? 'true' : 'false',
+        onclick: () => {
+          setFilter(x[0]);
+          const box = $('#inbox');
+          if (box && box.getBoundingClientRect().top > window.innerHeight * 0.75) box.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } },
+      el('b', null, String(x[2]), x[0] === 'signed' && nNew ? el('i', { title: nNew + ' neu' }) : null),
+      el('span', { text: x[1] })));
+    });
   }
 
   function renderInbox() {
@@ -2304,70 +2655,109 @@
     box.classList.toggle('hidden', !send || (!has && S.inbox.ok));
     const start = $('#start');
     if (start) start.classList.toggle('has-inbox', send && has);
-    box.innerHTML = '';
+    renderTiles(list);
+    const sw = searchBox();
+    Array.from(box.children).forEach(n => { if (n !== sw) n.remove(); });
     if (!send) return;
     box.setAttribute('aria-label', 'Ihre Anfragen');
+    const before = [], after = [];
+    const place = () => {
+      if (sw.parentNode !== box) box.append(sw);
+      before.forEach(n => box.insertBefore(n, sw));
+      after.forEach(n => box.append(n));
+    };
     if (!S.inbox.ok) {
-      box.append(el('div', { class: 'banner warn' }, el('span', { html: I.warn }),
+      sw.classList.add('hidden');
+      before.push(el('div', { class: 'banner warn' }, el('span', { html: I.warn }),
         el('p', { text: 'Die Übersicht kann in diesem Browser nicht gespeichert werden (zum Beispiel im privaten Modus). Links funktionieren trotzdem, Ihr Kunde schickt das PDF dann per WhatsApp zurück.' })));
+      place();
       return;
     }
-    if (!has) return;
-    const nOpen = list.filter(r => r.status === 'open').length;
-    const nDone = list.filter(r => r.status === 'signed').length;
-    const nNew = list.filter(r => r.status === 'signed' && r.local && !r.seen).length;
+    if (!has) { sw.classList.add('hidden'); place(); return; }
     const f = S.inbox.filter;
-    const segs = [['all', 'Alle', list.length], ['open', 'Offen', nOpen], ['signed', 'Erledigt', nDone]].map(x =>
-      el('button', { type: 'button', class: 'seg' + (f === x[0] ? ' on' : ''), 'aria-pressed': f === x[0] ? 'true' : 'false', onclick: () => setFilter(x[0]) },
-        x[1], el('span', { class: 'cnt' + (x[0] === 'signed' && nNew ? ' new' : ''), text: String(x[2]) })));
-    const rows = list.filter(r => f === 'all' || r.status === f)
-      .sort((a, b) => (b.status === 'signed' && b.local && !b.seen) - (a.status === 'signed' && a.local && !a.seen) || (b.signedAt || b.created) - (a.signedAt || a.created));
-    box.append(
-      el('div', { class: 'ibhead' },
-        el('h2', { text: 'Ihre Anfragen' }),
-        el('button', { type: 'button', class: 'iconbtn sm' + (refreshing ? ' turning' : ''), 'aria-label': 'Aktualisieren', html: I.refresh, onclick: () => refreshInbox(true) })),
-      el('div', { class: 'segrow' }, segs[0], segs[1], segs[2]));
+    const words = fold(S.inbox.q || '').split(/\s+/).filter(Boolean);
+    const isNew = r => r.status === 'signed' && r.local && !r.seen;
+    const inFilter = list.filter(r => f === 'all' || r.status === f);
+    const rows = inFilter.filter(r => matches(r, words))
+      .sort((a, b) => isNew(b) - isNew(a) || (b.signedAt || b.created) - (a.signedAt || a.created));
+    before.push(el('div', { class: 'ibhead' },
+      el('h2', { text: f === 'open' ? 'Offene Anfragen' : f === 'signed' ? 'Erledigt' : 'Ihre Anfragen' }),
+      el('button', { type: 'button', class: 'iconbtn sm' + (refreshing ? ' turning' : ''), 'aria-label': 'Aktualisieren', html: I.refresh, onclick: () => refreshInbox(true) })));
     if (pushAskVisible()) {
-      box.append(el('div', { class: 'askpush' },
+      before.push(el('div', { class: 'askpush' },
         el('span', { html: I.bell }),
-        el('div', { class: 'grow' }, el('b', { text: 'Bescheid bekommen?' }), el('span', { text: 'Eine Benachrichtigung, sobald ein Kunde unterschrieben hat.' })),
+        el('div', { class: 'grow' }, el('b', { text: 'Bescheid bekommen?' }), el('span', { text: 'Eine Benachrichtigung, sobald ein Kunde unterschrieben hat, und eine Erinnerung, wenn etwas liegen bleibt.' })),
         el('button', { type: 'button', class: 'btn btn-primary btn-sm', text: 'Einschalten', onclick: () => enablePush() }),
         el('button', { type: 'button', class: 'x', 'aria-label': 'Hinweis ausblenden', text: '×', onclick: () => { setLS(LS_PUSHASK, '1'); renderInbox(); } })));
     }
+    const bk = backupNeeded(list);
+    if (bk) {
+      before.push(el('div', { class: 'backupcard' },
+        el('div', { class: 'grow' }, el('b', { text: 'Sicherung empfohlen' }),
+          el('span', { text: bk + ' ' + plural(bk, 'unterschriebenes PDF liegt', 'unterschriebene PDFs liegen') + ' nur auf diesem Gerät.' })),
+        el('button', { type: 'button', class: 'btn btn-primary btn-sm', text: 'Sichern', onclick: () => makeBackup() }),
+        el('button', { type: 'button', class: 'x', 'aria-label': 'Später', text: '×', onclick: () => { setLS(LS_BACKUPASK, String(Date.now())); renderInbox(); } })));
+    }
+    sw.classList.toggle('hidden', list.length < 4 && !words.length);
     if (rows.length) {
       const ul = el('ul', { class: 'iblist' });
       rows.forEach(r => ul.append(el('li', null, itemButton(r))));
-      box.append(ul);
+      after.push(ul);
+    } else if (words.length) {
+      const all = list.filter(r => matches(r, words)).length;
+      after.push(el('div', { class: 'ibempty' }, el('p', { text: 'Keine Treffer' + (f !== 'all' ? ' unter „' + (f === 'open' ? 'Offen' : 'Erledigt') + '“.' : '.') }),
+        f !== 'all' && all ? el('button', { type: 'button', class: 'linkbtn strong', text: all + ' ' + plural(all, 'Treffer', 'Treffer') + ' in allen Anfragen zeigen', onclick: () => setFilter('all') }) : null));
     } else {
-      box.append(el('p', { class: 'ibempty', text: f === 'open' ? 'Keine offenen Anfragen.' : 'Noch nichts unterschrieben.' }));
+      after.push(el('div', { class: 'ibempty' }, el('p', { text: f === 'open' ? 'Keine offenen Anfragen. Alles unterschrieben!' : 'Noch nichts unterschrieben.' })));
     }
     const err = S.inbox.err;
-    box.append(el('p', { class: 'ibnote' + (err ? ' warn' : ''), text:
+    after.push(el('p', { class: 'ibnote' + (err ? ' warn' : ''), text:
       err === 'pin' ? 'Für den Abgleich fehlt die PIN. Tippen Sie oben auf Aktualisieren.'
         : err === 'offline' ? 'Keine Verbindung' + (S.inbox.last ? ', Stand ' + fmtTime(new Date(S.inbox.last)) + ' Uhr.' : '.') + ' Unterschriebene PDFs liegen nur auf diesem Gerät.'
           : (S.inbox.last ? 'Aktualisiert ' + fmtTime(new Date(S.inbox.last)) + ' Uhr. ' : '') + 'Unterschriebene PDFs liegen nur auf diesem Gerät.' }));
+    place();
+  }
+
+  function dayText(ts) {
+    const d = new Date(ts), now = new Date();
+    const day = x => new Date(x.getFullYear(), x.getMonth(), x.getDate()).getTime();
+    const diff = Math.round((day(now) - day(d)) / DAY);
+    return diff === 0 ? 'heute' : diff === 1 ? 'gestern' : 'am ' + pad2(d.getDate()) + '.' + pad2(d.getMonth() + 1) + '.';
+  }
+  // Kalendertage seit ts (heute = 0, gestern = 1)
+  function calDays(ts) {
+    const d = new Date(ts), n = new Date();
+    return Math.round((new Date(n.getFullYear(), n.getMonth(), n.getDate()) - new Date(d.getFullYear(), d.getMonth(), d.getDate())) / DAY);
+  }
+  function openSince(r) {
+    const days = calDays(r.created);
+    return days < 2 ? 'gesendet ' + whenText(r.created) : 'seit ' + days + ' Tagen offen';
   }
 
   function itemButton(r) {
     const st = r.status, title = recTitle(r);
-    let cls, icon, pill, when;
+    let cls, icon, pill, when, extra = null, due = false;
     if (st === 'signed') {
       cls = 'ok'; icon = I.check; pill = 'Unterschrieben';
       when = whenText(r.signedAt) + (r.signer && title !== r.signer ? ', ' + r.signer : '');
       if (!r.local) when += r.lost ? ', PDF nicht mehr abrufbar' : ', wird geladen …';
+      if (r.inPerson) extra = el('i', { class: 'pill here', text: 'Vor Ort' });
     } else if (st === 'open') {
       cls = 'open'; icon = I.clock; pill = 'Offen';
-      when = 'gesendet ' + whenText(r.created) + ', ' + leftText(r.expires);
+      const left = Math.ceil((r.expires - Date.now()) / DAY);
+      due = left <= 1 || calDays(r.created) >= 2;
+      when = openSince(r) + ', ' + leftText(r.expires) + (r.remindedAt ? ', erinnert ' + dayText(r.remindedAt) : '');
     } else {
       cls = 'gone'; icon = I.xc; pill = r.gone === 'withdrawn' ? 'Zurückgezogen' : 'Abgelaufen';
       when = 'nicht unterschrieben';
     }
+    const sub = [r.note, title !== r.file ? r.file : ''].filter(Boolean).join(' · ');
     return el('button', { type: 'button', class: 'ibitem ' + cls, onclick: () => openRecord(r.id) },
       el('span', { class: 'ic', html: icon }),
       el('span', { class: 'tx' },
         el('b', null, el('span', { class: 'ttl', text: title }), st === 'signed' && r.local && !r.seen ? el('i', { class: 'pill new', text: 'Neu' }) : null),
-        title !== r.file ? el('small', { text: r.file }) : null,
-        el('span', { class: 'st' }, el('i', { class: 'pill ' + cls, text: pill }), el('span', { text: when }))),
+        sub ? el('small', { text: sub }) : null,
+        el('span', { class: 'st' }, el('i', { class: 'pill ' + cls, text: pill }), extra, el('span', { class: due ? 'due' : null, text: when }))),
       el('span', { class: 'chev', html: I.chev }));
   }
 
@@ -2593,15 +2983,21 @@
     const kv = el('dl', { class: 'kv' });
     const row = (k, v) => { if (v) kv.append(el('dt', { text: k }), el('dd', { text: v })); };
     const dt = ts => fmtDate(new Date(ts)) + ', ' + fmtTime(new Date(ts)) + ' Uhr';
-    const label = el('input', { class: 'in', type: 'text', value: r.label || '', placeholder: 'z. B. Max Mustermann, Kfz-Antrag', maxlength: '80', autocomplete: 'off' });
-    label.addEventListener('change', () => { Store.patch(id, { label: cleanLabel(label.value) }).then(loadInbox).then(renderInbox).catch(() => {}); });
-    const note = el('label', { class: 'fld' }, el('span', { text: 'Kunde / Notiz (nur für Sie)' }), label);
+    const label = el('input', { class: 'in', type: 'text', value: r.label || '', placeholder: 'z. B. Max Mustermann', maxlength: '80', autocomplete: 'off' });
+    const noteIn = el('input', { class: 'in', type: 'text', value: r.note || '', placeholder: 'z. B. Kfz-Antrag', maxlength: '80', autocomplete: 'off' });
+    const saveNote = () => { Store.patch(id, { label: cleanLabel(label.value), note: cleanLabel(noteIn.value) }).then(loadInbox).then(renderInbox).catch(() => {}); };
+    label.addEventListener('change', saveNote);
+    noteIn.addEventListener('change', saveNote);
+    const note = el('div', { class: 'recnote' },
+      el('label', { class: 'fld' }, el('span', { text: 'Kunde (nur für Sie)' }), label),
+      el('label', { class: 'fld' }, el('span', { text: 'Notiz' }), noteIn));
     const body = el('div', { class: 'recdetail' });
     if (r.status === 'signed') {
       row('Unterschrieben von', r.signer);
       row('Zeitpunkt', r.signedAt ? dt(r.signedAt) : '');
       row('Ort', r.ort);
-      row('Angefordert', fmtDate(new Date(r.created)));
+      if (r.inPerson) row('Art', 'Vor Ort auf diesem Gerät');
+      else row('Angefordert', fmtDate(new Date(r.created)));
       if (r.local) {
         const info = (r.outPages ? (r.outPages === 1 ? '1 Seite' : r.outPages + ' Seiten') + ' · ' : '') + fmtSize(r.size || 0);
         body.append(
@@ -2625,12 +3021,21 @@
     } else if (r.status === 'open') {
       row('Dokument', r.file);
       row('Gesendet', dt(r.created));
-      row('Gültig bis', fmtDate(new Date(r.expires)));
-      row('Sprache', r.lang === 'sq' ? 'Shqip (Albanisch)' : 'Deutsch');
+      row('Gültig bis', fmtDate(new Date(r.expires)) + ' (' + leftText(r.expires) + ')');
+      row('Sprache', (r.lang === 'sq' ? 'Shqip (Albanisch)' : 'Deutsch') + (r.du === false ? ', Sie' : ', Du'));
+      row('Erinnert', r.remindedAt ? dt(r.remindedAt) : '');
+      const days = calDays(r.created);
       body.append(
-        el('div', { class: 'banner' }, el('span', { html: I.clock }), el('p', { text: 'Noch nicht unterschrieben. Sobald Ihr Kunde fertig ist, erscheint das PDF hier.' })),
+        el('div', { class: 'banner' + (days >= 2 ? ' warn' : '') }, el('span', { html: I.clock }), el('p', { text: days >= 2
+          ? 'Seit ' + days + ' Tagen nicht unterschrieben. Eine kurze Erinnerung hilft oft.'
+          : 'Noch nicht unterschrieben. Sobald Ihr Kunde fertig ist, erscheint das PDF hier.' })),
         kv,
-        r.link ? el('button', { type: 'button', class: 'btn btn-primary btn-block btn-xl', html: I.bell + '<span>Erinnerung senden</span>', onclick: () => shareMessage(reminderMessage(r)) }) : null,
+        r.link ? el('button', { type: 'button', class: 'btn btn-primary btn-block btn-xl', html: I.bell + '<span>Erinnerung senden</span>', onclick: async () => {
+          if (!(await shareMessage(reminderMessage(r)))) return;
+          await Store.patch(r.id, { remindedAt: Date.now() }).catch(() => {});
+          await loadInbox();
+          renderInbox();
+        } }) : null,
         el('div', { class: 'btnrow' },
           r.link ? el('button', { type: 'button', class: 'btn btn-ghost', html: I.copy + '<span>Link kopieren</span>', onclick: () => copyText(r.link, 'Link kopiert.') }) : null,
           el('button', { type: 'button', class: 'btn btn-ghost', html: I.refresh + '<span>Status prüfen</span>', onclick: () => { closeSheet(); refreshInbox(true); } })),
@@ -2722,12 +3127,14 @@
     const clean = v => v.replace(/\s+/g, ' ').trim().slice(0, 60);
     const name = el('input', { class: 'in', type: 'text', value: p.name || '', placeholder: 'Vor- und Nachname', autocomplete: 'name', maxlength: '60' });
     const sub = el('input', { class: 'in', type: 'text', value: p.sub || '', placeholder: 'z. B. Versicherungen', autocomplete: 'off', maxlength: '60' });
-    const prevName = el('p', { class: 'lh-name' }), prevSub = el('p', { class: 'lh-sub' });
-    const preview = el('div', { class: 'lh-preview', 'aria-hidden': 'true' }, prevName, prevSub);
-    preview.insertAdjacentHTML('beforeend', STROKE);
+    const prevMono = el('span', { class: 'mono' }), prevName = el('p', { class: 'lh-name' }), prevSub = el('p', { class: 'lh-sub' });
+    const prevText = el('div', { class: 'lh-text' }, prevName, prevSub);
+    prevText.insertAdjacentHTML('beforeend', STROKE);
+    const preview = el('div', { class: 'lh-preview', 'aria-hidden': 'true' }, prevMono, prevText);
     const upd = () => {
       prevName.textContent = clean(name.value) || 'Firmio';
       prevSub.textContent = clean(sub.value);
+      fillMono(prevMono, clean(name.value));
       saveSender(Object.assign(loadSender(), { name: clean(name.value), sub: clean(sub.value) }));
       renderLetterhead();
     };
@@ -2738,6 +3145,7 @@
         saveSender(Object.assign(loadSender(), { du: v }));
         duBtns.forEach((b, i) => { const on = [true, false][i] === v; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on ? 'true' : 'false'); });
       } }));
+
     const pushBox = el('div');
     const renderPush = () => {
       pushBox.innerHTML = '';
@@ -2749,8 +3157,9 @@
       }
       const denied = Notification.permission === 'denied', on = pushOn();
       pushBox.append(el('div', { class: 'setrow' },
-        el('div', { class: 'grow' }, el('b', { text: 'Wenn ein Kunde unterschrieben hat' }),
-          el('span', { text: denied ? 'Im Browser blockiert. Erlauben Sie Benachrichtigungen in den Einstellungen des Browsers für diese Seite.' : 'Kurze Nachricht auf dieses Handy, auch wenn Firmio geschlossen ist.' })),
+        el('div', { class: 'grow' }, el('b', { text: 'Unterschrieben und Erinnerungen' }),
+          el('span', { text: denied ? 'Im Browser blockiert. Erlauben Sie Benachrichtigungen in den Einstellungen des Browsers für diese Seite.'
+            : 'Sofort, wenn ein Kunde unterschrieben hat. Dazu morgens ein Hinweis, wenn eine Anfrage seit 2 Tagen offen ist oder bald abläuft.' })),
         el('span', { class: 'state' + (on ? ' on' : ''), text: denied ? 'Blockiert' : on ? 'An' : 'Aus' })));
       if (denied) return;
       if (on) {
@@ -2765,6 +3174,43 @@
       }
     };
     renderPush();
+
+    const tplBox = el('div');
+    const renderTpl = () => {
+      tplBox.innerHTML = '';
+      const list = loadTpls().sort((a, b) => (b.used || 0) - (a.used || 0));
+      if (!list.length) {
+        tplBox.append(el('p', { class: 'prose', text: 'Noch keine Vorlagen. Kreuzen Sie beim Senden „Felder als Vorlage merken“ an. Kommt das Formular wieder, setzt Firmio die Felder automatisch.' }));
+        return;
+      }
+      const ul = el('ul', { class: 'tpllist' });
+      list.forEach(t => ul.append(el('li', null,
+        el('button', { type: 'button', class: 'grow', 'aria-label': 'Vorlage „' + t.name + '“ umbenennen', onclick: () => {
+          const v = prompt('Name der Vorlage', t.name);
+          if (v === null || !v.trim()) return;
+          const all = loadTpls(), x = all.find(y => y.id === t.id);
+          if (x) { x.name = v.replace(/\s+/g, ' ').trim().slice(0, 50); saveTpls(all); }
+          renderTpl();
+        } },
+        el('b', { text: t.name }),
+        el('span', { text: t.spots.length + ' ' + plural(t.spots.length, 'Feld', 'Felder') + ' · ' + t.pages + ' ' + plural(t.pages, 'Seite', 'Seiten') + ' · zuletzt ' + fmtDate(new Date(t.used || t.created)) })),
+        el('button', { type: 'button', class: 'del', 'aria-label': 'Vorlage „' + t.name + '“ löschen', html: I.x, onclick: () => {
+          if (!confirm('Vorlage „' + t.name + '“ löschen?')) return;
+          saveTpls(loadTpls().filter(x => x.id !== t.id));
+          renderTpl();
+        } }))));
+      tplBox.append(ul, el('p', { class: 'hint left', text: 'Antippen zum Umbenennen.' }));
+    };
+    renderTpl();
+
+    const bkInfo = el('p', { class: 'prose' });
+    const renderBk = () => {
+      const last = Number(getLS(LS_BACKUP) || 0);
+      bkInfo.textContent = 'Unterschriebene PDFs liegen nur auf diesem Gerät. Sichern Sie sie regelmäßig als ZIP, zum Beispiel in Google Drive oder iCloud. ' +
+        (last ? 'Letzte Sicherung: ' + fmtDate(new Date(last)) + '.' : 'Noch keine Sicherung.');
+    };
+    renderBk();
+
     upd();
     openSheet('Einstellungen', el('div', null,
       el('p', { class: 'prose', text: 'Ihr Briefkopf steht oben auf der Seite, die Ihr Kunde zum Unterschreiben öffnet.' }),
@@ -2775,7 +3221,243 @@
       el('div', { class: 'fld' }, el('div', { class: 'segrow' }, duBtns[0], duBtns[1]),
         el('small', { text: 'Gilt für neue Anfragen. Beim Senden können Sie sie für einzelne Kunden ändern.' })),
       el('h3', { text: 'Benachrichtigungen' }),
-      pushBox));
+      pushBox,
+      el('h3', { text: 'Vorlagen' }),
+      tplBox,
+      el('h3', { text: 'Sicherung' }),
+      bkInfo,
+      el('div', { class: 'btnrow' },
+        el('button', { type: 'button', class: 'btn btn-ghost', html: I.save + '<span>Jetzt sichern</span>', onclick: () => makeBackup() }),
+        el('button', { type: 'button', class: 'btn btn-ghost', html: I.restore + '<span>Einspielen</span>', onclick: () => pickRestore() }))));
+  }
+
+  /* ---------------- Sicherung: alle Anfragen und unterschriebenen PDFs als ZIP ---------------- */
+  const LS_BACKUP = 'firmio.backup.v1', LS_BACKUPASK = 'firmio.backupask.v1';
+  // Hinweis in der Übersicht: Zahl der ungesicherten PDFs (0 = kein Hinweis)
+  function backupNeeded(list) {
+    if (Date.now() - Number(getLS(LS_BACKUPASK) || 0) < 7 * DAY) return 0;
+    const last = Number(getLS(LS_BACKUP) || 0);
+    const open = list.filter(r => r.status === 'signed' && r.local && (r.signedAt || 0) > last);
+    if (!open.length) return 0;
+    const oldest = Math.min.apply(null, open.map(r => r.signedAt || Date.now()));
+    return open.length >= 5 || Date.now() - oldest > 7 * DAY ? open.length : 0;
+  }
+  const CRC_T = (() => {
+    const t = new Uint32Array(256);
+    for (let n = 0; n < 256; n++) { let c = n; for (let k = 0; k < 8; k++) c = c & 1 ? 0xEDB88320 ^ (c >>> 1) : c >>> 1; t[n] = c >>> 0; }
+    return t;
+  })();
+  function crc32(b) {
+    let c = 0xFFFFFFFF;
+    for (let i = 0; i < b.length; i++) c = CRC_T[(c ^ b[i]) & 0xFF] ^ (c >>> 8);
+    return (c ^ 0xFFFFFFFF) >>> 0;
+  }
+  // ZIP ohne Komprimierung (PDFs sind schon komprimiert), Dateinamen in UTF-8
+  function zipBlob(files) {
+    const enc = new TextEncoder(), parts = [], central = [];
+    let off = 0;
+    files.forEach(f => {
+      const nm = enc.encode(f.name), crc = crc32(f.bytes), d = f.date || new Date();
+      const time = (d.getHours() << 11) | (d.getMinutes() << 5) | (d.getSeconds() >> 1);
+      const date = (Math.max(0, d.getFullYear() - 1980) << 9) | ((d.getMonth() + 1) << 5) | d.getDate();
+      const lh = new Uint8Array(30 + nm.length), v = new DataView(lh.buffer);
+      v.setUint32(0, 0x04034b50, true); v.setUint16(4, 20, true); v.setUint16(6, 0x0800, true); v.setUint16(8, 0, true);
+      v.setUint16(10, time, true); v.setUint16(12, date, true); v.setUint32(14, crc, true);
+      v.setUint32(18, f.bytes.length, true); v.setUint32(22, f.bytes.length, true); v.setUint16(26, nm.length, true); v.setUint16(28, 0, true);
+      lh.set(nm, 30);
+      parts.push(lh, f.bytes);
+      const ch = new Uint8Array(46 + nm.length), c = new DataView(ch.buffer);
+      c.setUint32(0, 0x02014b50, true); c.setUint16(4, 20, true); c.setUint16(6, 20, true); c.setUint16(8, 0x0800, true); c.setUint16(10, 0, true);
+      c.setUint16(12, time, true); c.setUint16(14, date, true); c.setUint32(16, crc, true);
+      c.setUint32(20, f.bytes.length, true); c.setUint32(24, f.bytes.length, true); c.setUint16(28, nm.length, true);
+      c.setUint32(42, off, true);
+      ch.set(nm, 46);
+      central.push(ch);
+      off += lh.length + f.bytes.length;
+    });
+    let size = 0;
+    central.forEach(x => { size += x.length; });
+    const end = new Uint8Array(22), e = new DataView(end.buffer);
+    e.setUint32(0, 0x06054b50, true); e.setUint16(8, files.length, true); e.setUint16(10, files.length, true); e.setUint32(12, size, true); e.setUint32(16, off, true);
+    return new Blob(parts.concat(central, [end]), { type: 'application/zip' });
+  }
+  function unzip(bytes) {
+    const v = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength);
+    let eocd = -1;
+    for (let i = bytes.length - 22; i >= Math.max(0, bytes.length - 65557); i--) if (v.getUint32(i, true) === 0x06054b50) { eocd = i; break; }
+    if (eocd < 0) throw new Error('zip');
+    const n = v.getUint16(eocd + 10, true), dec = new TextDecoder();
+    let p = v.getUint32(eocd + 16, true);
+    const out = {};
+    for (let i = 0; i < n; i++) {
+      if (p + 46 > bytes.length || v.getUint32(p, true) !== 0x02014b50) throw new Error('zip');
+      const method = v.getUint16(p + 10, true), csize = v.getUint32(p + 20, true), nl = v.getUint16(p + 28, true), xl = v.getUint16(p + 30, true), cl = v.getUint16(p + 32, true), lo = v.getUint32(p + 42, true);
+      const name = dec.decode(bytes.subarray(p + 46, p + 46 + nl));
+      p += 46 + nl + xl + cl;
+      if (lo + 30 > bytes.length || v.getUint32(lo, true) !== 0x04034b50) throw new Error('zip');
+      const start = lo + 30 + v.getUint16(lo + 26, true) + v.getUint16(lo + 28, true);
+      out[name] = { method: method, raw: bytes.subarray(start, start + csize) };
+    }
+    return out;
+  }
+  async function zipEntry(e) {
+    if (e.method === 0) return e.raw;
+    if (e.method === 8 && window.DecompressionStream) {
+      const s = new Blob([e.raw]).stream().pipeThrough(new DecompressionStream('deflate-raw'));
+      return new Uint8Array(await new Response(s).arrayBuffer());
+    }
+    throw new Error('zip_method');
+  }
+  const isoDay = d => d.getFullYear() + '-' + pad2(d.getMonth() + 1) + '-' + pad2(d.getDate());
+  const safeFile = s => String(s || '').replace(/[\\/:*?"<>|\u0000-\u001f]+/g, '_').replace(/\s+/g, ' ').trim().slice(0, 100);
+  const csvCell = v => { const s = String(v == null ? '' : v); return /[;"\n\r]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; };
+
+  async function makeBackup() {
+    busy('Sicherung wird erstellt …');
+    let blob, count = 0, name;
+    try {
+      const list = (await Store.all()).sort((a, b) => (a.signedAt || a.created || 0) - (b.signedAt || b.created || 0));
+      const enc = new TextEncoder(), files = [], recs = [], used = new Set();
+      const rows = [['Datum', 'Status', 'Kunde', 'Notiz', 'Dokument', 'Unterschrieben von', 'Ort', 'Datei in der Sicherung']];
+      for (const r of list) {
+        const rec = Object.assign({}, r);
+        if (r.status === 'signed' && r.local) {
+          let pdf = null;
+          try { pdf = await Store.pdf(r.id); } catch (e) { pdf = null; }
+          if (pdf && pdf.bytes) {
+            const d = new Date(r.signedAt || r.created || Date.now());
+            const base = 'PDF/' + safeFile(isoDay(d) + ' ' + [r.label || r.signer, (r.outName || r.file || 'Dokument').replace(/\.pdf$/i, '')].filter(Boolean).join(' - '));
+            let fn = base + '.pdf';
+            for (let i = 2; used.has(fn); i++) fn = base + ' (' + i + ').pdf';
+            used.add(fn);
+            files.push({ name: fn, bytes: new Uint8Array(pdf.bytes), date: d });
+            rec.pdf = fn;
+            count++;
+          }
+        }
+        recs.push(rec);
+        const when = r.status === 'signed' ? r.signedAt : r.created;
+        rows.push([when ? fmtDate(new Date(when)) : '', r.status === 'signed' ? (r.inPerson ? 'Unterschrieben (vor Ort)' : 'Unterschrieben') : r.status === 'open' ? 'Offen' : 'Nicht unterschrieben',
+          r.label || '', r.note || '', r.file || '', r.signer || '', r.ort || '', rec.pdf || '']);
+      }
+      const s = loadSender();
+      const data = { app: 'firmio', v: 1, created: new Date().toISOString(),
+        sender: { name: s.name || '', sub: s.sub || '', du: s.du !== false, proof: s.proof !== false, viaLink: s.viaLink !== false, prefill: s.prefill !== false },
+        templates: loadTpls(), records: recs };
+      files.unshift({ name: 'Inhaltsverzeichnis.csv', bytes: enc.encode('﻿' + rows.map(x => x.map(csvCell).join(';')).join('\r\n') + '\r\n') });
+      files.unshift({ name: 'firmio-sicherung.json', bytes: enc.encode(JSON.stringify(data)) });
+      blob = zipBlob(files);
+      name = 'Firmio-Sicherung ' + isoDay(new Date()) + '.zip';
+    } catch (e) {
+      console.warn('Sicherung:', e);
+      unbusy();
+      toast('Die Sicherung hat nicht geklappt.');
+      return;
+    }
+    unbusy();
+    // Teilen braucht einen frischen Tipp (sonst blockiert Safari), deshalb ein eigenes Fenster
+    const file = (() => { try { return new File([blob], name, { type: 'application/zip' }); } catch (e) { return null; } })();
+    const canShare = !!(file && navigator.canShare && navigator.share && navigator.canShare({ files: [file] }));
+    const done = () => {
+      setLS(LS_BACKUP, String(Date.now()));
+      setLS(LS_BACKUPASK, '');
+      closeSheet();
+      renderInbox();
+    };
+    const save = () => {
+      const url = URL.createObjectURL(blob);
+      const a = el('a', { href: url, download: name });
+      a.style.display = 'none';
+      document.body.append(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 60000);
+      done();
+      toast('Sicherung wird gespeichert.');
+    };
+    openSheet('Sicherung ist fertig', el('div', null,
+      el('div', { class: 'filecard' }, el('span', { html: I.save }), el('div', null, el('b', { text: name }),
+        el('span', { text: count + ' ' + plural(count, 'PDF', 'PDFs') + ' · ' + fmtSize(blob.size) }))),
+      el('p', { class: 'prose', text: 'Legen Sie die Datei an einem sicheren Ort ab, zum Beispiel in Google Drive, iCloud oder auf dem Computer. Sie enthält die unterschriebenen PDFs, ein Inhaltsverzeichnis und Ihre Vorlagen. Mit „Einspielen“ in den Einstellungen holen Sie alles auf ein neues Handy.' }),
+      canShare ? el('button', { type: 'button', class: 'btn btn-primary btn-block btn-xl', html: I.share + '<span>Sichern in …</span>', onclick: async () => {
+        try { await navigator.share({ files: [file] }); done(); toast('Gesichert.'); } catch (e) { if (!e || e.name !== 'AbortError') save(); }
+      } }) : null,
+      el('button', { type: 'button', class: 'btn btn-block ' + (canShare ? 'btn-ghost' : 'btn-primary btn-xl'), html: I.download + '<span>Herunterladen</span>', onclick: save })));
+  }
+
+  function pickRestore() {
+    const input = el('input', { type: 'file', accept: '.zip,application/zip', class: 'vh' });
+    document.body.append(input);
+    input.addEventListener('change', async () => {
+      const f = input.files && input.files[0];
+      input.remove();
+      if (f) await restoreBackup(f);
+    });
+    input.click();
+  }
+  const REC_FIELDS = { id: 's', key: 's', del: 's', secret: 's', label: 's', note: 's', file: 's', pages: 'n', created: 'n', expires: 'n', lang: 's', du: 'b', status: 's', link: 's',
+    local: 'b', inPerson: 'b', seen: 'b', serverGone: 'b', signedAt: 'n', signer: 's', ort: 's', outName: 's', outPages: 'n', size: 'n', lost: 'b', gone: 's', goneAt: 'n', remindedAt: 'n', tpl: 's' };
+  function cleanRecord(r) {
+    if (!r || typeof r.id !== 'string' || !/^[A-Za-z0-9_-]{8,40}$/.test(r.id) || ['open', 'signed', 'gone'].indexOf(r.status) < 0) return null;
+    const o = {};
+    Object.keys(REC_FIELDS).forEach(k => {
+      const t = REC_FIELDS[k], v = r[k];
+      if (t === 's' && typeof v === 'string') o[k] = v.slice(0, k === 'link' ? 300 : 200);
+      else if (t === 'n' && typeof v === 'number' && isFinite(v)) o[k] = v;
+      else if (t === 'b' && typeof v === 'boolean') o[k] = v;
+    });
+    return o;
+  }
+  async function restoreBackup(f) {
+    busy('Sicherung wird eingelesen …');
+    let added = 0, pdfs = 0;
+    try {
+      const z = unzip(await readFile(f));
+      if (!z['firmio-sicherung.json']) throw new Error('format');
+      const data = JSON.parse(new TextDecoder().decode(await zipEntry(z['firmio-sicherung.json'])));
+      if (!data || data.app !== 'firmio' || !Array.isArray(data.records)) throw new Error('format');
+      const have = new Map((await Store.all()).map(r => [r.id, r]));
+      for (const raw of data.records) {
+        const rec = cleanRecord(raw);
+        if (!rec) continue;
+        let bytes = null;
+        if (typeof raw.pdf === 'string' && z[raw.pdf]) {
+          try { bytes = await zipEntry(z[raw.pdf]); } catch (e) { bytes = null; }
+          if (bytes && !looksLikePdf(bytes)) bytes = null;
+        }
+        const ex = have.get(rec.id);
+        if (ex && !(ex.status === 'signed' && !ex.local && bytes)) continue; // schon da
+        if (rec.status === 'signed' && rec.local && !bytes) { rec.local = false; rec.lost = true; }
+        if (bytes) { await Store.putPdf(rec.id, bytes); rec.local = true; rec.lost = false; rec.serverGone = true; pdfs++; }
+        await Store.put(ex ? Object.assign(ex, rec) : rec);
+        added++;
+      }
+      if (Array.isArray(data.templates)) {
+        const list = loadTpls();
+        data.templates.forEach(t => {
+          if (t && typeof t.id === 'string' && typeof t.name === 'string' && Array.isArray(t.spots) && Array.isArray(t.sizes) && typeof t.pages === 'number' && !list.some(x => x.id === t.id)) list.push(t);
+        });
+        saveTpls(list.slice(0, 40));
+      }
+      const s = loadSender();
+      if (data.sender && !s.name && typeof data.sender.name === 'string') {
+        saveSender(Object.assign(s, { name: data.sender.name.slice(0, 60), sub: String(data.sender.sub || '').slice(0, 60), du: data.sender.du !== false }));
+      }
+      askPersist();
+    } catch (e) {
+      console.warn('Einspielen:', e);
+      unbusy();
+      alert(e && e.message === 'zip_method' ? 'Diese ZIP-Datei ist gepackt und kann in diesem Browser nicht gelesen werden. Bitte die Original-Sicherung von Firmio wählen.'
+        : 'Diese Datei ist keine Firmio-Sicherung oder sie ist beschädigt.');
+      return;
+    }
+    unbusy();
+    closeSheet();
+    renderLetterhead();
+    await loadInbox();
+    renderInbox();
+    toast(added ? added + ' ' + plural(added, 'Eintrag', 'Einträge') + ' wiederhergestellt' + (pdfs ? ', davon ' + pdfs + ' ' + plural(pdfs, 'PDF', 'PDFs') : '') + '.' : 'Alles war schon da.', 4500);
+    refreshInbox();
   }
 
   /* ---------------- PDF erstellen ---------------- */
@@ -2792,6 +3474,7 @@
     try {
       S.out = await buildSignedPdf();
       S.dirty = true;
+      if (S.local) { await saveLocal(); return; }
       if (backMode()) { await sendBack(); return; }
       unbusy();
       showDone();
@@ -3015,6 +3698,7 @@
     row('Zeitpunkt', fmtDate(now) + ', ' + fmtTime(now, true) + ' Uhr (' + tzLabel(now) + ')');
     row('Unterschrift auf', placementText());
     if (S.fileIsRemote) row('Übermittlung', backMode() ? 'Ende-zu-Ende verschlüsselt per Link erhalten und zurückgegeben' : 'Per Ende-zu-Ende-verschlüsseltem Link erhalten');
+    else if (S.local) row('Übermittlung', 'Vor Ort auf dem Gerät des Absenders unterschrieben');
     row('Gerät', deviceLabel());
     page.drawText(safe('Unterschrift'), { x: X, y: y, size: 9, font: F.bold, color: cMuted });
     const sc = Math.min(230 / S.sig.bw, 72 / S.sig.bh);
@@ -3058,6 +3742,24 @@
     $('#newBtn').classList.toggle('hidden', !!sb);
     retry.classList.add('hidden');
     $('#dlLabel').textContent = tr('PDF speichern');
+    const over = $('#overBtn');
+    over.classList.add('hidden');
+    if (S.local) {
+      // Vor Ort: Das PDF liegt schon in der Übersicht. Der Kunde gibt das Handy zurück.
+      const ok = !!S.local.saved;
+      if (mark) { mark.classList.toggle('bad', !ok); mark.innerHTML = ok ? I.checkL : I.warnL; }
+      $('#doneTitle').textContent = tr('Fertig!');
+      $('#doneLead').textContent = ok ? tr('Danke! Sie können das Handy jetzt zurückgeben.')
+        : 'Das PDF konnte nicht in der Übersicht gespeichert werden. Bitte jetzt speichern oder teilen.';
+      over.classList.toggle('hidden', !ok);
+      $('#shareLabel').textContent = 'PDF teilen';
+      share.className = 'btn btn-block btn-ghost' + (ok || !can ? ' hidden' : '');
+      dl.className = 'btn btn-block ' + (ok ? 'btn-ghost hidden' : 'btn-primary btn-xl');
+      $('#editBtn').classList.add('hidden');
+      $('#newBtn').classList.add('hidden');
+      $('#shareHint').textContent = '';
+      return;
+    }
     if (sb && sb.ok) {
       // Erledigt: Das PDF ist schon beim Absender
       $('#doneTitle').textContent = tr('Erledigt!');
@@ -3122,6 +3824,8 @@
     S.file = null;
     S.fileIsRemote = false;
     S.view = null;
+    S.intent = 'link';
+    if (S.local) endLocal();
     showScreen('start');
     if (S.mode === 'send') { renderLetterhead(); loadInbox().then(renderInbox); refreshInbox(); reloadIfIdle(); }
     if (S.remoteSigned) renderRemoteSigned();
