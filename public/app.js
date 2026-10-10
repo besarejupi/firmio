@@ -298,10 +298,14 @@
     setupStart();
 
     $('#file').addEventListener('change', onFile);
+    // Während die Dateiauswahl offen ist, nicht neu laden (siehe reloadIfIdle)
+    $('#pickBtn').addEventListener('click', () => { picking = Date.now(); });
+    $('#file').addEventListener('cancel', () => { picking = 0; });
     $('#backBtn').addEventListener('click', () => history.back());
     $('#scrim').addEventListener('click', () => closeSheet());
     $('#shareBtn').addEventListener('click', shareResult);
-    $('#retryBtn').addEventListener('click', () => { if (S.out && backMode()) sendBack(); });
+    const retryBtn = $('#retryBtn');
+    if (retryBtn) retryBtn.addEventListener('click', () => { if (S.out && backMode()) sendBack(); });
     $('#dlBtn').addEventListener('click', () => { download(S.out.bytes, S.out.name); S.dirty = false; deleteRemote(); toast(tr('PDF wird gespeichert.')); });
     $('#editBtn').addEventListener('click', () => { showScreen('viewer'); renderBar(); requestAnimationFrame(relayout); });
     $('#newBtn').addEventListener('click', () => {
@@ -324,7 +328,9 @@
     if (S.req && S.req.d && S.req.k) loadRemote();
     if (S.mode === 'send') initInbox();
     document.addEventListener('visibilitychange', () => {
-      if (document.visibilityState === 'visible' && S.mode === 'send' && !S.inViewer) refreshInbox();
+      if (document.visibilityState !== 'visible' || S.mode !== 'send') return;
+      checkUpdate();
+      if (!S.inViewer) refreshInbox();
     });
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape') closeSheet();
@@ -386,7 +392,7 @@
     $('#dlLabel').textContent = tr('PDF speichern');
     $('#editBtn').textContent = tr('Zurück zum Dokument');
     $('#newBtn').textContent = tr('Neues Dokument');
-    $('#retryLabel').textContent = tr('Erneut senden');
+    if ($('#retryLabel')) $('#retryLabel').textContent = tr('Erneut senden');
     $('#viewer').setAttribute('aria-label', tr('Dokument'));
   }
 
@@ -583,6 +589,7 @@
   }
 
   async function onFile(e) {
+    picking = 0;
     const f = e.target.files && e.target.files[0];
     e.target.value = '';
     if (!f) return;
@@ -1812,6 +1819,32 @@
     toast('PDF wird gespeichert.');
   }
 
+  /* ---------------- Neue Version: installierte App lädt sich beim Öffnen selbst neu ---------------- */
+  const RUN_VER = document.documentElement.getAttribute('data-version') || 'dev';
+  let verCheck = 0, updateReady = false, picking = 0;
+  async function checkUpdate() {
+    if (RUN_VER === 'dev' || updateReady || Date.now() - verCheck < 60000) return;
+    verCheck = Date.now();
+    let v = '';
+    try {
+      const r = await fetch('version.txt', { cache: 'no-store', credentials: 'omit' });
+      if (r.ok) v = (await r.text()).trim();
+    } catch (e) { return; }
+    if (!/^[A-Za-z0-9]{3,12}$/.test(v) || v === RUN_VER) return;
+    let tried = '';
+    try { tried = sessionStorage.getItem('firmio.reloadFor') || ''; } catch (e) { /* egal */ }
+    if (tried === v) return; // schon einmal versucht (z. B. ohne Netz) – nicht ständig neu laden
+    updateReady = v;
+    reloadIfIdle();
+  }
+  // Nur neu laden, wenn gerade nichts angefangen ist (Startseite, kein Fenster offen)
+  function reloadIfIdle() {
+    if (!updateReady || S.inViewer || S.sheetOpen || !$('#busy').hidden || document.visibilityState !== 'visible') return;
+    if (picking && Date.now() - picking < 120000) return;
+    try { sessionStorage.setItem('firmio.reloadFor', updateReady); } catch (e) { /* egal */ }
+    location.reload();
+  }
+
   /* ---------------- Absender: Übersicht (liegt nur auf diesem Gerät) ---------------- */
   let idbP = null;
   function idb() {
@@ -1923,7 +1956,8 @@
     const list = send ? S.inbox.list.slice() : [];
     const has = list.length > 0;
     box.classList.toggle('hidden', !send || (!has && S.inbox.ok));
-    $('#start').classList.toggle('has-inbox', send && has);
+    const start = $('#start');
+    if (start) start.classList.toggle('has-inbox', send && has);
     box.innerHTML = '';
     if (!send) return;
     box.setAttribute('aria-label', 'Ihre Anfragen');
@@ -2535,9 +2569,11 @@
     try { can = !!(navigator.canShare && navigator.share && navigator.canShare({ files: [outFile()] })); } catch (e) { can = false; }
     const who = S.req && S.req.f;
     const sb = backMode() ? S.sentBack : null;
-    const mark = $('#doneMark'), retry = $('#retryBtn'), share = $('#shareBtn'), dl = $('#dlBtn');
-    mark.classList.toggle('bad', !!(sb && !sb.ok));
-    mark.innerHTML = sb && !sb.ok ? I.warnL : I.checkL;
+    const mark = $('#doneMark') || $('#done .okmark'), retry = $('#retryBtn') || el('button'), share = $('#shareBtn'), dl = $('#dlBtn');
+    if (mark) {
+      mark.classList.toggle('bad', !!(sb && !sb.ok));
+      mark.innerHTML = sb && !sb.ok ? I.warnL : I.checkL;
+    }
     $('#editBtn').classList.toggle('hidden', !!(sb && sb.ok));
     $('#newBtn').classList.toggle('hidden', !!sb);
     retry.classList.add('hidden');
@@ -2607,7 +2643,7 @@
     S.fileIsRemote = false;
     S.view = null;
     showScreen('start');
-    if (S.mode === 'send') { loadInbox().then(renderInbox); refreshInbox(); }
+    if (S.mode === 'send') { loadInbox().then(renderInbox); refreshInbox(); reloadIfIdle(); }
     if (S.remoteSigned) renderRemoteSigned();
     else if (S.remote) renderRemoteReady();
     window.scrollTo(0, 0);

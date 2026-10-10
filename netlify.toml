@@ -1,6 +1,7 @@
 # Firmio – Netlify-Einstellungen
 [build]
   publish = "public"
+  command = "sh build.sh"
 
 [functions]
   directory = "netlify/functions"
