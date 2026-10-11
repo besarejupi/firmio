@@ -2616,7 +2616,9 @@
     }
     return out;
   }
-  function fieldFor(lb, lines) {
+  // Feld zur Beschriftung finden: Strich darüber, Strich rechts daneben oder Unterstriche.
+  // fallback: ohne Strich direkt über die Beschriftung (nur für die eigene Unterschrift)
+  function fieldFor(lb, lines, fallback) {
     const top = lb.y - lb.fs * 0.85;
     let best = null;
     lines.forEach(l => { // Strich über der Beschriftung (häufigste Form)
@@ -2626,60 +2628,113 @@
     });
     if (best) return { x: best.l.x0 + 3, w: best.l.x1 - best.l.x0 - 6, bottom: best.l.y - 1 };
     let right = null;
-    lines.forEach(l => { // „Unterschrift Vermittler: ____“ mit Strich rechts daneben
+    lines.forEach(l => { // „Unterschrift: ____“ mit Strich rechts daneben
       if (Math.abs(l.y - lb.y) <= lb.fs * 0.7 + 2 && l.x0 >= lb.x1 - 8 && l.x0 - lb.x1 < 40 && (!right || l.x0 < right.x0)) right = l;
     });
     if (right) return { x: right.x0 + 3, w: right.x1 - right.x0 - 6, bottom: right.y - 1 };
     const us = lb.text.indexOf('___');
     if (us > 0) { const xu = lb.x0 + (lb.x1 - lb.x0) * us / lb.text.length; return { x: xu + 2, w: lb.x1 - xu - 4, bottom: lb.y - 1 }; }
-    return { x: lb.x0, w: clamp((lb.x1 - lb.x0) * 1.3, 110, 200), bottom: top - 2 }; // kein Strich: über die Beschriftung
+    return fallback ? { x: lb.x0, w: clamp((lb.x1 - lb.x0) * 1.3, 110, 200), bottom: top - 2 } : null;
   }
-  async function findOwnFields(pdf) {
-    const found = [];
+  // Beschriftung einordnen: eigene Unterschrift (Vermittler), Unterschrift des Kunden, Ort/Datum
+  const CUST_RE = /\bunterschrift\b|\bunterzeichnung\b/;
+  const DATE_RE = /^\W*(ort\W{0,3}(und\W+|\/\W*|,\W*)?datum|datum\W{0,3}(und\W+|\/\W*|,\W*)?ort|datum)\b/;
+  function classify(text, fs) {
+    const t = fold(text).replace(/[_.\s]+$/g, '').replace(/\s+/g, ' ').trim();
+    if (!t || t.length > 70 || fs > 14 || /unterschriften/.test(t)) return ''; // Fließtext, Überschriften
+    if (OWN_RE.test(t) && !/gesetzlich\w*\s+vertreter/.test(t)) return 'own';
+    if (CUST_RE.test(t.replace(/(datum|tag) der unterschrift/g, ''))) return 'cust';
+    if (DATE_RE.test(t)) return 'date';
+    return '';
+  }
+  async function findFields(pdf) {
+    const res = { own: [], cust: [], date: [] };
     for (let i = 0; i < Math.min(pdf.numPages, 40); i++) {
-      if (pdf !== S.pdf) return [];
+      if (pdf !== S.pdf) return { own: [], cust: [], date: [] };
       let page, tc;
       try { page = await pdf.getPage(i + 1); tc = await page.getTextContent(); } catch (e) { continue; }
       const vp = page.getViewport({ scale: 1 });
       if (vp.rotation % 360 !== 0) continue;
-      const labels = labelSegments(tc.items, vp).filter(sg => sg.text.length <= 70 && OWN_RE.test(fold(sg.text)));
+      const labels = labelSegments(tc.items, vp).map(sg => Object.assign(sg, { kind: classify(sg.text, sg.fs) })).filter(sg => sg.kind);
       if (!labels.length) continue;
       const lines = await hLines(page, vp);
       labels.forEach(lb => {
-        const f = fieldFor(lb, lines);
-        if (f && f.w > 30 && !found.some(x => x.page === i && Math.abs(x.x - f.x) < 10 && Math.abs(x.bottom - f.bottom) < 10)) found.push(Object.assign({ page: i, label: lb.text.replace(/[_\s]+$/, '').trim() }, f));
+        const f = fieldFor(lb, lines, lb.kind === 'own');
+        if (!f || f.w <= 30) return;
+        if (res.own.concat(res.cust, res.date).some(x => x.page === i && Math.abs(x.x - f.x) < 10 && Math.abs(x.bottom - f.bottom) < 10)) return;
+        res[lb.kind].push(Object.assign({ page: i, label: lb.text.replace(/[_\s]+$/, '').trim() }, f));
       });
     }
-    return found;
+    // Ort/Datum nur in derselben Reihe wie eine Unterschrift des Kunden (nicht das Datum des Vermittlers)
+    res.date = res.date.filter(d => res.cust.some(c => c.page === d.page && Math.abs(c.bottom - d.bottom) < 30));
+    return res;
   }
 
-  // Nach dem Öffnen im Absender-Modus: Vorlage prüfen, dann eigene Unterschrift setzen
+  // Felder des Kunden setzen (Unterschrift, Ort/Datum) – auf die erkannte Linie
+  const LS_AUTO = 'firmio.auto.v1';
+  const autoCust = () => getLS(LS_AUTO) !== '0';
+  function placeCustFields(found) {
+    const ids = [];
+    let nS = 0, nD = 0;
+    found.cust.concat(found.date).forEach(f => {
+      const pg = S.pages[f.page];
+      if (!pg) return;
+      const sig = found.cust.indexOf(f) >= 0;
+      const w = sig ? clamp(f.w, 100, 230) : clamp(f.w, 70, 170), h = sig ? 40 : 18;
+      const sp = { id: nid(), type: 'spot', k: sig ? 's' : 'd', page: f.page, w: w, h: h, x: clamp(f.x, 0, pg.W - w), y: clamp(f.bottom - h, 0, pg.H - h) };
+      S.spots.push(sp);
+      renderSpot(sp);
+      ids.push(sp.id);
+      if (sig) nS++; else nD++;
+    });
+    if (ids.length) S.dirty = true;
+    return { ids: ids, nS: nS, nD: nD };
+  }
+
+  // Nach dem Öffnen im Absender-Modus: Vorlage prüfen, sonst Felder des Kunden und eigene Unterschrift erkennen
   async function afterOpenSend() {
     const pdf = S.pdf;
     const t = await checkTemplates().catch(e => { console.warn('Vorlagen:', e); return null; });
-    if (pdf !== S.pdf || S.mode !== 'send' || S.view) return;
-    if (t && S.own.length) return; // Vorlage hat die eigene Unterschrift schon gesetzt
-    let fields = [];
-    try { fields = await findOwnFields(pdf); } catch (e) { console.warn('Unterschrift erkennen:', e); }
-    if (pdf !== S.pdf || S.mode !== 'send' || S.view || !fields.length) return;
-    const where = fields.length === 1 ? '„' + fields[0].label + '“ auf Seite ' + (fields[0].page + 1) : fields.length + ' Stellen';
-    if (!S.mySig) {
-      if (!S.tpl) banner('info', 'Hier unterschreiben Sie als Vermittler: ' + where + '. Speichern Sie Ihre Unterschrift einmal, dann setzt Firmio sie ab jetzt automatisch ein.',
-        { label: 'Jetzt speichern', fn: () => openMySigPad(() => autoOwn(fields, t)) });
+    const stale = () => pdf !== S.pdf || S.mode !== 'send' || S.view;
+    if (stale()) return;
+    const needOwn = !(t && S.own.length); // Vorlage hat die eigene Unterschrift schon gesetzt
+    const needCust = !t && autoCust() && !S.spots.length;
+    if (!needOwn && !needCust) return;
+    let found = { own: [], cust: [], date: [] };
+    try { found = await findFields(pdf); } catch (e) { console.warn('Felder erkennen:', e); }
+    if (stale() || S.sheetOpen) return;
+    const cust = needCust && !S.spots.length && !S.own.length ? placeCustFields(found) : { ids: [], nS: 0, nD: 0 };
+    const own = needOwn && !S.own.length ? found.own : [];
+    const custText = cust.ids.length ? 'Automatisch markiert: ' + (cust.nS ? cust.nS + ' ' + plural(cust.nS, 'Unterschriftsfeld', 'Unterschriftsfelder') : '') +
+      (cust.nS && cust.nD ? ' und ' : '') + (cust.nD ? cust.nD + ' ' + plural(cust.nD, 'Ort/Datum-Feld', 'Ort/Datum-Felder') : '') + ' für Ihren Kunden.' : '';
+    if (own.length && !S.mySig) {
+      const where = own.length === 1 ? '„' + own[0].label + '“ auf Seite ' + (own[0].page + 1) : own.length + ' Stellen';
+      if (!S.tpl) banner(cust.ids.length ? 'ok' : 'info', (custText ? custText + ' ' : '') + 'Hier unterschreiben Sie als Vermittler: ' + where + '. Speichern Sie Ihre Unterschrift einmal, dann setzt Firmio sie ab jetzt automatisch ein.',
+        { label: 'Jetzt speichern', fn: () => openMySigPad(() => autoOwn(own, t, cust.ids)) });
+      renderBar();
       return;
     }
-    if (S.own.length || S.sheetOpen) return;
-    autoOwn(fields, t);
+    if (own.length || cust.ids.length) autoOwn(own, t, cust.ids);
   }
-  function autoOwn(fields, t) {
-    if (!S.mySig || S.mode !== 'send') return;
-    const ids = fields.map(placeOwnInField).filter(Boolean).map(o => o.id);
-    if (!ids.length) return;
+  function autoOwn(fields, t, custIds) {
+    if (S.mode !== 'send') return;
+    custIds = (custIds || []).filter(id => S.spots.some(sp => sp.id === id));
+    const ids = S.mySig ? fields.map(placeOwnInField).filter(Boolean).map(o => o.id) : [];
+    if (!ids.length && !custIds.length) return;
     S.ownAuto = ids;
-    if (S.tpl) S.tpl.ids = S.tpl.ids.concat(ids);
-    const what = 'Ihre Unterschrift ist gesetzt' + (fields.length === 1 ? ' (' + fields[0].label + ', Seite ' + (fields[0].page + 1) + ')' : ' (' + ids.length + ' Stellen)') + '.';
-    banner('ok', (t && S.tpl ? 'Vorlage „' + S.tpl.name + '“: ' + S.spots.length + ' ' + plural(S.spots.length, 'Feld', 'Felder') + ' gesetzt. ' : '') + what + ' Bitte kurz prüfen.',
-      { label: 'Rückgängig', fn: () => { if (S.tpl && t) undoTpl(); else { S.own.filter(o => ids.indexOf(o.id) >= 0).forEach(o => removeObj(o)); banner('info', 'Entfernt. Mit dem Stift oben setzen Sie Ihre Unterschrift selbst.'); } } });
+    if (S.tpl) { S.tpl.ids = S.tpl.ids.concat(ids); S.tpl.sig = tplSig(); }
+    const nS = S.spots.filter(sp => custIds.indexOf(sp.id) >= 0 && sp.k === 's').length, nD = custIds.length - nS;
+    const parts = [];
+    if (t && S.tpl) parts.push('Vorlage „' + S.tpl.name + '“: ' + S.spots.length + ' ' + plural(S.spots.length, 'Feld', 'Felder') + ' gesetzt.');
+    if (custIds.length) parts.push('Automatisch markiert: ' + (nS ? nS + ' ' + plural(nS, 'Unterschriftsfeld', 'Unterschriftsfelder') : '') + (nS && nD ? ' und ' : '') +
+      (nD ? nD + ' ' + plural(nD, 'Ort/Datum-Feld', 'Ort/Datum-Felder') : '') + ' für Ihren Kunden' + (ids.length ? ', dazu Ihre Unterschrift.' : '.'));
+    else if (ids.length) parts.push('Ihre Unterschrift ist gesetzt' + (fields.length === 1 ? ' (' + fields[0].label + ', Seite ' + (fields[0].page + 1) + ')' : ' (' + ids.length + ' Stellen)') + '.');
+    banner('ok', parts.join(' ') + ' Bitte kurz prüfen.', { label: 'Rückgängig', fn: () => {
+      if (S.tpl && t) { undoTpl(); return; }
+      S.own.filter(o => ids.indexOf(o.id) >= 0).forEach(o => removeObj(o));
+      S.spots.filter(sp => custIds.indexOf(sp.id) >= 0).forEach(sp => removeObj(sp));
+      banner('info', custIds.length ? 'Entfernt. Setzen Sie die Felder unten mit „Unterschrift“ und „Ort/Datum“ selbst.' : 'Entfernt. Mit dem Stift oben setzen Sie Ihre Unterschrift selbst.');
+    } });
     renderBar();
   }
 
@@ -3667,6 +3722,11 @@
     };
     renderMail();
 
+    const autoIn = el('input', { id: 'autoCust', type: 'checkbox' });
+    autoIn.checked = autoCust();
+    autoIn.addEventListener('change', () => { setLS(LS_AUTO, autoIn.checked ? '' : '0'); toast(autoIn.checked ? 'Felder werden automatisch markiert.' : 'Felder markieren Sie ab jetzt selbst.'); });
+    const autoRow = el('label', { class: 'check' }, autoIn, el('span', null, 'Unterschriftsfelder des Kunden automatisch markieren',
+      el('small', { text: 'Firmio sucht im PDF nach „Unterschrift Antragsteller“, „Versicherungsnehmer“, „Kontoinhaber“, „Ort, Datum“ und Ähnlichem und markiert die Linien dort. Passt eine Vorlage, gilt die Vorlage.' })));
     const tplBox = el('div');
     const renderTpl = () => {
       tplBox.innerHTML = '';
@@ -3718,7 +3778,8 @@
       pushBox,
       el('h3', { text: 'Kopie per E-Mail' }),
       mailBox,
-      el('h3', { text: 'Vorlagen' }),
+      el('h3', { text: 'Felder und Vorlagen' }),
+      autoRow,
       tplBox,
       el('h3', { text: 'Sicherung' }),
       bkInfo,
