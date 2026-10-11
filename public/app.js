@@ -470,7 +470,9 @@
     mailErr: '',        // Absender: Kopie per E-Mail klappt gerade nicht (Fehlercode)
     intent: 'link',     // Absender: 'link' (per WhatsApp) oder 'local' (vor Ort auf diesem Handy)
     local: null,        // Vor-Ort-Unterschrift: { label, note, lang, du, saved }
-    tpl: null           // Absender: angewendete Vorlage { id, name, spots }
+    tpl: null,          // Absender: angewendete Vorlage { id, name, spots }
+    own: [],            // Absender: eigene Unterschrift(en) als Vermittler, vor dem Senden ins PDF geschrieben
+    mySig: null         // Absender: gespeicherte eigene Unterschrift { path, bw, bh, sw }
   };
   const LS_PIN = 'firmio.pin.v1';
   const LS_FILTER = 'firmio.filter.v1';
@@ -499,6 +501,8 @@
     $('#file').addEventListener('cancel', () => { picking = 0; });
     $('#localBtn').addEventListener('click', () => { picking = Date.now(); S.intent = 'local'; $('#file').click(); });
     $('#lhLink').addEventListener('click', () => openSettings());
+    $('#ownBtn').addEventListener('click', () => placeOwnHere());
+    if (S.mode === 'send') { $('#ownBtn').setAttribute('aria-label', 'Meine Unterschrift einsetzen'); $('#ownBtn').title = 'Meine Unterschrift einsetzen'; }
     $('#overBtn').addEventListener('click', () => { const id = S.local && S.local.saved; toStart(); if (id) openRecord(id); });
     $('#backBtn').addEventListener('click', () => history.back());
     $('#scrim').addEventListener('click', () => closeSheet());
@@ -819,7 +823,7 @@
         (back && mailOn ? tr('<p><b>Kopie per E-Mail:</b> Der Absender bekommt das unterschriebene Dokument zusätzlich per E-Mail. Dafür wird es verschlüsselt (TLS) an den Server übertragen und von dort per E-Mail an den Absender geschickt. Der Server speichert diese Kopie nicht.</p>') : '') +
         (S.mode === 'send' && mailOn ? '<p>Die Mails gehen über Ihr eigenes E-Mail-Konto; dort liegt jeweils eine Kopie unter „Gesendet“.</p>' : '') +
         (S.mode === 'send' ? '<p><b>Ihre Übersicht</b> (Kundennotizen, Schlüssel und unterschriebene PDFs) wird nur auf diesem Gerät gespeichert. Unterschriebene Dokumente werden vom Server gelöscht, sobald Firmio sie abgeholt hat. Vor Ort unterschriebene Dokumente werden gar nicht hochgeladen.</p>' +
-          '<p><b>Vorlagen</b> merken sich nur, wo die Felder liegen, und zum Wiedererkennen kurze Prüfsummen der Wörter – keinen Text und keine Kundendaten. <b>Sicherungen</b> erstellen Sie selbst als Datei; wo Sie sie ablegen, entscheiden Sie.</p>' +
+          '<p><b>Vorlagen</b> merken sich nur, wo die Felder liegen, und zum Wiedererkennen kurze Prüfsummen der Wörter – keinen Text und keine Kundendaten. <b>Ihre gespeicherte Unterschrift</b> liegt nur auf diesem Gerät; ins Dokument kommt sie erst, wenn Sie senden. <b>Sicherungen</b> erstellen Sie selbst als Datei; wo Sie sie ablegen, entscheiden Sie.</p>' +
           '<p><b>Erinnerungen:</b> Der Server merkt sich nur, zu welchen zufälligen Kennungen er schon erinnert hat. Die Benachrichtigung enthält keine Namen; die setzt Ihr Handy selbst ein.</p>' : '') +
         (CFG.impressum ? tr('<p>Verantwortlich: siehe Impressum.</p>') : '') });
     openSheet(tr('Datenschutz'), body);
@@ -1211,7 +1215,9 @@
 
   /* ---------------- Ansicht ---------------- */
   async function openViewer() {
-    S.items = []; S.spots = []; S.sel = null; S.out = null; S.dirty = false; S.hashMatch = null; S.cur = 0; S.sig = null; S.sent = null; S.sendLang = 'de'; S.sendDu = loadSender().du !== false; S.sentBack = null; S.custLabel = ''; S.custNote = ''; S.custName = ''; S.tpl = null; S.docSig = null;
+    S.items = []; S.spots = []; S.sel = null; S.out = null; S.dirty = false; S.hashMatch = null; S.cur = 0; S.sig = null; S.sent = null; S.sendLang = 'de'; S.sendDu = loadSender().du !== false; S.sentBack = null; S.custLabel = ''; S.custNote = ''; S.tpl = null; S.docSig = null;
+    S.own = []; S.ownBurned = 0; S.ownAuto = null; S.mySig = S.mode === 'send' ? loadMySig() : null;
+    $('#ownBtn').classList.toggle('hidden', !(S.mode === 'send' && !S.view));
     showScreen('viewer');
     $('#docName').textContent = S.file.name;
     $('#modeChip').textContent = S.view ? 'Unterschrieben' : S.mode === 'send' ? (S.intent === 'local' ? 'Vor Ort' : 'Anfordern') : '';
@@ -1222,7 +1228,7 @@
       banner('info', S.intent === 'local'
         ? 'Markieren Sie mit „Unterschrift“ und „Ort/Datum“, wo Ihr Kunde unterschreiben soll. Dann „Weiter“ und das Handy übergeben.'
         : 'Tippen Sie unten auf „Unterschrift“ und ziehen Sie das gelbe Feld auf die Unterschriftslinie. Mit dem Punkt unten rechts ändern Sie die Größe.');
-      checkTemplates().catch(e => console.warn('Vorlagen:', e));
+      afterOpenSend().catch(e => console.warn('Vorlagen/Unterschrift:', e));
     } else {
       applyRequest();
     }
@@ -1321,6 +1327,7 @@
       }
     });
     S.items.forEach(o => { if (o.type === 'sig') paintObj(o); layoutObj(o); });
+    S.own.forEach(o => { paintObj(o); layoutObj(o); });
     S.spots.forEach(layoutObj);
   }
 
@@ -1393,6 +1400,13 @@
   function capSize(w) { return clamp(w / (caption(new Date()).length * 0.5), 3.6, 6.2); }
   function capH(w) { return capSize(w) * 1.6; }
   function sigH(w) { return capH(w) + w * S.sig.bh / S.sig.bw; }
+  // Eigene Unterschrift des Absenders (Vermittler): Bildunterschrift mit seinem Namen aus dem Briefkopf
+  function ownCaption(d) {
+    const n = loadSender().name;
+    return (n ? n + ' · ' : '') + 'elektronisch unterschrieben · ' + fmtDate(d) + ', ' + fmtTime(d) + ' Uhr';
+  }
+  function ownCapSize(w) { return clamp(w / (ownCaption(new Date()).length * 0.5), 3.6, 6.2); }
+  function ownH(w) { return ownCapSize(w) * 1.6 + w * S.mySig.bh / S.mySig.bw; }
   let measureCtx = null;
   function textWidth(o) {
     if (!measureCtx) measureCtx = document.createElement('canvas').getContext('2d');
@@ -1400,15 +1414,17 @@
     return measureCtx.measureText(o.text).width / 100 * o.size;
   }
   function objW(o) { return o.type === 'text' ? textWidth(o) : o.w; }
-  function objH(o) { return o.type === 'sig' ? sigH(o.w) : o.type === 'text' ? o.size * 1.25 : o.h; }
+  function objH(o) { return o.type === 'sig' ? sigH(o.w) : o.type === 'own' ? ownH(o.w) : o.type === 'text' ? o.size * 1.25 : o.h; }
 
-  function sigSvg(w) {
-    const s = S.sig, cs = capSize(w), h = sigH(w), sc = w / s.bw;
+  function sigSvgOf(s, w, text, cs, h) {
+    const sc = w / s.bw;
     return '<svg viewBox="0 0 ' + r2(w) + ' ' + r2(h) + '" preserveAspectRatio="none" aria-hidden="true">' +
-      '<text x="0" y="' + r2(cs * 1.1) + '" font-size="' + r2(cs) + '" fill="' + CAP_CSS + '" font-family="Helvetica, Arial, sans-serif">' + esc(caption(new Date())) + '</text>' +
+      '<text x="0" y="' + r2(cs * 1.1) + '" font-size="' + r2(cs) + '" fill="' + CAP_CSS + '" font-family="Helvetica, Arial, sans-serif">' + esc(text) + '</text>' +
       '<g transform="translate(0 ' + r2(cs * 1.6) + ') scale(' + (Math.round(sc * 10000) / 10000) + ')">' +
       '<path d="' + s.path + '" fill="none" stroke="' + INK_CSS + '" stroke-width="' + r2(s.sw) + '" stroke-linecap="round" stroke-linejoin="round"/></g></svg>';
   }
+  function sigSvg(w) { return sigSvgOf(S.sig, w, caption(new Date()), capSize(w), sigH(w)); }
+  function ownSvg(w) { return sigSvgOf(S.mySig, w, ownCaption(new Date()), ownCapSize(w), ownH(w)); }
 
   function renderItem(it, fresh) {
     if (!it.node) {
@@ -1430,6 +1446,7 @@
   function paintObj(o) {
     if (!o.vis) return;
     if (o.type === 'sig') o.vis.innerHTML = sigSvg(o.w);
+    else if (o.type === 'own') o.vis.innerHTML = ownSvg(o.w);
     else if (o.type === 'text') { o.vis.innerHTML = ''; o.vis.append(el('span', { class: 'tx', text: o.text })); }
   }
 
@@ -1561,10 +1578,11 @@
   }
 
   function resizeObj(o, st, dx, dy, pg) {
-    if (o.type === 'sig') {
+    if (o.type === 'sig' || o.type === 'own') {
+      const hOf = o.type === 'own' ? ownH : sigH;
       let w = clamp(st.w + dx, 50, pg.W - o.x);
       let guard = 0;
-      while (w > 50 && o.y + sigH(w) > pg.H && guard++ < 200) w -= 2;
+      while (w > 50 && o.y + hOf(w) > pg.H && guard++ < 200) w -= 2;
       o.w = w;
       paintObj(o);
     } else if (o.type === 'text') {
@@ -1581,6 +1599,8 @@
     o.node = null;
     if (o.type === 'spot') {
       S.spots = S.spots.filter(x => x !== o);
+    } else if (o.type === 'own') {
+      S.own = S.own.filter(x => x !== o);
     } else {
       S.items = S.items.filter(x => x !== o);
       if (o.spot) {
@@ -1769,7 +1789,8 @@
     return d;
   }
 
-  function adoptSignature(strokes, padW) {
+  function adoptSignature(strokes, padW) { S.sig = sigFromStrokes(strokes, padW); }
+  function sigFromStrokes(strokes, padW) {
     const sw = Math.max(2.2, padW / 135);
     let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
     strokes.forEach(s => s.forEach(p => {
@@ -1783,7 +1804,7 @@
     let ox = x0 - m, oy = y0 - m;
     if (bh < bw * 0.14) { oy -= (bw * 0.14 - bh) / 2; bh = bw * 0.14; }
     if (bw < bh * 0.4) { ox -= (bh * 0.4 - bw) / 2; bw = bh * 0.4; }
-    S.sig = { path: strokesToPath(strokes, ox, oy), bw: bw, bh: bh, sw: sw };
+    return { path: strokesToPath(strokes, ox, oy), bw: bw, bh: bh, sw: sw };
   }
 
   function openPad(opts) {
@@ -2060,7 +2081,7 @@
       el('small', { text: srv.pin ? 'Einmal eingeben, dieses Gerät merkt sie sich.' : 'Schützt Ihren Speicher: Nur mit dieser PIN können Dokumente hochgeladen werden. Dieses Gerät merkt sie sich.' }));
 
     // Vorlage: Felder für dieses Formular merken (oder eine angewendete Vorlage aktualisieren)
-    const tplChanged = () => !S.tpl || JSON.stringify(spotList()) !== S.tpl.sig;
+    const tplChanged = () => !S.tpl || tplSig() !== S.tpl.sig;
     const tplOn = el('input', { id: 'tplOn', type: 'checkbox' });
     const tplName = el('input', { id: 'tplName', class: 'in', type: 'text', value: defaultTplName(), maxlength: '50', autocomplete: 'off' });
     const tplNameBox = el('label', { class: 'fld' }, el('span', { text: 'Name der Vorlage' }), tplName);
@@ -2070,7 +2091,7 @@
     tplOn.addEventListener('change', () => render());
     let tplDone = false;
     const maybeSaveTpl = async () => {
-      if (tplDone || !tplOn.checked || !S.spots.length) return;
+      if (tplDone || !tplOn.checked || !(S.spots.length || S.own.length)) return;
       tplDone = true;
       if (!(await saveTemplate(S.tpl ? S.tpl.name : (cleanLabel(tplName.value) || defaultTplName())))) toast('Die Vorlage konnte nicht gespeichert werden.');
     };
@@ -2128,6 +2149,7 @@
     const summary = (nS || nD
       ? (nS ? nS + ' ' + plural(nS, 'Unterschriftsfeld', 'Unterschriftsfelder') : '') + (nS && nD ? ' und ' : '') + (nD ? nD + ' ' + plural(nD, 'Ort/Datum-Feld', 'Ort/Datum-Felder') : '') + ' markiert.'
       : 'Keine Felder markiert. Der Kunde setzt die Unterschrift dann selbst an die richtige Stelle.') + ' ' + S.pages.length + ' ' + plural(S.pages.length, 'Seite', 'Seiten') + '.' +
+      (S.own.length ? ' Ihre eigene Unterschrift ist gesetzt.' : '') +
       (S.tpl && !tplChanged() ? ' Vorlage „' + S.tpl.name + '“.' : '');
 
     const wayBtns = [['link', I.link, 'Per Link'], ['local', I.phone, 'Hier vor Ort']].map(w => el('button', { type: 'button', class: 'seg', html: w[1] + '<span>' + w[2] + '</span>',
@@ -2151,6 +2173,10 @@
         await apiJSON('POST', '/api/pin', { json: { pin: pin } });
         setPin(pin);
         srv.pin = true;
+        await maybeSaveTpl(); // vor dem Einsetzen der eigenen Unterschrift, damit die Vorlage deren Lage kennt
+        if (S.own.length) {
+          try { await burnOwn(); } catch (x) { unbusy(); err.textContent = 'Ihre Unterschrift konnte nicht eingesetzt werden. Bitte noch einmal versuchen.'; return; }
+        }
         busy('Dokument wird verschlüsselt …');
         const back = willTrack();
         S.sent = await uploadDoc(pin, p => busy('Wird hochgeladen … ' + Math.round(p * 100) + ' %'), requestInfo(name.value.trim(), proof.checked, back, custForHead()));
@@ -2166,7 +2192,6 @@
           } catch (x) { console.warn('Übersicht nicht verfügbar:', x); }
         }
         if (S.sent.secret && back && !S.sent.track) pushHead(); // Übersicht ging nicht: Kunde schickt dann per WhatsApp zurück
-        await maybeSaveTpl();
         unbusy();
         refresh(false);
         setTimeout(() => { try { actions.scrollIntoView({ block: 'end', behavior: 'smooth' }); } catch (x) { /* egal */ } }, 60);
@@ -2183,6 +2208,9 @@
     async function goLocal() {
       err.textContent = '';
       await maybeSaveTpl();
+      if (S.own.length) {
+        try { await burnOwn(); } catch (x) { err.textContent = 'Ihre Unterschrift konnte nicht eingesetzt werden. Bitte noch einmal versuchen.'; return; }
+      }
       saveSender(Object.assign(loadSender(), { name: name.value.trim(), proof: proof.checked, prefill: prefill.checked }));
       startLocal({ label: cleanLabel(cust.value), note: cleanLabel(note.value), info: requestInfo(name.value.trim(), proof.checked, false, custForHead()) });
     }
@@ -2192,7 +2220,17 @@
       if (await shareMessage(msg.value)) S.dirty = false;
     }
 
+    // Ohne Server-Teil: erst die eigene Unterschrift einsetzen (danach ein zweiter Tipp, weil Teilen einen frischen Tipp braucht)
+    async function burnFirst() {
+      if (!S.own.length) return false;
+      await maybeSaveTpl();
+      try { await burnOwn(); } catch (x) { toast('Ihre Unterschrift konnte nicht eingesetzt werden.'); return true; }
+      refresh(false);
+      toast('Ihre Unterschrift ist eingesetzt. Bitte noch einmal tippen.', 4000);
+      return true;
+    }
     async function shareWithPdf() {
+      if (await burnFirst()) return;
       await maybeSaveTpl();
       const file = new File([S.file.bytes], S.file.name, { type: 'application/pdf' });
       const data = { files: [file], text: msg.value };
@@ -2224,7 +2262,7 @@
       viaHint.textContent = willTrack()
         ? 'Ihr Kunde muss nichts speichern und nichts zurückschicken: Er unterschreibt über den Link, das PDF landet direkt in Ihrer Übersicht. Ende-zu-Ende verschlüsselt.'
         : 'Ihr Kunde muss nichts speichern: Er tippt auf den Link und das Dokument ist da. Ende-zu-Ende verschlüsselt, nach dem Zurückschicken bzw. nach 7 Tagen gelöscht.';
-      tplBox.classList.toggle('hidden', tplDone || !S.spots.length || !tplChanged());
+      tplBox.classList.toggle('hidden', tplDone || !(S.spots.length || S.own.length) || !tplChanged());
       tplNameBox.classList.toggle('hidden', !tplOn.checked || !!S.tpl);
       localInfo.classList.toggle('hidden', !loc);
       msgBox.classList.toggle('hidden', loc);
@@ -2251,7 +2289,7 @@
         actions.append(el('button', { type: 'button', class: 'btn btn-primary btn-block btn-xl', html: I.share + '<span>PDF + Nachricht senden</span>', onclick: shareWithPdf }),
           el('div', { class: 'btnrow' },
             el('button', { type: 'button', class: 'btn btn-ghost', html: I.copy + '<span>Text kopieren</span>', onclick: () => copyText(msg.value, 'Nachricht kopiert.') }),
-            el('button', { type: 'button', class: 'btn btn-ghost', html: I.download + '<span>PDF speichern</span>', onclick: () => download(S.file.bytes, S.file.name) })),
+            el('button', { type: 'button', class: 'btn btn-ghost', html: I.download + '<span>PDF speichern</span>', onclick: async () => { if (!(await burnFirst())) download(S.file.bytes, S.file.name); } })),
           el('div', { class: 'donelinks' },
             el('a', { class: 'linkbtn', href: '#', text: 'Link als Kunde testen', onclick: e => { e.preventDefault(); window.open(link, '_blank', 'noopener'); } })));
       }
@@ -2375,18 +2413,19 @@
   }
   async function checkTemplates() {
     const list = loadTpls();
-    if (!list.length || S.mode !== 'send' || S.view) return;
+    if (!list.length || S.mode !== 'send' || S.view) return null;
     const pdf = S.pdf;
     const sig = await docSig(pdf);
-    if (pdf !== S.pdf || S.mode !== 'send') return;
+    if (pdf !== S.pdf || S.mode !== 'send') return null;
     S.docSig = sig;
     const scored = list.map(t => ({ t: t, s: tplScore(t, sig) })).filter(x => x.s >= 0).sort((a, b) => b.s - a.s || (b.t.used || 0) - (a.t.used || 0));
-    if (!scored.length || S.spots.length) return;
+    if (!scored.length || S.spots.length || S.own.length) return null;
     const best = scored[0];
-    if (best.s >= 0.45 && !S.sheetOpen) applyTpl(best.t);
-    else if (best.s >= 0.45) banner('info', 'Sieht aus wie Ihre Vorlage „' + best.t.name + '“.', { label: 'Felder setzen', fn: () => applyTpl(best.t) });
+    if (best.s >= 0.45 && !S.sheetOpen) { applyTpl(best.t); return best.t; }
+    if (best.s >= 0.45) banner('info', 'Sieht aus wie Ihre Vorlage „' + best.t.name + '“.', { label: 'Felder setzen', fn: () => applyTpl(best.t) });
     else if (best.s >= 0.2) banner('info', 'Sieht aus wie Ihre Vorlage „' + best.t.name + '“.', { label: 'Felder setzen', fn: () => applyTpl(best.t) });
     else banner('info', 'Tippen Sie unten auf „Unterschrift“ und ziehen Sie das gelbe Feld auf die Unterschriftslinie.', { label: 'Vorlage wählen', fn: () => pickTpl(scored.map(x => x.t)) });
+    return null;
   }
   function pickTpl(list) {
     const body = el('div', { class: 'menu' });
@@ -2407,11 +2446,20 @@
       renderSpot(sp);
       ids.push(sp.id);
     });
-    S.tpl = { id: t.id, name: t.name, ids: ids, sig: JSON.stringify(spotList()) };
+    let nOwn = 0;
+    if (S.mySig && Array.isArray(t.own)) {
+      t.own.forEach(a => {
+        if (!Array.isArray(a) || a.length !== 4 || !a.every(v => typeof v === 'number' && isFinite(v))) return;
+        const o = placeOwn(a[0] - 1, a[1], a[2], a[3], false);
+        if (o) { ids.push(o.id); nOwn++; }
+      });
+    }
+    S.tpl = { id: t.id, name: t.name, ids: ids, sig: tplSig() };
     const list = loadTpls(), x = list.find(v => v.id === t.id);
     if (x) { x.used = Date.now(); x.n = (x.n || 0) + 1; saveTpls(list); }
     S.dirty = true;
-    banner('ok', 'Vorlage „' + t.name + '“: ' + ids.length + ' ' + plural(ids.length, 'Feld', 'Felder') + ' gesetzt. Bitte kurz prüfen.', { label: 'Rückgängig', fn: () => undoTpl() });
+    const nF = ids.length - nOwn;
+    banner('ok', 'Vorlage „' + t.name + '“: ' + nF + ' ' + plural(nF, 'Feld', 'Felder') + ' gesetzt' + (nOwn ? ', dazu Ihre Unterschrift' : '') + '. Bitte kurz prüfen.', { label: 'Rückgängig', fn: () => undoTpl() });
     renderBar();
     window.scrollTo(0, 0);
   }
@@ -2419,6 +2467,7 @@
     if (!S.tpl) return;
     const ids = S.tpl.ids;
     S.spots.filter(sp => ids.indexOf(sp.id) >= 0).forEach(sp => removeObj(sp));
+    S.own.filter(o => ids.indexOf(o.id) >= 0).forEach(o => removeObj(o));
     S.tpl = null;
     if (!silent) banner('info', 'Felder entfernt. Setzen Sie sie unten mit „Unterschrift“ und „Ort/Datum“.');
   }
@@ -2427,18 +2476,257 @@
       const sig = S.docSig || await docSig(S.pdf);
       S.docSig = sig;
       let list = loadTpls();
-      const spots = spotList();
+      const spots = spotList(), own = ownList();
       const old = S.tpl ? list.find(t => t.id === S.tpl.id) : null;
       if (old) {
-        Object.assign(old, { spots: spots, sizes: sig.sizes, pages: sig.pages, words: sig.words.length ? sig.words : old.words, updated: Date.now(), used: Date.now() });
+        Object.assign(old, { spots: spots, own: own, sizes: sig.sizes, pages: sig.pages, words: sig.words.length ? sig.words : old.words, updated: Date.now(), used: Date.now() });
+        S.tpl.sig = tplSig();
       } else {
-        const t = { id: 't' + Date.now().toString(36) + Math.random().toString(36).slice(2, 7), name: String(name).slice(0, 50), pages: sig.pages, sizes: sig.sizes, words: sig.words, spots: spots, created: Date.now(), used: Date.now(), n: 1 };
+        const t = { id: 't' + Date.now().toString(36) + Math.random().toString(36).slice(2, 7), name: String(name).slice(0, 50), pages: sig.pages, sizes: sig.sizes, words: sig.words, spots: spots, own: own, created: Date.now(), used: Date.now(), n: 1 };
         list.unshift(t);
-        S.tpl = { id: t.id, name: t.name, ids: S.spots.map(s => s.id), sig: JSON.stringify(spots) };
+        S.tpl = { id: t.id, name: t.name, ids: S.spots.map(x => x.id).concat(S.own.map(x => x.id)), sig: tplSig() };
       }
       if (list.length > 40) list = list.sort((a, b) => (b.used || 0) - (a.used || 0)).slice(0, 40);
       return saveTpls(list);
     } catch (e) { console.warn('Vorlage:', e); return false; }
+  }
+
+  /* ---------------- Eigene Unterschrift (Vermittler): einmal speichern, automatisch einsetzen ---------------- */
+  const LS_MYSIG = 'firmio.meinesig.v1';
+  function sigOk(o) {
+    return !!o && typeof o.path === 'string' && o.path.length < 200000 && /^[MLQ0-9 .\-]+$/.test(o.path) &&
+      [o.bw, o.bh, o.sw].every(v => typeof v === 'number' && isFinite(v) && v > 0 && v < 5000);
+  }
+  function loadMySig() { try { const o = JSON.parse(localStorage.getItem(LS_MYSIG)); return sigOk(o) ? o : null; } catch (e) { return null; } }
+  function saveMySig(o) {
+    try { if (o) localStorage.setItem(LS_MYSIG, JSON.stringify(o)); else localStorage.removeItem(LS_MYSIG); } catch (e) { return false; }
+    S.mySig = o || null;
+    return true;
+  }
+  const ownList = () => S.own.map(o => [o.page + 1, Math.round(o.x), Math.round(o.y), Math.round(o.w)]);
+  const tplSig = () => JSON.stringify([spotList(), ownList()]);
+
+  // Unterschrift einmal zeichnen (Einstellungen oder direkt aus dem Dokument)
+  function openMySigPad(then) {
+    const pad = makePad(null);
+    const err = el('p', { class: 'err', role: 'alert' });
+    const ok = el('button', { type: 'button', class: 'btn btn-primary btn-block btn-xl', html: I.check + '<span>Unterschrift speichern</span>' });
+    ok.addEventListener('click', () => {
+      if (!pad.valid()) { err.textContent = 'Bitte im weißen Feld unterschreiben.'; return; }
+      const sig = Object.assign(sigFromStrokes(pad.strokes(), pad.width()), { created: Date.now() });
+      if (!saveMySig(sig)) { err.textContent = 'Konnte auf diesem Gerät nicht gespeichert werden.'; return; }
+      closeSheet();
+      toast('Ihre Unterschrift ist gespeichert.');
+      if (then) setTimeout(then, 320);
+    });
+    openSheet('Meine Unterschrift', el('div', null,
+      el('p', { class: 'prose', text: 'Ihre Unterschrift als Vermittler. Firmio setzt sie automatisch dort ein, wo im Dokument „Unterschrift Vermittler“ steht (auch Berater, Vertreter, Makler). Sie wird nur auf diesem Gerät gespeichert.' }),
+      el('div', { class: 'lblrow' }, el('span', { text: 'Ihre Unterschrift' }),
+        el('button', { type: 'button', text: 'Löschen', onclick: () => { pad.clear(); err.textContent = ''; } })),
+      pad.node, err, ok), { onClose: () => pad.destroy() });
+    requestAnimationFrame(() => requestAnimationFrame(pad.resize));
+  }
+
+  // Eigene Unterschrift aufs Blatt legen (verschiebbar, Größe änderbar, löschbar)
+  function placeOwn(pi, x, y, w, doSelect) {
+    const pg = S.pages[pi];
+    if (!pg || !S.mySig) return null;
+    w = clamp(w, 50, Math.min(260, pg.W));
+    const h = ownH(w);
+    const it = { id: nid(), type: 'own', page: pi, w: w, x: clamp(x, 0, Math.max(0, pg.W - w)), y: clamp(y, 0, Math.max(0, pg.H - h)) };
+    S.own.push(it);
+    renderItem(it, true);
+    if (doSelect) select(it);
+    S.dirty = true;
+    return it;
+  }
+  // In ein erkanntes Feld: auf die Linie, höchstens etwa 42 pt hoch
+  function placeOwnInField(f) {
+    let w = clamp(f.w, 70, 200), guard = 0;
+    while (ownH(w) > 42 && w > 70 && guard++ < 60) w *= 0.95;
+    return placeOwn(f.page, f.x, f.bottom - ownH(w), w, false);
+  }
+  function placeOwnHere() {
+    if (!S.mySig) { openMySigPad(placeOwnHere); return; }
+    const pg = S.pages[S.cur];
+    if (!pg) return;
+    const w = 150, it = placeOwn(S.cur, pg.W * 0.5, visibleCenterPt(pg) - ownH(w) / 2, w, true);
+    if (it) { scrollToObj(it); toast('Ziehen Sie Ihre Unterschrift an die richtige Stelle.'); }
+  }
+
+  /* Erkennen, wo der Vermittler unterschreibt: Beschriftung im Text (pdf.js) und Strich darüber (Zeichenbefehle). */
+  const OWN_RE = /unterschrift[^.:;!?]{0,28}?(vermittler|berater|vertreter|makler|agentur|aussendienst|betreuer|vertriebspartner)|(vermittler|berater|vertreter|makler|aussendienst|betreuer|vertriebspartner)[^.:;!?]{0,22}?unterschrift/;
+  function labelSegments(items, vp) {
+    const its = [];
+    items.forEach(it => {
+      const t = it.transform;
+      if (!it.str || !it.str.trim() || !t || Math.abs(t[1]) > 0.01 || Math.abs(t[2]) > 0.01 || t[0] <= 0) return;
+      const fs = Math.abs(t[3]) || Math.abs(t[0]) || 10;
+      const p0 = vp.convertToViewportPoint(t[4], t[5]), p1 = vp.convertToViewportPoint(t[4] + (it.width || 0), t[5]);
+      its.push({ str: it.str, x0: Math.min(p0[0], p1[0]), x1: Math.max(p0[0], p1[0]), y: p0[1], fs: fs });
+    });
+    its.sort((a, b) => a.y - b.y || a.x0 - b.x0);
+    const lines = [];
+    its.forEach(it => {
+      const ln = lines.find(l => Math.abs(l.y - it.y) < Math.max(1.5, it.fs * 0.35));
+      if (ln) ln.items.push(it); else lines.push({ y: it.y, items: [it] });
+    });
+    const segs = [];
+    lines.forEach(ln => {
+      ln.items.sort((a, b) => a.x0 - b.x0);
+      let cur = null;
+      ln.items.forEach(it => {
+        const gap = cur ? it.x0 - cur.x1 : 0;
+        if (!cur || gap > Math.max(12, it.fs * 1.6)) { cur = { text: it.str, x0: it.x0, x1: it.x1, y: it.y, fs: it.fs }; segs.push(cur); return; }
+        cur.text += (gap > it.fs * 0.2 && !/\s$/.test(cur.text) ? ' ' : '') + it.str;
+        cur.x1 = Math.max(cur.x1, it.x1);
+        cur.fs = Math.max(cur.fs, it.fs);
+      });
+    });
+    return segs;
+  }
+  // Waagerechte Striche (Linien und sehr flache Rechtecke) in Seitenkoordinaten wie die Anzeige
+  async function hLines(page, vp) {
+    const O = pdfjsLib.OPS || {};
+    let ol;
+    try { ol = await page.getOperatorList(); } catch (e) { return []; }
+    const out = [], stack = [];
+    let m = [1, 0, 0, 1, 0, 0];
+    const mul = (a, b) => [a[0] * b[0] + a[2] * b[1], a[1] * b[0] + a[3] * b[1], a[0] * b[2] + a[2] * b[3], a[1] * b[2] + a[3] * b[3], a[0] * b[4] + a[2] * b[5] + a[4], a[1] * b[4] + a[3] * b[5] + a[5]];
+    const pt = (x, y) => vp.convertToViewportPoint(m[0] * x + m[2] * y + m[4], m[1] * x + m[3] * y + m[5]);
+    const seg = (a, b, tol) => { if (Math.abs(a[1] - b[1]) <= tol && Math.abs(a[0] - b[0]) > 40) out.push({ x0: Math.min(a[0], b[0]), x1: Math.max(a[0], b[0]), y: (a[1] + b[1]) / 2 }); };
+    for (let i = 0; i < ol.fnArray.length; i++) {
+      const fn = ol.fnArray[i], args = ol.argsArray[i];
+      if (fn === O.save) stack.push(m);
+      else if (fn === O.restore || fn === O.paintFormXObjectEnd) { if (stack.length) m = stack.pop(); }
+      else if (fn === O.paintFormXObjectBegin) { stack.push(m); if (args && Array.isArray(args[0]) && args[0].length === 6) m = mul(m, args[0]); }
+      else if (fn === O.transform && args && args.length === 6) m = mul(m, args);
+      else if (fn === O.constructPath && args && args[0] && args[1]) {
+        const ops = args[0], c = args[1];
+        let j = 0, cur = null;
+        for (let k = 0; k < ops.length; k++) {
+          const op = ops[k];
+          if (op === O.moveTo) { cur = pt(c[j], c[j + 1]); j += 2; }
+          else if (op === O.lineTo) { const q = pt(c[j], c[j + 1]); j += 2; if (cur) seg(cur, q, 1.2); cur = q; }
+          else if (op === O.rectangle) { const a = pt(c[j], c[j + 1]), b = pt(c[j] + c[j + 2], c[j + 1] + c[j + 3]); j += 4; seg(a, b, 2.5); }
+          else if (op === O.curveTo) j += 6;
+          else if (op === O.curveTo2 || op === O.curveTo3) j += 4;
+        }
+      }
+    }
+    return out;
+  }
+  function fieldFor(lb, lines) {
+    const top = lb.y - lb.fs * 0.85;
+    let best = null;
+    lines.forEach(l => { // Strich über der Beschriftung (häufigste Form)
+      const dy = top - l.y;
+      if (dy < -1.5 || dy > Math.max(26, lb.fs * 3.2) || l.x1 < lb.x0 - 4 || l.x0 > lb.x1 + 40) return;
+      if (!best || dy < best.dy) best = { l: l, dy: dy };
+    });
+    if (best) return { x: best.l.x0 + 3, w: best.l.x1 - best.l.x0 - 6, bottom: best.l.y - 1 };
+    let right = null;
+    lines.forEach(l => { // „Unterschrift Vermittler: ____“ mit Strich rechts daneben
+      if (Math.abs(l.y - lb.y) <= lb.fs * 0.7 + 2 && l.x0 >= lb.x1 - 8 && l.x0 - lb.x1 < 40 && (!right || l.x0 < right.x0)) right = l;
+    });
+    if (right) return { x: right.x0 + 3, w: right.x1 - right.x0 - 6, bottom: right.y - 1 };
+    const us = lb.text.indexOf('___');
+    if (us > 0) { const xu = lb.x0 + (lb.x1 - lb.x0) * us / lb.text.length; return { x: xu + 2, w: lb.x1 - xu - 4, bottom: lb.y - 1 }; }
+    return { x: lb.x0, w: clamp((lb.x1 - lb.x0) * 1.3, 110, 200), bottom: top - 2 }; // kein Strich: über die Beschriftung
+  }
+  async function findOwnFields(pdf) {
+    const found = [];
+    for (let i = 0; i < Math.min(pdf.numPages, 40); i++) {
+      if (pdf !== S.pdf) return [];
+      let page, tc;
+      try { page = await pdf.getPage(i + 1); tc = await page.getTextContent(); } catch (e) { continue; }
+      const vp = page.getViewport({ scale: 1 });
+      if (vp.rotation % 360 !== 0) continue;
+      const labels = labelSegments(tc.items, vp).filter(sg => sg.text.length <= 70 && OWN_RE.test(fold(sg.text)));
+      if (!labels.length) continue;
+      const lines = await hLines(page, vp);
+      labels.forEach(lb => {
+        const f = fieldFor(lb, lines);
+        if (f && f.w > 30 && !found.some(x => x.page === i && Math.abs(x.x - f.x) < 10 && Math.abs(x.bottom - f.bottom) < 10)) found.push(Object.assign({ page: i, label: lb.text.replace(/[_\s]+$/, '').trim() }, f));
+      });
+    }
+    return found;
+  }
+
+  // Nach dem Öffnen im Absender-Modus: Vorlage prüfen, dann eigene Unterschrift setzen
+  async function afterOpenSend() {
+    const pdf = S.pdf;
+    const t = await checkTemplates().catch(e => { console.warn('Vorlagen:', e); return null; });
+    if (pdf !== S.pdf || S.mode !== 'send' || S.view) return;
+    if (t && S.own.length) return; // Vorlage hat die eigene Unterschrift schon gesetzt
+    let fields = [];
+    try { fields = await findOwnFields(pdf); } catch (e) { console.warn('Unterschrift erkennen:', e); }
+    if (pdf !== S.pdf || S.mode !== 'send' || S.view || !fields.length) return;
+    const where = fields.length === 1 ? '„' + fields[0].label + '“ auf Seite ' + (fields[0].page + 1) : fields.length + ' Stellen';
+    if (!S.mySig) {
+      if (!S.tpl) banner('info', 'Hier unterschreiben Sie als Vermittler: ' + where + '. Speichern Sie Ihre Unterschrift einmal, dann setzt Firmio sie ab jetzt automatisch ein.',
+        { label: 'Jetzt speichern', fn: () => openMySigPad(() => autoOwn(fields, t)) });
+      return;
+    }
+    if (S.own.length || S.sheetOpen) return;
+    autoOwn(fields, t);
+  }
+  function autoOwn(fields, t) {
+    if (!S.mySig || S.mode !== 'send') return;
+    const ids = fields.map(placeOwnInField).filter(Boolean).map(o => o.id);
+    if (!ids.length) return;
+    S.ownAuto = ids;
+    if (S.tpl) S.tpl.ids = S.tpl.ids.concat(ids);
+    const what = 'Ihre Unterschrift ist gesetzt' + (fields.length === 1 ? ' (' + fields[0].label + ', Seite ' + (fields[0].page + 1) + ')' : ' (' + ids.length + ' Stellen)') + '.';
+    banner('ok', (t && S.tpl ? 'Vorlage „' + S.tpl.name + '“: ' + S.spots.length + ' ' + plural(S.spots.length, 'Feld', 'Felder') + ' gesetzt. ' : '') + what + ' Bitte kurz prüfen.',
+      { label: 'Rückgängig', fn: () => { if (S.tpl && t) undoTpl(); else { S.own.filter(o => ids.indexOf(o.id) >= 0).forEach(o => removeObj(o)); banner('info', 'Entfernt. Mit dem Stift oben setzen Sie Ihre Unterschrift selbst.'); } } });
+    renderBar();
+  }
+
+  // Vor dem Senden: eigene Unterschrift fest ins PDF schreiben (dann sieht der Kunde sie, und sie ist im fertigen PDF)
+  async function burnOwn() {
+    if (!S.own.length || !S.mySig) return false;
+    busy('Ihre Unterschrift wird eingesetzt …');
+    try {
+      if (!S.docSig) { try { S.docSig = await docSig(S.pdf); } catch (e) { /* egal */ } } // Vorlagen erkennen später das Original
+      const L = await loadPdfLib();
+      let doc, raster = false;
+      try {
+        doc = await L.PDFDocument.load(S.file.bytes, { updateMetadata: false });
+        if (doc.isEncrypted || doc.getPageCount() !== S.pages.length) throw new Error('raster');
+      } catch (e) { doc = await rasterize(L); raster = true; busy('Ihre Unterschrift wird eingesetzt …'); }
+      const font = await doc.embedFont(L.StandardFonts.Helvetica);
+      const cs = new Set(font.getCharacterSet());
+      const ink = L.rgb(INK[0] / 255, INK[1] / 255, INK[2] / 255), capColor = L.rgb(CAP[0] / 255, CAP[1] / 255, CAP[2] / 255);
+      const capText = toWinAnsi(ownCaption(new Date()), cs), sig = S.mySig, pages = doc.getPages();
+      S.own.forEach(it => {
+        const pg = S.pages[it.page], page = pages[it.page];
+        if (!pg || !page) return;
+        const M = raster ? [1, 0, 0, 1, 0, 0] : virtualToUser(pg), c = ownCapSize(it.w);
+        page.pushOperators(L.pushGraphicsState(), L.concatTransformationMatrix(M[0], M[1], M[2], M[3], M[4], M[5]), L.setLineJoin(L.LineJoinStyle.Round));
+        page.drawSvgPath(sig.path, { x: it.x, y: pg.H - (it.y + c * 1.6), scale: it.w / sig.bw, borderColor: ink, borderWidth: sig.sw, borderLineCap: L.LineCapStyle.Round });
+        page.drawText(capText, { x: it.x, y: pg.H - (it.y + c * 1.1), size: c, font: font, color: capColor });
+        page.pushOperators(L.popGraphicsState());
+      });
+      const bytes = await doc.save({ useObjectStreams: false });
+      const fresh = await pdfjsLib.getDocument({ data: bytes.slice(), isEvalSupported: false }).promise;
+      const old = S.pdf;
+      S.file = { name: S.file.name, bytes: bytes, hash: await sha256(bytes) };
+      S.pdf = fresh;
+      try { old.destroy(); } catch (e) { /* egal */ }
+      S.own.forEach(o => { if (o.node) o.node.remove(); });
+      S.ownBurned = S.own.length;
+      S.own = [];
+      S.sel = null;
+      await buildPages();
+      S.spots.forEach(renderSpot);
+      unbusy();
+      return true;
+    } catch (e) {
+      console.error('Eigene Unterschrift:', e);
+      unbusy();
+      throw e;
+    }
   }
 
   /* ---------------- Vor Ort: Kunde unterschreibt auf diesem Handy ---------------- */
@@ -2458,6 +2746,7 @@
     S.fileIsRemote = false;
     applyStatic();
     $('#modeChip').textContent = tr('Vor Ort');
+    $('#ownBtn').classList.add('hidden');
     applyRequest();
     renderBar();
     S.dirty = false;
@@ -3270,6 +3559,29 @@
     };
     renderPush();
 
+    const sigBox = el('div');
+    const renderSig = () => {
+      sigBox.innerHTML = '';
+      const m = loadMySig();
+      if (!m) {
+        sigBox.append(el('p', { class: 'prose', text: 'Speichern Sie Ihre Unterschrift einmal. Firmio setzt sie dann automatisch dort ein, wo im Dokument „Unterschrift Vermittler“ steht (auch Berater, Vertreter, Makler) – bevor der Kunde das Dokument bekommt.' }),
+          el('button', { type: 'button', class: 'btn btn-ghost btn-block', html: I.pen + '<span>Unterschrift speichern</span>', onclick: () => openMySigPad(openSettings) }));
+        return;
+      }
+      const prev = el('div', { class: 'mysig', 'aria-label': 'Ihre gespeicherte Unterschrift' });
+      prev.innerHTML = '<svg viewBox="0 0 ' + r2(m.bw) + ' ' + r2(m.bh) + '" aria-hidden="true"><path d="' + m.path + '" fill="none" stroke="' + INK_CSS + '" stroke-width="' + r2(m.sw) + '" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      sigBox.append(prev,
+        el('p', { class: 'hint left', text: 'Wird automatisch eingesetzt, wo „Unterschrift Vermittler“ steht. Im Dokument können Sie sie mit dem Stift oben rechts auch selbst setzen. Nur auf diesem Gerät gespeichert.' }),
+        el('div', { class: 'btnrow' },
+          el('button', { type: 'button', class: 'btn btn-ghost', html: I.redo + '<span>Neu zeichnen</span>', onclick: () => openMySigPad(openSettings) }),
+          el('button', { type: 'button', class: 'btn btn-ghost', text: 'Löschen', onclick: () => {
+            if (!confirm('Gespeicherte Unterschrift löschen?')) return;
+            saveMySig(null);
+            renderSig();
+          } })));
+    };
+    renderSig();
+
     const mailBox = el('div');
     const renderMail = () => {
       mailBox.innerHTML = '';
@@ -3400,6 +3712,8 @@
       el('h3', { text: 'Anrede' }),
       el('div', { class: 'fld' }, el('div', { class: 'segrow' }, duBtns[0], duBtns[1]),
         el('small', { text: 'Gilt für neue Anfragen. Beim Senden können Sie sie für einzelne Kunden ändern.' })),
+      el('h3', { text: 'Meine Unterschrift' }),
+      sigBox,
       el('h3', { text: 'Benachrichtigungen' }),
       pushBox,
       el('h3', { text: 'Kopie per E-Mail' }),
@@ -3524,7 +3838,7 @@
       }
       const s = loadSender();
       const data = { app: 'firmio', v: 1, created: new Date().toISOString(),
-        sender: { name: s.name || '', sub: s.sub || '', du: s.du !== false, proof: s.proof !== false, viaLink: s.viaLink !== false, prefill: s.prefill !== false },
+        sender: { name: s.name || '', sub: s.sub || '', du: s.du !== false, proof: s.proof !== false, viaLink: s.viaLink !== false, prefill: s.prefill !== false, mySig: loadMySig() },
         templates: loadTpls(), records: recs };
       files.unshift({ name: 'Inhaltsverzeichnis.csv', bytes: enc.encode('﻿' + rows.map(x => x.map(csvCell).join(';')).join('\r\n') + '\r\n') });
       files.unshift({ name: 'firmio-sicherung.json', bytes: enc.encode(JSON.stringify(data)) });
@@ -3624,6 +3938,10 @@
       const s = loadSender();
       if (data.sender && !s.name && typeof data.sender.name === 'string') {
         saveSender(Object.assign(s, { name: data.sender.name.slice(0, 60), sub: String(data.sender.sub || '').slice(0, 60), du: data.sender.du !== false }));
+      }
+      if (data.sender && sigOk(data.sender.mySig) && !loadMySig()) {
+        const m = data.sender.mySig;
+        saveMySig({ path: m.path, bw: m.bw, bh: m.bh, sw: m.sw, created: Number(m.created) || Date.now() });
       }
       askPersist();
     } catch (e) {

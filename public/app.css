@@ -257,6 +257,10 @@ label.btn { cursor: pointer; }
 .tt b { display: block; font-size: 15.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .tt span { display: block; font-size: 13px; color: var(--muted); }
 .modechip { flex: none; font-size: 12.5px; font-weight: 700; padding: 5px 10px; border-radius: 999px; background: var(--brand-soft); color: var(--brand); }
+#ownBtn { color: var(--brand); margin-right: 2px; }
+.item.own.sel { outline-color: var(--accent); }
+.mysig { display: grid; place-items: center; height: 96px; margin: 0 0 12px; border-radius: 14px; background: #fff; border: 1px solid var(--line); }
+.mysig svg { width: 70%; max-width: 260px; height: 70px; }
 .modechip:empty { display: none; }
 
 #pages { max-width: 880px; margin: 0 auto; padding: calc(70px + env(safe-area-inset-top)) 12px calc(140px + env(safe-area-inset-bottom)); }
