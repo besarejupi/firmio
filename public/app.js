@@ -196,6 +196,10 @@
     "Wird verschlüsselt gesendet … {p} %": "Po dërgohet i enkriptuar … {p} %",
     "Erledigt!": "U krye!",
     "Fertig!": "Gati!",
+    "Verschlüsselt übertragen. Das unterschriebene Dokument geht direkt an {who}.": "I transmetuar i enkriptuar. Dokumenti i nënshkruar shkon direkt te {who}.",
+    "Verschlüsselt übertragen. Das unterschriebene Dokument geht direkt an den Absender.": "I transmetuar i enkriptuar. Dokumenti i nënshkruar shkon direkt te dërguesi.",
+    "<p><b>Verschlüsselt.</b> Das PDF, Ihr Name und Ihre Unterschrift werden nur in Ihrem Browser verarbeitet. Übertragen wird nur das fertige Dokument, und zwar verschlüsselt.</p>": "<p><b>I enkriptuar.</b> PDF-ja, emri dhe nënshkrimi juaj përpunohen vetëm në shfletuesin tuaj. Transmetohet vetëm dokumenti përfundimtar, dhe atë i enkriptuar.</p>",
+    "<p><b>Kopie per E-Mail:</b> Der Absender bekommt das unterschriebene Dokument zusätzlich per E-Mail. Dafür wird es verschlüsselt (TLS) an den Server übertragen und von dort per E-Mail an den Absender geschickt. Der Server speichert diese Kopie nicht.</p>": "<p><b>Kopje me e-mail:</b> Dërguesi e merr dokumentin e nënshkruar edhe me e-mail. Për këtë, dokumenti transmetohet i enkriptuar (TLS) te serveri dhe prej andej i dërgohet dërguesit me e-mail. Serveri nuk e ruan këtë kopje.</p>",
     "Vor Ort": "Në vend",
     "Danke! Sie können das Handy jetzt zurückgeben.": "Faleminderit! Tani mund ta ktheni telefonin.",
     "Ihr unterschriebenes Dokument ist bei {who} angekommen. Sie müssen nichts mehr tun.": "Dokumenti juaj i nënshkruar mbërriti te {who}. Nuk keni nevojë të bëni asgjë tjetër.",
@@ -244,6 +248,7 @@
     "Schieben Sie die Unterschrift an die richtige Stelle. Größe ändern: blauen Punkt ziehen.": "Schieb die Unterschrift an die richtige Stelle. Größe ändern: blauen Punkt ziehen.",
     "Danke! Sie können die Seite jetzt schließen.": "Danke! Du kannst die Seite jetzt schließen.",
     "Danke! Sie können das Handy jetzt zurückgeben.": "Danke! Du kannst das Handy jetzt zurückgeben.",
+    "<p><b>Verschlüsselt.</b> Das PDF, Ihr Name und Ihre Unterschrift werden nur in Ihrem Browser verarbeitet. Übertragen wird nur das fertige Dokument, und zwar verschlüsselt.</p>": "<p><b>Verschlüsselt.</b> Das PDF, dein Name und deine Unterschrift werden nur in deinem Browser verarbeitet. Übertragen wird nur das fertige Dokument, und zwar verschlüsselt.</p>",
     "Dokument schließen? Ihre Unterschrift geht dabei verloren.": "Dokument schließen? Deine Unterschrift geht dabei verloren.",
     "Das PDF konnte nicht erstellt werden. Bitte versuchen Sie es noch einmal.": "Das PDF konnte nicht erstellt werden. Bitte versuch es noch einmal.",
     "Ihr Name": "Dein Name",
@@ -276,6 +281,7 @@
   const SQ_TI = {
     "Dokument unterschreiben": "Nënshkruaje dokumentin",
     "Danke! Sie können das Handy jetzt zurückgeben.": "Faleminderit! Tani mund ta kthesh telefonin.",
+    "<p><b>Verschlüsselt.</b> Das PDF, Ihr Name und Ihre Unterschrift werden nur in Ihrem Browser verarbeitet. Übertragen wird nur das fertige Dokument, und zwar verschlüsselt.</p>": "<p><b>I enkriptuar.</b> PDF-ja, emri dhe nënshkrimi yt përpunohen vetëm në shfletuesin tënd. Transmetohet vetëm dokumenti përfundimtar, dhe atë i enkriptuar.</p>",
     "Ihr Dokument steckt schon im Link. Sie müssen nichts speichern und nichts herunterladen.": "Dokumenti yt ndodhet tashmë në link. Nuk ke nevojë të ruash apo të shkarkosh asgjë.",
     "Unterschreiben Sie ein PDF direkt auf Ihrem Handy, ganz ohne Drucker.": "Nënshkruaj një PDF direkt në telefonin tënd, pa pasur nevojë për printer.",
     "Ende-zu-Ende verschlüsselt. Ihre Unterschrift wird nicht hochgeladen, und das Dokument wird nach dem Zurückschicken gelöscht.": "I enkriptuar nga skaji në skaj. Nënshkrimi yt nuk ngarkohet askund dhe dokumenti fshihet pasi ta kesh kthyer të nënshkruar.",
@@ -421,6 +427,7 @@
     refresh: svgI('<path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 4v7h-7"/>', 20, 2.2),
     eye: svgI('<path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/>', 20),
     bell: svgI('<path d="M6 9a6 6 0 0 1 12 0c0 6 2.5 7.5 2.5 7.5h-17S6 15 6 9z"/><path d="M10 20a2.2 2.2 0 0 0 4 0"/>', 20),
+    mail: svgI('<rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.8 6.5 12 13l8.2-6.5"/>', 20),
     chev: svgI('<path d="M9 6l6 6-6 6"/>', 18, 2.2),
     doc: svgI('<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M8.5 16.5c1.2-1.6 2-2.9 2.6-2.6.6.3-.6 2.4 0 2.5.7.1 1.3-1.4 1.9-1.3.5.1 0 1.2.6 1.2.7 0 1.2-.6 1.9-.8"/>', 30, 1.8),
     docS: svgI('<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M8.5 16.5c1.2-1.6 2-2.9 2.6-2.6.6.3-.6 2.4 0 2.5.7.1 1.3-1.4 1.9-1.3.5.1 0 1.2.6 1.2.7 0 1.2-.6 1.9-.8"/>', 22, 1.9),
@@ -459,6 +466,8 @@
     view: null,         // Absender: angezeigtes unterschriebenes PDF (ID aus der Übersicht)
     inbox: { list: [], ok: true, err: '', last: 0, filter: 'all', q: '' },
     short: null,        // Kunde: Geheimnis aus einem kurzen Link (#xxxxxxxxxxxxxxxxxxxxxx)
+    mail: false,        // Kunde: Der Absender bekommt zusätzlich eine Kopie per E-Mail
+    mailErr: '',        // Absender: Kopie per E-Mail klappt gerade nicht (Fehlercode)
     intent: 'link',     // Absender: 'link' (per WhatsApp) oder 'local' (vor Ort auf diesem Handy)
     local: null,        // Vor-Ort-Unterschrift: { label, note, lang, du, saved }
     tpl: null           // Absender: angewendete Vorlage { id, name, spots }
@@ -695,6 +704,7 @@
     const back = linkBack(), whoNom = S.req && S.req.f;
     $('#trustText').textContent = send
       ? 'Ende-zu-Ende verschlüsselt. Unterschriebene Dokumente werden nur auf diesem Gerät gespeichert.'
+      : back && S.mail ? (whoNom ? tr('Verschlüsselt übertragen. Das unterschriebene Dokument geht direkt an {who}.', { who: whoNom }) : tr('Verschlüsselt übertragen. Das unterschriebene Dokument geht direkt an den Absender.'))
       : back ? (whoNom ? tr('Ende-zu-Ende verschlüsselt. Nur Sie und {who} können das Dokument lesen.', { who: whoNom }) : tr('Ende-zu-Ende verschlüsselt. Nur Sie und der Absender können das Dokument lesen.'))
         : inLink ? tr('Ende-zu-Ende verschlüsselt. Ihre Unterschrift wird nicht hochgeladen, und das Dokument wird nach dem Zurückschicken gelöscht.')
           : tr('Ihr Dokument bleibt auf Ihrem Gerät. Es wird nichts hochgeladen und nichts gespeichert.');
@@ -794,16 +804,20 @@
       return;
     }
     const back = linkBack() || S.mode === 'send';
+    const mailOn = S.mode === 'send' ? !!(S.server && S.server.mail) : S.mail;
     const body = CFG.datenschutz
       ? el('div', { class: 'prose pre', text: CFG.datenschutz })
       : el('div', { class: 'prose', html:
-        (back ? tr('<p><b>Ende-zu-Ende verschlüsselt.</b> Das PDF, Ihr Name und Ihre Unterschrift werden nur in Ihrem Browser verarbeitet. Übertragen wird nur das fertige Dokument, und zwar verschlüsselt: Lesen können es nur Sie und der Absender.</p>')
+        (back && mailOn ? tr('<p><b>Verschlüsselt.</b> Das PDF, Ihr Name und Ihre Unterschrift werden nur in Ihrem Browser verarbeitet. Übertragen wird nur das fertige Dokument, und zwar verschlüsselt.</p>')
+          : back ? tr('<p><b>Ende-zu-Ende verschlüsselt.</b> Das PDF, Ihr Name und Ihre Unterschrift werden nur in Ihrem Browser verarbeitet. Übertragen wird nur das fertige Dokument, und zwar verschlüsselt: Lesen können es nur Sie und der Absender.</p>')
           : tr('<p><b>Ihr Dokument bleibt auf Ihrem Gerät.</b> Das PDF, Ihr Name und Ihre Unterschrift werden nur in Ihrem Browser verarbeitet. Nichts davon wird hochgeladen, gespeichert oder an Dritte übermittelt.</p>')) +
         tr('<p>Diese Seite verwendet keine Cookies, kein Tracking und keine Analysedienste. Sie ist technisch so eingestellt, dass sie keine Daten an fremde Server senden kann.</p>') +
         tr('<p>Beim Aufruf der Seite verarbeitet der Hosting-Anbieter (Netlify) technisch notwendige Verbindungsdaten wie die IP-Adresse, um die Seite auszuliefern.</p>') +
         (back ? tr('<p><b>Dokumente per Link:</b> Das Dokument wurde auf dem Gerät des Absenders verschlüsselt und liegt nur verschlüsselt bei Netlify. Der Schlüssel steckt ausschließlich im Link (hinter dem #) und wird nie an den Server übertragen. Wenn Sie auf „Fertig“ tippen, wird das unterschriebene Dokument auf Ihrem Gerät mit diesem Schlüssel verschlüsselt und für den Absender bereitgelegt. Danach wird das Original gelöscht. Das unterschriebene Dokument wird gelöscht, sobald der Absender es abgeholt hat, spätestens nach 30 Tagen. Nicht unterschriebene Dokumente werden nach 7 Tagen gelöscht.</p>')
           : tr('<p><b>Dokumente per Link:</b> Schickt Ihnen jemand ein Dokument per Link, wurde es auf seinem Gerät verschlüsselt und liegt nur verschlüsselt bei Netlify. Der Schlüssel steckt ausschließlich im Link (hinter dem #) und wird nie an den Server übertragen. Niemand außer Ihnen und dem Absender kann das Dokument lesen. Es wird gelöscht, sobald Sie es unterschrieben zurückgeschickt haben, spätestens nach 7 Tagen.</p>') +
             tr('<p>Das unterschriebene PDF verschicken Sie selbst, zum Beispiel per WhatsApp. Dafür gelten die Datenschutzbestimmungen des jeweiligen Dienstes.</p>')) +
+        (back && mailOn ? tr('<p><b>Kopie per E-Mail:</b> Der Absender bekommt das unterschriebene Dokument zusätzlich per E-Mail. Dafür wird es verschlüsselt (TLS) an den Server übertragen und von dort per E-Mail an den Absender geschickt. Der Server speichert diese Kopie nicht.</p>') : '') +
+        (S.mode === 'send' && mailOn ? '<p>Die Mails gehen über Ihr eigenes E-Mail-Konto; dort liegt jeweils eine Kopie unter „Gesendet“.</p>' : '') +
         (S.mode === 'send' ? '<p><b>Ihre Übersicht</b> (Kundennotizen, Schlüssel und unterschriebene PDFs) wird nur auf diesem Gerät gespeichert. Unterschriebene Dokumente werden vom Server gelöscht, sobald Firmio sie abgeholt hat. Vor Ort unterschriebene Dokumente werden gar nicht hochgeladen.</p>' +
           '<p><b>Vorlagen</b> merken sich nur, wo die Felder liegen, und zum Wiedererkennen kurze Prüfsummen der Wörter – keinen Text und keine Kundendaten. <b>Sicherungen</b> erstellen Sie selbst als Datei; wo Sie sie ablegen, entscheiden Sie.</p>' +
           '<p><b>Erinnerungen:</b> Der Server merkt sich nur, zu welchen zufälligen Kennungen er schon erinnert hat. Die Benachrichtigung enthält keine Namen; die setzt Ihr Handy selbst ein.</p>' : '') +
@@ -937,6 +951,13 @@
     for (let i = 0; i < bin.length; i++) out[i] = bin.charCodeAt(i);
     return out;
   }
+  // Base64 (normal) für größere Daten, in Stücken (schnell, ohne Stack-Überlauf)
+  function bytesToB64(b) {
+    let bin = '';
+    for (let i = 0; i < b.length; i += 0x8000) bin += String.fromCharCode.apply(null, b.subarray(i, i + 0x8000));
+    return btoa(bin);
+  }
+  const MAIL_MAX = 3 * 1024 * 1024; // größer: Mail ohne Anhang (Hinweis), das PDF liegt in der Übersicht
   function concatBytes(list) {
     let n = 0;
     list.forEach(b => { n += b.length; });
@@ -1043,7 +1064,7 @@
       const res = await fetch('/api/status', { cache: 'no-store', credentials: 'omit', signal: ctl ? ctl.signal : undefined });
       clearTimeout(timer);
       const j = res.ok ? await res.json() : null;
-      S.server = j && j.ok ? { ok: true, pin: !!j.pin, v: Number(j.v) || 1, push: !!j.push } : { ok: false };
+      S.server = j && j.ok ? { ok: true, pin: !!j.pin, v: Number(j.v) || 1, push: !!j.push, mail: !!j.mail } : { ok: false };
     } catch (e) { S.server = { ok: false }; }
     return S.server;
   }
@@ -1066,6 +1087,7 @@
       if (!info) S.req.b = 1;
       S.lang = S.req.l === 'sq' ? 'sq' : 'de';
       S.du = S.req.u === 1;
+      S.mail = !!meta.mail;
     } catch (e) {
       console.warn('Kurzer Link:', e);
       $('#start').classList.remove('pending');
@@ -1093,6 +1115,7 @@
       el('div', { class: 'grow' }, el('b', { text: tr('Dokument wird geladen …') }), el('div', { class: 'prog' }, fill))));
     try {
       const meta = known || await apiJSON('GET', '/api/doc/' + r.d);
+      if (!!meta.mail !== S.mail) { S.mail = !!meta.mail; setupStart(); } // Datenschutzhinweis passend zur Mail-Kopie
       if (meta.status === 'signed') { S.remoteSigned = { signedAt: meta.signedAt }; renderRemoteSigned(); return; }
       const parts = [];
       for (let i = 0; i < meta.chunks; i++) {
@@ -2459,12 +2482,14 @@
     const id = bytesToB64url(crypto.getRandomValues(new Uint8Array(16)));
     try {
       await Store.putPdf(id, S.out.bytes);
-      await Store.put({ id: id, key: '', del: '', secret: '', label: L.label, note: L.note, file: S.file.name, pages: S.pages.length, created: now, expires: 0,
+      const rec = { id: id, key: '', del: '', secret: '', label: L.label, note: L.note, file: S.file.name, pages: S.pages.length, created: now, expires: 0,
         lang: L.lang, du: L.du, status: 'signed', link: '', local: true, inPerson: true, seen: true, serverGone: true,
-        signedAt: now, signer: S.name, ort: S.ort, outName: S.out.name, outPages: S.out.pages, size: S.out.bytes.length, tpl: L.tpl });
+        signedAt: now, signer: S.name, ort: S.ort, outName: S.out.name, outPages: S.out.pages, size: S.out.bytes.length, tpl: L.tpl, mailPending: mailEnabled() };
+      await Store.put(rec);
       L.saved = id;
       S.dirty = false;
       askPersist();
+      if (rec.mailPending) mailFromPhone(rec, S.out.bytes); // läuft im Hintergrund, ohne Internet später
     } catch (e) {
       console.warn('Vor Ort speichern:', e);
       L.saved = '';
@@ -2577,6 +2602,7 @@
 
   let pendingOpen = null;
   function initInbox() {
+    serverStatus().then(syncMailFlag).catch(() => {});
     try { S.inbox.filter = localStorage.getItem(LS_FILTER) || 'all'; } catch (e) { /* egal */ }
     if (!/^(all|open|signed)$/.test(S.inbox.filter)) S.inbox.filter = 'all';
     loadInbox().then(() => { renderInbox(); return refreshInbox(); }).then(() => {
@@ -2690,6 +2716,12 @@
         el('button', { type: 'button', class: 'btn btn-primary btn-sm', text: 'Einschalten', onclick: () => enablePush() }),
         el('button', { type: 'button', class: 'x', 'aria-label': 'Hinweis ausblenden', text: '×', onclick: () => { setLS(LS_PUSHASK, '1'); renderInbox(); } })));
     }
+    if (S.mailErr && mailEnabled()) {
+      before.push(el('div', { class: 'banner warn' }, el('span', { html: I.mail }),
+        el('p', { text: 'Die Kopie per E-Mail klappt gerade nicht: ' + (S.mailErr === 'mail_auth' || S.mailErr === 'mail_apppw'
+          ? 'Google lehnt die Anmeldung ab (App-Passwort geändert oder widerrufen?).' : 'Der Mail-Dienst lehnt ab.') + ' Bitte in den Einstellungen neu einrichten. Die PDFs liegen sicher hier.' }),
+        el('button', { type: 'button', class: 'act', text: 'Öffnen', onclick: () => openSettings() })));
+    }
     const bk = backupNeeded(list);
     if (bk) {
       before.push(el('div', { class: 'backupcard' },
@@ -2767,6 +2799,7 @@
     if (S.mode !== 'send') return Promise.resolve();
     if (refreshing) return refreshing;
     refreshing = syncInbox(!!manual)
+      .then(retryMails)
       .catch(e => console.warn('Abgleich:', e))
       .then(() => { refreshing = null; renderInbox(); schedulePoll(); });
     renderInbox();
@@ -2820,7 +2853,7 @@
         await Store.patch(r.id, { status: 'signed', signedAt: st.signedAt, lost: true });
       } else if (st.status === 'signed') {
         if (r.status !== 'signed') await Store.patch(r.id, { status: 'signed', signedAt: st.signedAt, seen: false });
-        fresh.push(Object.assign({}, r, { signedAt: st.signedAt, sChunks: st.chunks }));
+        fresh.push(Object.assign({}, r, { signedAt: st.signedAt, sChunks: st.chunks, sMailed: !!st.mailed }));
       } else if (st.expires && st.expires !== r.expires) {
         await Store.patch(r.id, { expires: st.expires });
       }
@@ -2863,7 +2896,10 @@
       size: doc.bytes.length,
       signedAt: r.signedAt || Date.parse(h.signedAt) || Date.now()
     };
+    if (r.sMailed) changes.mailed = changes.signedAt; // der Kunde hat die Mail-Kopie schon geschickt
+    else if (mailEnabled()) changes.mailPending = true;
     await Store.patch(r.id, changes);
+    if (changes.mailPending) await mailFromPhone(Object.assign({}, r, changes), doc.bytes); // Ersatzweg
     await deleteServerCopy(r.id, pin); // liegt jetzt nur noch auf diesem Gerät
     return Object.assign({}, r, changes);
   }
@@ -2998,6 +3034,7 @@
       row('Ort', r.ort);
       if (r.inPerson) row('Art', 'Vor Ort auf diesem Gerät');
       else row('Angefordert', fmtDate(new Date(r.created)));
+      row('E-Mail', r.mailed ? 'Kopie verschickt' : r.mailPending ? 'wird verschickt, sobald Internet da ist' : '');
       if (r.local) {
         const info = (r.outPages ? (r.outPages === 1 ? '1 Seite' : r.outPages + ' Seiten') + ' · ' : '') + fmtSize(r.size || 0);
         body.append(
@@ -3121,6 +3158,64 @@
     try { await pushSubscribe(pin); } catch (e) { console.warn('Benachrichtigungen auffrischen:', e); }
   }
 
+  /* ---------------- Kopie per E-Mail (Absender schaltet sie in den Einstellungen ein) ---------------- */
+  // Der Server kennt Zugang und Zieladresse; hier merkt sich das Gerät nur, ob sie an ist (und an wen, für die Anzeige).
+  const LS_MAIL = 'firmio.mail.v1';
+  function getMailInfo() { try { const o = JSON.parse(localStorage.getItem(LS_MAIL)); return o && typeof o === 'object' ? o : null; } catch (e) { return null; } }
+  function setMailInfo(o) { try { if (o) localStorage.setItem(LS_MAIL, JSON.stringify(o)); else localStorage.removeItem(LS_MAIL); } catch (e) { /* egal */ } }
+  const mailEnabled = () => !!getMailInfo();
+  function syncMailFlag() {
+    if (!S.server || !S.server.ok) return;
+    if (!S.server.mail) setMailInfo(null);
+    else if (!getMailInfo()) setMailInfo({ to: '', sender: '' });
+  }
+  const MAIL_ERR = {
+    mail_to: 'Bitte die Adresse unter „An“ prüfen.',
+    mail_user: 'Bitte Ihre Gmail-Adresse prüfen.',
+    mail_apppw_format: 'Das App-Passwort hat 16 Buchstaben. Bitte noch einmal kopieren.',
+    mail_auth: 'Google hat die Anmeldung abgelehnt. Stimmen Gmail-Adresse und App-Passwort?',
+    mail_apppw: 'Google verlangt ein App-Passwort, nicht Ihr normales Passwort. Siehe „So bekommen Sie das App-Passwort“.',
+    mail_conn: 'Gmail war gerade nicht erreichbar. Bitte gleich noch einmal versuchen.',
+    mail_limit: 'Heute wurden schon sehr viele Mails verschickt. Morgen geht es wieder.',
+    mail_off: 'Die Kopie per E-Mail ist ausgeschaltet.',
+    pin_wrong: 'Die PIN stimmt nicht.',
+    offline: 'Keine Verbindung. Bitte Internet prüfen.'
+  };
+  const mailErrText = code => MAIL_ERR[code] || 'Hat nicht geklappt. Bitte später noch einmal versuchen.';
+
+  // Handy des Absenders schickt die Mail selbst: vor Ort, oder falls der Kunde sie nicht schicken konnte
+  async function mailFromPhone(r, bytes) {
+    if (!mailEnabled()) return false;
+    const pin = getPin();
+    if (!pin) return false;
+    try {
+      if (!bytes) {
+        const p = await Store.pdf(r.id);
+        if (!p || !p.bytes) return false;
+        bytes = new Uint8Array(p.bytes);
+      }
+      const body = { id: r.id, name: r.outName || r.file, signer: r.signer || '', ort: r.ort || '', at: r.signedAt, via: r.inPerson ? 'local' : 'link', size: bytes.length };
+      if (bytes.length > MAIL_MAX) body.big = true; else body.pdf = bytesToB64(bytes);
+      const res = await apiJSON('POST', '/api/mail/send', { pin: pin, json: body });
+      S.mailErr = '';
+      await Store.patch(r.id, res.pending ? { mailPending: true } : { mailed: Date.now(), mailPending: false });
+      return !res.pending;
+    } catch (e) {
+      console.warn('Kopie per E-Mail:', e);
+      if (e && e.code === 'mail_off') { setMailInfo(null); await Store.patch(r.id, { mailPending: false }).catch(() => {}); }
+      // Zugang klappt nicht mehr (z. B. App-Passwort widerrufen): in der Übersicht Bescheid geben
+      if (e && /^mail_(auth|apppw|key|ip)$/.test(e.code || '')) S.mailErr = e.code;
+      return false;
+    }
+  }
+  // Mails, die noch nicht rausgingen (kein Internet, Gmail kurz weg), beim Abgleich nachholen
+  async function retryMails() {
+    if (!mailEnabled() || !S.inbox.ok) return;
+    const list = S.inbox.list.filter(r => r.mailPending && r.status === 'signed' && r.local);
+    for (const r of list) await mailFromPhone(r);
+    if (list.length) await loadInbox();
+  }
+
   /* ---------------- Einstellungen (Absender) ---------------- */
   function openSettings() {
     const p = loadSender();
@@ -3175,6 +3270,91 @@
     };
     renderPush();
 
+    const mailBox = el('div');
+    const renderMail = () => {
+      mailBox.innerHTML = '';
+      const info = getMailInfo();
+      mailBox.append(el('p', { class: 'prose', text: 'Jedes unterschriebene PDF kommt automatisch zusätzlich per E-Mail, zum Beispiel in Ihr Büro-Postfach – sobald der Kunde fertig ist, auch wenn Firmio gerade nicht offen ist. Gesendet wird über Ihr Gmail-Konto.' }));
+      if (info) {
+        mailBox.append(el('div', { class: 'setrow' },
+          el('div', { class: 'grow' }, el('b', { text: info.to ? 'An ' + info.to : 'Eingeschaltet' }), info.sender ? el('span', { text: 'Von ' + info.sender }) : null),
+          el('span', { class: 'state on', text: 'An' })),
+        el('div', { class: 'btnrow' },
+          el('button', { type: 'button', class: 'btn btn-ghost', html: I.mail + '<span>Test-Mail</span>', onclick: async () => {
+            const pin = getPin() || await askPin();
+            if (!pin) return;
+            busy('Test-Mail wird gesendet …');
+            try { const r = await apiJSON('POST', '/api/mail/test', { pin: pin, json: {} }); unbusy(); toast('Test-Mail gesendet an ' + r.to + '.', 4000); } catch (e) {
+              unbusy();
+              if (e.code === 'mail_off') { setMailInfo(null); if (S.sheetOpen) renderMail(); }
+              toast(mailErrText(e.code), 5000);
+            }
+          } }),
+          el('button', { type: 'button', class: 'btn btn-ghost', text: 'Ausschalten', onclick: async () => {
+            if (!confirm('Kopie per E-Mail ausschalten? Die Zugangsdaten werden vom Server gelöscht.')) return;
+            const pin = getPin() || await askPin();
+            if (!pin) return;
+            busy('Einen Moment …');
+            try {
+              await apiJSON('POST', '/api/mail/off', { pin: pin, json: {} });
+              setMailInfo(null);
+              if (S.server) S.server.mail = false;
+              unbusy();
+              toast('Kopie per E-Mail ist aus.');
+              if (S.sheetOpen) renderMail(); else openSettings();
+            } catch (e) { unbusy(); toast(mailErrText(e.code), 5000); }
+          } })));
+        return;
+      }
+      const to = el('input', { id: 'mailTo', class: 'in', type: 'email', inputmode: 'email', placeholder: 'z. B. vorname.nachname@firma.de', autocomplete: 'off', maxlength: '160' });
+      const user = el('input', { id: 'mailUser', class: 'in', type: 'email', inputmode: 'email', placeholder: 'name@gmail.com', autocomplete: 'off', maxlength: '160' });
+      const pass = el('input', { id: 'mailPass', class: 'in', type: 'password', placeholder: '16 Buchstaben', autocomplete: 'new-password', autocapitalize: 'off', spellcheck: 'false', maxlength: '40' });
+      const err = el('p', { class: 'err', role: 'alert' });
+      const howto = el('details', { class: 'more howto' }, el('summary', { text: 'So bekommen Sie das App-Passwort' }),
+        el('ol', { html:
+          '<li>Im Google-Konto die <b>Bestätigung in zwei Schritten</b> einschalten (falls noch nicht an): <a href="https://myaccount.google.com/signinoptions/two-step-verification" target="_blank" rel="noopener">öffnen</a></li>' +
+          '<li><a href="https://myaccount.google.com/apppasswords" target="_blank" rel="noopener">App-Passwörter</a> öffnen, als Namen <b>Firmio</b> eingeben und auf <b>Erstellen</b> tippen.</li>' +
+          '<li>Die 16 Buchstaben kopieren und oben einfügen. Leerzeichen sind egal.</li>' }));
+      const go = async () => {
+        err.textContent = '';
+        const v = { to: to.value.trim(), user: user.value.trim(), pass: pass.value.replace(/\s+/g, '') };
+        const okMail = x => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(x);
+        if (!okMail(v.to)) { err.textContent = mailErrText('mail_to'); to.focus(); return; }
+        if (!okMail(v.user)) { err.textContent = mailErrText('mail_user'); user.focus(); return; }
+        if (!/^[A-Za-z]{16}$/.test(v.pass)) { err.textContent = mailErrText('mail_apppw_format'); pass.focus(); return; }
+        const pin = getPin() || await askPin();
+        if (!pin) return;
+        busy('Gmail wird geprüft …');
+        try {
+          const res = await apiJSON('POST', '/api/mail/setup', { pin: pin, json: v });
+          setMailInfo({ to: res.to, sender: res.sender });
+          if (S.server) S.server.mail = true;
+          S.mailErr = '';
+          busy('Test-Mail wird gesendet …');
+          let sent = true;
+          try { await apiJSON('POST', '/api/mail/test', { pin: pin, json: {} }); } catch (x) { sent = false; }
+          unbusy();
+          toast(sent ? 'Eingeschaltet. Eine Test-Mail ist unterwegs an ' + res.to + '.' : 'Eingeschaltet. Die Test-Mail ging nicht raus – bitte „Test-Mail“ tippen.', 5000);
+          if (S.sheetOpen) renderMail(); else openSettings();
+        } catch (e) {
+          unbusy();
+          if (S.sheetOpen) { err.textContent = mailErrText(e.code); return; }
+          openSettings();
+          toast(mailErrText(e.code), 6000);
+        }
+      };
+      pass.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); go(); } });
+      mailBox.append(
+        el('label', { class: 'fld' }, el('span', { text: 'An (zum Beispiel Ihr Büro-Postfach)' }), to),
+        el('label', { class: 'fld' }, el('span', { text: 'Von (Ihr Gmail-Konto)' }), user),
+        el('label', { class: 'fld' }, el('span', { text: 'App-Passwort von Google' }), pass),
+        howto,
+        el('p', { class: 'hint left', text: 'Gut zu wissen: Dafür läuft das PDF TLS-verschlüsselt über den Server statt nur Ende-zu-Ende verschlüsselt, und Gmail behält eine Kopie unter „Gesendet“. Ihre Kunden sehen das im Datenschutzhinweis. Das App-Passwort liegt nur auf dem Server, nicht auf diesem Handy.' }),
+        err,
+        el('button', { id: 'mailOn', type: 'button', class: 'btn btn-primary btn-block', html: I.mail + '<span>Kopie per E-Mail einschalten</span>', onclick: go }));
+    };
+    renderMail();
+
     const tplBox = el('div');
     const renderTpl = () => {
       tplBox.innerHTML = '';
@@ -3222,6 +3402,8 @@
         el('small', { text: 'Gilt für neue Anfragen. Beim Senden können Sie sie für einzelne Kunden ändern.' })),
       el('h3', { text: 'Benachrichtigungen' }),
       pushBox,
+      el('h3', { text: 'Kopie per E-Mail' }),
+      mailBox,
       el('h3', { text: 'Vorlagen' }),
       tplBox,
       el('h3', { text: 'Sicherung' }),
@@ -3502,12 +3684,24 @@
       S.sentBack = { ok: true, at: res.signedAt || Date.now() };
       S.remoteSigned = { signedAt: S.sentBack.at };
       S.dirty = false;
+      if (S.mail) await mailCopy(r);
     } catch (e) {
       console.warn('Zurücksenden:', e);
       S.sentBack = { ok: false, code: (e && e.code) || 'error' };
     }
     unbusy();
     showDone();
+  }
+
+  // Kunde: Kopie per E-Mail an den Absender (nur wenn er sie eingeschaltet hat). Klappt das nicht,
+  // schickt das Handy des Absenders sie beim nächsten Abgleich. Höchstens ~20 s warten.
+  async function mailCopy(r) {
+    const big = S.out.bytes.length > MAIL_MAX;
+    const body = { name: S.out.name, signer: S.name, ort: S.ort, size: S.out.bytes.length };
+    if (big) body.big = true; else body.pdf = bytesToB64(S.out.bytes);
+    const send = apiRetry('POST', '/api/doc/' + encodeURIComponent(r.id) + '/mail', { del: r.del, json: body }, 2)
+      .catch(e => console.warn('Kopie per E-Mail:', e));
+    await Promise.race([send, new Promise(res => setTimeout(res, 20000))]);
   }
 
   function inv(m) {

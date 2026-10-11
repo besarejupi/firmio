@@ -17,6 +17,7 @@ Dokumente per Handy unterschreiben lassen. Der Kunde öffnet einen Link, untersc
 - **Vorlagen** speichern nur die Lage der Felder, Seitenformate und kurze Prüfsummen der Wörter (zum Wiedererkennen), keinen Text.
 - **Erinnerungen** (täglich morgens) enthalten nur Kennungen. Der Server merkt sich nur, zu welchen Kennungen er schon erinnert hat.
 - **Sicherungen** erstellt der Absender selbst als ZIP-Datei (unterschriebene PDFs, Inhaltsverzeichnis, Übersicht, Vorlagen; ohne PIN).
+- **Kopie per E-Mail** (nur wenn eingeschaltet): Dann schickt der Kunde das fertige PDF zusätzlich TLS-verschlüsselt an den Server, der es über das Gmail-Konto des Absenders (App-Passwort) an die eingetragene Adresse mailt und nicht speichert. Das ist nicht mehr nur Ende-zu-Ende verschlüsselt; die Kundenseite sagt das dann im Datenschutzhinweis. Zugangsdaten liegen nur auf dem Server (nie im Browser, nie in einer Sicherung).
 
 ## Aufbau
 
@@ -27,6 +28,7 @@ Dokumente per Handy unterschreiben lassen. Der Kunde öffnet einen Link, untersc
 | `netlify/functions/cleanup.mjs` | Löscht täglich abgelaufene Anfragen |
 | `netlify/functions/remind.mjs` | Erinnert morgens an Anfragen, die seit 2 Tagen offen sind oder bald ablaufen |
 | `netlify/lib/push.mjs` | Benachrichtigungen (Web Push), gemeinsam für beide Functions |
+| `netlify/lib/mail.mjs` | Kopie per E-Mail (Gmail per SMTP mit App-Passwort, alternativ Brevo) |
 | `netlify.toml` | Netlify-Einstellungen (Ordner `public`, Functions) |
 
 ## Einrichtung bei Netlify (einmalig)
@@ -46,6 +48,7 @@ Dokumente per Handy unterschreiben lassen. Der Kunde öffnet einen Link, untersc
 - **Übersicht:** Auf der Startseite des Absenders stehen alle Anfragen; die Zahlen oben filtern nach „Offen“ und „Erledigt“, ab vier Einträgen gibt es eine Suche (Kunde, Notiz, Datei, Datum). Ein Tipp auf eine erledigte Anfrage zeigt das PDF; von dort lässt es sich teilen oder speichern. Offene Anfragen lassen sich erinnern oder zurückziehen.
 - **Erinnerung:** Mit eingeschalteten Benachrichtigungen kommt morgens ein Hinweis, wenn eine Anfrage seit 2 Tagen offen ist oder ihr Link bald abläuft. Ein Tipp öffnet die Anfrage mit „Erinnerung senden“.
 - **Sicherung:** Einstellungen → Sicherung → „Jetzt sichern“ erstellt eine ZIP-Datei (z. B. für Google Drive). „Einspielen“ holt alles auf ein neues Handy.
+- **Kopie per E-Mail:** Einstellungen → Kopie per E-Mail → Ziel-Adresse (z. B. Büro-Postfach), Gmail-Adresse und ein Google-App-Passwort eintragen (Google-Konto → Bestätigung in zwei Schritten an → myaccount.google.com/apppasswords). Danach geht jedes unterschriebene PDF automatisch per Mail raus, sobald der Kunde auf „Fertig“ tippt – auch bei „Vor Ort“. Klappt die Mail beim Kunden nicht, schickt das Handy des Absenders sie beim nächsten Abgleich.
 - Die Übersicht liegt nur auf dem Gerät, auf dem der Link erstellt wurde. Unterschriebene PDFs am besten gleich weiterleiten oder sichern. Auf dem iPhone die App über „Zum Home-Bildschirm“ installieren und dann immer von dort aus senden (Safari und App haben getrennte Speicher).
 - Ohne Server-Teil (z. B. reiner Upload per Netlify Drop) funktioniert die App weiter: Dann schickt man PDF und Link getrennt, und der Kunde schickt das PDF per WhatsApp zurück.
 
@@ -53,4 +56,4 @@ Dokumente per Handy unterschreiben lassen. Der Kunde öffnet einen Link, untersc
 
 Firmio erzeugt eine **einfache elektronische Signatur**. Wo das Gesetz die Schriftform verlangt, reicht sie nicht. Impressum und eigener Datenschutztext lassen sich in `public/config.js` eintragen.
 
-Lizenzen: pdf.js (Apache 2.0), pdf-lib (MIT), @netlify/blobs (MIT), web-push (MPL 2.0), Source Sans 3 und Source Serif 4 (SIL OFL 1.1). Siehe `public/lizenzen`.
+Lizenzen: pdf.js (Apache 2.0), pdf-lib (MIT), @netlify/blobs (MIT), web-push (MPL 2.0), nodemailer (MIT-0), Source Sans 3 und Source Serif 4 (SIL OFL 1.1). Siehe `public/lizenzen`.

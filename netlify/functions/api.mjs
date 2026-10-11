@@ -33,10 +33,19 @@
  *   POST   /api/push/unsub          (PIN)   -> Gerät abmelden { endpoint }
  *   POST   /api/push/test           (PIN)   -> Test-Benachrichtigung
  *   Die Benachrichtigung enthält nur die zufällige Kennung der Anfrage, keine Kundendaten.
+ *
+ *   Kopie per E-Mail (nur wenn der Absender sie eingeschaltet hat; Versand über sein Gmail oder Brevo):
+ *   POST   /api/mail/setup          (PIN)   -> { to, user, pass } (Gmail-App-Passwort) bzw. { provider:'brevo', to, key }
+ *   POST   /api/mail/off            (PIN)   -> ausschalten (Zugangsdaten werden gelöscht)
+ *   POST   /api/mail/test           (PIN)   -> Test-Mail
+ *   POST   /api/mail/send           (PIN)   -> unterschriebenes PDF mailen (vor Ort / Ersatz)
+ *   POST   /api/doc/:id/mail        (Token) -> Kunde schickt nach der Rückgabe die Mail-Kopie
+ *   Das PDF wird dabei nur durchgereicht, nicht gespeichert; pro Anfrage höchstens eine Mail.
  */
 import { getStore } from '@netlify/blobs';
 import { randomBytes, createHash, timingSafeEqual } from 'node:crypto';
 import { conf, vapidKeys, subOk, getSubs, notifyAll } from '../lib/push.mjs';
+import { getMailConf, setupGmail, setupBrevo, senderOf, sendMail, mailError, signedMail, testMail, pdfFromB64, EMAIL_RE, KEY_RE, APPPW_RE } from '../lib/mail.mjs';
 
 const MAX_CHUNK = 3 * 1024 * 1024 + 1024; // Bytes pro Teil
 const MAX_CHUNKS = 12;                     // zusammen gut 36 MB
@@ -112,6 +121,34 @@ const partNo = (v, max) => {
   return /^\d{1,2}$/.test(String(v)) && n < max ? n : -1;
 };
 
+// Unterschriebenes PDF per Mail an den Absender (höchstens einmal pro Anfrage)
+async function mailSigned(id, body, cfg) {
+  const s = docs();
+  const pdf = body.pdf ? pdfFromB64(String(body.pdf)) : null;
+  if (body.pdf && !pdf) return json(400, { error: 'bad_pdf' });
+  if (!pdf && !body.big) return json(400, { error: 'bad_request' });
+  // Vermerk: „sending“, solange verschickt wird, danach „sent“. Ein hängengebliebener Versuch (> 90 s) darf neu.
+  const claim = await s.setJSON(id + '/mailed', { at: Date.now(), st: 'sending' }, { onlyIfNew: true });
+  if (claim && claim.modified === false) {
+    const cur = await s.get(id + '/mailed', { type: 'json' });
+    if (cur && cur.st === 'sent') return json(200, { ok: true, again: true });
+    if (cur && Date.now() - (cur.at || 0) < 90000) return json(200, { ok: true, again: true, pending: true });
+    await s.setJSON(id + '/mailed', { at: Date.now(), st: 'sending' });
+  }
+  const at = Number(body.at);
+  const m = signedMail({ signer: body.signer, name: body.name, ort: body.ort, via: body.via === 'local' ? 'local' : 'link', size: Number(body.size) || (pdf ? pdf.length : 0),
+    at: at > 1.6e12 && at < Date.now() + 864e5 ? at : Date.now() }, !!pdf);
+  try {
+    await sendMail(cfg, Object.assign(m, pdf ? { pdf } : {}));
+    await s.setJSON(id + '/mailed', { at: Date.now(), st: 'sent' }).catch(() => {});
+    return json(200, { ok: true });
+  } catch (e) {
+    await s.delete(id + '/mailed').catch(() => {});
+    console.error('firmio mail', e && (e.code || e.status), e && (e.response || e.msg));
+    return json(502, { error: mailError(e) });
+  }
+}
+
 export default async function handler(req) {
   const url = new URL(req.url);
   const parts = url.pathname.replace(/^\/api\/?/, '').split('/').filter(Boolean);
@@ -119,7 +156,7 @@ export default async function handler(req) {
   try {
     if (parts[0] === 'status' && method === 'GET') {
       // v4: kurze Links (Kennung, Schlüssel und Token werden im Browser aus einem Geheimnis abgeleitet)
-      return json(200, { ok: true, pin: await pinIsSet(), v: 4, push: true, ttlDays: 7, keepDays: 30, maxBytes: MAX_CHUNK * MAX_CHUNKS });
+      return json(200, { ok: true, pin: await pinIsSet(), v: 4, push: true, mail: !!(await getMailConf()), ttlDays: 7, keepDays: 30, maxBytes: MAX_CHUNK * MAX_CHUNKS });
     }
 
     if (parts[0] === 'pin' && method === 'POST') {
@@ -149,7 +186,7 @@ export default async function handler(req) {
           if (!meta || now > meta.expires) { states[id] = null; return; }
           const st = statusOf(meta);
           states[id] = st === 'signed'
-            ? { status: st, expires: meta.expires, signedAt: meta.signedAt, chunks: meta.sChunks, size: meta.sSize }
+            ? { status: st, expires: meta.expires, signedAt: meta.signedAt, chunks: meta.sChunks, size: meta.sSize, mailed: ((await s.get(id + '/mailed', { type: 'json' })) || {}).st === 'sent' }
             : { status: st, expires: meta.expires };
         }));
       }
@@ -177,6 +214,53 @@ export default async function handler(req) {
         return json(200, { ok: true });
       }
       return json(200, await notifyAll({ t: 'test' }, url.origin));
+    }
+
+    // Kopie per E-Mail (Absender)
+    if (parts[0] === 'mail') {
+      if (method !== 'POST' || !['setup', 'off', 'test', 'send'].includes(parts[1])) return json(404, { error: 'not_found' });
+      const denied = await needPin(req);
+      if (denied) return denied;
+      const body = await req.json().catch(() => ({}));
+      if (parts[1] === 'setup') {
+        const to = String(body.to || '').trim();
+        if (to.length > 160 || !EMAIL_RE.test(to)) return json(400, { error: 'mail_to' });
+        try {
+          let cfg;
+          if (body.provider === 'brevo') {
+            const key = String(body.key || '').trim();
+            if (!KEY_RE.test(key)) return json(400, { error: 'mail_key' });
+            cfg = await setupBrevo(to, key);
+          } else {
+            const user = String(body.user || '').trim(), pass = String(body.pass || '').replace(/\s+/g, '');
+            if (user.length > 160 || !EMAIL_RE.test(user)) return json(400, { error: 'mail_user' });
+            if (!APPPW_RE.test(pass)) return json(400, { error: 'mail_apppw_format' });
+            cfg = await setupGmail(to, user, pass);
+          }
+          return json(200, { ok: true, provider: cfg.provider, to: cfg.to, sender: senderOf(cfg) });
+        } catch (e) {
+          console.error('firmio mail setup', e && (e.code || e.status), e && (e.response || e.msg));
+          return json(400, { error: mailError(e) });
+        }
+      }
+      if (parts[1] === 'off') {
+        await conf().delete('mail');
+        return json(200, { ok: true });
+      }
+      const cfg = await getMailConf();
+      if (!cfg) return json(409, { error: 'mail_off' });
+      if (parts[1] === 'test') {
+        try {
+          await sendMail(cfg, testMail());
+          return json(200, { ok: true, to: cfg.to });
+        } catch (e) {
+          console.error('firmio mail test', e && (e.code || e.status), e && (e.response || e.msg));
+          return json(502, { error: mailError(e) });
+        }
+      }
+      // send: vom Handy des Absenders (vor Ort, oder falls der Kunde die Kopie nicht schicken konnte)
+      if (!ID_RE.test(String(body.id || ''))) return json(400, { error: 'bad_request' });
+      return mailSigned(String(body.id), body, cfg);
     }
 
     if (parts[0] !== 'doc') return json(404, { error: 'not_found' });
@@ -221,6 +305,7 @@ export default async function handler(req) {
         ? { status, chunks: 0, expires: meta.expires, signedAt: meta.signedAt }
         : { status, chunks: meta.chunks, size: meta.size, expires: meta.expires };
       if (meta.head) info.head = meta.head;
+      if (status === 'open' && await getMailConf()) info.mail = true; // Kunde sieht dann den passenden Datenschutzhinweis
       return json(200, info);
     }
 
@@ -234,6 +319,16 @@ export default async function handler(req) {
       meta.head = body.head;
       await s.setJSON(id + '/meta', meta);
       return json(200, { ok: true });
+    }
+
+    // Kunde: Kopie per E-Mail an den Absender, direkt nach der Rückgabe (Token aus dem Link)
+    if (parts.length === 3 && parts[2] === 'mail' && method === 'POST') {
+      if (!tokenOk(req, meta)) return json(403, { error: 'forbidden' });
+      if (status !== 'signed') return json(409, { error: 'open' });
+      const cfg = await getMailConf();
+      if (!cfg) return json(409, { error: 'mail_off' });
+      const body = await req.json().catch(() => ({}));
+      return mailSigned(id, Object.assign({}, body, { at: meta.signedAt, via: 'link' }), cfg);
     }
 
     // Original hochladen (Absender)

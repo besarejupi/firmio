@@ -395,6 +395,11 @@ details.more > summary::-webkit-details-marker { display: none; }
 details.more > summary::after { content: ""; width: 8px; height: 8px; border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted); transform: rotate(45deg) translateY(-2px); transition: transform .2s; }
 details.more[open] > summary::after { transform: rotate(225deg) translate(-1px, -1px); }
 details.more > :not(summary):first-of-type { margin-top: 12px; }
+details.more ol { margin-bottom: 6px; padding: 0 0 0 20px; color: var(--muted); font-size: 14.5px; }
+details.more li { margin: 6px 0; }
+details.more li b { color: var(--text); }
+details.more a { color: var(--brand); font-weight: 700; text-underline-offset: 3px; }
+details.more.howto { margin-bottom: 8px; }
 
 /* Segmente (Weg, Sprache, Anrede) */
 .segrow { display: flex; gap: 0; padding: 4px; border-radius: 14px; background: var(--field); border: 1px solid var(--line); }
