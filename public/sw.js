@@ -1,7 +1,7 @@
 /* Firmio – Service Worker: macht die App installierbar, offline startfähig und
    zeigt Benachrichtigungen, wenn ein Kunde unterschrieben hat.
    Wird nur im Absender-Modus registriert. Speichert nur die App-Dateien, keine Dokumente. */
-const CACHE = 'firmio-v7';
+const CACHE = 'firmio-v8';
 const SHELL = ['./', './index.html', './app.js', './app.css', './config.js', './manifest.webmanifest',
   './icons/icon.svg', './icons/icon-192.png', './icons/badge-96.png', './vendor/pdf.min.js', './vendor/pdf.worker.min.js', './vendor/pdf-lib.min.js',
   './fonts/source-sans.woff2', './fonts/source-serif-600.woff2'];
@@ -110,21 +110,24 @@ self.addEventListener('push', e => {
   e.waitUntil((async () => {
     if (d.t === 'remind') { await remindNote(d); return; }
     const id = okId(d.id) ? d.id : '';
-    let title = 'Unterschrieben', body = 'Ein Kunde hat ein Dokument unterschrieben.';
+    const issue = d.t === 'issue';
+    let title = issue ? 'Rückmeldung vom Kunden' : 'Unterschrieben';
+    let body = issue ? 'Zu einem Dokument gibt es eine Rückmeldung.' : 'Ein Kunde hat ein Dokument unterschrieben.';
     if (d.t === 'test') {
       title = 'Firmio';
       body = 'Benachrichtigungen sind eingerichtet.';
     } else if (id) {
+      // Der Inhalt der Rückmeldung ist verschlüsselt und kommt erst in der App an; hier nur, wozu
       const rec = await readRecord(id);
-      if (rec) body = [rec.label, rec.note, rec.file].filter(Boolean).join(' · ');
+      if (rec) body = [rec.label, rec.note, rec.title || rec.file].filter(Boolean).join(' · ') + (issue ? ': Bitte ansehen.' : '');
     }
     const wins = await self.clients.matchAll({ type: 'window', includeUncontrolled: true });
-    wins.forEach(c => c.postMessage({ firmio: d.t === 'test' ? 'test' : 'signed', id: id }));
+    wins.forEach(c => c.postMessage({ firmio: d.t === 'test' ? 'test' : issue ? 'issue' : 'signed', id: id }));
     await self.registration.showNotification(title, {
       body: body,
       icon: 'icons/icon-192.png',
       badge: 'icons/badge-96.png',
-      tag: id || 'firmio-test',
+      tag: id ? (issue ? 'issue-' + id : id) : 'firmio-test',
       data: { id: id },
       lang: 'de'
     });

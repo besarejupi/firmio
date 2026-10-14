@@ -27,6 +27,12 @@
  *   GET    /api/doc/:id/signed/:n   (PIN)   -> Teil n des unterschriebenen PDFs
  *   DELETE /api/doc/:id             (PIN, Token nur solange offen) -> alles löschen
  *
+ *   Stand für den Absender (ohne Inhalte):
+ *   POST   /api/doc/:id/opened      (Token) -> Kunde hat den Link geöffnet (nur der erste Zeitpunkt wird gemerkt)
+ *   POST   /api/doc/:id/issue       (Token) -> „Stimmt etwas nicht?“: Nachricht, Ende-zu-Ende verschlüsselt { msg }
+ *   GET    /api/doc/:id/issue       (PIN)   -> verschlüsselte Nachrichten abholen
+ *   POST   /api/doc/:id/issue/clear (PIN)   -> abgeholte Nachrichten löschen { upTo }
+ *
  *   Benachrichtigungen (Web Push) für den Absender:
  *   GET    /api/push/key                    -> öffentlicher VAPID-Schlüssel
  *   POST   /api/push/sub            (PIN)   -> Gerät anmelden { sub }
@@ -94,6 +100,13 @@ const statusOf = meta => meta.status === 'signed' ? 'signed' : 'open';
 
 // Verschlüsselte Angaben zur Anfrage: base64url, höchstens ~8 KB
 const headOk = h => h === undefined || h === '' || (typeof h === 'string' && /^[A-Za-z0-9_-]{24,11000}$/.test(h));
+// Rückmeldung des Kunden: verschlüsselt (base64url), höchstens 5 pro Anfrage
+const ISSUE_MAX = 5;
+const issueOk = m => typeof m === 'string' && /^[A-Za-z0-9_-]{24,6000}$/.test(m);
+const getIssues = async (s, id) => {
+  const v = await s.get(id + '/issues', { type: 'json' });
+  return Array.isArray(v) ? v : [];
+};
 
 async function removeParts(s, id, prefix, count) {
   const jobs = [];
@@ -136,7 +149,7 @@ async function mailSigned(id, body, cfg) {
     await s.setJSON(id + '/mailed', { at: Date.now(), st: 'sending' });
   }
   const at = Number(body.at);
-  const m = signedMail({ signer: body.signer, name: body.name, ort: body.ort, via: body.via === 'local' ? 'local' : 'link', size: Number(body.size) || (pdf ? pdf.length : 0),
+  const m = signedMail({ signer: body.signer, signer2: body.signer2, name: body.name, title: body.title, ort: body.ort, via: body.via === 'local' ? 'local' : 'link', size: Number(body.size) || (pdf ? pdf.length : 0),
     at: at > 1.6e12 && at < Date.now() + 864e5 ? at : Date.now() }, !!pdf);
   try {
     await sendMail(cfg, Object.assign(m, pdf ? { pdf } : {}));
@@ -156,7 +169,8 @@ export default async function handler(req) {
   try {
     if (parts[0] === 'status' && method === 'GET') {
       // v4: kurze Links (Kennung, Schlüssel und Token werden im Browser aus einem Geheimnis abgeleitet)
-      return json(200, { ok: true, pin: await pinIsSet(), v: 4, push: true, mail: !!(await getMailConf()), ttlDays: 7, keepDays: 30, maxBytes: MAX_CHUNK * MAX_CHUNKS });
+      // v5: „geöffnet“ und Rückmeldungen des Kunden („Stimmt etwas nicht?“)
+      return json(200, { ok: true, pin: await pinIsSet(), v: 5, push: true, mail: !!(await getMailConf()), ttlDays: 7, keepDays: 30, maxBytes: MAX_CHUNK * MAX_CHUNKS });
     }
 
     if (parts[0] === 'pin' && method === 'POST') {
@@ -185,9 +199,12 @@ export default async function handler(req) {
           const meta = await s.get(id + '/meta', { type: 'json' });
           if (!meta || now > meta.expires) { states[id] = null; return; }
           const st = statusOf(meta);
-          states[id] = st === 'signed'
-            ? { status: st, expires: meta.expires, signedAt: meta.signedAt, chunks: meta.sChunks, size: meta.sSize, mailed: ((await s.get(id + '/mailed', { type: 'json' })) || {}).st === 'sent' }
-            : { status: st, expires: meta.expires };
+          if (st === 'signed') {
+            states[id] = { status: st, expires: meta.expires, signedAt: meta.signedAt, chunks: meta.sChunks, size: meta.sSize, mailed: ((await s.get(id + '/mailed', { type: 'json' })) || {}).st === 'sent' };
+            return;
+          }
+          const [opened, issues] = await Promise.all([s.get(id + '/opened', { type: 'json' }), getIssues(s, id)]);
+          states[id] = { status: st, expires: meta.expires, opened: (opened && opened.at) || 0, issues: issues.length };
         }));
       }
       return json(200, { states });
@@ -331,6 +348,43 @@ export default async function handler(req) {
       return mailSigned(id, Object.assign({}, body, { at: meta.signedAt, via: 'link' }), cfg);
     }
 
+    // Kunde hat den Link geöffnet (Token aus dem Link). Gemerkt wird nur der erste Zeitpunkt, sonst nichts.
+    if (parts.length === 3 && parts[2] === 'opened' && method === 'POST') {
+      if (!tokenOk(req, meta)) return json(403, { error: 'forbidden' });
+      if (status !== 'open') return json(200, { ok: true, signed: true });
+      await s.setJSON(id + '/opened', { at: Date.now() }, { onlyIfNew: true });
+      return json(200, { ok: true });
+    }
+
+    // „Stimmt etwas nicht?“: Kunde schickt eine Nachricht statt zu unterschreiben (Ende-zu-Ende verschlüsselt)
+    if (parts[2] === 'issue') {
+      if (parts.length === 3 && method === 'POST') {
+        if (!tokenOk(req, meta)) return json(403, { error: 'forbidden' });
+        if (status !== 'open') return json(409, { error: 'signed' });
+        const body = await req.json().catch(() => ({}));
+        if (!issueOk(body.msg)) return json(400, { error: 'bad_request' });
+        const list = await getIssues(s, id);
+        if (list.length >= ISSUE_MAX) return json(429, { error: 'too_many' });
+        const at = Math.max(Date.now(), list.length ? list[list.length - 1].at + 1 : 0);
+        list.push({ at, msg: body.msg });
+        await s.setJSON(id + '/issues', list);
+        // Absender benachrichtigen (nur die Kennung, kein Inhalt); höchstens kurz warten
+        await Promise.race([notifyAll({ t: 'issue', id }, url.origin).catch(e => console.error('firmio push', e)), sleep(4000)]);
+        return json(200, { ok: true, at });
+      }
+      const denied = await needPin(req);
+      if (denied) return denied;
+      if (parts.length === 3 && method === 'GET') return json(200, { issues: await getIssues(s, id) });
+      if (parts.length === 4 && parts[3] === 'clear' && method === 'POST') {
+        const body = await req.json().catch(() => ({}));
+        const upTo = Number(body.upTo) || 0;
+        const rest = (await getIssues(s, id)).filter(x => x.at > upTo);
+        if (rest.length) await s.setJSON(id + '/issues', rest); else await s.delete(id + '/issues');
+        return json(200, { ok: true, left: rest.length });
+      }
+      return json(405, { error: 'method' });
+    }
+
     // Original hochladen (Absender)
     if (parts.length === 3 && !signedPath && method === 'PUT') {
       const denied = await needPin(req);
@@ -374,6 +428,7 @@ export default async function handler(req) {
         if (!(await s.getMetadata(id + '/s/' + i))) return json(400, { error: 'incomplete' });
       }
       await removeParts(s, id, '/', meta.chunks); // Original wird nicht mehr gebraucht
+      await Promise.all([s.delete(id + '/opened'), s.delete(id + '/issues')]); // erledigt: kein Stand mehr nötig
       const now = Date.now();
       Object.assign(meta, { status: 'signed', signedAt: now, expires: now + TTL_SIGNED, chunks: 0 });
       await s.setJSON(id + '/meta', meta);

@@ -217,7 +217,31 @@
     "Bereits unterschrieben": "Tashmë i nënshkruar",
     "Unterschrieben am {date} um {time} Uhr.": "Nënshkruar më {date} në orën {time}.",
     "<p><b>Ende-zu-Ende verschlüsselt.</b> Das PDF, Ihr Name und Ihre Unterschrift werden nur in Ihrem Browser verarbeitet. Übertragen wird nur das fertige Dokument, und zwar verschlüsselt: Lesen können es nur Sie und der Absender.</p>": "<p><b>I enkriptuar nga skaji në skaj.</b> PDF-ja, emri dhe nënshkrimi juaj përpunohen vetëm në shfletuesin tuaj. Transmetohet vetëm dokumenti përfundimtar, dhe atë i enkriptuar: mund ta lexoni vetëm ju dhe dërguesi.</p>",
-    "<p><b>Dokumente per Link:</b> Das Dokument wurde auf dem Gerät des Absenders verschlüsselt und liegt nur verschlüsselt bei Netlify. Der Schlüssel steckt ausschließlich im Link (hinter dem #) und wird nie an den Server übertragen. Wenn Sie auf „Fertig“ tippen, wird das unterschriebene Dokument auf Ihrem Gerät mit diesem Schlüssel verschlüsselt und für den Absender bereitgelegt. Danach wird das Original gelöscht. Das unterschriebene Dokument wird gelöscht, sobald der Absender es abgeholt hat, spätestens nach 30 Tagen. Nicht unterschriebene Dokumente werden nach 7 Tagen gelöscht.</p>": "<p><b>Dokumente me link:</b> Dokumenti është enkriptuar në pajisjen e dërguesit dhe ruhet te Netlify vetëm i enkriptuar. Çelësi ndodhet vetëm në link (pas shenjës #) dhe nuk i dërgohet kurrë serverit. Kur prekni „Gati“, dokumenti i nënshkruar enkriptohet në pajisjen tuaj me këtë çelës dhe i vihet në dispozicion dërguesit. Pastaj origjinali fshihet. Dokumenti i nënshkruar fshihet sapo dërguesi ta ketë marrë, e më së voni pas 30 ditësh. Dokumentet e panënshkruara fshihen pas 7 ditësh.</p>"
+    "<p><b>Dokumente per Link:</b> Das Dokument wurde auf dem Gerät des Absenders verschlüsselt und liegt nur verschlüsselt bei Netlify. Der Schlüssel steckt ausschließlich im Link (hinter dem #) und wird nie an den Server übertragen. Wenn Sie auf „Fertig“ tippen, wird das unterschriebene Dokument auf Ihrem Gerät mit diesem Schlüssel verschlüsselt und für den Absender bereitgelegt. Danach wird das Original gelöscht. Das unterschriebene Dokument wird gelöscht, sobald der Absender es abgeholt hat, spätestens nach 30 Tagen. Nicht unterschriebene Dokumente werden nach 7 Tagen gelöscht.</p>": "<p><b>Dokumente me link:</b> Dokumenti është enkriptuar në pajisjen e dërguesit dhe ruhet te Netlify vetëm i enkriptuar. Çelësi ndodhet vetëm në link (pas shenjës #) dhe nuk i dërgohet kurrë serverit. Kur prekni „Gati“, dokumenti i nënshkruar enkriptohet në pajisjen tuaj me këtë çelës dhe i vihet në dispozicion dërguesit. Pastaj origjinali fshihet. Dokumenti i nënshkruar fshihet sapo dërguesi ta ketë marrë, e më së voni pas 30 ditësh. Dokumentet e panënshkruara fshihen pas 7 ditësh.</p>",
+    "{n} Dokumente": "{n} dokumente",
+    "Dokument {a} von {b}": "Dokumenti {a} nga {b}",
+    "Stimmt etwas nicht?": "Diçka nuk është në rregull?",
+    "Dann nicht unterschreiben, sondern kurz Bescheid geben.": "Atëherë mos nënshkruani, por njoftoni shkurt.",
+    "Bescheid geben": "Njoftoni",
+    "z. B. Mein Geburtsdatum stimmt nicht.": "p.sh. Data ime e lindjes nuk është e saktë.",
+    "Nachricht senden": "Dërgoni mesazhin",
+    "Schreiben Sie kurz, was geändert werden soll. Die Nachricht geht an {who}. Unterschreiben müssen Sie dann noch nicht.": "Shkruani shkurt se çfarë duhet ndryshuar. Mesazhi shkon te {who}. Atëherë nuk keni nevojë të nënshkruani ende.",
+    "Was soll geändert werden?": "Çfarë duhet ndryshuar?",
+    "Bitte schreiben Sie kurz, was nicht stimmt.": "Ju lutemi shkruani shkurt se çfarë nuk është në rregull.",
+    "Danke! Ihre Nachricht ist verschlüsselt an {who} gegangen.": "Faleminderit! Mesazhi juaj u dërgua i enkriptuar te {who}.",
+    "Sie haben schon mehrere Nachrichten geschickt. Bitte schreiben Sie direkt per WhatsApp.": "Keni dërguar tashmë disa mesazhe. Ju lutemi shkruani direkt në WhatsApp.",
+    "Senden hat nicht geklappt. Bitte prüfen Sie Ihre Internetverbindung.": "Dërgimi nuk funksionoi. Ju lutemi kontrolloni lidhjen me internetin.",
+    "Kurz Bescheid geben statt unterschreiben": "Njoftoni shkurt në vend që të nënshkruani",
+    "1. Person": "Personi 1",
+    "2. Person": "Personi 2",
+    "die 1. Person": "personi 1",
+    "die 2. Person": "personi 2",
+    "Zwei Personen unterschreiben nacheinander: zuerst {a}, dann {b}.": "Dy persona nënshkruajnë njëri pas tjetrit: së pari {a}, pastaj {b}.",
+    "Zwei Personen unterschreiben nacheinander.": "Dy persona nënshkruajnë njëri pas tjetrit.",
+    "Danke! Jetzt unterschreibt {name}. Bitte das Handy weitergeben.": "Faleminderit! Tani nënshkruan {name}. Ju lutemi ia jepni telefonin.",
+    "Jetzt unterschreibt {name}": "Tani nënshkruan {name}",
+    "Unterschrift: {name}": "Nënshkrimi: {name}",
+    "<p><b>Geöffnet und Rückmeldungen:</b> Beim ersten Öffnen des Links merkt sich der Server nur den Zeitpunkt (ohne Namen oder Inhalte), damit der Absender sieht, dass das Dokument angekommen ist. Eine Nachricht über „Stimmt etwas nicht?“ wird wie das Dokument Ende-zu-Ende verschlüsselt und gelöscht, sobald der Absender sie abgeholt hat.</p>": "<p><b>Hapja dhe njoftimet:</b> Kur linku hapet për herë të parë, serveri ruan vetëm kohën (pa emra apo përmbajtje), që dërguesi të shohë se dokumenti ka mbërritur. Një mesazh përmes „Diçka nuk është në rregull?“ enkriptohet nga skaji në skaj si dokumenti dhe fshihet sapo dërguesi ta ketë marrë.</p>"
   };
   // Kundenseite in Du-Form (Deutsch). Schlüssel = Sie-Text. Fehlt ein Eintrag, gilt der Sie-Text (meist neutral).
   const DU = {
@@ -275,7 +299,13 @@
     "Dieses Dokument wurde bereits unterschrieben und an {who} übermittelt. Sie müssen nichts mehr tun.": "Dieses Dokument wurde bereits unterschrieben und an {who} übermittelt. Du musst nichts mehr tun.",
     "Dieses Dokument wurde bereits unterschrieben und an den Absender übermittelt. Sie müssen nichts mehr tun.": "Dieses Dokument wurde bereits unterschrieben und an den Absender übermittelt. Du musst nichts mehr tun.",
     "<p><b>Ende-zu-Ende verschlüsselt.</b> Das PDF, Ihr Name und Ihre Unterschrift werden nur in Ihrem Browser verarbeitet. Übertragen wird nur das fertige Dokument, und zwar verschlüsselt: Lesen können es nur Sie und der Absender.</p>": "<p><b>Ende-zu-Ende verschlüsselt.</b> Das PDF, dein Name und deine Unterschrift werden nur in deinem Browser verarbeitet. Übertragen wird nur das fertige Dokument, und zwar verschlüsselt: Lesen können es nur du und der Absender.</p>",
-    "<p><b>Dokumente per Link:</b> Das Dokument wurde auf dem Gerät des Absenders verschlüsselt und liegt nur verschlüsselt bei Netlify. Der Schlüssel steckt ausschließlich im Link (hinter dem #) und wird nie an den Server übertragen. Wenn Sie auf „Fertig“ tippen, wird das unterschriebene Dokument auf Ihrem Gerät mit diesem Schlüssel verschlüsselt und für den Absender bereitgelegt. Danach wird das Original gelöscht. Das unterschriebene Dokument wird gelöscht, sobald der Absender es abgeholt hat, spätestens nach 30 Tagen. Nicht unterschriebene Dokumente werden nach 7 Tagen gelöscht.</p>": "<p><b>Dokumente per Link:</b> Das Dokument wurde auf dem Gerät des Absenders verschlüsselt und liegt nur verschlüsselt bei Netlify. Der Schlüssel steckt ausschließlich im Link (hinter dem #) und wird nie an den Server übertragen. Wenn du auf „Fertig“ tippst, wird das unterschriebene Dokument auf deinem Gerät mit diesem Schlüssel verschlüsselt und für den Absender bereitgelegt. Danach wird das Original gelöscht. Das unterschriebene Dokument wird gelöscht, sobald der Absender es abgeholt hat, spätestens nach 30 Tagen. Nicht unterschriebene Dokumente werden nach 7 Tagen gelöscht.</p>"
+    "<p><b>Dokumente per Link:</b> Das Dokument wurde auf dem Gerät des Absenders verschlüsselt und liegt nur verschlüsselt bei Netlify. Der Schlüssel steckt ausschließlich im Link (hinter dem #) und wird nie an den Server übertragen. Wenn Sie auf „Fertig“ tippen, wird das unterschriebene Dokument auf Ihrem Gerät mit diesem Schlüssel verschlüsselt und für den Absender bereitgelegt. Danach wird das Original gelöscht. Das unterschriebene Dokument wird gelöscht, sobald der Absender es abgeholt hat, spätestens nach 30 Tagen. Nicht unterschriebene Dokumente werden nach 7 Tagen gelöscht.</p>": "<p><b>Dokumente per Link:</b> Das Dokument wurde auf dem Gerät des Absenders verschlüsselt und liegt nur verschlüsselt bei Netlify. Der Schlüssel steckt ausschließlich im Link (hinter dem #) und wird nie an den Server übertragen. Wenn du auf „Fertig“ tippst, wird das unterschriebene Dokument auf deinem Gerät mit diesem Schlüssel verschlüsselt und für den Absender bereitgelegt. Danach wird das Original gelöscht. Das unterschriebene Dokument wird gelöscht, sobald der Absender es abgeholt hat, spätestens nach 30 Tagen. Nicht unterschriebene Dokumente werden nach 7 Tagen gelöscht.</p>",
+    "Schreiben Sie kurz, was geändert werden soll. Die Nachricht geht an {who}. Unterschreiben müssen Sie dann noch nicht.": "Schreib kurz, was geändert werden soll. Die Nachricht geht an {who}. Unterschreiben musst du dann noch nicht.",
+    "Bitte schreiben Sie kurz, was nicht stimmt.": "Bitte schreib kurz, was nicht stimmt.",
+    "Danke! Ihre Nachricht ist verschlüsselt an {who} gegangen.": "Danke! Deine Nachricht ist verschlüsselt an {who} gegangen.",
+    "Sie haben schon mehrere Nachrichten geschickt. Bitte schreiben Sie direkt per WhatsApp.": "Du hast schon mehrere Nachrichten geschickt. Bitte schreib direkt per WhatsApp.",
+    "Senden hat nicht geklappt. Bitte prüfen Sie Ihre Internetverbindung.": "Senden hat nicht geklappt. Bitte prüf deine Internetverbindung.",
+    "Danke! Jetzt unterschreibt {name}. Bitte das Handy weitergeben.": "Danke! Jetzt unterschreibt {name}. Gib das Handy bitte weiter."
   };
   // Kundenseite in Du-Form (Albanisch, „ti“). Schlüssel = deutscher Sie-Text. Fehlt ein Eintrag, gilt SQ.
   const SQ_TI = {
@@ -385,7 +415,17 @@
     "Dieses Dokument wurde bereits unterschrieben und an {who} übermittelt. Sie müssen nichts mehr tun.": "Ky dokument është nënshkruar tashmë dhe është dërguar te {who}. Nuk ke nevojë të bësh asgjë tjetër.",
     "Dieses Dokument wurde bereits unterschrieben und an den Absender übermittelt. Sie müssen nichts mehr tun.": "Ky dokument është nënshkruar tashmë dhe është dërguar te dërguesi. Nuk ke nevojë të bësh asgjë tjetër.",
     "<p><b>Ende-zu-Ende verschlüsselt.</b> Das PDF, Ihr Name und Ihre Unterschrift werden nur in Ihrem Browser verarbeitet. Übertragen wird nur das fertige Dokument, und zwar verschlüsselt: Lesen können es nur Sie und der Absender.</p>": "<p><b>I enkriptuar nga skaji në skaj.</b> PDF-ja, emri dhe nënshkrimi yt përpunohen vetëm në shfletuesin tënd. Transmetohet vetëm dokumenti përfundimtar, dhe atë i enkriptuar: mund ta lexoni vetëm ti dhe dërguesi.</p>",
-    "<p><b>Dokumente per Link:</b> Das Dokument wurde auf dem Gerät des Absenders verschlüsselt und liegt nur verschlüsselt bei Netlify. Der Schlüssel steckt ausschließlich im Link (hinter dem #) und wird nie an den Server übertragen. Wenn Sie auf „Fertig“ tippen, wird das unterschriebene Dokument auf Ihrem Gerät mit diesem Schlüssel verschlüsselt und für den Absender bereitgelegt. Danach wird das Original gelöscht. Das unterschriebene Dokument wird gelöscht, sobald der Absender es abgeholt hat, spätestens nach 30 Tagen. Nicht unterschriebene Dokumente werden nach 7 Tagen gelöscht.</p>": "<p><b>Dokumente me link:</b> Dokumenti është enkriptuar në pajisjen e dërguesit dhe ruhet te Netlify vetëm i enkriptuar. Çelësi ndodhet vetëm në link (pas shenjës #) dhe nuk i dërgohet kurrë serverit. Kur prek „Gati“, dokumenti i nënshkruar enkriptohet në pajisjen tënde me këtë çelës dhe i vihet në dispozicion dërguesit. Pastaj origjinali fshihet. Dokumenti i nënshkruar fshihet sapo dërguesi ta ketë marrë, e më së voni pas 30 ditësh. Dokumentet e panënshkruara fshihen pas 7 ditësh.</p>"
+    "<p><b>Dokumente per Link:</b> Das Dokument wurde auf dem Gerät des Absenders verschlüsselt und liegt nur verschlüsselt bei Netlify. Der Schlüssel steckt ausschließlich im Link (hinter dem #) und wird nie an den Server übertragen. Wenn Sie auf „Fertig“ tippen, wird das unterschriebene Dokument auf Ihrem Gerät mit diesem Schlüssel verschlüsselt und für den Absender bereitgelegt. Danach wird das Original gelöscht. Das unterschriebene Dokument wird gelöscht, sobald der Absender es abgeholt hat, spätestens nach 30 Tagen. Nicht unterschriebene Dokumente werden nach 7 Tagen gelöscht.</p>": "<p><b>Dokumente me link:</b> Dokumenti është enkriptuar në pajisjen e dërguesit dhe ruhet te Netlify vetëm i enkriptuar. Çelësi ndodhet vetëm në link (pas shenjës #) dhe nuk i dërgohet kurrë serverit. Kur prek „Gati“, dokumenti i nënshkruar enkriptohet në pajisjen tënde me këtë çelës dhe i vihet në dispozicion dërguesit. Pastaj origjinali fshihet. Dokumenti i nënshkruar fshihet sapo dërguesi ta ketë marrë, e më së voni pas 30 ditësh. Dokumentet e panënshkruara fshihen pas 7 ditësh.</p>",
+    "Dann nicht unterschreiben, sondern kurz Bescheid geben.": "Atëherë mos nënshkruaj, por njofto shkurt.",
+    "Bescheid geben": "Njofto",
+    "Nachricht senden": "Dërgo mesazhin",
+    "Schreiben Sie kurz, was geändert werden soll. Die Nachricht geht an {who}. Unterschreiben müssen Sie dann noch nicht.": "Shkruaj shkurt se çfarë duhet ndryshuar. Mesazhi shkon te {who}. Atëherë nuk ke nevojë të nënshkruash ende.",
+    "Bitte schreiben Sie kurz, was nicht stimmt.": "Të lutem shkruaj shkurt se çfarë nuk është në rregull.",
+    "Danke! Ihre Nachricht ist verschlüsselt an {who} gegangen.": "Faleminderit! Mesazhi yt u dërgua i enkriptuar te {who}.",
+    "Sie haben schon mehrere Nachrichten geschickt. Bitte schreiben Sie direkt per WhatsApp.": "Ke dërguar tashmë disa mesazhe. Të lutem shkruaj direkt në WhatsApp.",
+    "Senden hat nicht geklappt. Bitte prüfen Sie Ihre Internetverbindung.": "Dërgimi nuk funksionoi. Të lutem kontrollo lidhjen me internetin.",
+    "Kurz Bescheid geben statt unterschreiben": "Njofto shkurt në vend që të nënshkruash",
+    "Danke! Jetzt unterschreibt {name}. Bitte das Handy weitergeben.": "Faleminderit! Tani nënshkruan {name}. Të lutem ia jep telefonin."
   };
   // Übersetzung der Kundenseite (Deutsch mit „Sie“ = Schlüssel). Mit S.du in Du-Form.
   function tr(str, vars) {
@@ -472,13 +512,16 @@
     local: null,        // Vor-Ort-Unterschrift: { label, note, lang, du, saved }
     tpl: null,          // Absender: angewendete Vorlage { id, name, spots }
     own: [],            // Absender: eigene Unterschrift(en) als Vermittler, vor dem Senden ins PDF geschrieben
-    mySig: null         // Absender: gespeicherte eigene Unterschrift { path, bw, bh, sw }
+    mySig: null,        // Absender: gespeicherte eigene Unterschrift { path, bw, bh, sw }
+    parts: [],          // Absender: Teile des Dokuments (mehrere PDFs zusammengefügt) { name, pages, sig, tpl }
+    docTitle: '',       // Absender: Titel des Dokuments (sieht der Kunde, steht im Dateinamen); leer = aus dem Dateinamen
+    sig2: null, name2: '' // Kunde: zweite Person (z. B. Ehepartner) mit eigener Unterschrift
   };
   const LS_PIN = 'firmio.pin.v1';
   const LS_FILTER = 'firmio.filter.v1';
   const DAY = 864e5;
   const LINK_PLACEHOLDER = '[Der Link wird beim Erstellen eingefügt]';
-  let padMem = null;
+  let padMem = null, padMem2 = null;
   let io = null;
   let renderQueue = Promise.resolve();
   let installEvt = null;
@@ -496,6 +539,7 @@
     setupStart();
 
     $('#file').addEventListener('change', onFile);
+    if (S.mode === 'send') $('#file').multiple = true; // Absender: mehrere PDFs auf einmal (werden zusammengefügt)
     // Während die Dateiauswahl offen ist, nicht neu laden (siehe reloadIfIdle)
     $('#pickBtn').addEventListener('click', () => { picking = Date.now(); S.intent = 'link'; });
     $('#file').addEventListener('cancel', () => { picking = 0; });
@@ -543,7 +587,7 @@
         navigator.serviceWorker.addEventListener('message', e => {
           const d = e.data || {};
           if (S.inViewer) return;
-          if (d.firmio === 'signed') refreshInbox();
+          if (d.firmio === 'signed' || d.firmio === 'issue') refreshInbox();
           if (d.firmio === 'open') refreshInbox().then(() => { if (d.id) openRecord(d.id); else if (d.filter) setFilter(d.filter); });
         });
       }
@@ -577,8 +621,13 @@
   function parseReqObj(o) {
     try {
       if (!o || o.v !== 1) return null;
-      const s = Array.isArray(o.s) ? o.s.filter(a => Array.isArray(a) && a.length === 6 && (a[0] === 's' || a[0] === 'd') &&
-        a.slice(1).every(v => typeof v === 'number' && isFinite(v) && v >= 0)).slice(0, 40) : [];
+      // Stelle: [Art, Seite, x, y, Breite, Höhe] und optional 1 = zweite Person
+      const s = Array.isArray(o.s) ? o.s.filter(a => Array.isArray(a) && (a.length === 6 || (a.length === 7 && (a[6] === 0 || a[6] === 1))) && (a[0] === 's' || a[0] === 'd') &&
+        a.slice(1, 6).every(v => typeof v === 'number' && isFinite(v) && v >= 0)).slice(0, 40) : [];
+      const line = (v, n) => typeof v === 'string' ? v.replace(/\s+/g, ' ').trim().slice(0, n) : '';
+      // Teile eines zusammengefügten Dokuments: [[Titel, Seiten], …]
+      const q = Array.isArray(o.q) ? o.q.filter(x => Array.isArray(x) && x.length === 2 && typeof x[0] === 'string' && Number.isInteger(x[1]) && x[1] > 0 && x[1] < 1000)
+        .slice(0, 12).map(x => [line(x[0], 60) || 'Dokument', x[1]]) : [];
       return {
         h: typeof o.h === 'string' ? o.h.toLowerCase().replace(/[^0-9a-f]/g, '').slice(0, 64) : '',
         p: typeof o.p === 'number' ? o.p : 0,
@@ -592,7 +641,10 @@
         b: o.b === 1 ? 1 : 0,
         u: o.u === 1 ? 1 : 0,
         z: typeof o.z === 'string' ? o.z.replace(/\s+/g, ' ').trim().slice(0, 60) : '',
-        c: typeof o.c === 'string' ? o.c.replace(/\s+/g, ' ').trim().slice(0, 80) : ''
+        c: typeof o.c === 'string' ? o.c.replace(/\s+/g, ' ').trim().slice(0, 80) : '',
+        c2: line(o.c2, 80),     // Name der zweiten Person (vorausfüllen)
+        ti: line(o.ti, 80),     // Titel des Dokuments (für Anzeige und Dateinamen)
+        q: q.length > 1 ? q : []
       };
     } catch (e) { return null; }
   }
@@ -701,7 +753,8 @@
       const first = who ? tr('<b>{who}</b> bittet Sie um Ihre Unterschrift.', { who: esc(who) }) : esc(tr('Sie wurden gebeten, ein Dokument zu unterschreiben.'));
       const second = nSigReq ? (nSigReq === 1 ? tr('Die Stelle zum Unterschreiben ist schon markiert.') : tr('{n} Stellen zum Unterschreiben sind schon markiert.', { n: nSigReq }))
         : inLink ? tr('Ihr Dokument steckt schon im Link. Sie müssen nichts speichern und nichts herunterladen.') : tr('Wählen Sie unten das PDF aus, das Sie bekommen haben.');
-      lead.innerHTML = first + ' ' + esc(second);
+      const pair = S.req.s.some(a => a[0] === 's' && a[6] === 1) ? ' ' + tr('Zwei Personen unterschreiben nacheinander.') : '';
+      lead.innerHTML = first + ' ' + esc(second + pair);
     } else {
       lead.textContent = tr('Unterschreiben Sie ein PDF direkt auf Ihrem Handy, ganz ohne Drucker.');
     }
@@ -820,6 +873,7 @@
         (back ? tr('<p><b>Dokumente per Link:</b> Das Dokument wurde auf dem Gerät des Absenders verschlüsselt und liegt nur verschlüsselt bei Netlify. Der Schlüssel steckt ausschließlich im Link (hinter dem #) und wird nie an den Server übertragen. Wenn Sie auf „Fertig“ tippen, wird das unterschriebene Dokument auf Ihrem Gerät mit diesem Schlüssel verschlüsselt und für den Absender bereitgelegt. Danach wird das Original gelöscht. Das unterschriebene Dokument wird gelöscht, sobald der Absender es abgeholt hat, spätestens nach 30 Tagen. Nicht unterschriebene Dokumente werden nach 7 Tagen gelöscht.</p>')
           : tr('<p><b>Dokumente per Link:</b> Schickt Ihnen jemand ein Dokument per Link, wurde es auf seinem Gerät verschlüsselt und liegt nur verschlüsselt bei Netlify. Der Schlüssel steckt ausschließlich im Link (hinter dem #) und wird nie an den Server übertragen. Niemand außer Ihnen und dem Absender kann das Dokument lesen. Es wird gelöscht, sobald Sie es unterschrieben zurückgeschickt haben, spätestens nach 7 Tagen.</p>') +
             tr('<p>Das unterschriebene PDF verschicken Sie selbst, zum Beispiel per WhatsApp. Dafür gelten die Datenschutzbestimmungen des jeweiligen Dienstes.</p>')) +
+        (back ? tr('<p><b>Geöffnet und Rückmeldungen:</b> Beim ersten Öffnen des Links merkt sich der Server nur den Zeitpunkt (ohne Namen oder Inhalte), damit der Absender sieht, dass das Dokument angekommen ist. Eine Nachricht über „Stimmt etwas nicht?“ wird wie das Dokument Ende-zu-Ende verschlüsselt und gelöscht, sobald der Absender sie abgeholt hat.</p>') : '') +
         (back && mailOn ? tr('<p><b>Kopie per E-Mail:</b> Der Absender bekommt das unterschriebene Dokument zusätzlich per E-Mail. Dafür wird es verschlüsselt (TLS) an den Server übertragen und von dort per E-Mail an den Absender geschickt. Der Server speichert diese Kopie nicht.</p>') : '') +
         (S.mode === 'send' && mailOn ? '<p>Die Mails gehen über Ihr eigenes E-Mail-Konto; dort liegt jeweils eine Kopie unter „Gesendet“.</p>' : '') +
         (S.mode === 'send' ? '<p><b>Ihre Übersicht</b> (Kundennotizen, Schlüssel und unterschriebene PDFs) wird nur auf diesem Gerät gespeichert. Unterschriebene Dokumente werden vom Server gelöscht, sobald Firmio sie abgeholt hat. Vor Ort unterschriebene Dokumente werden gar nicht hochgeladen.</p>' +
@@ -873,15 +927,18 @@
 
   async function onFile(e) {
     picking = 0;
-    const f = e.target.files && e.target.files[0];
+    const files = Array.from(e.target.files || []);
     e.target.value = '';
-    if (!f) return;
+    if (!files.length) return;
+    if (S.mode === 'send' && files.length > 1) { await openMany(files); return; } // mehrere PDFs: zu einem Dokument
+    const f = files[0];
     let bytes;
     try { bytes = await readFile(f); } catch (err) { alert(tr('Die Datei konnte nicht gelesen werden.')); return; }
     await openBytes(bytes, f.name, false);
   }
 
-  async function openBytes(bytes, name, fromLink) {
+  // parts (Absender): Teile, wenn mehrere PDFs zu einem Dokument zusammengefügt wurden
+  async function openBytes(bytes, name, fromLink, parts) {
     busy(tr('Dokument wird geöffnet …'));
     try {
       if (!looksLikePdf(bytes)) {
@@ -889,22 +946,13 @@
         alert(tr('Diese Datei ist kein PDF. Bitte wählen Sie das PDF-Dokument aus.'));
         return false;
       }
-      if (!window.pdfjsLib) throw new Error('pdfjs');
-      pdfjsLib.GlobalWorkerOptions.workerSrc = 'vendor/pdf.worker.min.js';
-      const task = pdfjsLib.getDocument({ data: bytes.slice(), isEvalSupported: false });
-      task.onPassword = (update, reason) => {
-        unbusy();
-        const pw = prompt(reason === 2 ? tr('Falsches Passwort. Bitte noch einmal eingeben:') : tr('Das PDF ist mit einem Passwort geschützt. Bitte Passwort eingeben:'));
-        if (pw === null) { task.destroy(); return; }
-        busy(tr('Dokument wird geöffnet …'));
-        update(pw);
-      };
-      const pdf = await task.promise;
+      const pdf = await loadPdfJs(bytes);
       const hash = await sha256(bytes);
       if (S.pdf) { try { S.pdf.destroy(); } catch (x) { /* egal */ } }
       S.file = { name: cleanName(name), bytes: bytes, hash: hash };
       S.fileIsRemote = !!fromLink;
       S.pdf = pdf;
+      S.parts = parts && parts.length ? parts : [{ name: S.file.name, pages: pdf.numPages, sig: null, tpl: null }];
       await openViewer();
       loadPdfLib().catch(() => {});
     } catch (err) {
@@ -1130,6 +1178,7 @@
       let doc;
       try { doc = await decryptDoc(concatBytes(parts), r.k); } catch (e) { const err = new Error('key'); err.code = 'key'; throw err; }
       S.remote = { id: r.d, del: r.t, name: cleanName(doc.name), bytes: doc.bytes, expires: meta.expires, deleted: false };
+      markOpened();
       renderRemoteReady();
       await openBytes(doc.bytes, S.remote.name, true);
     } catch (e) {
@@ -1154,7 +1203,7 @@
     box.append(el('div', { class: 'remote ok' },
       el('div', { class: 'okmark sm', html: I.check }),
       el('div', { class: 'grow' },
-        el('b', { text: S.remote && S.remote.name ? S.remote.name : tr('Dokument') }),
+        el('b', { text: (S.req && S.req.ti) || (S.remote && S.remote.name) || tr('Dokument') }),
         el('p', { text: at ? tr('Unterschrieben am {date} um {time} Uhr.', { date: fmtDate(at), time: fmtTime(at) }) : tr('Bereits unterschrieben') }))));
   }
 
@@ -1162,10 +1211,10 @@
     const box = $('#remoteBox');
     box.innerHTML = '';
     $('#pickBtn').classList.add('hidden');
-    const n = S.req && S.req.p ? S.req.p : 0;
-    const info = (n ? (n === 1 ? tr('1 Seite') : tr('{n} Seiten', { n: n })) + ' · ' : '') + tr('gültig bis {date}', { date: fmtDate(new Date(S.remote.expires)) });
+    const n = S.req && S.req.p ? S.req.p : 0, nq = S.req && S.req.q ? S.req.q.length : 0;
+    const info = (nq > 1 ? tr('{n} Dokumente', { n: nq }) + ' · ' : '') + (n ? (n === 1 ? tr('1 Seite') : tr('{n} Seiten', { n: n })) + ' · ' : '') + tr('gültig bis {date}', { date: fmtDate(new Date(S.remote.expires)) });
     box.append(
-      el('div', { class: 'doccard' }, el('span', { class: 'ic', html: I.docS }), el('div', null, el('b', { text: S.remote.name }), el('span', { text: info }))),
+      el('div', { class: 'doccard' }, el('span', { class: 'ic', html: I.docS }), el('div', null, el('b', { text: (S.req && S.req.ti) || S.remote.name }), el('span', { text: info }))),
       el('button', { type: 'button', class: 'btn btn-primary btn-block btn-xl', html: I.pen + '<span>' + tr('Dokument öffnen') + '</span>',
         onclick: () => openBytes(S.remote.bytes, S.remote.name, true) }));
   }
@@ -1191,6 +1240,14 @@
     renderHelp(true);
   }
 
+  // Dem Absender zeigen, dass der Link angekommen ist: Der Server merkt sich nur den ersten Zeitpunkt.
+  // Nicht bei „Link als Kunde testen“ (…?vorschau=1#…) und nicht ohne Rückgabe an die Übersicht.
+  function markOpened() {
+    if (!linkBack() || /[?&]vorschau\b/.test(location.search)) return;
+    apiFetch('POST', '/api/doc/' + encodeURIComponent(S.req.d) + '/opened', { del: S.req.t, json: {} }).catch(() => {});
+  }
+  const previewLink = link => String(link).replace('#', '?vorschau=1#');
+
   function deleteRemote() {
     const r = S.remote;
     if (!S.fileIsRemote || !r || r.deleted || !r.del || backMode()) return;
@@ -1215,11 +1272,12 @@
 
   /* ---------------- Ansicht ---------------- */
   async function openViewer() {
-    S.items = []; S.spots = []; S.sel = null; S.out = null; S.dirty = false; S.hashMatch = null; S.cur = 0; S.sig = null; S.sent = null; S.sendLang = 'de'; S.sendDu = loadSender().du !== false; S.sentBack = null; S.custLabel = ''; S.custNote = ''; S.tpl = null; S.docSig = null;
+    S.items = []; S.spots = []; S.sel = null; S.out = null; S.dirty = false; S.hashMatch = null; S.cur = 0; S.sig = null; S.sent = null; S.sendLang = 'de'; S.sendDu = loadSender().du !== false; S.sentBack = null; S.custLabel = ''; S.custLabel2 = ''; S.custNote = ''; S.tpl = null; S.docSig = null;
     S.own = []; S.ownBurned = 0; S.ownAuto = null; S.mySig = S.mode === 'send' ? loadMySig() : null;
+    S.sig2 = null; S.docTitle = '';
     $('#ownBtn').classList.toggle('hidden', !(S.mode === 'send' && !S.view));
     showScreen('viewer');
-    $('#docName').textContent = S.file.name;
+    $('#docName').textContent = S.mode === 'sign' && S.req && S.req.ti ? S.req.ti : S.mode === 'send' && !S.view ? docNameText() : S.file.name;
     $('#modeChip').textContent = S.view ? 'Unterschrieben' : S.mode === 'send' ? (S.intent === 'local' ? 'Vor Ort' : 'Anfordern') : '';
     await buildPages();
     if (S.view) {
@@ -1259,8 +1317,82 @@
       box.append(wrap, el('div', { class: 'pnum', text: tr('Seite {a} von {b}', { a: i + 1, b: n }) }));
       S.pages.push({ i: i, W: vp.width, H: vp.height, T: Array.prototype.slice.call(vp.transform), wrap: wrap, img: img, ov: ov, k: 1, state: 0, rw: 0, url: '' });
     }
+    decoratePages();
     relayout();
     S.pages.forEach(p => { if (io) io.observe(p.wrap); else queueRender(p); });
+  }
+
+  // Überschriften der Teile (mehrere PDFs) und Karte am Ende: Absender „Weiteres PDF anhängen“, Kunde „Stimmt etwas nicht?“
+  function decoratePages() {
+    const box = $('#pages');
+    if (!box) return;
+    box.querySelectorAll('.parthead, .endcard').forEach(n => n.remove());
+    let list = null;
+    const send = S.mode === 'send' && !S.view;
+    if (send && S.parts.length > 1) list = S.parts.map(p => [partTitle(p), p.pages]);
+    else if (S.mode === 'sign' && S.req && S.req.q && S.req.q.length > 1) list = S.req.q;
+    if (list && list.reduce((a, x) => a + x[1], 0) === S.pages.length) {
+      let off = 0;
+      list.forEach((x, i) => {
+        const pg = S.pages[off];
+        off += x[1];
+        if (!pg) return;
+        box.insertBefore(el('div', { class: 'parthead' },
+          el('span', { class: 'pn', text: String(i + 1) }),
+          el('div', { class: 'grow' }, el('b', { text: x[0] }),
+            el('span', { text: (send ? 'PDF ' + (i + 1) + ' von ' + list.length : tr('Dokument {a} von {b}', { a: i + 1, b: list.length })) + ' · ' + (x[1] === 1 ? tr('1 Seite') : tr('{n} Seiten', { n: x[1] })) })),
+          send && i > 0 && !S.sent ? el('button', { type: 'button', class: 'linkbtn danger', text: 'Entfernen', onclick: () => removeParts(i, 1) }) : null), pg.wrap);
+      });
+    }
+    if (send && !S.sent) {
+      box.append(el('button', { type: 'button', class: 'endcard add', onclick: pickMore },
+        el('span', { class: 'ic', html: I.plus }),
+        el('span', { class: 'grow' }, el('b', { text: 'Weiteres PDF anhängen' }),
+          el('small', { text: 'Zum Beispiel Beratungsdoku oder SEPA-Mandat. Ihr Kunde unterschreibt alles in einem Rutsch.' }))));
+    } else if (S.mode === 'sign' && backMode() && !S.local) {
+      box.append(el('div', { class: 'endcard ask' },
+        el('b', { text: tr('Stimmt etwas nicht?') }),
+        el('span', { text: tr('Dann nicht unterschreiben, sondern kurz Bescheid geben.') }),
+        el('button', { type: 'button', class: 'btn btn-ghost btn-sm', html: I.mail + '<span>' + tr('Bescheid geben') + '</span>', onclick: openIssueSheet })));
+    }
+  }
+
+  // Kunde: „Stimmt etwas nicht?“ – Nachricht an den Absender statt zu unterschreiben (Ende-zu-Ende verschlüsselt)
+  function openIssueSheet() {
+    if (!backMode()) return;
+    const who = (S.req && S.req.f) || tr('den Absender');
+    const ta = el('textarea', { class: 'in', rows: '4', maxlength: '1000', placeholder: tr('z. B. Mein Geburtsdatum stimmt nicht.') });
+    const err = el('p', { class: 'err', role: 'alert' });
+    const ok = el('button', { type: 'button', class: 'btn btn-primary btn-block btn-xl', html: I.mail + '<span>' + tr('Nachricht senden') + '</span>' });
+    const body = el('div', null,
+      el('p', { class: 'prose', text: tr('Schreiben Sie kurz, was geändert werden soll. Die Nachricht geht an {who}. Unterschreiben müssen Sie dann noch nicht.', { who: who }) }),
+      el('label', { class: 'fld' }, el('span', { text: tr('Was soll geändert werden?') }), ta),
+      err, ok);
+    ta.addEventListener('input', () => { err.textContent = ''; });
+    ok.addEventListener('click', async () => {
+      const text = ta.value.trim();
+      if (text.length < 3) { err.textContent = tr('Bitte schreiben Sie kurz, was nicht stimmt.'); ta.focus(); return; }
+      ok.disabled = true;
+      busy(tr('Wird verschlüsselt gesendet …'));
+      try {
+        const msg = await sealHead({ m: text.slice(0, 1000), at: Date.now() }, S.req.k);
+        await apiRetry('POST', '/api/doc/' + encodeURIComponent(S.req.d) + '/issue', { del: S.req.t, json: { msg: msg } }, 2);
+        unbusy();
+        body.innerHTML = '';
+        body.append(el('div', { class: 'banner ok' }, el('span', { html: I.check }), el('p', { text: tr('Danke! Ihre Nachricht ist verschlüsselt an {who} gegangen.', { who: who }) })),
+          el('button', { type: 'button', class: 'btn btn-ghost btn-block', text: tr('Zurück zum Dokument'), onclick: () => closeSheet() }));
+      } catch (e) {
+        unbusy();
+        ok.disabled = false;
+        err.textContent = e && e.code === 'too_many' ? tr('Sie haben schon mehrere Nachrichten geschickt. Bitte schreiben Sie direkt per WhatsApp.')
+          : e && (e.code === 'signed' || e.code === 'http_409') ? (S.req.f ? tr('Dieses Dokument wurde bereits unterschrieben und an {who} übermittelt. Sie müssen nichts mehr tun.', { who: S.req.f })
+            : tr('Dieses Dokument wurde bereits unterschrieben und an den Absender übermittelt. Sie müssen nichts mehr tun.'))
+            : e && (e.code === 'not_found' || e.code === 'expired') ? tr('Dieser Link ist abgelaufen oder das Dokument wurde schon unterschrieben zurückgeschickt. Bitten Sie {who} um einen neuen Link.', { who: who })
+              : tr('Senden hat nicht geklappt. Bitte prüfen Sie Ihre Internetverbindung.');
+      }
+    });
+    openSheet(tr('Stimmt etwas nicht?'), body);
+    setTimeout(() => { try { ta.focus(); } catch (e) { /* egal */ } }, 330);
   }
 
   function onIntersect(entries) {
@@ -1377,7 +1509,7 @@
         const pg = S.pages[pi];
         if (!pg) return;
         const w = clamp(a[4], 12, pg.W), h = clamp(a[5], 8, pg.H);
-        S.spots.push({ id: nid(), type: 'spot', k: a[0], page: pi, x: clamp(a[2], 0, pg.W - w), y: clamp(a[3], 0, pg.H - h), w: w, h: h, fill: null });
+        S.spots.push({ id: nid(), type: 'spot', k: a[0], page: pi, x: clamp(a[2], 0, pg.W - w), y: clamp(a[3], 0, pg.H - h), w: w, h: h, fill: null, who: a[0] === 's' && a[6] === 1 ? 1 : 0 });
       });
       S.spots.forEach(renderSpot);
     }
@@ -1386,6 +1518,8 @@
       banner('warn', tr('Dieses PDF passt nicht zur Anfrage (andere Seitenzahl). Bitte prüfen Sie, ob Sie das richtige Dokument gewählt haben. Sie können trotzdem unterschreiben und die Unterschrift selbst platzieren.'));
     } else if (S.hashMatch === false) {
       banner('warn', tr('Dieses PDF ist nicht genau das angeforderte Dokument. Wählen Sie am besten das PDF aus der Nachricht. Sie können trotzdem unterschreiben.'));
+    } else if (nSig && twoReq()) {
+      banner('info', tr('Zwei Personen unterschreiben nacheinander: zuerst {a}, dann {b}.', { a: personSubj(0), b: personSubj(1) }) + ' ' + tr('Die markierten Stellen werden automatisch ausgefüllt.'));
     } else if (nSig) {
       banner('info', nSig === 1
         ? tr('Die gelb markierte Stelle wird nach dem Unterschreiben automatisch ausgefüllt.')
@@ -1394,12 +1528,14 @@
   }
 
   /* ---------------- Objekte auf der Seite ---------------- */
-  function caption(d) {
-    return (S.name ? S.name + ' · ' : '') + 'elektronisch unterschrieben · ' + fmtDate(d) + ', ' + fmtTime(d) + ' Uhr';
+  // who: 0 = Kunde (erste Person), 1 = zweite Person
+  function caption(d, who) {
+    const n = nameOf(who || 0);
+    return (n ? n + ' · ' : '') + 'elektronisch unterschrieben · ' + fmtDate(d) + ', ' + fmtTime(d) + ' Uhr';
   }
-  function capSize(w) { return clamp(w / (caption(new Date()).length * 0.5), 3.6, 6.2); }
-  function capH(w) { return capSize(w) * 1.6; }
-  function sigH(w) { return capH(w) + w * S.sig.bh / S.sig.bw; }
+  function capSize(w, who) { return clamp(w / (caption(new Date(), who).length * 0.5), 3.6, 6.2); }
+  function capH(w, who) { return capSize(w, who) * 1.6; }
+  function sigH(w, who) { const s = sigOf(who || 0); return capH(w, who) + w * s.bh / s.bw; }
   // Eigene Unterschrift des Absenders (Vermittler): Bildunterschrift mit seinem Namen aus dem Briefkopf
   function ownCaption(d) {
     const n = loadSender().name;
@@ -1414,7 +1550,7 @@
     return measureCtx.measureText(o.text).width / 100 * o.size;
   }
   function objW(o) { return o.type === 'text' ? textWidth(o) : o.w; }
-  function objH(o) { return o.type === 'sig' ? sigH(o.w) : o.type === 'own' ? ownH(o.w) : o.type === 'text' ? o.size * 1.25 : o.h; }
+  function objH(o) { return o.type === 'sig' ? sigH(o.w, o.who) : o.type === 'own' ? ownH(o.w) : o.type === 'text' ? o.size * 1.25 : o.h; }
 
   function sigSvgOf(s, w, text, cs, h) {
     const sc = w / s.bw;
@@ -1423,7 +1559,7 @@
       '<g transform="translate(0 ' + r2(cs * 1.6) + ') scale(' + (Math.round(sc * 10000) / 10000) + ')">' +
       '<path d="' + s.path + '" fill="none" stroke="' + INK_CSS + '" stroke-width="' + r2(s.sw) + '" stroke-linecap="round" stroke-linejoin="round"/></g></svg>';
   }
-  function sigSvg(w) { return sigSvgOf(S.sig, w, caption(new Date()), capSize(w), sigH(w)); }
+  function sigSvg(w, who) { return sigSvgOf(sigOf(who || 0), w, caption(new Date(), who), capSize(w, who), sigH(w, who)); }
   function ownSvg(w) { return sigSvgOf(S.mySig, w, ownCaption(new Date()), ownCapSize(w), ownH(w)); }
 
   function renderItem(it, fresh) {
@@ -1445,7 +1581,7 @@
 
   function paintObj(o) {
     if (!o.vis) return;
-    if (o.type === 'sig') o.vis.innerHTML = sigSvg(o.w);
+    if (o.type === 'sig') o.vis.innerHTML = sigSvg(o.w, o.who);
     else if (o.type === 'own') o.vis.innerHTML = ownSvg(o.w);
     else if (o.type === 'text') { o.vis.innerHTML = ''; o.vis.append(el('span', { class: 'tx', text: o.text })); }
   }
@@ -1456,6 +1592,8 @@
     const k = pg.k, n = o.node;
     n.style.left = (o.x * k) + 'px';
     n.style.top = (o.y * k) + 'px';
+    // Hinweis am Kundenfeld: rechtsbündig, wenn er sonst aus der Seite ragen würde
+    if (o.type === 'spot' && o.node.firstChild && o.node.firstChild.className === 'tag') o.node.classList.toggle('tag-r', o.x * k + o.node.firstChild.offsetWidth > pg.wrap.clientWidth - 4);
     if (o.type === 'text') {
       n.style.width = '';
       n.style.height = '';
@@ -1473,13 +1611,28 @@
       if (S.mode === 'send') {
         const del = el('button', { type: 'button', class: 'h-del', 'data-role': 'del', 'aria-label': 'Feld entfernen', html: I.x });
         del.addEventListener('click', e => { e.stopPropagation(); removeObj(sp); });
-        n.append(el('span', { class: 'lbl', text: sp.k === 's' ? 'Unterschrift' : 'Ort, Datum' }), del,
-          el('span', { class: 'h-rs', 'data-role': 'resize', 'aria-hidden': 'true', html: I.resize }));
+        sp.lbl = el('span', { class: 'lbl' });
+        n.append(sp.lbl, del, el('span', { class: 'h-rs', 'data-role': 'resize', 'aria-hidden': 'true', html: I.resize }));
+        if (sp.k === 's') {
+          // Wer unterschreibt hier? Kunde oder eine zweite Person (z. B. Ehepartner) – sichtbar, solange das Feld gewählt ist
+          sp.whoBox = el('span', { class: 'who', role: 'group', 'aria-label': 'Wer unterschreibt hier?' },
+            el('button', { type: 'button', 'data-role': 'who', 'data-w': '0', text: 'Kunde' }),
+            el('button', { type: 'button', 'data-role': 'who', 'data-w': '1', text: '2. Person' }));
+          sp.whoBox.addEventListener('click', e => {
+            const b = e.target.closest('button[data-w]');
+            if (!b) return;
+            e.stopPropagation();
+            setWho(sp, +b.getAttribute('data-w'));
+          });
+          n.append(sp.whoBox);
+        }
         bindDrag(n, sp);
       } else {
         n.setAttribute('role', 'button');
-        n.setAttribute('aria-label', sp.k === 's' ? tr('Hier unterschreiben') : tr('Ort und Datum einsetzen'));
-        n.append(el('span', { class: 'tag', html: (sp.k === 's' ? I.penS + esc(tr('Hier unterschreiben')) : I.calS + esc(tr('Ort, Datum'))) }));
+        const pn = sp.k === 's' && twoReq() ? personName(sp.who || 0) : '';
+        const tag = sp.k === 's' && twoReq() ? (pn ? shortName(pn) : personTag(sp.who || 0)) + ' · ' + tr('Hier unterschreiben') : tr('Hier unterschreiben');
+        n.setAttribute('aria-label', sp.k === 's' ? tag : tr('Ort und Datum einsetzen'));
+        n.append(el('span', { class: 'tag', html: (sp.k === 's' ? I.penS + esc(tag) : I.calS + esc(tr('Ort, Datum'))) }));
         n.addEventListener('click', () => onSpotTap(sp));
       }
       sp.node = n;
@@ -1487,8 +1640,34 @@
     const pg = S.pages[sp.page];
     if (sp.node.parentNode !== pg.ov) pg.ov.prepend(sp.node);
     sp.node.classList.toggle('filled', !!sp.fill);
+    sp.node.classList.toggle('p2', sp.k === 's' && sp.who === 1);
+    if (sp.lbl) sp.lbl.textContent = sp.k === 's' ? (sp.who === 1 ? 'Unterschrift 2. Person' : 'Unterschrift') : 'Ort, Datum';
+    if (sp.whoBox) sp.whoBox.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', +b.getAttribute('data-w') === (sp.who || 0) ? 'true' : 'false'));
     layoutObj(sp);
   }
+  // Absender: Feld der zweiten Person zuordnen (oder zurück zum Kunden)
+  function setWho(sp, w) {
+    if ((sp.who || 0) === w) return;
+    sp.who = w ? 1 : 0;
+    renderSpot(sp);
+    S.dirty = true;
+    toast(w ? 'Hier unterschreibt die 2. Person, zum Beispiel der Ehepartner. Ihr Kunde gibt dafür das Handy weiter.' : 'Hier unterschreibt Ihr Kunde.', 4200);
+  }
+  // Kunde: Unterschreiben zwei Personen? Dann trägt jedes Feld den Namen (oder „1. Person“ / „2. Person“)
+  const twoReq = () => S.spots.some(sp => sp.k === 's' && sp.who === 1);
+  const sigOf = who => who === 1 ? S.sig2 : S.sig;
+  const nameOf = who => who === 1 ? S.name2 : S.name;
+  function personName(who) {
+    const n = cleanLabel(who === 1 ? (S.name2 || (S.req && S.req.c2)) : (S.name || (S.req && S.req.c)));
+    return n.length > 24 ? n.slice(0, 23) + '…' : n;
+  }
+  const personTag = who => personName(who) || (who === 1 ? tr('2. Person') : tr('1. Person'));
+  // Vorname für die kurzen Hinweise an den Feldern („Arben · Hier unterschreiben“)
+  function shortName(n) {
+    const w = String(n).split(' ');
+    return w.length > 1 && !/^(herr|frau|familie|fam\.?|dr\.?|prof\.?|\d+\.)$/i.test(w[0]) ? w[0] : n;
+  }
+  const personSubj = who => personName(who) || (who === 1 ? tr('die 2. Person') : tr('die 1. Person'));
 
   function select(o) {
     const prev = S.sel;
@@ -1510,7 +1689,7 @@
       if (e.button > 0) return;
       const roleEl = e.target.closest('[data-role]');
       const role = roleEl ? roleEl.getAttribute('data-role') : 'move';
-      if (role === 'del') return;
+      if (role === 'del' || role === 'who') return;
       e.preventDefault();
       e.stopPropagation();
       const wasSel = S.sel === o;
@@ -1579,7 +1758,7 @@
 
   function resizeObj(o, st, dx, dy, pg) {
     if (o.type === 'sig' || o.type === 'own') {
-      const hOf = o.type === 'own' ? ownH : sigH;
+      const hOf = o.type === 'own' ? ownH : (w => sigH(w, o.who));
       let w = clamp(st.w + dx, 50, pg.W - o.x);
       let guard = 0;
       while (w > 50 && o.y + hOf(w) > pg.H && guard++ < 200) w -= 2;
@@ -1633,7 +1812,8 @@
   function ortDatum() { return (S.ort ? S.ort + ', ' : '') + fmtDate(new Date()); }
 
   function onSpotTap(sp) {
-    if (!S.sig) { openPad({ via: 'spot' }); return; }
+    const who = sp.k === 's' ? (sp.who || 0) : 0;
+    if (sp.k === 's' ? !sigOf(who) : !(S.sig || S.sig2)) { openPad({ via: 'spot', who: who }); return; }
     const it = fillSpot(sp, true);
     if (it) toast(tr('Eingesetzt. Zum Verschieben ziehen.'));
     renderBar();
@@ -1644,11 +1824,13 @@
     const pg = S.pages[sp.page];
     let it;
     if (sp.k === 's') {
+      const who = sp.who || 0;
+      if (!sigOf(who)) return null; // diese Person hat noch nicht unterschrieben
       let w = Math.min(sp.w, pg.W - sp.x);
       let guard = 0;
-      while (w > 40 && sigH(w) > sp.h && guard++ < 80) w *= 0.96;
-      const h = sigH(w);
-      it = { id: nid(), type: 'sig', page: sp.page, x: sp.x, y: clamp(sp.y + sp.h - h, 0, Math.max(0, pg.H - h)), w: w, spot: sp.id };
+      while (w > 40 && sigH(w, who) > sp.h && guard++ < 80) w *= 0.96;
+      const h = sigH(w, who);
+      it = { id: nid(), type: 'sig', page: sp.page, x: sp.x, y: clamp(sp.y + sp.h - h, 0, Math.max(0, pg.H - h)), w: w, spot: sp.id, who: who };
     } else {
       const size = clamp(sp.h * 0.62, 7, 12);
       it = { id: nid(), type: 'text', page: sp.page, x: sp.x + 2, y: clamp(sp.y + (sp.h - size * 1.25) / 2, 0, pg.H - size * 1.25), size: size, text: ortDatum(), spot: sp.id, auto: true };
@@ -1662,12 +1844,13 @@
     return it;
   }
 
-  function placeSig(pi) {
-    const pg = S.pages[pi];
-    const w = clamp(48 * S.sig.bw / S.sig.bh, 80, 160);
-    const h = sigH(w);
+  function placeSig(pi, who) {
+    who = who || 0;
+    const pg = S.pages[pi], sg = sigOf(who);
+    const w = clamp(48 * sg.bw / sg.bh, 80, 160);
+    const h = sigH(w, who);
     const cy = visibleCenterPt(pg);
-    const it = { id: nid(), type: 'sig', page: pi, x: clamp(pg.W * 0.12, 0, Math.max(0, pg.W - w)), y: clamp(cy - h / 2, 0, Math.max(0, pg.H - h)), w: w };
+    const it = { id: nid(), type: 'sig', page: pi, x: clamp(pg.W * 0.12, 0, Math.max(0, pg.W - w)), y: clamp(cy - h / 2, 0, Math.max(0, pg.H - h)), w: w, who: who };
     S.items.push(it);
     renderItem(it, true);
     select(it);
@@ -1789,7 +1972,7 @@
     return d;
   }
 
-  function adoptSignature(strokes, padW) { S.sig = sigFromStrokes(strokes, padW); }
+  function adoptSignature(strokes, padW, who) { const sg = sigFromStrokes(strokes, padW); if (who === 1) S.sig2 = sg; else S.sig = sg; }
   function sigFromStrokes(strokes, padW) {
     const sw = Math.max(2.2, padW / 135);
     let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
@@ -1807,65 +1990,74 @@
     return { path: strokesToPath(strokes, ox, oy), bw: bw, bh: bh, sw: sw };
   }
 
+  // opts.who: 0 = Kunde (erste Person), 1 = zweite Person (z. B. Ehepartner)
   function openPad(opts) {
     opts = opts || {};
-    const name = el('input', { class: 'in', type: 'text', autocomplete: S.local ? 'off' : 'name', autocapitalize: 'words', enterkeyhint: 'next', placeholder: tr('Vor- und Nachname'), value: S.name || (S.req && S.req.c) || '', maxlength: '80' });
+    const who = opts.who === 1 ? 1 : 0, two = twoReq();
+    const pre = who === 1 ? (S.name2 || (S.req && S.req.c2) || '') : (S.name || (S.req && S.req.c) || '');
+    const name = el('input', { class: 'in', type: 'text', autocomplete: S.local || who === 1 ? 'off' : 'name', autocapitalize: 'words', enterkeyhint: 'next', placeholder: tr('Vor- und Nachname'), value: pre, maxlength: '80' });
     const ort = el('input', { class: 'in', type: 'text', autocomplete: 'address-level2', autocapitalize: 'words', enterkeyhint: 'done', placeholder: tr('z. B. Remscheid'), value: S.ort, maxlength: '60' });
-    const pad = makePad(padMem);
+    const pad = makePad(who === 1 ? padMem2 : padMem);
     const err = el('p', { class: 'err', role: 'alert' });
     const ok = el('button', { type: 'button', class: 'btn btn-primary btn-block btn-xl', html: I.check + '<span>' + tr('Übernehmen') + '</span>' });
     const hasDate = S.spots.some(s => s.k === 'd');
+    const askOrt = who === 0 || (hasDate && !S.ort); // die zweite Person nur, wenn noch kein Ort da ist
     const body = el('div', null,
       el('label', { class: 'fld' }, el('span', { text: tr('Ihr Name') }), name),
-      el('label', { class: 'fld' }, el('span', { text: hasDate ? tr('Ort (für „Ort, Datum“)') : tr('Ort (optional)') }), ort),
+      askOrt ? el('label', { class: 'fld' }, el('span', { text: hasDate ? tr('Ort (für „Ort, Datum“)') : tr('Ort (optional)') }), ort) : null,
       el('div', { class: 'lblrow' }, el('span', { text: tr('Ihre Unterschrift') }),
         el('button', { type: 'button', text: tr('Löschen'), onclick: () => { pad.clear(); err.textContent = ''; } })),
       pad.node,
       el('p', { class: 'legal', text: tr('Mit „Übernehmen“ bestätigen Sie, dass dies Ihre Unterschrift ist. Damit unterschreiben Sie das Dokument elektronisch.') }),
       err, ok);
     name.addEventListener('input', () => name.classList.remove('bad'));
-    name.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); ort.focus(); } });
+    name.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); if (askOrt) ort.focus(); else name.blur(); } });
     ort.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); ort.blur(); } });
+    const keep = () => { if (who === 1) padMem2 = pad.strokes(); else padMem = pad.strokes(); };
     ok.addEventListener('click', () => {
       const nm = name.value.replace(/\s+/g, ' ').trim();
       if (nm.length < 2) { err.textContent = tr('Bitte geben Sie Ihren Namen ein.'); name.classList.add('bad'); return; }
       if (!pad.valid()) { err.textContent = tr('Bitte unterschreiben Sie im weißen Feld.'); return; }
-      const before = S.sig ? S.items.filter(i => i.type === 'sig').map(i => [i, i.y + sigH(i.w)]) : [];
-      const first = !S.sig;
-      S.name = nm;
-      S.ort = ort.value.replace(/\s+/g, ' ').trim();
-      padMem = pad.strokes();
-      adoptSignature(pad.strokes(), pad.width());
+      const had = sigOf(who);
+      const before = had ? S.items.filter(i => i.type === 'sig' && (i.who || 0) === who).map(i => [i, i.y + sigH(i.w, who)]) : [];
+      if (who === 1) S.name2 = nm; else S.name = nm;
+      if (askOrt) S.ort = ort.value.replace(/\s+/g, ' ').trim();
+      keep();
+      adoptSignature(pad.strokes(), pad.width(), who);
       before.forEach(b => {
-        const it = b[0], pg = S.pages[it.page], h = sigH(it.w);
+        const it = b[0], pg = S.pages[it.page], h = sigH(it.w, who);
         it.y = clamp(b[1] - h, 0, Math.max(0, pg.H - h));
         paintObj(it); layoutObj(it);
       });
       closeSheet();
-      afterAdopt(first, opts);
+      afterAdopt(!had, opts, who);
     });
-    openSheet(S.sig ? tr('Unterschrift ändern') : tr('Unterschreiben'), body, { onClose: () => { padMem = pad.strokes(); pad.destroy(); } });
+    openSheet(two ? tr('Unterschrift: {name}', { name: personTag(who) }) : sigOf(who) ? tr('Unterschrift ändern') : tr('Unterschreiben'), body, { onClose: () => { keep(); pad.destroy(); } });
     requestAnimationFrame(() => requestAnimationFrame(pad.resize));
   }
 
-  function afterAdopt(first, opts) {
+  function afterAdopt(first, opts, who) {
+    who = who || 0;
     S.items.forEach(it => {
       if (it.type === 'text' && it.auto) { it.text = ortDatum(); paintObj(it); layoutObj(it); }
       if (it.type === 'sig') { paintObj(it); layoutObj(it); }
     });
-    const open = S.spots.filter(s => !s.fill);
+    // Ort/Datum füllt, wer zuerst unterschreibt; Unterschriftsfelder nur die eigenen
+    const open = S.spots.filter(s => !s.fill && (s.k === 'd' || (s.who || 0) === who));
+    const next = twoReq() && !sigOf(who === 1 ? 0 : 1) ? (who === 1 ? 0 : 1) : -1; // wer noch unterschreiben muss
     if (open.length) {
       const filled = open.map(sp => fillSpot(sp, false)).filter(Boolean);
       select(null);
       renderBar();
       const sigs = filled.filter(i => i.type === 'sig');
-      if (S.hashMatch !== false) banner('info', tr('Die markierten Stellen sind ausgefüllt. Prüfen Sie kurz alles und tippen Sie dann auf „Fertig“.'));
+      if (next >= 0) banner('info', tr('Danke! Jetzt unterschreibt {name}. Bitte das Handy weitergeben.', { name: personSubj(next) }));
+      else if (S.hashMatch !== false) banner('info', tr('Die markierten Stellen sind ausgefüllt. Prüfen Sie kurz alles und tippen Sie dann auf „Fertig“.'));
       scrollToObj(sigs[0] || filled[0]);
       if (sigs.length) toast(sigs.length > 1 ? tr('Unterschrift an {n} Stellen eingesetzt. Bitte kurz prüfen.', { n: sigs.length }) : tr('Unterschrift eingesetzt. Bitte kurz prüfen.'), 3600);
       return;
     }
-    if (first || opts.via === 'add' || !S.items.some(i => i.type === 'sig')) {
-      const it = placeSig(S.cur);
+    if (first || opts.via === 'add' || !S.items.some(i => i.type === 'sig' && (i.who || 0) === who)) {
+      const it = placeSig(S.cur, who);
       renderBar();
       scrollToObj(it);
       toast(tr('Schieben Sie die Unterschrift an die richtige Stelle. Größe ändern: blauen Punkt ziehen.'), 4500);
@@ -1876,14 +2068,14 @@
   }
 
   function insertSigAgain() {
-    const open = S.spots.filter(sp => !sp.fill && sp.k === 's');
+    const open = S.spots.filter(sp => !sp.fill && sp.k === 's' && sigOf(sp.who || 0));
     if (open.length) {
       const filled = open.map(sp => fillSpot(sp, false)).filter(Boolean);
       renderBar();
       scrollToObj(filled[0]);
       return;
     }
-    const it = placeSig(S.cur);
+    const it = placeSig(S.cur, S.sig ? 0 : 1);
     renderBar();
     scrollToObj(it);
   }
@@ -1909,11 +2101,14 @@
   function openAddSheet() {
     const opt = (icon, title, sub, fn) => el('button', { type: 'button', onclick: () => { closeSheet(); setTimeout(fn, 80); } },
       el('span', { class: 'ic', html: icon }), el('span', null, el('b', { text: title }), el('small', { text: sub })));
+    const two = twoReq(), who = [0, 1].filter(w => sigOf(w) && (w === 0 || two));
+    const tag = w => two ? ' · ' + personTag(w) : '';
     const body = el('div', { class: 'menu' },
-      opt(I.pen, tr('Unterschrift einfügen'), tr('Auf Seite {n}, dann an die Stelle schieben', { n: S.cur + 1 }), () => { const it = placeSig(S.cur); scrollToObj(it); renderBar(); }),
+      ...who.map(w => opt(I.pen, tr('Unterschrift einfügen') + tag(w), tr('Auf Seite {n}, dann an die Stelle schieben', { n: S.cur + 1 }), () => { const it = placeSig(S.cur, w); scrollToObj(it); renderBar(); })),
       opt(I.cal, tr('Ort und Datum einfügen'), ortDatum(), () => placeText(S.cur, ortDatum(), true)),
       opt(I.text, tr('Text einfügen'), tr('Zum Beispiel Ihr Name in Druckschrift'), () => openTextSheet(null, '')),
-      opt(I.redo, tr('Unterschrift neu zeichnen'), tr('Ersetzt die Unterschrift überall'), () => openPad({ via: 'resign' })));
+      ...who.map(w => opt(I.redo, tr('Unterschrift neu zeichnen') + tag(w), tr('Ersetzt die Unterschrift überall'), () => openPad({ via: 'resign', who: w }))),
+      backMode() && !S.local ? opt(I.warn, tr('Stimmt etwas nicht?'), tr('Kurz Bescheid geben statt unterschreiben'), openIssueSheet) : null);
     openSheet(tr('Hinzufügen'), body);
   }
 
@@ -1930,9 +2125,15 @@
         el('button', { type: 'button', class: 'btn btn-soft cmp', onclick: () => addSpot('s'), html: I.pen + '<span>Unterschrift</span>' }),
         el('button', { type: 'button', class: 'btn btn-soft cmp', onclick: () => addSpot('d'), html: I.cal + '<span>Ort/Datum</span>' }),
         el('button', { type: 'button', class: 'btn btn-primary cmp', onclick: openSendSheet, html: '<span>Weiter</span>' + I.arrow }));
-    } else if (!S.sig) {
+    } else if (!S.sig && !S.sig2) {
       const n = S.spots.filter(s => s.k === 's').length;
-      row.append(el('button', { type: 'button', class: 'btn btn-primary btn-xl', onclick: () => openPad({ via: 'bar' }), html: I.pen + '<span>' + (n ? tr('Jetzt unterschreiben') : tr('Unterschreiben')) + '</span>' }));
+      row.append(el('button', { type: 'button', class: 'btn btn-primary btn-xl', onclick: () => openPad({ via: 'bar', who: 0 }), html: I.pen + '<span>' + (n ? tr('Jetzt unterschreiben') : tr('Unterschreiben')) + '</span>' }));
+    } else if (twoReq() && (!S.sig || !S.sig2)) {
+      // Zwei Personen: die andere ist noch dran
+      const nxt = S.sig ? 1 : 0;
+      row.append(
+        el('button', { type: 'button', class: 'btn btn-ghost btn-xl sq', 'aria-label': tr('Hinzufügen'), onclick: openAddSheet, html: I.plus }),
+        el('button', { type: 'button', class: 'btn btn-primary btn-xl', onclick: () => openPad({ via: 'bar', who: nxt }), html: I.pen + '<span>' + tr('Jetzt unterschreibt {name}', { name: personSubj(nxt) }) + '</span>' }));
     } else if (!S.items.some(i => i.type === 'sig')) {
       row.append(
         el('button', { type: 'button', class: 'btn btn-ghost btn-xl sq', 'aria-label': tr('Hinzufügen'), onclick: openAddSheet, html: I.plus }),
@@ -1961,10 +2162,16 @@
   function saveSender(o) { try { localStorage.setItem(LS_SENDER, JSON.stringify(o)); } catch (e) { /* egal */ } }
   function baseUrl() { return location.href.split('#')[0].split('?')[0]; }
 
-  const spotList = () => S.spots.map(sp => [sp.k, sp.page + 1, Math.round(sp.x), Math.round(sp.y), Math.round(sp.w), Math.round(sp.h)]);
+  // Stelle: [Art, Seite, x, y, Breite, Höhe], dazu 1 bei Feldern der zweiten Person
+  const spotRow = (sp, off) => [sp.k, sp.page + 1 - (off || 0), Math.round(sp.x), Math.round(sp.y), Math.round(sp.w), Math.round(sp.h)].concat(sp.who === 1 ? [1] : []);
+  const spotList = () => S.spots.map(sp => spotRow(sp));
+  // Titel des Dokuments (Absender): aus dem Dateinamen, auf Wunsch geändert
+  const partTitle = p => docTitleOf(p.name);
+  const defTitle = () => S.parts && S.parts.length ? partTitle(S.parts[0]) : docTitleOf(S.file ? S.file.name : '');
+  const sendTitle = () => cleanLabel(S.docTitle).slice(0, 80) || defTitle();
   // Angaben zur Anfrage: Stellen, Absender, Sprache, Anrede (bei kurzen Links verschlüsselt beim Server, sonst im Link).
-  // cust (Name des Kunden zum Vorausfüllen) nur in verschlüsselten Angaben oder vor Ort – nie in einem Link.
-  function requestInfo(name, proof, back, cust) {
+  // priv (Namen zum Vorausfüllen, Titel, Teile) nur in verschlüsselten Angaben oder vor Ort – nie in einem Link.
+  function requestInfo(name, proof, back, priv) {
     const o = { v: 1, p: S.pages.length, s: spotList() };
     if (S.file.hash) o.h = S.file.hash.slice(0, 16);
     if (name) o.f = name.slice(0, 60);
@@ -1974,7 +2181,12 @@
     if (back) o.b = 1;
     if (S.sendLang === 'sq') o.l = 'sq';
     if (S.sendDu) o.u = 1;
-    if (cust) o.c = String(cust).slice(0, 80);
+    if (priv) {
+      if (priv.c) o.c = String(priv.c).slice(0, 80);
+      if (priv.c2) o.c2 = String(priv.c2).slice(0, 80);
+      o.ti = sendTitle();
+      if (S.parts.length > 1) o.q = S.parts.map(p => [partTitle(p).slice(0, 60), p.pages]);
+    }
     return o;
   }
   function requestLink(name, proof, withDoc) {
@@ -2033,6 +2245,7 @@
     unbusy();
     const cfg = loadSender();
     const nS = S.spots.filter(s => s.k === 's').length, nD = S.spots.filter(s => s.k === 'd').length;
+    const nS2 = S.spots.filter(s => s.k === 's' && s.who === 1).length, two = nS2 > 0;
     let way = S.sent ? 'link' : S.intent === 'local' ? 'local' : 'link';
     const isLocal = () => way === 'local';
 
@@ -2043,13 +2256,24 @@
     const cust = el('input', { id: 'custName', class: 'in', type: 'text', value: S.custLabel || '', placeholder: 'z. B. Max Mustermann', autocomplete: 'off', autocapitalize: 'words', maxlength: '80' });
     const prefill = el('input', { id: 'prefill', type: 'checkbox' });
     prefill.checked = cfg.prefill !== false;
-    const prefillRow = el('label', { class: 'check tight' }, prefill, el('span', { text: 'Name beim Unterschreiben schon eintragen' }));
-    const note = el('input', { id: 'custNote', class: 'in', type: 'text', value: S.custNote || '', placeholder: 'z. B. Kfz-Antrag', autocomplete: 'off', maxlength: '80' });
+    // Zweite Person (z. B. Ehepartner): nur wenn Felder für sie markiert sind
+    const cust2 = el('input', { id: 'custName2', class: 'in', type: 'text', value: S.custLabel2 || '', placeholder: 'z. B. Maria Mustermann', autocomplete: 'off', autocapitalize: 'words', maxlength: '80' });
+    const prefillRow = el('label', { class: 'check tight' }, prefill, el('span', { text: two ? 'Namen beim Unterschreiben schon eintragen' : 'Name beim Unterschreiben schon eintragen' }));
+    const note = el('input', { id: 'custNote', class: 'in', type: 'text', value: S.custNote || '', placeholder: 'z. B. Rückruf am Montag', autocomplete: 'off', maxlength: '80' });
     const custBox = el('div', null,
       el('label', { class: 'fld' }, el('span', { text: 'Kunde' }), cust),
+      two ? el('label', { class: 'fld' }, el('span', { text: '2. Person (unterschreibt die blauen Felder)' }), cust2) : null,
       prefillRow,
       el('label', { class: 'fld' }, el('span', { text: 'Notiz (optional, nur für Sie)' }), note));
-    const custForHead = () => prefill.checked ? cleanLabel(cust.value) : '';
+    // Nur in verschlüsselten Angaben bzw. vor Ort: Namen zum Vorausfüllen
+    const privInfo = () => ({ c: prefill.checked ? cleanLabel(cust.value) : '', c2: two && prefill.checked ? cleanLabel(cust2.value) : '' });
+    // Titel des Dokuments: sieht der Kunde, steht im Dateinamen des unterschriebenen PDFs
+    const docIn = el('input', { id: 'docTitle', class: 'in', type: 'text', value: sendTitle(), maxlength: '80', autocomplete: 'off', autocapitalize: 'sentences' });
+    const fnHint = el('small');
+    const docBox = el('label', { class: 'fld' }, el('span', { text: 'Dokument (sieht Ihr Kunde)' }), docIn, fnHint);
+    const updFn = () => {
+      fnHint.textContent = 'Das unterschriebene PDF heißt dann „' + signedName(sendTitle(), cleanLabel(cust.value) || 'Max Mustermann', two ? cleanLabel(cust2.value) : '', new Date()) + '“.';
+    };
 
     const proof = el('input', { type: 'checkbox' });
     proof.checked = cfg.proof !== false;
@@ -2080,30 +2304,48 @@
     const pinBox = el('label', { class: 'fld' }, el('span', { text: srv.pin ? 'Ihre Absender-PIN' : 'Absender-PIN festlegen' }), pinIn,
       el('small', { text: srv.pin ? 'Einmal eingeben, dieses Gerät merkt sie sich.' : 'Schützt Ihren Speicher: Nur mit dieser PIN können Dokumente hochgeladen werden. Dieses Gerät merkt sie sich.' }));
 
-    // Vorlage: Felder für dieses Formular merken (oder eine angewendete Vorlage aktualisieren)
-    const tplChanged = () => !S.tpl || tplSig() !== S.tpl.sig;
+    // Vorlage: Felder für dieses Formular merken (oder eine angewendete Vorlage aktualisieren).
+    // Bei mehreren PDFs bekommt jedes PDF seine eigene Vorlage.
+    const multi = S.parts.length > 1, todo = tplTodo(), one = todo.length === 1 ? todo[0] : -1;
+    const tplChanged = () => tplTodo().length > 0;
+    const curTpl = one >= 0 ? tplOfPart(one) : null;
     const tplOn = el('input', { id: 'tplOn', type: 'checkbox' });
     const tplName = el('input', { id: 'tplName', class: 'in', type: 'text', value: defaultTplName(), maxlength: '50', autocomplete: 'off' });
     const tplNameBox = el('label', { class: 'fld' }, el('span', { text: 'Name der Vorlage' }), tplName);
-    const tplRow = el('label', { class: 'check' }, tplOn, el('span', null, S.tpl ? 'Vorlage „' + S.tpl.name + '“ mit diesen Feldern aktualisieren' : 'Felder als Vorlage merken',
-      el('small', { text: S.tpl ? 'Beim nächsten Mal werden die Felder so gesetzt wie jetzt.' : 'Kommt dieses Formular wieder, setzt Firmio die Felder automatisch.' })));
+    const tplRow = el('label', { class: 'check' }, tplOn, el('span', null,
+      curTpl ? 'Vorlage „' + curTpl.name + '“ mit diesen Feldern aktualisieren'
+        : !multi ? 'Felder als Vorlage merken'
+          : one >= 0 ? 'Felder von „' + partTitle(S.parts[one]) + '“ als Vorlage merken' : 'Felder als Vorlagen merken (' + todo.length + ' PDFs)',
+      el('small', { text: curTpl ? 'Beim nächsten Mal werden die Felder so gesetzt wie jetzt.'
+        : !multi ? 'Kommt dieses Formular wieder, setzt Firmio die Felder automatisch.'
+          : 'Jedes PDF bekommt seine eigene Vorlage. Kommt eins davon wieder, setzt Firmio seine Felder automatisch.' })));
     const tplBox = el('div', null, tplRow, tplNameBox);
     tplOn.addEventListener('change', () => render());
     let tplDone = false;
     const maybeSaveTpl = async () => {
-      if (tplDone || !tplOn.checked || !(S.spots.length || S.own.length)) return;
+      if (tplDone || !tplOn.checked || !tplChanged()) return;
       tplDone = true;
-      if (!(await saveTemplate(S.tpl ? S.tpl.name : (cleanLabel(tplName.value) || defaultTplName())))) toast('Die Vorlage konnte nicht gespeichert werden.');
+      if (!(await saveTemplates(!multi && !S.tpl ? (cleanLabel(tplName.value) || defaultTplName()) : ''))) toast('Die Vorlage konnte nicht gespeichert werden.');
     };
 
     const onCust = () => {
       S.custLabel = cust.value;
+      S.custLabel2 = cust2.value;
       S.custNote = note.value;
-      if (S.sent && S.sent.track) Store.patch(S.sent.id, { label: cleanLabel(cust.value), note: cleanLabel(note.value) }).catch(() => {});
+      if (S.sent && S.sent.track) Store.patch(S.sent.id, { label: cleanLabel(cust.value), label2: two ? cleanLabel(cust2.value) : '', note: cleanLabel(note.value) }).catch(() => {});
       pushHead();
+      updFn();
     };
     cust.addEventListener('input', onCust);
+    cust2.addEventListener('input', onCust);
     note.addEventListener('input', onCust);
+    docIn.addEventListener('input', () => {
+      S.docTitle = docIn.value;
+      updFn();
+      pushHead();
+      if (S.sent && S.sent.track) Store.patch(S.sent.id, { title: sendTitle() }).catch(() => {});
+    });
+    docIn.addEventListener('change', () => { if (!cleanLabel(docIn.value)) { S.docTitle = ''; docIn.value = sendTitle(); updFn(); } });
     prefill.addEventListener('change', () => { saveSender(Object.assign(loadSender(), { prefill: prefill.checked })); pushHead(); });
     const err = el('p', { class: 'err', role: 'alert' });
     const msg = el('textarea', { class: 'in', rows: '9' });
@@ -2118,7 +2360,7 @@
     const pushHead = () => {
       if (!S.sent || !S.sent.secret || !S.file) return;
       const sent = S.sent;
-      const info = requestInfo(name.value.trim(), proof.checked, !!sent.track, custForHead()); // jetzt erfassen, solange das Dokument offen ist
+      const info = requestInfo(name.value.trim(), proof.checked, !!sent.track, privInfo()); // jetzt erfassen, solange das Dokument offen ist
       const sig = JSON.stringify(info);
       clearTimeout(headTimer);
       if (sig === sent.headSig) return;
@@ -2147,10 +2389,11 @@
     msg.addEventListener('input', () => { edited = true; });
 
     const summary = (nS || nD
-      ? (nS ? nS + ' ' + plural(nS, 'Unterschriftsfeld', 'Unterschriftsfelder') : '') + (nS && nD ? ' und ' : '') + (nD ? nD + ' ' + plural(nD, 'Ort/Datum-Feld', 'Ort/Datum-Felder') : '') + ' markiert.'
-      : 'Keine Felder markiert. Der Kunde setzt die Unterschrift dann selbst an die richtige Stelle.') + ' ' + S.pages.length + ' ' + plural(S.pages.length, 'Seite', 'Seiten') + '.' +
+      ? (nS ? nS + ' ' + plural(nS, 'Unterschriftsfeld', 'Unterschriftsfelder') + (nS2 ? ' (davon ' + nS2 + ' für die 2. Person)' : '') : '') + (nS && nD ? ' und ' : '') + (nD ? nD + ' ' + plural(nD, 'Ort/Datum-Feld', 'Ort/Datum-Felder') : '') + ' markiert.'
+      : 'Keine Felder markiert. Der Kunde setzt die Unterschrift dann selbst an die richtige Stelle.') + ' ' + S.pages.length + ' ' + plural(S.pages.length, 'Seite', 'Seiten') +
+      (multi ? ' aus ' + S.parts.length + ' PDFs' : '') + '.' +
       (S.own.length ? ' Ihre eigene Unterschrift ist gesetzt.' : '') +
-      (S.tpl && !tplChanged() ? ' Vorlage „' + S.tpl.name + '“.' : '');
+      (S.tpl && !multi && !tplChanged() ? ' Vorlage „' + S.tpl.name + '“.' : '');
 
     const wayBtns = [['link', I.link, 'Per Link'], ['local', I.phone, 'Hier vor Ort']].map(w => el('button', { type: 'button', class: 'seg', html: w[1] + '<span>' + w[2] + '</span>',
       onclick: () => { if (S.sent || way === w[0]) return; way = w[0]; S.intent = way; err.textContent = ''; edited = false; refresh(true); } }));
@@ -2179,12 +2422,13 @@
         }
         busy('Dokument wird verschlüsselt …');
         const back = willTrack();
-        S.sent = await uploadDoc(pin, p => busy('Wird hochgeladen … ' + Math.round(p * 100) + ' %'), requestInfo(name.value.trim(), proof.checked, back, custForHead()));
+        S.sent = await uploadDoc(pin, p => busy('Wird hochgeladen … ' + Math.round(p * 100) + ' %'), requestInfo(name.value.trim(), proof.checked, back, privInfo()));
         S.sent.track = false;
         if ((srv.v || 1) >= 2) {
           // In der Übersicht merken (nur auf diesem Gerät). Dann kommt das PDF direkt hierher zurück.
           try {
-            await Store.put({ id: S.sent.id, key: S.sent.key, del: S.sent.del, secret: S.sent.secret || '', label: cleanLabel(cust.value), note: cleanLabel(note.value), file: S.file.name, pages: S.pages.length,
+            await Store.put({ id: S.sent.id, key: S.sent.key, del: S.sent.del, secret: S.sent.secret || '', label: cleanLabel(cust.value), label2: two ? cleanLabel(cust2.value) : '', note: cleanLabel(note.value),
+              file: S.file.name, title: sendTitle(), parts: S.parts.length, pages: S.pages.length,
               created: Date.now(), expires: S.sent.expires, lang: S.sendLang, du: S.sendDu, status: 'open', link: '', tpl: S.tpl ? S.tpl.id : '' });
             S.sent.track = true;
             S.dirty = false;
@@ -2192,6 +2436,7 @@
           } catch (x) { console.warn('Übersicht nicht verfügbar:', x); }
         }
         if (S.sent.secret && back && !S.sent.track) pushHead(); // Übersicht ging nicht: Kunde schickt dann per WhatsApp zurück
+        decoratePages(); // jetzt kein Anhängen oder Entfernen mehr
         unbusy();
         refresh(false);
         setTimeout(() => { try { actions.scrollIntoView({ block: 'end', behavior: 'smooth' }); } catch (x) { /* egal */ } }, 60);
@@ -2212,7 +2457,7 @@
         try { await burnOwn(); } catch (x) { err.textContent = 'Ihre Unterschrift konnte nicht eingesetzt werden. Bitte noch einmal versuchen.'; return; }
       }
       saveSender(Object.assign(loadSender(), { name: name.value.trim(), proof: proof.checked, prefill: prefill.checked }));
-      startLocal({ label: cleanLabel(cust.value), note: cleanLabel(note.value), info: requestInfo(name.value.trim(), proof.checked, false, custForHead()) });
+      startLocal({ label: cleanLabel(cust.value), label2: two ? cleanLabel(cust2.value) : '', note: cleanLabel(note.value), info: requestInfo(name.value.trim(), proof.checked, false, privInfo()) });
     }
 
     async function shareText() {
@@ -2256,14 +2501,15 @@
       setText('#sheetTitle', loc ? 'Vor Ort unterschreiben' : 'Per WhatsApp senden');
       custBox.classList.toggle('hidden', !(loc || (lm && willTrack())));
       prefillRow.classList.toggle('hidden', !(loc || (lm && shortLinks())));
+      docBox.classList.toggle('hidden', !(loc || (lm && shortLinks())));
       langHint.textContent = loc ? 'So sieht Ihr Kunde die Seite zum Unterschreiben. Die Nachweisseite im PDF bleibt Deutsch.'
         : 'So sieht Ihr Kunde die Nachricht und die Seite zum Unterschreiben. Die Nachweisseite im PDF bleibt Deutsch.';
       viaRow.classList.toggle('hidden', loc || !srv.ok || !!S.sent);
       viaHint.textContent = willTrack()
         ? 'Ihr Kunde muss nichts speichern und nichts zurückschicken: Er unterschreibt über den Link, das PDF landet direkt in Ihrer Übersicht. Ende-zu-Ende verschlüsselt.'
         : 'Ihr Kunde muss nichts speichern: Er tippt auf den Link und das Dokument ist da. Ende-zu-Ende verschlüsselt, nach dem Zurückschicken bzw. nach 7 Tagen gelöscht.';
-      tplBox.classList.toggle('hidden', tplDone || !(S.spots.length || S.own.length) || !tplChanged());
-      tplNameBox.classList.toggle('hidden', !tplOn.checked || !!S.tpl);
+      tplBox.classList.toggle('hidden', tplDone || !tplChanged());
+      tplNameBox.classList.toggle('hidden', !tplOn.checked || !!S.tpl || multi);
       localInfo.classList.toggle('hidden', !loc);
       msgBox.classList.toggle('hidden', loc);
       pinBox.classList.toggle('hidden', !lm || !!S.sent || !!getPin());
@@ -2284,14 +2530,14 @@
             el('button', { type: 'button', class: 'btn btn-ghost', html: I.copy + '<span>Link kopieren</span>', onclick: () => copyText(link, 'Link kopiert.') })),
           el('div', { class: 'donelinks' },
             S.sent.track ? el('button', { type: 'button', class: 'linkbtn strong', text: 'Zur Übersicht', onclick: () => { closeSheet(true); history.back(); } }) : null,
-            el('a', { class: 'linkbtn', href: '#', text: 'Link als Kunde testen', onclick: e => { e.preventDefault(); window.open(link, '_blank', 'noopener'); } })));
+            el('a', { class: 'linkbtn', href: '#', text: 'Link als Kunde testen', onclick: e => { e.preventDefault(); window.open(previewLink(link), '_blank', 'noopener'); } })));
       } else {
         actions.append(el('button', { type: 'button', class: 'btn btn-primary btn-block btn-xl', html: I.share + '<span>PDF + Nachricht senden</span>', onclick: shareWithPdf }),
           el('div', { class: 'btnrow' },
             el('button', { type: 'button', class: 'btn btn-ghost', html: I.copy + '<span>Text kopieren</span>', onclick: () => copyText(msg.value, 'Nachricht kopiert.') }),
             el('button', { type: 'button', class: 'btn btn-ghost', html: I.download + '<span>PDF speichern</span>', onclick: async () => { if (!(await burnFirst())) download(S.file.bytes, S.file.name); } })),
           el('div', { class: 'donelinks' },
-            el('a', { class: 'linkbtn', href: '#', text: 'Link als Kunde testen', onclick: e => { e.preventDefault(); window.open(link, '_blank', 'noopener'); } })));
+            el('a', { class: 'linkbtn', href: '#', text: 'Link als Kunde testen', onclick: e => { e.preventDefault(); window.open(previewLink(link), '_blank', 'noopener'); } })));
       }
     }
 
@@ -2299,6 +2545,7 @@
       el('div', { class: 'banner' + (nS ? '' : ' warn') }, el('span', { html: nS ? I.check : I.info }), el('p', { text: summary })),
       waySel,
       custBox,
+      docBox,
       cfg.name ? null : nameBox,
       langRow,
       tplBox,
@@ -2309,6 +2556,7 @@
       more,
       err,
       actions);
+    updFn();
     openSheet(isLocal() ? 'Vor Ort unterschreiben' : 'Per WhatsApp senden', body);
     refresh(true);
   }
@@ -2377,9 +2625,17 @@
     for (let i = 0; i < w.length; i++) { h ^= w.charCodeAt(i); h = Math.imul(h, 0x01000193); }
     return (h >>> 0).toString(36);
   }
-  // Fingerabdruck eines Formulars: Seitenzahl, Seitenformate, Wörter
-  async function docSig(pdf) {
-    const sizes = S.pages.slice(0, 60).map(p => [Math.round(p.W), Math.round(p.H)]);
+  // Fingerabdruck eines Formulars: Seitenzahl, Seitenformate, Wörter.
+  // own = Formate aus dem PDF selbst lesen (für ein angehängtes PDF, das noch nicht angezeigt wird)
+  async function docSig(pdf, own) {
+    let sizes;
+    if (own) {
+      sizes = [];
+      for (let i = 1; i <= Math.min(pdf.numPages, 60); i++) {
+        const vp = (await pdf.getPage(i)).getViewport({ scale: 1 });
+        sizes.push([Math.round(vp.width), Math.round(vp.height)]);
+      }
+    } else sizes = S.pages.slice(0, 60).map(p => [Math.round(p.W), Math.round(p.H)]);
     const words = [], seen = new Set();
     for (let i = 1; i <= Math.min(pdf.numPages, 4) && words.length < 800; i++) {
       try {
@@ -2395,7 +2651,7 @@
         }
       } catch (e) { /* Seite ohne Text (z. B. eingescannt) */ }
     }
-    return { pages: S.pages.length, sizes: sizes, words: words };
+    return { pages: own ? pdf.numPages : S.pages.length, sizes: sizes, words: words };
   }
   // Ähnlichkeit 0…1 (Jaccard über die Wörter), -1 = passt nicht (andere Seitenzahl oder anderes Format)
   function tplScore(t, sig) {
@@ -2411,6 +2667,7 @@
     sig.words.forEach(w => { if (a.has(w)) inter++; });
     return inter / (a.size + sig.words.length - inter);
   }
+  const bestTpl = (list, sig) => list.map(t => ({ t: t, s: tplScore(t, sig) })).filter(x => x.s >= 0).sort((a, b) => b.s - a.s || (b.t.used || 0) - (a.t.used || 0));
   async function checkTemplates() {
     const list = loadTpls();
     if (!list.length || S.mode !== 'send' || S.view) return null;
@@ -2418,7 +2675,8 @@
     const sig = await docSig(pdf);
     if (pdf !== S.pdf || S.mode !== 'send') return null;
     S.docSig = sig;
-    const scored = list.map(t => ({ t: t, s: tplScore(t, sig) })).filter(x => x.s >= 0).sort((a, b) => b.s - a.s || (b.t.used || 0) - (a.t.used || 0));
+    if (S.parts.length === 1) S.parts[0].sig = sig;
+    const scored = bestTpl(list, sig);
     if (!scored.length || S.spots.length || S.own.length) return null;
     const best = scored[0];
     if (best.s >= 0.45 && !S.sheetOpen) { applyTpl(best.t); return best.t; }
@@ -2434,14 +2692,14 @@
       el('span', null, el('b', { text: t.name }), el('small', { text: t.spots.length + ' ' + plural(t.spots.length, 'Feld', 'Felder') + ' · ' + t.pages + ' ' + plural(t.pages, 'Seite', 'Seiten') })))));
     openSheet('Vorlage wählen', body);
   }
-  function applyTpl(t) {
-    undoTpl(true);
-    const ids = [];
+  // Felder einer Vorlage auf Teil i setzen (bei einem einzelnen PDF: Teil 0 = alles)
+  function placeTpl(t, i) {
+    const r = partRange(i), ids = [];
     t.spots.forEach(a => {
-      const pg = S.pages[a[1] - 1];
-      if (!pg || (a[0] !== 's' && a[0] !== 'd')) return;
+      const pi = a[1] - 1 + r[0], pg = S.pages[pi];
+      if (!pg || pi >= r[1] || (a[0] !== 's' && a[0] !== 'd')) return;
       const w = clamp(a[4], 12, pg.W), h = clamp(a[5], 8, pg.H);
-      const sp = { id: nid(), type: 'spot', k: a[0], page: a[1] - 1, x: clamp(a[2], 0, pg.W - w), y: clamp(a[3], 0, pg.H - h), w: w, h: h };
+      const sp = { id: nid(), type: 'spot', k: a[0], page: pi, x: clamp(a[2], 0, pg.W - w), y: clamp(a[3], 0, pg.H - h), w: w, h: h, who: a[0] === 's' && a[6] === 1 ? 1 : 0 };
       S.spots.push(sp);
       renderSpot(sp);
       ids.push(sp.id);
@@ -2449,17 +2707,22 @@
     let nOwn = 0;
     if (S.mySig && Array.isArray(t.own)) {
       t.own.forEach(a => {
-        if (!Array.isArray(a) || a.length !== 4 || !a.every(v => typeof v === 'number' && isFinite(v))) return;
-        const o = placeOwn(a[0] - 1, a[1], a[2], a[3], false);
+        if (!Array.isArray(a) || a.length !== 4 || !a.every(v => typeof v === 'number' && isFinite(v)) || a[0] - 1 + r[0] >= r[1]) return;
+        const o = placeOwn(a[0] - 1 + r[0], a[1], a[2], a[3], false);
         if (o) { ids.push(o.id); nOwn++; }
       });
     }
-    S.tpl = { id: t.id, name: t.name, ids: ids, sig: tplSig() };
+    const ref = { id: t.id, name: t.name, ids: ids, sig: tplSigIn(i) };
+    if (i === 0) S.tpl = ref; else S.parts[i].tpl = ref;
     const list = loadTpls(), x = list.find(v => v.id === t.id);
     if (x) { x.used = Date.now(); x.n = (x.n || 0) + 1; saveTpls(list); }
     S.dirty = true;
-    const nF = ids.length - nOwn;
-    banner('ok', 'Vorlage „' + t.name + '“: ' + nF + ' ' + plural(nF, 'Feld', 'Felder') + ' gesetzt' + (nOwn ? ', dazu Ihre Unterschrift' : '') + '. Bitte kurz prüfen.', { label: 'Rückgängig', fn: () => undoTpl() });
+    return { ids: ids, nOwn: nOwn };
+  }
+  function applyTpl(t) {
+    undoTpl(true);
+    const res = placeTpl(t, 0), nF = res.ids.length - res.nOwn;
+    banner('ok', 'Vorlage „' + t.name + '“: ' + nF + ' ' + plural(nF, 'Feld', 'Felder') + ' gesetzt' + (res.nOwn ? ', dazu Ihre Unterschrift' : '') + '. Bitte kurz prüfen.', { label: 'Rückgängig', fn: () => undoTpl() });
     renderBar();
     window.scrollTo(0, 0);
   }
@@ -2471,24 +2734,226 @@
     S.tpl = null;
     if (!silent) banner('info', 'Felder entfernt. Setzen Sie sie unten mit „Unterschrift“ und „Ort/Datum“.');
   }
-  async function saveTemplate(name) {
+  // Teile, deren Felder neu oder geändert sind (für „als Vorlage merken“)
+  function tplTodo() {
+    return S.parts.map((p, i) => i).filter(i => (spotListIn(i).length || ownListIn(i).length) && (!tplOfPart(i) || tplSigIn(i) !== tplOfPart(i).sig));
+  }
+  // Vorlagen speichern: je Teil eine (bei einem einzelnen PDF wie bisher genau eine). name: für eine neue Vorlage von Teil 0
+  async function saveTemplates(name) {
     try {
-      const sig = S.docSig || await docSig(S.pdf);
-      S.docSig = sig;
       let list = loadTpls();
-      const spots = spotList(), own = ownList();
-      const old = S.tpl ? list.find(t => t.id === S.tpl.id) : null;
-      if (old) {
-        Object.assign(old, { spots: spots, own: own, sizes: sig.sizes, pages: sig.pages, words: sig.words.length ? sig.words : old.words, updated: Date.now(), used: Date.now() });
-        S.tpl.sig = tplSig();
-      } else {
-        const t = { id: 't' + Date.now().toString(36) + Math.random().toString(36).slice(2, 7), name: String(name).slice(0, 50), pages: sig.pages, sizes: sig.sizes, words: sig.words, spots: spots, own: own, created: Date.now(), used: Date.now(), n: 1 };
-        list.unshift(t);
-        S.tpl = { id: t.id, name: t.name, ids: S.spots.map(x => x.id).concat(S.own.map(x => x.id)), sig: tplSig() };
+      for (const i of tplTodo()) {
+        const p = S.parts[i], cur = tplOfPart(i);
+        let sig = p.sig;
+        if (!sig && S.parts.length === 1) sig = S.docSig || await docSig(S.pdf);
+        if (!sig) continue; // Fingerabdruck fehlt (sollte nicht vorkommen)
+        p.sig = sig;
+        if (i === 0) S.docSig = sig;
+        const spots = spotListIn(i), own = ownListIn(i);
+        const old = cur ? list.find(t => t.id === cur.id) : null;
+        if (old) {
+          Object.assign(old, { spots: spots, own: own, sizes: sig.sizes, pages: sig.pages, words: sig.words.length ? sig.words : old.words, updated: Date.now(), used: Date.now() });
+          cur.sig = tplSigIn(i);
+        } else {
+          const t = { id: 't' + Date.now().toString(36) + Math.random().toString(36).slice(2, 7), name: String(i === 0 && name ? name : partTitle(p)).slice(0, 50),
+            pages: sig.pages, sizes: sig.sizes, words: sig.words, spots: spots, own: own, created: Date.now(), used: Date.now(), n: 1 };
+          list.unshift(t);
+          const ids = S.spots.filter(sp => inPart(sp, i)).map(x => x.id).concat(S.own.filter(o => inPart(o, i)).map(x => x.id));
+          const ref = { id: t.id, name: t.name, ids: ids, sig: tplSigIn(i) };
+          if (i === 0) S.tpl = ref; else p.tpl = ref;
+        }
       }
       if (list.length > 40) list = list.sort((a, b) => (b.used || 0) - (a.used || 0)).slice(0, 40);
       return saveTpls(list);
     } catch (e) { console.warn('Vorlage:', e); return false; }
+  }
+
+  /* ---------------- Mehrere PDFs in einem Link (Absender): zusammenfügen, anhängen, wieder entfernen ---------------- */
+  // PDF mit pdf.js öffnen (fragt bei Passwortschutz nach dem Passwort)
+  function loadPdfJs(bytes) {
+    if (!window.pdfjsLib) return Promise.reject(new Error('pdfjs'));
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'vendor/pdf.worker.min.js';
+    const task = pdfjsLib.getDocument({ data: bytes.slice(), isEvalSupported: false });
+    task.onPassword = (update, reason) => {
+      unbusy();
+      const pw = prompt(reason === 2 ? tr('Falsches Passwort. Bitte noch einmal eingeben:') : tr('Das PDF ist mit einem Passwort geschützt. Bitte Passwort eingeben:'));
+      if (pw === null) { task.destroy(); return; }
+      busy(tr('Dokument wird geöffnet …'));
+      update(pw);
+    };
+    return task.promise;
+  }
+  // Gewählte Dateien lesen und prüfen: [{ name, bytes, pdf, pages, sig }]
+  async function readPdfs(files) {
+    const list = [];
+    for (const f of files.slice(0, 10)) {
+      let bytes = null, pdf = null, sig = null;
+      try { bytes = await readFile(f); } catch (e) { bytes = null; }
+      if (!bytes || !looksLikePdf(bytes)) { unbusy(); alert('„' + f.name + '“ ist kein PDF und wird übersprungen.'); continue; }
+      busy('PDF wird geöffnet …');
+      try { pdf = await loadPdfJs(bytes); } catch (e) { unbusy(); alert('„' + f.name + '“ konnte nicht geöffnet werden und wird übersprungen.'); continue; }
+      try { sig = await docSig(pdf, true); } catch (e) { sig = null; } // Fingerabdruck für Vorlagen
+      list.push({ name: cleanName(f.name), bytes: bytes, pdf: pdf, pages: pdf.numPages, sig: sig });
+    }
+    return list;
+  }
+  const dropPdfs = list => list.forEach(a => { try { a.pdf.destroy(); } catch (e) { /* egal */ } });
+  // Zu einem PDF zusammenfügen. Geschützte PDFs werden als Bild übernommen.
+  async function mergePdfs(list) {
+    const L = await loadPdfLib();
+    const out = await L.PDFDocument.create();
+    for (let k = 0; k < list.length; k++) {
+      const it = list[k];
+      busy('PDFs werden zusammengefügt … ' + (k + 1) + '/' + list.length);
+      let src = null;
+      try { src = await L.PDFDocument.load(it.bytes, { updateMetadata: false }); } catch (e) { src = null; }
+      if (src && src.getPageCount() === it.pdf.numPages) (await out.copyPages(src, src.getPageIndices())).forEach(p => out.addPage(p));
+      else await rasterInto(L, out, it.pdf);
+    }
+    return out.save({ useObjectStreams: false });
+  }
+  const docNameText = () => S.parts.length > 1 ? partTitle(S.parts[0]) + ' + ' + (S.parts.length - 1) + ' ' + plural(S.parts.length - 1, 'weiteres', 'weitere') : S.file.name;
+  // Neues PDF anzeigen; Felder und eigene Unterschrift bleiben, wo sie sind
+  async function swapDoc(bytes) {
+    const fresh = await loadPdfJs(bytes);
+    const old = S.pdf;
+    S.file = { name: S.file.name, bytes: bytes, hash: await sha256(bytes) };
+    S.pdf = fresh;
+    try { old.destroy(); } catch (e) { /* egal */ }
+    S.sel = null;
+    await buildPages();
+    S.spots.forEach(renderSpot);
+    S.own.forEach(o => renderItem(o));
+    S.dirty = true;
+    $('#docName').textContent = docNameText();
+    renderBar();
+    updateCur();
+  }
+  // Start: mehrere PDFs auf einmal gewählt
+  async function openMany(files) {
+    busy(tr('Dokument wird geöffnet …'));
+    const list = await readPdfs(files);
+    if (!list.length) { unbusy(); return; }
+    if (list.length === 1) { dropPdfs(list); await openBytes(list[0].bytes, list[0].name, false); return; }
+    let bytes;
+    try { bytes = await mergePdfs(list); } catch (e) {
+      console.error('Zusammenfügen:', e);
+      dropPdfs(list);
+      unbusy();
+      alert('Die PDFs konnten nicht zusammengefügt werden.');
+      return;
+    }
+    const parts = list.map(a => ({ name: a.name, pages: a.pages, sig: a.sig, tpl: null }));
+    dropPdfs(list);
+    await openBytes(bytes, list[0].name, false, parts);
+  }
+  // Im Dokument: weiteres PDF anhängen
+  function pickMore() {
+    if (S.sent) { toast('Der Link ist schon erstellt. Für weitere PDFs bitte eine neue Anfrage starten.', 4500); return; }
+    const input = el('input', { type: 'file', accept: 'application/pdf,.pdf', multiple: true, class: 'vh' });
+    document.body.append(input);
+    input.addEventListener('change', () => {
+      const files = Array.from(input.files || []);
+      input.remove();
+      if (files.length) addPdfs(files);
+    });
+    input.addEventListener('cancel', () => input.remove());
+    input.click();
+  }
+  async function addPdfs(files) {
+    if (S.mode !== 'send' || S.view || !S.pdf || S.sent) return;
+    busy('PDF wird angehängt …');
+    const add = await readPdfs(files);
+    if (!add.length) { unbusy(); return; }
+    try {
+      // Fingerabdruck des ersten PDFs vor dem Zusammenfügen merken (Vorlagen gelten je PDF)
+      if (S.parts.length === 1 && !S.parts[0].sig) S.parts[0].sig = S.docSig || await docSig(S.pdf).catch(() => null);
+      if (S.parts.length === 1) S.docSig = S.parts[0].sig;
+      const first = S.parts.length, from = S.pages.length;
+      const bytes = await mergePdfs([{ bytes: S.file.bytes, pdf: S.pdf }].concat(add));
+      add.forEach(a => S.parts.push({ name: a.name, pages: a.pages, sig: a.sig, tpl: null }));
+      dropPdfs(add);
+      await swapDoc(bytes);
+      unbusy();
+      const to = S.pages.length;
+      await prepParts(first, (add.length === 1 ? '„' + partTitle(S.parts[first]) + '“ ist angehängt' : add.length + ' PDFs sind angehängt') +
+        ' (' + (to - from === 1 ? 'Seite ' + to : 'Seite ' + (from + 1) + '–' + to) + ').');
+      window.scrollTo(0, 0);
+    } catch (e) {
+      console.error('Anhängen:', e);
+      dropPdfs(add);
+      unbusy();
+      alert('Das PDF konnte nicht angehängt werden.');
+    }
+  }
+  // Teile wieder entfernen (ab Teil i, count Stück); Felder darauf verschwinden, spätere rücken nach vorn
+  async function removeParts(i, count) {
+    if (S.sent || i < 1 || i >= S.parts.length) return;
+    count = Math.max(1, Math.min(count || 1, S.parts.length - i));
+    const r0 = partRange(i)[0], r1 = partRange(i + count - 1)[1], n = r1 - r0;
+    const names = S.parts.slice(i, i + count).map(p => '„' + partTitle(p) + '“').join(', ');
+    if (!confirm(names + ' wieder entfernen? Die Felder darauf gehen verloren.')) return;
+    busy('Einen Moment …');
+    try {
+      const L = await loadPdfLib();
+      const src = await L.PDFDocument.load(S.file.bytes, { updateMetadata: false });
+      const out = await L.PDFDocument.create();
+      (await out.copyPages(src, src.getPageIndices().filter(k => k < r0 || k >= r1))).forEach(p => out.addPage(p));
+      const bytes = await out.save({ useObjectStreams: false });
+      S.spots.concat(S.own).filter(o => o.page >= r0 && o.page < r1).forEach(o => removeObj(o));
+      S.spots.concat(S.own).forEach(o => { if (o.page >= r1) o.page -= n; });
+      S.parts.splice(i, count);
+      await swapDoc(bytes);
+      unbusy();
+      banner('info', names + ' ' + (count === 1 ? 'ist' : 'sind') + ' wieder entfernt.');
+      window.scrollTo(0, 0);
+    } catch (e) {
+      console.error('Entfernen:', e);
+      unbusy();
+      alert('Das hat nicht geklappt. Bitte noch einmal versuchen.');
+    }
+  }
+  // Teile ab first vorbereiten: passende Vorlage anwenden, sonst Felder erkennen. Ein gemeinsamer Hinweis oben.
+  async function prepParts(first, intro) {
+    const pdf = S.pdf, tpls = loadTpls(), ids = [], tplNames = [], ownWait = [];
+    let nCust = 0, nOwn = 0, nTpl = 0;
+    for (let i = first; i < S.parts.length; i++) {
+      const p = S.parts[i];
+      const best = p.sig && tpls.length ? bestTpl(tpls, p.sig)[0] : null;
+      if (best && best.s >= 0.45) {
+        const res = placeTpl(best.t, i);
+        ids.push.apply(ids, res.ids);
+        nOwn += res.nOwn;
+        nTpl += res.ids.length - res.nOwn;
+        tplNames.push(best.t.name);
+        continue;
+      }
+      const r = partRange(i);
+      let found = { own: [], cust: [] };
+      try { found = await findFields(pdf, r[0], r[1]); } catch (e) { console.warn('Felder erkennen:', e); }
+      if (pdf !== S.pdf || S.mode !== 'send') return;
+      if (autoCust()) { const c = placeCustFields(found); ids.push.apply(ids, c); nCust += c.length; }
+      if (S.mySig) found.own.forEach(f => { const o = placeOwnInField(f); if (o) { ids.push(o.id); nOwn++; } });
+      else ownWait.push.apply(ownWait, found.own);
+    }
+    const msg = [intro];
+    if (tplNames.length) msg.push((tplNames.length === 1 ? 'Vorlage ' : 'Vorlagen ') + tplNames.map(n => '„' + n + '“').join(' und ') + ': ' + nTpl + ' ' + plural(nTpl, 'Feld', 'Felder') + ' gesetzt.');
+    if (nCust) msg.push(custMarked(nCust) + (nOwn ? ', dazu Ihre Unterschrift.' : '.'));
+    else if (nOwn) msg.push('Ihre Unterschrift ist gesetzt.');
+    if (ownWait.length) {
+      msg.push('Hier unterschreiben Sie als Vermittler: ' + (ownWait.length === 1 ? '„' + ownWait[0].label + '“ auf Seite ' + (ownWait[0].page + 1) : ownWait.length + ' Stellen') +
+        '. Speichern Sie Ihre Unterschrift einmal, dann setzt Firmio sie ab jetzt automatisch ein.');
+      banner('info', msg.join(' '), { label: 'Jetzt speichern', fn: () => openMySigPad(() => {
+        let n = 0;
+        ownWait.forEach(f => { if (placeOwnInField(f)) n++; });
+        renderBar();
+        if (n) toast('Ihre Unterschrift ist gesetzt.');
+      }) });
+    } else {
+      banner(ids.length ? 'ok' : 'info', msg.join(' ') + (ids.length ? ' Bitte kurz prüfen.' : ''),
+        first > 0 ? { label: 'Wieder entfernen', fn: () => removeParts(first, S.parts.length - first) } : null);
+    }
+    renderBar();
   }
 
   /* ---------------- Eigene Unterschrift (Vermittler): einmal speichern, automatisch einsetzen ---------------- */
@@ -2503,8 +2968,19 @@
     S.mySig = o || null;
     return true;
   }
-  const ownList = () => S.own.map(o => [o.page + 1, Math.round(o.x), Math.round(o.y), Math.round(o.w)]);
-  const tplSig = () => JSON.stringify([spotList(), ownList()]);
+  // Seitenbereich von Teil i [von, bis) – bei einem einzelnen PDF alle Seiten
+  function partRange(i) {
+    if (!S.parts || S.parts.length < 2) return [0, S.pages.length];
+    let from = 0;
+    for (let k = 0; k < i; k++) from += S.parts[k].pages;
+    return [from, from + S.parts[i].pages];
+  }
+  const inPart = (o, i) => { const r = partRange(i); return o.page >= r[0] && o.page < r[1]; };
+  const spotListIn = i => { const r = partRange(i); return S.spots.filter(sp => sp.page >= r[0] && sp.page < r[1]).map(sp => spotRow(sp, r[0])); };
+  const ownListIn = i => { const r = partRange(i); return S.own.filter(o => o.page >= r[0] && o.page < r[1]).map(o => [o.page + 1 - r[0], Math.round(o.x), Math.round(o.y), Math.round(o.w)]); };
+  const tplSigIn = i => JSON.stringify([spotListIn(i), ownListIn(i)]);
+  const tplSig = () => tplSigIn(0);
+  const tplOfPart = i => i === 0 ? S.tpl : (S.parts[i] && S.parts[i].tpl) || null;
 
   // Unterschrift einmal zeichnen (Einstellungen oder direkt aus dem Dokument)
   function openMySigPad(then) {
@@ -2647,9 +3123,12 @@
     if (DATE_RE.test(t)) return 'date';
     return '';
   }
-  async function findFields(pdf) {
+  // Seiten from … to (ohne to) durchsuchen, höchstens 40
+  async function findFields(pdf, from, to) {
     const res = { own: [], cust: [] };
-    for (let i = 0; i < Math.min(pdf.numPages, 40); i++) {
+    from = from || 0;
+    to = Math.min(to || pdf.numPages, pdf.numPages, from + 40);
+    for (let i = from; i < to; i++) {
       if (pdf !== S.pdf) return { own: [], cust: [] };
       let page, tc;
       try { page = await pdf.getPage(i + 1); tc = await page.getTextContent(); } catch (e) { continue; }
@@ -2692,6 +3171,11 @@
 
   // Nach dem Öffnen im Absender-Modus: Vorlage prüfen, sonst Felder des Kunden und eigene Unterschrift erkennen
   async function afterOpenSend() {
+    if (S.parts.length > 1) { // mehrere PDFs auf einmal gewählt: je PDF Vorlage oder Erkennung
+      S.docSig = S.parts[0].sig;
+      await prepParts(0, S.parts.length + ' PDFs zusammengefügt (' + S.pages.length + ' Seiten).');
+      return;
+    }
     const pdf = S.pdf;
     const t = await checkTemplates().catch(e => { console.warn('Vorlagen:', e); return null; });
     const stale = () => pdf !== S.pdf || S.mode !== 'send' || S.view;
@@ -2738,7 +3222,7 @@
     if (!S.own.length || !S.mySig) return false;
     busy('Ihre Unterschrift wird eingesetzt …');
     try {
-      if (!S.docSig) { try { S.docSig = await docSig(S.pdf); } catch (e) { /* egal */ } } // Vorlagen erkennen später das Original
+      if (!S.docSig && S.parts.length < 2) { try { S.docSig = S.parts[0].sig = await docSig(S.pdf); } catch (e) { /* egal */ } } // Vorlagen erkennen später das Original
       const L = await loadPdfLib();
       let doc, raster = false;
       try {
@@ -2788,7 +3272,8 @@
     S.items.forEach(it => { if (it.node) it.node.remove(); });
     S.spots = []; S.items = []; S.sel = null; S.sig = null; S.out = null;
     S.name = ''; S.ort = ''; padMem = null; // nichts vom vorigen Kunden übernehmen
-    S.local = { label: o.label, note: o.note, saved: '', tpl: S.tpl ? S.tpl.id : '', lang: req.l, du: req.u === 1 };
+    S.sig2 = null; S.name2 = ''; padMem2 = null;
+    S.local = { label: o.label, label2: o.label2 || '', note: o.note, saved: '', tpl: S.tpl ? S.tpl.id : '', parts: S.parts.length, lang: req.l, du: req.u === 1 };
     S.mode = 'sign';
     S.req = req;
     S.lang = req.l === 'sq' ? 'sq' : 'de';
@@ -2796,8 +3281,10 @@
     S.fileIsRemote = false;
     applyStatic();
     $('#modeChip').textContent = tr('Vor Ort');
+    $('#docName').textContent = signTitle();
     $('#ownBtn').classList.add('hidden');
     applyRequest();
+    decoratePages(); // Überschriften der Teile wie beim Kunden, kein „Weiteres PDF anhängen“
     renderBar();
     S.dirty = false;
     window.scrollTo(0, 0);
@@ -2813,6 +3300,7 @@
     S.lang = 'de';
     S.du = false;
     S.name = ''; S.ort = ''; padMem = null;
+    S.sig2 = null; S.name2 = ''; padMem2 = null;
     applyStatic();
     setupStart();
   }
@@ -2821,9 +3309,9 @@
     const id = bytesToB64url(crypto.getRandomValues(new Uint8Array(16)));
     try {
       await Store.putPdf(id, S.out.bytes);
-      const rec = { id: id, key: '', del: '', secret: '', label: L.label, note: L.note, file: S.file.name, pages: S.pages.length, created: now, expires: 0,
+      const rec = { id: id, key: '', del: '', secret: '', label: L.label, label2: L.label2 || '', note: L.note, file: S.file.name, title: signTitle(), parts: L.parts || 1, pages: S.pages.length, created: now, expires: 0,
         lang: L.lang, du: L.du, status: 'signed', link: '', local: true, inPerson: true, seen: true, serverGone: true,
-        signedAt: now, signer: S.name, ort: S.ort, outName: S.out.name, outPages: S.out.pages, size: S.out.bytes.length, tpl: L.tpl, mailPending: mailEnabled() };
+        signedAt: now, signer: S.name, signer2: S.sig2 ? S.name2 : '', ort: S.ort, outName: S.out.name, outPages: S.out.pages, size: S.out.bytes.length, tpl: L.tpl, mailPending: mailEnabled() };
       await Store.put(rec);
       L.saved = id;
       S.dirty = false;
@@ -2962,7 +3450,11 @@
     const days = Math.ceil((exp - Date.now()) / DAY);
     return days <= 0 ? 'läuft heute ab' : days === 1 ? 'noch 1 Tag gültig' : 'noch ' + days + ' Tage gültig';
   }
-  const recTitle = r => r.label || (r.status === 'signed' && r.signer) || r.file || 'Dokument';
+  const recTitle = r => r.label || (r.status === 'signed' && r.signer) || r.title || r.file || 'Dokument';
+  // Dokument eines Eintrags: Titel (neu) oder Dateiname, bei mehreren PDFs mit Anzahl
+  const recDoc = r => (r.title || r.file || 'Dokument') + (r.parts > 1 ? ' (' + r.parts + ' PDFs)' : '');
+  const signersOf = r => [r.signer, r.signer2].filter(Boolean).join(' und ');
+  const hasIssue = r => Array.isArray(r.issues) && r.issues.length > 0;
   const pending = r => r.status === 'open' || (r.status === 'signed' && !r.local && !r.lost);
 
   function setFilter(f) {
@@ -2985,7 +3477,7 @@
   const fold = s => String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/ß/g, 'ss');
   function matches(r, words) {
     if (!words.length) return true;
-    const hay = fold([r.label, r.note, r.file, r.outName, r.signer, r.ort, r.created ? fmtDate(new Date(r.created)) : '', r.signedAt ? fmtDate(new Date(r.signedAt)) : ''].join(' '));
+    const hay = fold([r.label, r.label2, r.note, r.file, r.title, r.outName, r.signer, r.signer2, r.ort, r.created ? fmtDate(new Date(r.created)) : '', r.signedAt ? fmtDate(new Date(r.signedAt)) : ''].join(' '));
     return words.every(w => hay.indexOf(w) >= 0);
   }
 
@@ -2998,6 +3490,7 @@
     if (!show) return;
     const f = S.inbox.filter;
     const nNew = list.filter(r => r.status === 'signed' && r.local && !r.seen).length;
+    const nIssue = list.filter(r => r.status === 'open' && r.issueNew).length;
     [['all', 'Alle', list.length], ['open', 'Offen', list.filter(r => r.status === 'open').length], ['signed', 'Erledigt', list.filter(r => r.status === 'signed').length]].forEach(x => {
       tiles.append(el('button', { type: 'button', class: 'tile' + (f === x[0] ? ' on' : ''), 'aria-pressed': f === x[0] ? 'true' : 'false',
         onclick: () => {
@@ -3005,7 +3498,7 @@
           const box = $('#inbox');
           if (box && box.getBoundingClientRect().top > window.innerHeight * 0.75) box.scrollIntoView({ behavior: 'smooth', block: 'start' });
         } },
-      el('b', null, String(x[2]), x[0] === 'signed' && nNew ? el('i', { title: nNew + ' neu' }) : null),
+      el('b', null, String(x[2]), x[0] === 'signed' && nNew ? el('i', { title: nNew + ' neu' }) : x[0] === 'open' && nIssue ? el('i', { class: 'issue', title: nIssue + ' ' + plural(nIssue, 'Rückmeldung', 'Rückmeldungen') }) : null),
       el('span', { text: x[1] })));
     });
   }
@@ -3041,7 +3534,7 @@
     if (!has) { sw.classList.add('hidden'); place(); return; }
     const f = S.inbox.filter;
     const words = fold(S.inbox.q || '').split(/\s+/).filter(Boolean);
-    const isNew = r => r.status === 'signed' && r.local && !r.seen;
+    const isNew = r => (r.status === 'signed' && r.local && !r.seen) || (r.status === 'open' && !!r.issueNew);
     const inFilter = list.filter(r => f === 'all' || r.status === f);
     const rows = inFilter.filter(r => matches(r, words))
       .sort((a, b) => isNew(b) - isNew(a) || (b.signedAt || b.created) - (a.signedAt || a.created));
@@ -3110,7 +3603,8 @@
     let cls, icon, pill, when, extra = null, due = false;
     if (st === 'signed') {
       cls = 'ok'; icon = I.check; pill = 'Unterschrieben';
-      when = whenText(r.signedAt) + (r.signer && title !== r.signer ? ', ' + r.signer : '');
+      const who = signersOf(r);
+      when = whenText(r.signedAt) + (!who || title === who ? '' : r.signer2 && title === r.signer ? ', mit ' + r.signer2 : ', ' + who);
       if (!r.local) when += r.lost ? ', PDF nicht mehr abrufbar' : ', wird geladen …';
       if (r.inPerson) extra = el('i', { class: 'pill here', text: 'Vor Ort' });
     } else if (st === 'open') {
@@ -3118,16 +3612,21 @@
       const left = Math.ceil((r.expires - Date.now()) / DAY);
       due = left <= 1 || calDays(r.created) >= 2;
       when = openSince(r) + ', ' + leftText(r.expires) + (r.remindedAt ? ', erinnert ' + dayText(r.remindedAt) : '');
+      // Rückmeldung des Kunden geht vor, sonst „geöffnet“
+      if (hasIssue(r)) extra = el('i', { class: 'pill issue', text: 'Rückmeldung' });
+      else if (r.openedAt) extra = el('i', { class: 'pill seen', text: 'Geöffnet' });
     } else {
       cls = 'gone'; icon = I.xc; pill = r.gone === 'withdrawn' ? 'Zurückgezogen' : 'Abgelaufen';
       when = 'nicht unterschrieben';
     }
-    const sub = [r.note, title !== r.file ? r.file : ''].filter(Boolean).join(' · ');
+    const doc = recDoc(r);
+    const sub = [r.note, title !== doc && title !== r.file ? doc : ''].filter(Boolean).join(' · ');
     return el('button', { type: 'button', class: 'ibitem ' + cls, onclick: () => openRecord(r.id) },
       el('span', { class: 'ic', html: icon }),
       el('span', { class: 'tx' },
         el('b', null, el('span', { class: 'ttl', text: title }), st === 'signed' && r.local && !r.seen ? el('i', { class: 'pill new', text: 'Neu' }) : null),
         sub ? el('small', { text: sub }) : null,
+        st === 'open' && hasIssue(r) ? el('small', { class: 'issue', text: '„' + r.issues[r.issues.length - 1].text + '“' }) : null,
         el('span', { class: 'st' }, el('i', { class: 'pill ' + cls, text: pill }), extra, el('span', { class: due ? 'due' : null, text: when }))),
       el('span', { class: 'chev', html: I.chev }));
   }
@@ -3179,7 +3678,7 @@
     }
     S.inbox.err = '';
     S.inbox.last = Date.now();
-    const fresh = [];
+    const fresh = [], withIssue = [];
     for (const r of ask) {
       if (!Object.prototype.hasOwnProperty.call(states, r.id)) continue;
       const st = states[r.id];
@@ -3193,12 +3692,22 @@
       } else if (st.status === 'signed') {
         if (r.status !== 'signed') await Store.patch(r.id, { status: 'signed', signedAt: st.signedAt, seen: false });
         fresh.push(Object.assign({}, r, { signedAt: st.signedAt, sChunks: st.chunks, sMailed: !!st.mailed }));
-      } else if (st.expires && st.expires !== r.expires) {
-        await Store.patch(r.id, { expires: st.expires });
+      } else {
+        // Offen: Ablauf, „geöffnet“ und neue Rückmeldungen des Kunden
+        const ch = {};
+        if (st.expires && st.expires !== r.expires) ch.expires = st.expires;
+        if (st.opened && st.opened !== r.openedAt) ch.openedAt = st.opened;
+        if (Object.keys(ch).length) await Store.patch(r.id, ch);
+        if (st.issues > 0) withIssue.push(r);
       }
+    }
+    const said = [];
+    for (const r of withIssue) {
+      try { if (await fetchIssues(r, pin)) said.push(recTitle(r)); } catch (e) { console.warn('Rückmeldung:', e); }
     }
     await loadInbox();
     renderInbox();
+    if (said.length) toast(said.length === 1 ? 'Rückmeldung zu ' + said[0] + ': Bitte ansehen.' : said.length + ' neue Rückmeldungen', 5000);
     const names = [];
     for (const r of fresh) {
       try {
@@ -3230,7 +3739,8 @@
     const changes = {
       status: 'signed', local: true, lost: false, seen: false,
       outName: cleanName(txt(h.name, 120) || r.file),
-      signer: txt(h.signer, 80), ort: txt(h.ort, 60),
+      signer: txt(h.signer, 80), signer2: txt(h.signer2, 80), ort: txt(h.ort, 60),
+      title: r.title || txt(h.title, 80),
       outPages: Number.isInteger(h.pages) && h.pages > 0 ? h.pages : 0,
       size: doc.bytes.length,
       signedAt: r.signedAt || Date.parse(h.signedAt) || Date.now()
@@ -3241,6 +3751,27 @@
     if (changes.mailPending) await mailFromPhone(Object.assign({}, r, changes), doc.bytes); // Ersatzweg
     await deleteServerCopy(r.id, pin); // liegt jetzt nur noch auf diesem Gerät
     return Object.assign({}, r, changes);
+  }
+  // Rückmeldungen des Kunden („Stimmt etwas nicht?“) abholen, mit dem Schlüssel der Anfrage entschlüsseln, beim Server löschen
+  async function fetchIssues(r, pin) {
+    const res = await apiJSON('GET', '/api/doc/' + encodeURIComponent(r.id) + '/issue', { pin: pin });
+    const list = Array.isArray(res.issues) ? res.issues : [];
+    if (!list.length) return 0;
+    const have = Array.isArray(r.issues) ? r.issues.slice() : [];
+    let upTo = 0, added = 0;
+    for (const x of list) {
+      const at = Number(x && x.at) || 0;
+      upTo = Math.max(upTo, at);
+      if (!at || have.some(h => h.at === at)) continue;
+      let text = '';
+      try { const o = await openHead(String(x.msg || ''), r.key); text = typeof o.m === 'string' ? o.m.replace(/[\u0000-\u0009\u000b-\u001f\u007f]+/g, ' ').trim().slice(0, 1000) : ''; } catch (e) { text = ''; }
+      if (!text) continue;
+      have.push({ at: at, text: text });
+      added++;
+    }
+    if (added) await Store.patch(r.id, { issues: have.slice(-10), issueNew: true });
+    if (upTo) await apiFetch('POST', '/api/doc/' + encodeURIComponent(r.id) + '/issue/clear', { pin: pin, json: { upTo: upTo } }).catch(() => {});
+    return added;
   }
   async function deleteServerCopy(id, pin) {
     try { await apiFetch('DELETE', '/api/doc/' + encodeURIComponent(id), { pin: pin }); } catch (e) {
@@ -3348,18 +3879,29 @@
     }
   }
 
+  // Rückmeldungen des Kunden („Stimmt etwas nicht?“), neueste zuerst
+  function issueBox(r) {
+    const dtx = ts => fmtDate(new Date(ts)) + ', ' + fmtTime(new Date(ts)) + ' Uhr';
+    return el('div', { class: 'banner warn issuebox' }, el('span', { html: I.warn }),
+      el('div', { class: 'grow' },
+        el('b', { text: r.issues.length === 1 ? 'Rückmeldung von Ihrem Kunden' : r.issues.length + ' Rückmeldungen von Ihrem Kunden' }),
+        ...r.issues.slice().reverse().slice(0, 4).map(x => el('p', null, el('q', { text: x.text }), el('small', { text: dtx(x.at) }))),
+        r.status === 'open' ? el('p', { class: 'tip', text: 'Am besten das PDF korrigieren und neu senden. Diese Anfrage dann zurückziehen.' }) : null));
+  }
   async function openRecord(id) {
     let r = null;
     try { r = await Store.get(id); } catch (e) { r = null; }
     if (!r) { await loadInbox(); renderInbox(); return; }
     if (r.status === 'signed' && r.local && !r.seen) {
       Store.patch(id, { seen: true }).then(loadInbox).then(renderInbox).catch(() => {});
+    } else if (r.issueNew) {
+      Store.patch(id, { issueNew: false }).then(loadInbox).then(renderInbox).catch(() => {});
     }
     const kv = el('dl', { class: 'kv' });
     const row = (k, v) => { if (v) kv.append(el('dt', { text: k }), el('dd', { text: v })); };
     const dt = ts => fmtDate(new Date(ts)) + ', ' + fmtTime(new Date(ts)) + ' Uhr';
     const label = el('input', { class: 'in', type: 'text', value: r.label || '', placeholder: 'z. B. Max Mustermann', maxlength: '80', autocomplete: 'off' });
-    const noteIn = el('input', { class: 'in', type: 'text', value: r.note || '', placeholder: 'z. B. Kfz-Antrag', maxlength: '80', autocomplete: 'off' });
+    const noteIn = el('input', { class: 'in', type: 'text', value: r.note || '', placeholder: 'z. B. Rückruf am Montag', maxlength: '80', autocomplete: 'off' });
     const saveNote = () => { Store.patch(id, { label: cleanLabel(label.value), note: cleanLabel(noteIn.value) }).then(loadInbox).then(renderInbox).catch(() => {}); };
     label.addEventListener('change', saveNote);
     noteIn.addEventListener('change', saveNote);
@@ -3367,8 +3909,10 @@
       el('label', { class: 'fld' }, el('span', { text: 'Kunde (nur für Sie)' }), label),
       el('label', { class: 'fld' }, el('span', { text: 'Notiz' }), noteIn));
     const body = el('div', { class: 'recdetail' });
+    const add = (...xs) => body.append(...xs.filter(Boolean)); // ohne leere Einträge (sonst steht „null“ da)
     if (r.status === 'signed') {
-      row('Unterschrieben von', r.signer);
+      row('Unterschrieben von', signersOf(r));
+      row('Dokument', recDoc(r));
       row('Zeitpunkt', r.signedAt ? dt(r.signedAt) : '');
       row('Ort', r.ort);
       if (r.inPerson) row('Art', 'Vor Ort auf diesem Gerät');
@@ -3376,9 +3920,10 @@
       row('E-Mail', r.mailed ? 'Kopie verschickt' : r.mailPending ? 'wird verschickt, sobald Internet da ist' : '');
       if (r.local) {
         const info = (r.outPages ? (r.outPages === 1 ? '1 Seite' : r.outPages + ' Seiten') + ' · ' : '') + fmtSize(r.size || 0);
-        body.append(
+        add(
           el('div', { class: 'filecard' }, el('span', { html: I.doc }), el('div', null, el('b', { text: r.outName || r.file }), el('span', { text: info }))),
           kv,
+          hasIssue(r) ? issueBox(r) : null,
           el('button', { type: 'button', class: 'btn btn-primary btn-block btn-xl', html: I.eye + '<span>Ansehen</span>', onclick: () => viewRecord(r) }),
           el('div', { class: 'btnrow' },
             el('button', { type: 'button', class: 'btn btn-ghost', html: I.share + '<span>Teilen</span>', onclick: () => withPdf(r, shareFile) }),
@@ -3387,7 +3932,7 @@
           note,
           el('div', { class: 'donelinks' }, el('button', { type: 'button', class: 'linkbtn danger', text: 'Von diesem Gerät löschen', onclick: () => removeRecord(r) })));
       } else {
-        body.append(kv,
+        add(kv,
           el('div', { class: 'banner' + (r.lost ? ' warn' : '') }, el('span', { html: r.lost ? I.warn : I.info }),
             el('p', { text: r.lost ? 'Das unterschriebene PDF ist auf dem Server nicht mehr vorhanden. Bitten Sie Ihren Kunden, es per WhatsApp zu schicken.' : 'Ihr Kunde hat unterschrieben. Das PDF wird gerade abgeholt.' })),
           r.lost ? null : el('button', { type: 'button', class: 'btn btn-primary btn-block', html: I.download + '<span>Jetzt abholen</span>', onclick: async () => { closeSheet(); await refreshInbox(true); openRecord(id); } }),
@@ -3395,18 +3940,20 @@
           el('div', { class: 'donelinks' }, el('button', { type: 'button', class: 'linkbtn danger', text: 'Aus der Übersicht entfernen', onclick: () => removeRecord(r) })));
       }
     } else if (r.status === 'open') {
-      row('Dokument', r.file);
+      row('Dokument', recDoc(r));
+      if (r.label2) row('2. Person', r.label2);
       row('Gesendet', dt(r.created));
       row('Gültig bis', fmtDate(new Date(r.expires)) + ' (' + leftText(r.expires) + ')');
       row('Sprache', (r.lang === 'sq' ? 'Shqip (Albanisch)' : 'Deutsch') + (r.du === false ? ', Sie' : ', Du'));
+      row('Geöffnet', r.openedAt ? dt(r.openedAt) : 'noch nicht');
       row('Erinnert', r.remindedAt ? dt(r.remindedAt) : '');
-      const days = calDays(r.created);
-      body.append(
-        el('div', { class: 'banner' + (days >= 2 ? ' warn' : '') }, el('span', { html: I.clock }), el('p', { text: days >= 2
-          ? 'Seit ' + days + ' Tagen nicht unterschrieben. Eine kurze Erinnerung hilft oft.'
-          : 'Noch nicht unterschrieben. Sobald Ihr Kunde fertig ist, erscheint das PDF hier.' })),
+      const days = calDays(r.created), issue = hasIssue(r);
+      add(
+        issue ? issueBox(r) : el('div', { class: 'banner' + (days >= 2 ? ' warn' : '') }, el('span', { html: I.clock }), el('p', { text: days >= 2
+          ? (r.openedAt ? 'Geöffnet, aber seit ' + days + ' Tagen nicht unterschrieben. Eine kurze Erinnerung hilft oft.' : 'Seit ' + days + ' Tagen nicht unterschrieben. Eine kurze Erinnerung hilft oft.')
+          : r.openedAt ? 'Ihr Kunde hat den Link geöffnet, aber noch nicht unterschrieben.' : 'Noch nicht unterschrieben. Sobald Ihr Kunde fertig ist, erscheint das PDF hier.' })),
         kv,
-        r.link ? el('button', { type: 'button', class: 'btn btn-primary btn-block btn-xl', html: I.bell + '<span>Erinnerung senden</span>', onclick: async () => {
+        r.link && !issue ? el('button', { type: 'button', class: 'btn btn-primary btn-block btn-xl', html: I.bell + '<span>Erinnerung senden</span>', onclick: async () => {
           if (!(await shareMessage(reminderMessage(r)))) return;
           await Store.patch(r.id, { remindedAt: Date.now() }).catch(() => {});
           await loadInbox();
@@ -3418,9 +3965,9 @@
         note,
         el('div', { class: 'donelinks' }, el('button', { type: 'button', class: 'linkbtn danger', text: 'Anfrage zurückziehen', onclick: () => withdrawRecord(r) })));
     } else {
-      row('Dokument', r.file);
+      row('Dokument', recDoc(r));
       row('Gesendet', dt(r.created));
-      body.append(
+      add(
         el('div', { class: 'banner warn' }, el('span', { html: I.warn }), el('p', { text: r.gone === 'withdrawn'
           ? 'Sie haben diese Anfrage zurückgezogen. Der Link funktioniert nicht mehr.'
           : 'Der Link ist abgelaufen, ohne dass unterschrieben wurde. Wählen Sie das PDF erneut aus, um eine neue Anfrage zu senden.' })),
@@ -3533,7 +4080,7 @@
         if (!p || !p.bytes) return false;
         bytes = new Uint8Array(p.bytes);
       }
-      const body = { id: r.id, name: r.outName || r.file, signer: r.signer || '', ort: r.ort || '', at: r.signedAt, via: r.inPerson ? 'local' : 'link', size: bytes.length };
+      const body = { id: r.id, name: r.outName || r.file, title: r.title || docTitleOf(r.file), signer: r.signer || '', signer2: r.signer2 || '', ort: r.ort || '', at: r.signedAt, via: r.inPerson ? 'local' : 'link', size: bytes.length };
       if (bytes.length > MAIL_MAX) body.big = true; else body.pdf = bytesToB64(bytes);
       const res = await apiJSON('POST', '/api/mail/send', { pin: pin, json: body });
       S.mailErr = '';
@@ -3878,7 +4425,9 @@
           try { pdf = await Store.pdf(r.id); } catch (e) { pdf = null; }
           if (pdf && pdf.bytes) {
             const d = new Date(r.signedAt || r.created || Date.now());
-            const base = 'PDF/' + safeFile(isoDay(d) + ' ' + [r.label || r.signer, (r.outName || r.file || 'Dokument').replace(/\.pdf$/i, '')].filter(Boolean).join(' - '));
+            // Neue Dateinamen haben Datum und Namen schon vorn („2026-10-11 Arben Hoxha Antrag.pdf“)
+            const base = 'PDF/' + safeFile(/^\d{4}-\d\d-\d\d /.test(r.outName || '') ? r.outName.replace(/\.pdf$/i, '')
+              : isoDay(d) + ' ' + [r.label || r.signer, (r.outName || r.file || 'Dokument').replace(/\.pdf$/i, '')].filter(Boolean).join(' - '));
             let fn = base + '.pdf';
             for (let i = 2; used.has(fn); i++) fn = base + ' (' + i + ').pdf';
             used.add(fn);
@@ -3890,7 +4439,7 @@
         recs.push(rec);
         const when = r.status === 'signed' ? r.signedAt : r.created;
         rows.push([when ? fmtDate(new Date(when)) : '', r.status === 'signed' ? (r.inPerson ? 'Unterschrieben (vor Ort)' : 'Unterschrieben') : r.status === 'open' ? 'Offen' : 'Nicht unterschrieben',
-          r.label || '', r.note || '', r.file || '', r.signer || '', r.ort || '', rec.pdf || '']);
+          r.label || '', r.note || '', recDoc(r), signersOf(r), r.ort || '', rec.pdf || '']);
       }
       const s = loadSender();
       const data = { app: 'firmio', v: 1, created: new Date().toISOString(),
@@ -3947,8 +4496,9 @@
     });
     input.click();
   }
-  const REC_FIELDS = { id: 's', key: 's', del: 's', secret: 's', label: 's', note: 's', file: 's', pages: 'n', created: 'n', expires: 'n', lang: 's', du: 'b', status: 's', link: 's',
-    local: 'b', inPerson: 'b', seen: 'b', serverGone: 'b', signedAt: 'n', signer: 's', ort: 's', outName: 's', outPages: 'n', size: 'n', lost: 'b', gone: 's', goneAt: 'n', remindedAt: 'n', tpl: 's' };
+  const REC_FIELDS = { id: 's', key: 's', del: 's', secret: 's', label: 's', label2: 's', note: 's', file: 's', title: 's', parts: 'n', pages: 'n', created: 'n', expires: 'n', lang: 's', du: 'b', status: 's', link: 's',
+    local: 'b', inPerson: 'b', seen: 'b', serverGone: 'b', signedAt: 'n', signer: 's', signer2: 's', ort: 's', outName: 's', outPages: 'n', size: 'n', lost: 'b', gone: 's', goneAt: 'n', remindedAt: 'n', tpl: 's',
+    openedAt: 'n' };
   function cleanRecord(r) {
     if (!r || typeof r.id !== 'string' || !/^[A-Za-z0-9_-]{8,40}$/.test(r.id) || ['open', 'signed', 'gone'].indexOf(r.status) < 0) return null;
     const o = {};
@@ -4017,6 +4567,33 @@
   }
 
   /* ---------------- PDF erstellen ---------------- */
+  // Titel aus einem Dateinamen: „Antrag_Hausrat_unterschrieben.pdf“ → „Antrag Hausrat“
+  function docTitleOf(name) {
+    return String(name || '').replace(/\.pdf$/i, '').replace(/_+/g, ' ').replace(/\s+/g, ' ').trim()
+      .replace(/(^|[\s-])unterschrieben$/i, '').trim() || 'Dokument';
+  }
+  // Titel des Dokuments beim Kunden (vom Absender gesetzt, sonst aus dem Dateinamen)
+  const signTitle = () => (S.req && S.req.ti) || docTitleOf(S.file ? S.file.name : '');
+  // Namen für den Dateinamen: „Arben Hoxha“ und „Drita Hoxha“ → „Arben & Drita Hoxha“
+  function signerPart(a, b) {
+    a = cleanLabel(a); b = cleanLabel(b);
+    if (!a || !b) return a || b;
+    const pa = a.split(' '), pb = b.split(' ');
+    if (pa.length > 1 && pb.length > 1 && fold(pa[pa.length - 1]) === fold(pb[pb.length - 1])) return pa.slice(0, -1).join(' ') + ' & ' + b;
+    return a + ' & ' + b;
+  }
+  // Dateiname des unterschriebenen PDFs: „2026-10-11 Arben Hoxha Antrag Hausrat.pdf“
+  // (Wörter aus dem Namen, die schon im Titel stehen, kommen nicht doppelt vor)
+  function signedName(title, a, b, d) {
+    const who = signerPart(a, b);
+    const key = w => fold(w).replace(/[^a-z0-9]/g, '');
+    const skip = new Set(who.split(/\s+/).map(key).filter(w => w.length > 2));
+    let t = cleanLabel(title);
+    const rest = t.split(' ').filter(w => !skip.has(key(w)));
+    if (rest.length) t = rest.join(' ');
+    return safeFile([isoDay(d || new Date()), who, t].filter(Boolean).join(' ')) + '.pdf';
+  }
+
   async function finish() {
     const sigs = S.items.filter(i => i.type === 'sig');
     if (!sigs.length) { toast(tr('Bitte zuerst unterschreiben.')); return; }
@@ -4046,7 +4623,8 @@
     const r = S.remote, id = encodeURIComponent(r.id);
     busy(tr('Wird verschlüsselt gesendet …'));
     try {
-      const head = { name: S.out.name, signer: S.name, ort: S.ort, signedAt: new Date().toISOString(), pages: S.out.pages, match: S.hashMatch };
+      const head = { name: S.out.name, title: signTitle(), signer: S.name, ort: S.ort, signedAt: new Date().toISOString(), pages: S.out.pages, match: S.hashMatch };
+      if (S.sig2 && S.name2) head.signer2 = S.name2;
       const payload = await sealDoc(S.out.bytes, head, b64urlToBytes(S.req.k));
       const CH = 3 * 1024 * 1024, chunks = Math.ceil(payload.length / CH);
       await apiRetry('POST', '/api/doc/' + id + '/signed', { del: r.del, json: { size: payload.length, chunks: chunks } });
@@ -4071,7 +4649,7 @@
   // schickt das Handy des Absenders sie beim nächsten Abgleich. Höchstens ~20 s warten.
   async function mailCopy(r) {
     const big = S.out.bytes.length > MAIL_MAX;
-    const body = { name: S.out.name, signer: S.name, ort: S.ort, size: S.out.bytes.length };
+    const body = { name: S.out.name, title: signTitle(), signer: S.name, signer2: S.sig2 ? S.name2 : '', ort: S.ort, size: S.out.bytes.length };
     if (big) body.big = true; else body.pdf = bytesToB64(S.out.bytes);
     const send = apiRetry('POST', '/api/doc/' + encodeURIComponent(r.id) + '/mail', { del: r.del, json: body }, 2)
       .catch(e => console.warn('Kopie per E-Mail:', e));
@@ -4142,18 +4720,26 @@
     return os + ' · ' + br;
   }
 
-  function placementText() {
+  function placementText(who) {
     const per = {};
-    S.items.forEach(i => { if (i.type === 'sig') per[i.page + 1] = (per[i.page + 1] || 0) + 1; });
+    S.items.forEach(i => { if (i.type === 'sig' && (who === undefined || (i.who || 0) === who)) per[i.page + 1] = (per[i.page + 1] || 0) + 1; });
     return Object.keys(per).map(Number).sort((a, b) => a - b).map(p => 'Seite ' + p + (per[p] > 1 ? ' (' + per[p] + '×)' : '')).join(', ');
   }
+  // Wer hat unterschrieben (für Nachweisseite): [{ who, name, sig }]
+  const signersNow = () => [0, 1].filter(w => sigOf(w) && S.items.some(i => i.type === 'sig' && (i.who || 0) === w)).map(w => ({ who: w, name: nameOf(w), sig: sigOf(w) }));
 
   async function rasterize(L) {
     const out = await L.PDFDocument.create();
-    for (let i = 0; i < S.pages.length; i++) {
-      const pg = S.pages[i];
-      busy(tr('Seite {a} von {b} wird übernommen …', { a: i + 1, b: S.pages.length }));
-      const page = await S.pdf.getPage(i + 1);
+    await rasterInto(L, out, S.pdf);
+    busy(tr('PDF wird erstellt …'));
+    return out;
+  }
+  // Seiten eines PDFs als Bilder in ein neues PDF übernehmen (für geschützte PDFs)
+  async function rasterInto(L, out, pdf) {
+    for (let i = 0; i < pdf.numPages; i++) {
+      busy(tr('Seite {a} von {b} wird übernommen …', { a: i + 1, b: pdf.numPages }));
+      const page = await pdf.getPage(i + 1);
+      const v1 = page.getViewport({ scale: 1 }), pg = { W: v1.width, H: v1.height };
       const scale = Math.min(2.2, Math.sqrt(8e6 / (pg.W * pg.H)));
       const vp = page.getViewport({ scale: scale });
       const c = document.createElement('canvas');
@@ -4171,8 +4757,6 @@
       const p = out.addPage([pg.W, pg.H]);
       p.drawImage(img, { x: 0, y: 0, width: pg.W, height: pg.H });
     }
-    busy(tr('PDF wird erstellt …'));
-    return out;
   }
 
   async function buildSignedPdf() {
@@ -4203,17 +4787,19 @@
     const safe = s => toWinAnsi(s, cs);
     const ink = L.rgb(INK[0] / 255, INK[1] / 255, INK[2] / 255);
     const capColor = L.rgb(CAP[0] / 255, CAP[1] / 255, CAP[2] / 255);
-    const capText = safe(caption(now));
+    const capText = [safe(caption(now, 0)), safe(caption(now, 1))];
     const pages = doc.getPages();
     S.items.forEach(it => {
       const pg = S.pages[it.page], page = pages[it.page];
       if (!pg || !page) return;
+      const who = it.who === 1 ? 1 : 0, sg = sigOf(who);
+      if (it.type === 'sig' && !sg) return;
       const M = raster ? [1, 0, 0, 1, 0, 0] : virtualToUser(pg);
       page.pushOperators(L.pushGraphicsState(), L.concatTransformationMatrix(M[0], M[1], M[2], M[3], M[4], M[5]), L.setLineJoin(L.LineJoinStyle.Round));
       if (it.type === 'sig') {
-        const c = capSize(it.w);
-        page.drawSvgPath(S.sig.path, { x: it.x, y: pg.H - (it.y + c * 1.6), scale: it.w / S.sig.bw, borderColor: ink, borderWidth: S.sig.sw, borderLineCap: L.LineCapStyle.Round });
-        page.drawText(capText, { x: it.x, y: pg.H - (it.y + c * 1.1), size: c, font: F.reg, color: capColor });
+        const c = capSize(it.w, who);
+        page.drawSvgPath(sg.path, { x: it.x, y: pg.H - (it.y + c * 1.6), scale: it.w / sg.bw, borderColor: ink, borderWidth: sg.sw, borderLineCap: L.LineCapStyle.Round });
+        page.drawText(capText[who], { x: it.x, y: pg.H - (it.y + c * 1.1), size: c, font: F.reg, color: capColor });
       } else {
         page.drawText(safe(it.text), { x: it.x, y: pg.H - (it.y + it.size * 0.97), size: it.size, font: F.reg, color: L.rgb(0.07, 0.07, 0.07) });
       }
@@ -4226,8 +4812,7 @@
       doc.setProducer('Firmio (pdf-lib)');
     } catch (e) { /* egal */ }
     const bytes = await doc.save({ useObjectStreams: false });
-    const base = S.file.name.replace(/\.pdf$/i, '').replace(/[\\/:*?"<>|]+/g, '_').trim() || 'Dokument';
-    return { bytes: bytes, name: base + '_unterschrieben.pdf', pages: doc.getPageCount() };
+    return { bytes: bytes, name: signedName(signTitle(), S.name, S.name2, now), pages: doc.getPageCount() };
   }
 
   function drawProof(L, doc, F, safe, ink, now, raster) {
@@ -4252,7 +4837,8 @@
       y -= lines.length * lh + 11;
     };
     const n = S.pages.length;
-    row('Dokument', S.file.name);
+    row('Dokument', signTitle());
+    if (S.req && S.req.q && S.req.q.length > 1) row('Enthält', S.req.q.map(x => x[0] + ' (' + x[1] + ' ' + plural(x[1], 'Seite', 'Seiten') + ')').join(', '));
     row('Umfang', n + ' ' + plural(n, 'Seite', 'Seiten') + ' Original, dazu diese Nachweisseite');
     if (S.file.hash) row('Prüfsumme (SHA-256)', '', { mono: true, lines: [S.file.hash.slice(0, 32), S.file.hash.slice(32)] });
     if (S.req) {
@@ -4261,22 +4847,30 @@
         ? 'Stimmt überein: Es wurde genau das angeforderte Dokument unterschrieben.'
         : S.hashMatch === false ? 'Abweichend: Das unterschriebene PDF ist nicht identisch mit dem angeforderten Dokument.' : 'Nicht prüfbar.');
     }
-    row('Unterzeichnet von', S.name, { bold: true });
+    const who = signersNow(), many = who.length > 1;
+    row('Unterzeichnet von', who.map(x => x.name).join(' und ') || S.name, { bold: true });
     if (S.ort) row('Ort', S.ort);
     row('Zeitpunkt', fmtDate(now) + ', ' + fmtTime(now, true) + ' Uhr (' + tzLabel(now) + ')');
-    row('Unterschrift auf', placementText());
+    if (many) who.forEach(x => row('Unterschrift ' + x.name, placementText(x.who)));
+    else row('Unterschrift auf', placementText());
     if (S.fileIsRemote) row('Übermittlung', backMode() ? 'Ende-zu-Ende verschlüsselt per Link erhalten und zurückgegeben' : 'Per Ende-zu-Ende-verschlüsseltem Link erhalten');
     else if (S.local) row('Übermittlung', 'Vor Ort auf dem Gerät des Absenders unterschrieben');
     row('Gerät', deviceLabel());
-    page.drawText(safe('Unterschrift'), { x: X, y: y, size: 9, font: F.bold, color: cMuted });
-    const sc = Math.min(230 / S.sig.bw, 72 / S.sig.bh);
-    const top = y + 9;
-    page.pushOperators(L.pushGraphicsState(), L.setLineJoin(L.LineJoinStyle.Round));
-    page.drawSvgPath(S.sig.path, { x: V, y: top, scale: sc, borderColor: ink, borderWidth: S.sig.sw, borderLineCap: L.LineCapStyle.Round });
-    page.pushOperators(L.popGraphicsState());
-    y = top - S.sig.bh * sc - 5;
-    page.drawLine({ start: { x: V, y: y }, end: { x: V + 230, y: y }, thickness: 0.6, color: cLine });
-    y -= 34;
+    // Unterschrift(en): bei zwei Personen beide, mit Namen darunter
+    (who.length ? who : [{ name: S.name, sig: S.sig }]).forEach((x, k) => {
+      if (k) y -= 6;
+      page.drawText(safe(many ? 'Unterschrift ' + (k + 1) : 'Unterschrift'), { x: X, y: y, size: 9, font: F.bold, color: cMuted });
+      const sc = Math.min(230 / x.sig.bw, (many ? 56 : 72) / x.sig.bh);
+      const top = y + 9;
+      page.pushOperators(L.pushGraphicsState(), L.setLineJoin(L.LineJoinStyle.Round));
+      page.drawSvgPath(x.sig.path, { x: V, y: top, scale: sc, borderColor: ink, borderWidth: x.sig.sw, borderLineCap: L.LineCapStyle.Round });
+      page.pushOperators(L.popGraphicsState());
+      y = top - x.sig.bh * sc - 5;
+      page.drawLine({ start: { x: V, y: y }, end: { x: V + 230, y: y }, thickness: 0.6, color: cLine });
+      if (many) { page.drawText(safe(x.name), { x: V, y: y - 11, size: 8.6, font: F.reg, color: cMuted }); y -= 14; }
+      y -= many ? 22 : 34;
+    });
+    if (many) y -= 12;
     const para = 'Art der Unterschrift: einfache elektronische Signatur. Die Unterschrift wurde mit dem Finger auf dem Touchscreen gezeichnet und im Browser des Unterzeichners in das Dokument eingesetzt. ' +
       (backMode() ? 'Das Originaldokument kam Ende-zu-Ende-verschlüsselt per Link; das unterschriebene Dokument geht auf demselben Weg verschlüsselt an den Absender zurück. '
         : S.fileIsRemote ? 'Das Originaldokument kam Ende-zu-Ende-verschlüsselt per Link; das unterschriebene Dokument wurde nicht hochgeladen. ' : 'Das Dokument wurde dabei nicht hochgeladen. ') +

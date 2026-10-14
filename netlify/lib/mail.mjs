@@ -157,18 +157,21 @@ export function pdfFromB64(b64) {
 }
 
 export function signedMail(info, attached) {
-  const signer = clean(info.signer, 80) || 'Ihr Kunde';
+  const s1 = clean(info.signer, 80), s2 = clean(info.signer2, 80);
+  const two = !!(s1 && s2);
+  const signer = two ? s1 + ' und ' + s2 : (s1 || s2 || 'Ihr Kunde');
   const doc = fileName(info.name);
-  const base = doc.replace(/\.pdf$/i, '').replace(/[_ -]unterschrieben$/i, '') || 'Dokument';
+  const base = clean(info.title, 80) || doc.replace(/\.pdf$/i, '').replace(/[_ -]unterschrieben$/i, '') || 'Dokument';
   const ort = clean(info.ort, 60);
   const way = info.via === 'local' ? 'vor Ort auf Ihrem Handy' : 'per Link (Firmio)';
   const size = Number(info.size) || 0;
   const note = attached ? 'Das unterschriebene PDF hängt an.'
     : 'Das PDF ist zu groß für eine E-Mail' + (size ? ' (' + (size / 1048576).toFixed(1).replace('.', ',') + ' MB)' : '') + '. Es liegt in Ihrer Firmio-Übersicht.';
   const rows = [['Zeitpunkt', when(info.at)], ort ? ['Ort', ort] : null, ['Weg', way]].filter(Boolean);
-  const text = signer + ' hat „' + base + '“ unterschrieben.\n\n' + rows.map(r => r[0] + ': ' + r[1]).join('\n') + '\n\n' + note + '\n\n– Firmio';
+  const verb = two ? ' haben ' : ' hat ';
+  const text = signer + verb + '„' + base + '“ unterschrieben.\n\n' + rows.map(r => r[0] + ': ' + r[1]).join('\n') + '\n\n' + note + '\n\n– Firmio';
   const html = '<div style="font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.5;color:#0f1a2c">' +
-    '<p style="margin:0 0 12px"><b>' + esc(signer) + '</b> hat <b>„' + esc(base) + '“</b> unterschrieben.</p>' +
+    '<p style="margin:0 0 12px">' + (two ? '<b>' + esc(s1) + '</b> und <b>' + esc(s2) + '</b>' : '<b>' + esc(signer) + '</b>') + verb + '<b>„' + esc(base) + '“</b> unterschrieben.</p>' +
     '<table style="border-collapse:collapse;font-size:14px;margin:0 0 12px">' +
     rows.map(r => '<tr><td style="padding:2px 14px 2px 0;color:#5a677c">' + esc(r[0]) + '</td><td>' + esc(r[1]) + '</td></tr>').join('') +
     '</table><p style="margin:0 0 12px">' + esc(note) + '</p><p style="margin:0;color:#5a677c;font-size:13px">– Firmio</p></div>';

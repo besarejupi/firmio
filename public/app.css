@@ -326,11 +326,54 @@ label.btn { cursor: pointer; }
   padding: 6px 9px; border-radius: 7px; white-space: nowrap; box-shadow: 0 3px 8px rgba(0, 0, 0, .2);
 }
 .spot .tag::after { content: ""; position: absolute; left: 12px; top: 100%; border: 5px solid transparent; border-top-color: #fbbf24; }
+/* Feld nahe am rechten Rand: Hinweis rechtsbündig, damit er nicht aus der Seite ragt */
+.spot.tag-r .tag { left: auto; right: -2px; }
+.spot.tag-r .tag::after { left: auto; right: 12px; }
 @keyframes glow { 50% { box-shadow: 0 0 0 6px rgba(251, 191, 36, .28); } }
 .spot.edit { background: rgba(251, 191, 36, .22); border: 1.5px dashed #d08a0c; touch-action: none; cursor: grab; display: grid; place-items: center; }
 .spot.edit .lbl { font: 700 11.5px/1.1 var(--sans); color: #7a4d00; text-align: center; padding: 0 4px; pointer-events: none; overflow: hidden; }
 .spot.edit.sel { border-style: solid; box-shadow: 0 0 0 3px rgba(208, 138, 12, .25); }
 @media (prefers-reduced-motion: reduce) { .spot.cust { animation: none; } }
+
+/* Zweite Person (z. B. Ehepartner): blaue Felder */
+.spot.edit .who {
+  position: absolute; left: -2px; bottom: calc(100% + 24px); z-index: 3; /* über dem Löschen-Knopf */
+  display: none; gap: 2px; padding: 3px; border-radius: 11px;
+  background: #fff; box-shadow: 0 3px 12px rgba(0, 0, 0, .24); border: 1px solid #e3e8ef;
+}
+.spot.edit.sel .who { display: flex; }
+.spot.edit .who button {
+  border: 0; background: transparent; font: 700 13.5px/1 var(--sans); color: #5a677c;
+  padding: 8px 11px; border-radius: 8px; white-space: nowrap; touch-action: manipulation;
+}
+.spot.edit .who button[aria-pressed="true"] { background: #fbbf24; color: #3d2600; }
+.spot.edit.p2 .who button[aria-pressed="true"] { background: #2563eb; color: #fff; }
+.spot.edit.p2 { background: rgba(59, 130, 246, .16); border-color: #2563eb; }
+.spot.edit.p2 .lbl { color: #1e3a8a; }
+.spot.edit.p2.sel { box-shadow: 0 0 0 3px rgba(37, 99, 235, .22); }
+.spot.edit.p2 > .h-rs { background: #2563eb; }
+.spot.cust.p2 { background: rgba(59, 130, 246, .13); border-color: #3b82f6; animation-name: glow2; }
+.spot.cust.p2 .tag { background: #2563eb; color: #fff; }
+.spot.cust.p2 .tag::after { border-top-color: #2563eb; }
+@keyframes glow2 { 50% { box-shadow: 0 0 0 6px rgba(59, 130, 246, .25); } }
+
+/* Mehrere PDFs: Überschrift je Teil; am Ende „Weiteres PDF anhängen“ bzw. „Stimmt etwas nicht?“ */
+.parthead { display: flex; align-items: center; gap: 10px; max-width: 100%; margin: 6px 2px 10px; }
+.parthead .pn { flex: none; width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; background: var(--brand); color: var(--brand-ink); font-weight: 700; font-size: 13.5px; }
+.parthead .grow { flex: 1; min-width: 0; }
+.parthead b { display: block; font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.parthead .grow span { display: block; font-size: 13px; color: var(--muted); }
+.parthead .linkbtn { flex: none; font-size: 14px; }
+.endcard { display: flex; align-items: center; gap: 13px; width: 100%; max-width: 640px; margin: 8px auto 0; padding: 14px 16px; border-radius: 16px; text-align: left; color: var(--text); }
+.endcard.add { border: 1.5px dashed var(--brand-line); background: var(--card); }
+.endcard.add:active { background: var(--field); }
+.endcard .ic { flex: none; width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; background: var(--brand-soft); color: var(--brand); }
+.endcard .grow { flex: 1; min-width: 0; }
+.endcard b { display: block; font-size: 15.5px; }
+.endcard small { display: block; font-size: 13.5px; color: var(--muted); margin-top: 1px; }
+.endcard.ask { flex-direction: column; align-items: flex-start; gap: 4px; background: var(--card); border: 1px solid var(--line); }
+.endcard.ask > span { font-size: 14.5px; color: var(--muted); }
+.endcard.ask .btn { margin-top: 8px; }
 
 /* ---------- Fenster von unten ---------- */
 .scrim { position: fixed; inset: 0; z-index: 40; background: var(--scrim); opacity: 0; transition: opacity .22s ease; pointer-events: none; }
@@ -511,6 +554,18 @@ details.more.howto { margin-bottom: 8px; }
 .pill.gone { background: var(--field); color: var(--muted); border: 1px solid var(--line); }
 .pill.new { background: var(--accent-hi); color: #2b1d00; font-size: 11.5px; letter-spacing: .02em; }
 .pill.here { background: var(--brand-soft); color: var(--brand); }
+.pill.seen { background: var(--brand-soft); color: var(--brand); }
+.pill.issue { background: rgba(200, 54, 47, .12); color: var(--danger); }
+.ibitem small.issue { color: var(--danger); font-style: italic; }
+.tile i.issue { background: #f07167; }
+.issuebox .grow { flex: 1; min-width: 0; }
+.issuebox b { display: block; margin-bottom: 4px; }
+.issuebox p { margin: 6px 0 0; }
+.issuebox q { display: block; font-style: italic; overflow-wrap: anywhere; white-space: pre-line; }
+.issuebox q::before { content: "„"; }
+.issuebox q::after { content: "“"; }
+.issuebox small { display: block; opacity: .8; font-size: 12.5px; margin-top: 2px; }
+.issuebox .tip { font-size: 14px; margin-top: 10px; }
 .ibempty { text-align: center; color: var(--muted); font-size: 15px; padding: 20px 12px; background: var(--card); border-radius: 18px; margin: 0; box-shadow: var(--shadow); }
 .ibempty p { margin: 0; }
 .ibempty .linkbtn { margin-top: 6px; }
