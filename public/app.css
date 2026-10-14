@@ -396,6 +396,8 @@ label.btn { cursor: pointer; }
 .fld { display: block; margin: 0 0 16px; }
 .fld > span, .lblrow > span { display: block; font-size: 14px; font-weight: 700; color: var(--muted); margin: 0 0 6px; }
 .fld small { display: block; color: var(--muted); font-size: 13px; margin-top: 5px; }
+.fld small.guess { display: flex; align-items: center; gap: 5px; color: var(--ok); font-weight: 600; }
+.fld small.guess svg { width: 15px; height: 15px; flex: none; }
 .in { width: 100%; font-size: 16px; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--line); background: var(--field); color: var(--text); outline: none; }
 .in:focus { border-color: var(--brand); box-shadow: 0 0 0 3px var(--brand-soft); }
 textarea.in { min-height: 150px; resize: vertical; line-height: 1.45; font-size: 15.5px; }

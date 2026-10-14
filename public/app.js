@@ -1272,7 +1272,7 @@
 
   /* ---------------- Ansicht ---------------- */
   async function openViewer() {
-    S.items = []; S.spots = []; S.sel = null; S.out = null; S.dirty = false; S.hashMatch = null; S.cur = 0; S.sig = null; S.sent = null; S.sendLang = 'de'; S.sendDu = loadSender().du !== false; S.sentBack = null; S.custLabel = ''; S.custLabel2 = ''; S.custNote = ''; S.tpl = null; S.docSig = null;
+    S.items = []; S.spots = []; S.sel = null; S.out = null; S.dirty = false; S.hashMatch = null; S.cur = 0; S.sig = null; S.sent = null; S.sendLang = 'de'; S.sendDu = loadSender().du !== false; S.sentBack = null; S.custLabel = ''; S.custLabel2 = ''; S.custNote = ''; S.custGuess = null; S.custGuessP = null; S.tpl = null; S.docSig = null;
     S.own = []; S.ownBurned = 0; S.ownAuto = null; S.mySig = S.mode === 'send' ? loadMySig() : null;
     S.sig2 = null; S.docTitle = '';
     $('#ownBtn').classList.toggle('hidden', !(S.mode === 'send' && !S.view));
@@ -2241,7 +2241,9 @@
   async function openSendSheet() {
     select(null);
     busy('Einen Moment …');
-    const srv = await serverStatus();
+    // Kundenname aus dem PDF: läuft er noch, kurz darauf warten (höchstens 2 Sekunden)
+    const guessWait = S.custGuessP ? Promise.race([S.custGuessP, new Promise(r => setTimeout(r, 2000))]) : null;
+    const srv = (await Promise.all([serverStatus(), guessWait]))[0];
     unbusy();
     const cfg = loadSender();
     const nS = S.spots.filter(s => s.k === 's').length, nD = S.spots.filter(s => s.k === 'd').length;
@@ -2253,7 +2255,12 @@
     const name = el('input', { class: 'in', type: 'text', value: cfg.name || '', placeholder: 'z. B. Max Muster', autocomplete: 'name', maxlength: '60' });
     const nameBox = el('label', { class: 'fld' }, el('span', { text: 'Ihr Name (sieht der Kunde)' }), name);
     // Kunde: Name (Übersicht, auf Wunsch beim Unterschreiben vorausgefüllt) und Notiz (nur Übersicht)
+    // Name aus dem PDF vorschlagen (einmal; danach gilt, was eingetragen ist). Der Hinweis bleibt, solange der Name unverändert ist.
+    const g = S.custGuess;
+    if (g && !g.used && !S.custLabel) { g.used = true; S.custLabel = g.name; }
+    const guess = g && g.used && S.custLabel === g.name ? g.name : '';
     const cust = el('input', { id: 'custName', class: 'in', type: 'text', value: S.custLabel || '', placeholder: 'z. B. Max Mustermann', autocomplete: 'off', autocapitalize: 'words', maxlength: '80' });
+    const custHint = guess ? el('small', { class: 'guess', html: I.check + '<span>Aus dem PDF übernommen. Bitte kurz prüfen.</span>' }) : null;
     const prefill = el('input', { id: 'prefill', type: 'checkbox' });
     prefill.checked = cfg.prefill !== false;
     // Zweite Person (z. B. Ehepartner): nur wenn Felder für sie markiert sind
@@ -2261,7 +2268,7 @@
     const prefillRow = el('label', { class: 'check tight' }, prefill, el('span', { text: two ? 'Namen beim Unterschreiben schon eintragen' : 'Name beim Unterschreiben schon eintragen' }));
     const note = el('input', { id: 'custNote', class: 'in', type: 'text', value: S.custNote || '', placeholder: 'z. B. Rückruf am Montag', autocomplete: 'off', maxlength: '80' });
     const custBox = el('div', null,
-      el('label', { class: 'fld' }, el('span', { text: 'Kunde' }), cust),
+      el('label', { class: 'fld' }, el('span', { text: 'Kunde' }), cust, custHint),
       two ? el('label', { class: 'fld' }, el('span', { text: '2. Person (unterschreibt die blauen Felder)' }), cust2) : null,
       prefillRow,
       el('label', { class: 'fld' }, el('span', { text: 'Notiz (optional, nur für Sie)' }), note));
@@ -2329,6 +2336,7 @@
     };
 
     const onCust = () => {
+      if (custHint && cust.value !== guess) custHint.remove();
       S.custLabel = cust.value;
       S.custLabel2 = cust2.value;
       S.custNote = note.value;
@@ -2876,6 +2884,7 @@
       await swapDoc(bytes);
       unbusy();
       const to = S.pages.length;
+      guessCustomerLater(); // falls bisher kein Name gefunden wurde
       await prepParts(first, (add.length === 1 ? '„' + partTitle(S.parts[first]) + '“ ist angehängt' : add.length + ' PDFs sind angehängt') +
         ' (' + (to - from === 1 ? 'Seite ' + to : 'Seite ' + (from + 1) + '–' + to) + ').');
       window.scrollTo(0, 0);
@@ -2905,6 +2914,8 @@
       S.parts.splice(i, count);
       await swapDoc(bytes);
       unbusy();
+      if (S.custGuess && !S.custGuess.used) S.custGuess = null; // Name stammte evtl. aus dem entfernten PDF
+      guessCustomerLater();
       banner('info', names + ' ' + (count === 1 ? 'ist' : 'sind') + ' wieder entfernt.');
       window.scrollTo(0, 0);
     } catch (e) {
@@ -3150,6 +3161,225 @@
     return res;
   }
 
+  /* ---------------- Kundenname aus dem PDF vorschlagen (läuft nur auf dem Gerät, nichts wird hochgeladen) ---------------- */
+  // Wörter, die kein Name sind (klein und ohne Umlaute wie von fold())
+  const NAME_STOP = new Set(('herr herrn frau familie fam eheleute firma name vorname vornamen nachname familienname zuname geburtsname geburtsdatum geboren datum ort plz ' +
+    'strasse str weg platz allee ring gasse hausnummer telefon tel mobil handy email mail fax versicherung versicherungen versicherungsnehmer ' +
+    'versicherungsnehmerin antragsteller antragstellerin kunde kundin vermittler vermittlerin berater beraterin unterschrift antrag vertrag ' +
+    'police tarif beitrag axa ag gmbh kg ohg mbh se ug eg ev gbr co bank sparkasse volksbank iban bic konto kontoinhaber kontoinhaberin seite nummer nr ' +
+    'deutschland anschrift adresse und oder mit bitte angaben person personen daten wie siehe oben gleich identisch keine kein ja nein vn vp ' +
+    'beitragszahler hauptvertretung generalvertretung agentur service team gesellschaft verein stiftung').split(' '));
+  const NAME_TITLE = /^(herrn?|frau|hr\.?|fr\.?|dr\.?|prof\.?|dipl\.?-?[a-zäöü.]*|mag\.?|ing\.?|med\.?|rer\.?|nat\.?)$/i;
+  const NAME_PART = /^(von|van|de|da|di|del|della|der|den|du|zu|ten|ter|la|le|al|el|bin|ibn|y)$/;
+  const NAME_FAKE = /^(muster|beispiel)/; // Platzhalter in Mustern: Max Mustermann, Erika Musterfrau
+  // Bereiche und Beschriftungen, die NICHT der Kunde sind (Vermittler, versicherte Kinder, Arzt …); Text wie von fold() (ä → a)
+  const NOT_CUST = /vermittler|berater|betreuer|agentur|vertreter|vertretung|ansprechpartner|makler|aussendienst|geschaftsstelle|absender|versicherer|versicherte\w* person|mitversichert|bezugsberecht|begunstigt|\bkind(er)?\b|ehepartner|lebenspartner|arzt|bevollmachtigt/;
+  const FIELD_NOT = /(^|[^a-z])(vp|vm|kind|ehe|bank|arzt|bezug|beg)/; // Namen von Formularfeldern, z. B. „VP_Name“
+  const CUST_HEAD = /^(versicherungsnehmer(in)?|antragsteller(in)?|kunde|kundin|ihre (personlichen )?daten|personliche (daten|angaben)|angaben zu(m|r) (versicherungsnehmer\w*|antragsteller\w*|person))\b/;
+  const NUM_HEAD = /^(?:\d+(?:\.\d+)*[.)]?|[a-h][.)]|[ivx]+\.)\s+(?=\p{L})/iu; // „1. “, „2.3 “, „B) “, „IV. “
+  const STREET_LINE = /^\p{L}[\p{L}.'’ -]*\s\d+\s?[a-z]?(\s*[-/]\s*\d+\s?[a-z]?)?$/iu;
+  const PLZ_LINE = /^(?:D-?\s?)?\d{5}\s+\p{L}/u;
+  // Gleiche Person? Alle Wörter des einen Namens kommen im anderen vor (Reihenfolge egal)
+  const nameIn = (k, hay) => { const h = ' ' + hay + ' '; return k.split(' ').every(x => h.indexOf(' ' + x + ' ') >= 0); };
+  // Prüft einen Namen und schreibt ihn ordentlich: „Herr ARBEN HOXHA“ → „Arben Hoxha“, „Hoxha, Arben“ → „Arben Hoxha“
+  function personNameOf(raw, reverse) {
+    let c = String(raw || '').replace(/\([^)]*\)/g, ' ').replace(/\s+/g, ' ').split(',').map(x => x.trim()).filter(Boolean);
+    // „Name, Straße 1, PLZ Ort“ oder „Name, geb. …“: nur der Name vorne
+    const cut = c.findIndex((x, k) => k > 0 && (/\d|\bgeb\.|geboren/i.test(x) || /(str\.|stra(ss|ß)e|weg|platz|allee|gasse|ring)$/i.test(x)));
+    if (cut > 0) c = c.slice(0, cut);
+    c = c.map(x => x.replace(/\s(?:geb\.|geboren\b|kd\.|kunden-?nr|nr\.|\d).*$/i, '').replace(/^[\s:–-]+|[\s;:–-]+$/g, '').trim()).filter(Boolean);
+    if (!c.length || c.length > 2) return '';
+    const real = x => x.split(' ').filter(y => y && !NAME_TITLE.test(y) && !NAME_PART.test(y.toLowerCase())).length;
+    // „Hoxha, Arben“ umdrehen; bei „Arben Hoxha, Remscheid“ nur den Namen
+    const s = c.length === 2 ? (real(c[0]) === 1 ? c[1] + ' ' + c[0] : c[0]) : c[0];
+    if (s.length > 60 || /[\d@/\\[\]{}<>=+*#%&§$€|]/.test(s)) return '';
+    let w = s.split(' ').filter(x => !NAME_TITLE.test(x));
+    if (c.length < 2 && reverse && w.length === 2) w = [w[1], w[0]];
+    if (w.length < 2 || w.length > 5) return '';
+    let n = 0;
+    for (const x of w) {
+      if (NAME_PART.test(x.toLowerCase())) continue;
+      const f = fold(x).replace(/[^a-z]/g, '');
+      if (!/^\p{Lu}[\p{L}'’-]*\.?$/u.test(x) || NAME_STOP.has(f) || NAME_FAKE.test(f)) return '';
+      n++;
+    }
+    if (n < 2) return '';
+    return w.map(x => NAME_PART.test(x.toLowerCase()) ? x.toLowerCase()
+      : x.length > 2 && x === x.toUpperCase() ? x.toLowerCase().replace(/(^|[-'’])(\p{L})/gu, (m, a, b) => a + b.toUpperCase()) : x).join(' ');
+  }
+  // Ein einzelnes Namenswort (getrennte Felder „Name“ und „Vorname“): „HOXHA“ → „Hoxha“
+  function nameWordOf(raw) {
+    const s = String(raw || '').replace(/\([^)]*\)/g, ' ').replace(/[\s;:]+$/g, '').trim();
+    if (!s || s.length > 40 || /[\d@,]/.test(s)) return '';
+    const n = personNameOf(s + ' Xx');
+    return n ? n.slice(0, -3) : '';
+  }
+  // Beschriftungen (Text ohne Doppelpunkte, Groß/klein egal); die letzte Gruppe ist ein Wert in derselben Zeile
+  const L_CUST = /^(versicherungsnehmer(?:in)?|vers\.?-? ?nehmer(?:in)?|vn|antragsteller(?:in)?|kunde|kundin|kundenname|name des (?:versicherungsnehmers|antragstellers|kunden)|name der (?:versicherungsnehmerin|antragstellerin|kundin))\b ?(.*)$/i;
+  const L_REV = /^((?:nach|familien|zu)?name(?:,| \/| und)? vorname)\b ?(.*)$/i;
+  const L_FWD = /^(vorname(?:,| \/| und)? (?:nach|familien|zu)?name|vor- ?und (?:nach|familien|zu)name)\b ?(.*)$/i;
+  const L_ONE = /^((?:nach|familien|zu)?name|vorname)\b ?(.*)$/i;
+  const L_KTO = /^(kontoinhaber(?:in)?|name des kontoinhabers)\b ?(.*)$/i;
+  const L_SIGN = /^unterschrift (?:des |der )?(?:versicherungsnehmer|antragsteller|kunde|kundin)\w*$/i; // gedruckter Name darunter
+  const L_OF = /\s(?:des|der) (?:versicherungsnehmer(?:s|in)|antragsteller(?:s|in)|kunden|kundin)\b/i; // „Name, Vorname des Antragstellers“
+  const SALUT = /^(?:sehr geehrte[rs]?|liebe[rs]?|hallo|guten tag),? (?:herr|frau) (?:(?:dr|prof)\.? )*([a-z][a-z-]+)/;
+  // Die ersten Seiten jedes PDFs durchsuchen (ranges: [[von, bis], …]): Anschriftfeld, „Versicherungsnehmer“, „Name, Vorname“,
+  // getrennte Felder, ausgefüllte Formularfelder. Ergebnis: { name, score } oder null.
+  // Der eigene Name, der eigene Zusatz (z. B. „Hauptvertretung Jörg Liedtke“) und Vermittler-Angaben werden übergangen.
+  async function guessCustomer(pdf, ranges) {
+    const pages = [];
+    ranges.forEach(r => { for (let i = r[0]; i < Math.min(r[1], r[0] + 6, pdf.numPages); i++) if (pages.length < 16) pages.push({ i: i, top: i === r[0] }); });
+    const cfg = loadSender(), me = fold(cfg.name || '').replace(/\s+/g, ' ').trim(), org = fold(cfg.sub || '').replace(/[^a-z0-9-]+/g, ' ').trim();
+    const cand = new Map(), lastNames = [];
+    let order = 0;
+    const add = (name, score) => {
+      if (!name || score <= 0) return;
+      const k = fold(name);
+      if (me && (k === me || (me.indexOf(' ') > 0 && (nameIn(k, me) || nameIn(me, k))))) return; // der eigene Name
+      if (org && nameIn(k, org)) return;
+      const c = cand.get(k) || { name: name, score: 0, at: order++ };
+      c.score += score;
+      cand.set(k, c);
+    };
+    for (const pg of pages) {
+      if (pdf !== S.pdf) return null;
+      let page, tc, ann = [];
+      try { page = await pdf.getPage(pg.i + 1); tc = await page.getTextContent(); } catch (e) { continue; }
+      try { ann = await page.getAnnotations(); } catch (e) { ann = []; }
+      const vp = page.getViewport({ scale: 1 });
+      if (vp.rotation % 360 !== 0) continue;
+      const segs = labelSegments(tc.items, vp);
+      // ausgefüllte Formularfelder wie Text behandeln (Wert an der Stelle des Feldes)
+      ann.forEach(a => {
+        if (!a || a.subtype !== 'Widget' || a.fieldType !== 'Tx' || typeof a.fieldValue !== 'string' || !a.fieldValue.trim() || !Array.isArray(a.rect)) return;
+        const r = vp.convertToViewportRectangle(a.rect);
+        const y0 = Math.min(r[1], r[3]), y1 = Math.max(r[1], r[3]);
+        segs.push({ text: a.fieldValue.replace(/\s+/g, ' ').trim(), x0: Math.min(r[0], r[2]), x1: Math.max(r[0], r[2]), y: y1 - 2, fs: clamp((y1 - y0) * 0.7, 6, 14), field: fold(a.fieldName || '') || ' ' });
+      });
+      segs.sort((a, b) => a.y - b.y || a.x0 - b.x0);
+      // Nachbar: in derselben Zeile rechts, darunter oder darüber (gleiche Spalte)
+      const near = (s, dir) => {
+        let best = null, bd = 1e9;
+        segs.forEach(o => {
+          if (o === s) return;
+          let d;
+          if (dir === 'right') {
+            if (Math.abs(o.y - s.y) > Math.max(2.5, s.fs * 0.6) || o.x0 < s.x1 - 2 || o.x0 - s.x1 > 260) return;
+            d = o.x0 - s.x1;
+          } else if (dir === 'below') {
+            d = o.y - s.y;
+            if (d <= 1 || d > Math.max(9, s.fs) * 2.6 || o.x0 < s.x0 - 14 || o.x0 > s.x0 + Math.max(40, (s.x1 - s.x0) * 0.5)) return;
+          } else {
+            d = s.y - o.y;
+            if (d <= 1 || d > Math.max(9, s.fs) * 2.6 || Math.abs(o.x0 - s.x0) > 14) return;
+          }
+          if (d < bd) { bd = d; best = o; }
+        });
+        return best;
+      };
+      // Mögliche Werte zu einer Beschriftung: Rest derselben Zeile, sonst rechts daneben, sonst darunter (Formular-Stil)
+      const valuesOf = (s, rest) => {
+        if (rest && rest.trim()) return [{ text: rest, how: 'same' }];
+        const r = near(s, 'right'), b = near(s, 'below');
+        return [r && { text: r.text, how: 'right' }, b && { text: b.text, how: 'below' }].filter(Boolean);
+      };
+      const pick = (vals, parse) => { for (const v of vals) { const n = parse(v.text); if (n) return { name: n, how: v.how }; } return null; };
+      // Abschnitte: Überschrift mit ihrer Spalte (bis zum nächsten Text rechts daneben); die nächste darüber gilt
+      const heads = [];
+      const headAt = (kind, s) => {
+        let xb = Infinity;
+        segs.forEach(o => { if (o !== s && Math.abs(o.y - s.y) < 3 && o.x0 > s.x1 && o.x0 - 5 < xb) xb = o.x0 - 5; });
+        heads.push({ kind: kind, y: s.y, xa: s.x0 - 20, xb: xb });
+      };
+      const ctxOf = s => {
+        let h = null;
+        heads.forEach(x => { if (x.y < s.y - 1 && s.y - x.y <= 320 && s.x0 >= x.xa && s.x0 < x.xb && (!h || x.y > h.y)) h = x; });
+        return h ? h.kind : '';
+      };
+      let first = null, last = null;
+      const pair = bonus => {
+        if (!first || !last || Math.abs(first.y - last.y) >= 90) return;
+        add(personNameOf(first.v + ' ' + last.v), 3 + bonus);
+        first = last = null;
+      };
+      const top = []; // links oben auf der ersten Seite: vielleicht ein Anschriftfeld ohne „Herrn“/„Frau“
+      segs.forEach(s => {
+        const raw = s.text.replace(/\s+/g, ' ').trim();
+        let ln = raw.replace(/\([^)]*\)/g, ' ').replace(/\/-?in\b|\*in\b/gi, '').replace(/[:*]+/g, ' ')
+          .replace(/\s*\/\s*/g, ' / ').replace(/\s*,\s*/g, ', ')
+          .replace(/ \/ (?:beitragszahler|antragsteller|versicherungsnehmer|kontoinhaber|kunde|kundin|zahler)(?:in)?\b/gi, '')
+          .replace(/(?:,| \/| bzw\.?| oder| und) (?:firma|firmenname|firmierung|titel|akad(?:\.|emischer) grad)\b/gi, '')
+          .replace(/\s+/g, ' ').trim().replace(NUM_HEAD, '');
+        const t = fold(ln);
+        if (!t) return;
+        let m = SALUT.exec(t);
+        if (m) { lastNames.push(m[1]); return; }
+        // Überschrift (kurz, ohne Wert dahinter): Kunde, jemand anderes oder ein anderer nummerierter Abschnitt
+        if (!s.field && t.length <= 45 && !/\d/.test(t) && !/:\s*\S/.test(raw)) {
+          if (NOT_CUST.test(t) && !/^(name|vorname)\b/.test(t)) headAt('other', s);
+          else if (CUST_HEAD.test(t)) headAt('cust', s);
+          else if (NUM_HEAD.test(raw)) headAt('', s);
+        }
+        const ctx = ctxOf(s);
+        if (ctx === 'other' || NOT_CUST.test(t) || (s.field && (NOT_CUST.test(s.field) || FIELD_NOT.test(s.field)))) return;
+        let bonus = ctx === 'cust' ? 1 : 0;
+        if (s.field) { // Formularfeld mit sprechendem Namen (z. B. „VN_Vorname“), auch ohne Beschriftung daneben
+          if (/vorname|first/.test(s.field)) { const v = nameWordOf(s.text); if (v) first = { v: v, y: s.y }; }
+          else if (/name|surname|last/.test(s.field)) {
+            const full = personNameOf(s.text);
+            if (full) add(full, 3 + bonus);
+            else { const v = nameWordOf(s.text); if (v) last = { v: v, y: s.y }; }
+          } else return;
+          pair(bonus);
+          return;
+        }
+        // Anschriftfeld links oben auf der ersten Seite: „Herrn“ / „Frau“, darunter der Name (oder in derselben Zeile)
+        if (pg.top && s.y < vp.height * 0.5 && s.x0 < vp.width * 0.45) {
+          if (/^(herrn?|frau|familie|eheleute)$/.test(t)) { const b = near(s, 'below'); if (b) add(personNameOf(b.text), 4); return; }
+          if (/^(herrn?|frau) \S+ \S+/.test(t)) { add(personNameOf(ln), 3); return; }
+          top.push(s);
+        }
+        if ((m = L_CUST.exec(ln))) { const v = pick(valuesOf(s, m[2]), x => personNameOf(x)); if (v) add(v.name, (v.how === 'below' ? 4 : 5) + bonus); return; }
+        if ((m = L_KTO.exec(ln))) { const v = pick(valuesOf(s, m[2]), x => personNameOf(x)); if (v) add(v.name, 2); return; }
+        if (L_SIGN.test(ln)) { const b = near(s, 'below'); if (b) add(personNameOf(b.text), 3); return; }
+        if (L_OF.test(ln)) { ln = ln.replace(L_OF, ''); bonus = 1; } // „… des Versicherungsnehmers“ zählt wie der Abschnitt
+        if ((m = L_REV.exec(ln))) { const v = pick(valuesOf(s, m[2]), x => personNameOf(x, true)); if (v) add(v.name, 4 + bonus); return; }
+        if ((m = L_FWD.exec(ln))) { const v = pick(valuesOf(s, m[2]), x => personNameOf(x)); if (v) add(v.name, 4 + bonus); return; }
+        if ((m = L_ONE.exec(ln)) && ln.length <= 40) {
+          const vals = valuesOf(s, m[2]);
+          if (/^vorname$/i.test(m[1])) { const v = pick(vals, nameWordOf); if (v) first = { v: v.name, y: s.y }; }
+          else {
+            const full = pick(vals, x => personNameOf(x));
+            if (full) add(full.name, 3 + bonus);
+            else { const v = pick(vals, nameWordOf); if (v) last = { v: v.name, y: s.y }; }
+          }
+          pair(bonus);
+        }
+      });
+      // Anschriftfeld ohne Anrede: Name, darunter Straße mit Hausnummer, darunter PLZ und Ort
+      top.forEach(s => {
+        const st = near(s, 'below'), pz = st && STREET_LINE.test(st.text.trim()) ? near(st, 'below') : null;
+        if (!pz || !PLZ_LINE.test(pz.text.trim())) return;
+        const up = near(s, 'above');
+        if (up && NOT_CUST.test(fold(up.text))) return;
+        add(personNameOf(s.text), 3);
+      });
+    }
+    // Anrede „Sehr geehrter Herr Hoxha“ bestätigt den Nachnamen
+    cand.forEach(c => { const w = fold(c.name).split(' '); if (lastNames.indexOf(w[w.length - 1]) >= 0) c.score += 2; });
+    const best = [...cand.values()].sort((a, b) => b.score - a.score || a.at - b.at)[0];
+    return best && best.score >= 3 ? { name: best.name, score: best.score } : null;
+  }
+  // Im Hintergrund nach dem Öffnen, Anhängen oder Entfernen (Absender); „Weiter“ wartet kurz darauf
+  function guessCustomerLater() {
+    const pdf = S.pdf;
+    if (S.mode !== 'send' || S.view || !pdf || S.custGuess) return;
+    const ranges = S.parts.length > 1 ? S.parts.map((p, i) => partRange(i)) : [[0, S.pages.length]];
+    const p = guessCustomer(pdf, ranges).then(g => { if (g && pdf === S.pdf && !S.custGuess) S.custGuess = g; }).catch(e => console.warn('Kundenname:', e));
+    S.custGuessP = p;
+    p.then(() => { if (S.custGuessP === p) S.custGuessP = null; });
+  }
+
   // Unterschriftsfelder des Kunden setzen – auf die erkannte Linie (Ort/Datum nicht, das setzt der Absender selbst)
   const LS_AUTO = 'firmio.auto.v1';
   const autoCust = () => getLS(LS_AUTO) !== '0';
@@ -3171,6 +3401,7 @@
 
   // Nach dem Öffnen im Absender-Modus: Vorlage prüfen, sonst Felder des Kunden und eigene Unterschrift erkennen
   async function afterOpenSend() {
+    guessCustomerLater(); // Kundenname aus dem PDF vorschlagen (im Hintergrund)
     if (S.parts.length > 1) { // mehrere PDFs auf einmal gewählt: je PDF Vorlage oder Erkennung
       S.docSig = S.parts[0].sig;
       await prepParts(0, S.parts.length + ' PDFs zusammengefügt (' + S.pages.length + ' Seiten).');
