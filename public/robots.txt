@@ -1,2 +1,10 @@
+# Nicht in Suchmaschinen. Nur die Vorschau-Karte in Messengern (WhatsApp & Co.) darf die Startseite und das Vorschaubild lesen.
+User-agent: WhatsApp
+User-agent: facebookexternalhit
+User-agent: Facebot
+User-agent: TelegramBot
+Disallow: /api/
+Allow: /
+
 User-agent: *
 Disallow: /

@@ -2206,17 +2206,19 @@
     return lang === 'sq' ? 'Linku është i vlefshëm deri më ' + fmtDate(new Date(expires)) + '.\n\n' : 'Der Link ist bis ' + fmtDate(new Date(expires)) + ' gültig.\n\n';
   }
   const sign = name => name ? '\n' + name : '';
+  // Erste Zeile: Dokumentname fett (WhatsApp: *…*) wie eine Überschrift, z. B. „*Antrag Hausrat* ✍️“
+  const msgTitle = t => { t = cleanLabel(t).replace(/[*_~`]/g, '').trim(); return t ? '*' + t + '* ✍️\n' : ''; };
 
   function sendMessage(link, name) {
     const sq = S.sendLang === 'sq', du = S.sendDu;
     if (sq) {
-      return (du ? 'Ja dokumenti yt për ta nënshkruar. Bëhet direkt në telefon:\n\n' +
+      return msgTitle(sendTitle()) + (du ? 'Ja dokumenti yt për ta nënshkruar. Bëhet direkt në telefon:\n\n' +
           '1. Preke PDF-në dhe ruaje (iPhone: „Teilen“ → „In Dateien sichern“)\n2. Hape këtë link:\n' + link + '\n3. Zgjidhe PDF-në, nënshkruaje dhe ma dërgo përsëri këtu.\n\n'
         : 'Ja dokumenti juaj për ta nënshkruar. Bëhet direkt në telefon:\n\n' +
           '1. Prekni PDF-në dhe ruajeni (iPhone: „Teilen“ → „In Dateien sichern“)\n2. Hapni këtë link:\n' + link + '\n3. Zgjidhni PDF-në, nënshkruajeni dhe ma dërgoni përsëri këtu.\n\n') +
         msgThanks('sq', du) + sign(name);
     }
-    return (du ? 'Hier ist dein Dokument zum Unterschreiben. Das geht direkt auf dem Handy:\n\n' : 'Hier ist Ihr Dokument zum Unterschreiben. Das geht direkt auf dem Handy:\n\n') +
+    return msgTitle(sendTitle()) + (du ? 'Hier ist dein Dokument zum Unterschreiben. Das geht direkt auf dem Handy:\n\n' : 'Hier ist Ihr Dokument zum Unterschreiben. Das geht direkt auf dem Handy:\n\n') +
       '1. Das PDF antippen und speichern (iPhone: Teilen → „In Dateien sichern“)\n' +
       '2. Diesen Link öffnen:\n' + link + '\n' +
       '3. Das PDF auswählen, unterschreiben und mir hier zurückschicken.\n\n' +
@@ -2235,7 +2237,7 @@
         ? (back ? 'Hier ist dein Dokument zum Unterschreiben. Öffne einfach den Link und unterschreib mit dem Finger, danach kommt es automatisch bei mir an:' : 'Hier ist dein Dokument zum Unterschreiben. Öffne einfach den Link, unterschreib mit dem Finger und schick es mir hier zurück:')
         : (back ? 'Hier ist Ihr Dokument zum Unterschreiben. Öffnen Sie einfach den Link und unterschreiben Sie mit dem Finger, danach kommt es automatisch bei mir an:' : 'Hier ist Ihr Dokument zum Unterschreiben. Öffnen Sie einfach den Link, unterschreiben Sie mit dem Finger und schicken Sie es mir hier zurück:');
     }
-    return intro + '\n' + link + '\n\n' + msgThanks(sq ? 'sq' : 'de', du) + sign(name);
+    return msgTitle(sendTitle()) + intro + '\n' + link + '\n\n' + msgThanks(sq ? 'sq' : 'de', du) + sign(name);
   }
 
   async function openSendSheet() {
@@ -2350,10 +2352,10 @@
     docIn.addEventListener('input', () => {
       S.docTitle = docIn.value;
       updFn();
-      pushHead();
+      refresh(false); // Titel steht in der ersten Zeile der Nachricht
       if (S.sent && S.sent.track) Store.patch(S.sent.id, { title: sendTitle() }).catch(() => {});
     });
-    docIn.addEventListener('change', () => { if (!cleanLabel(docIn.value)) { S.docTitle = ''; docIn.value = sendTitle(); updFn(); } });
+    docIn.addEventListener('change', () => { if (!cleanLabel(docIn.value)) { S.docTitle = ''; docIn.value = sendTitle(); updFn(); refresh(false); } });
     prefill.addEventListener('change', () => { saveSender(Object.assign(loadSender(), { prefill: prefill.checked })); pushHead(); });
     const err = el('p', { class: 'err', role: 'alert' });
     const msg = el('textarea', { class: 'in', rows: '9' });
@@ -4049,7 +4051,7 @@
     const intro = sq
       ? (du ? 'Një kujtesë e vogël: dokumenti yt pret ende nënshkrimin tënd. Hape linkun dhe nënshkruaje me gisht:' : 'Një kujtesë e vogël: dokumenti juaj pret ende nënshkrimin tuaj. Hapeni linkun dhe nënshkruajeni me gisht:')
       : (du ? 'Kurze Erinnerung: Dein Dokument wartet noch auf deine Unterschrift. Öffne einfach den Link und unterschreib mit dem Finger:' : 'Kurze Erinnerung: Ihr Dokument wartet noch auf Ihre Unterschrift. Öffnen Sie einfach den Link und unterschreiben Sie mit dem Finger:');
-    return intro + '\n' + r.link + '\n\n' + msgValid(sq ? 'sq' : 'de', r.expires) + (sq ? 'Faleminderit!' : 'Vielen Dank!') + sign(name);
+    return msgTitle(r.title || docTitleOf(r.file || '')) + intro + '\n' + r.link + '\n\n' + msgValid(sq ? 'sq' : 'de', r.expires) + (sq ? 'Faleminderit!' : 'Vielen Dank!') + sign(name);
   }
 
   async function withPdf(r, fn) {
