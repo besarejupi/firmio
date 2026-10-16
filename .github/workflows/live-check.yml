@@ -17,3 +17,6 @@ jobs:
           echo "::notice title=app.js::$(curl -s -m 20 "$B/app.js" | grep -oE 'renderInbox|checkUpdate|startLocal|applyTpl|makeBackup|renderTiles' | sort | uniq -c | one)"
           echo "::notice title=sw.js::$(curl -s -m 20 "$B/sw.js" | grep -oE 'firmio-v[0-9]+' | head -1 | one)"
           echo "::notice title=api::$(curl -s -m 20 "$B/api/status" | one)"
+          echo "::notice title=vorschau::$(curl -s -m 20 -A 'WhatsApp/2.24.20 A' "$B/" | grep -oE 'og:(title|image)" content="[^"]*"' | one)"
+          echo "::notice title=vorschaubild::$(curl -s -m 20 -A 'WhatsApp/2.24.20 A' -o /dev/null -w '%{http_code} %{content_type} %{size_download} Bytes' "$B/icons/vorschau.jpg")"
+          echo "::notice title=robots::$(curl -s -m 20 "$B/robots.txt" | grep -vE '^#' | one)"
