@@ -593,6 +593,7 @@
       }
       initInbox();
       keepPushAlive();
+      checkUpdate(); // z. B. wenn der Speicher noch eine alte Version geliefert hat
     }
     document.addEventListener('visibilitychange', () => {
       if (document.visibilityState !== 'visible' || S.mode !== 'send') return;

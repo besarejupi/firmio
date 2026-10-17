@@ -14,7 +14,7 @@ jobs:
           echo "::notice title=version.txt::$(curl -s -m 20 -o /tmp/v -w '%{http_code}' "$B/version.txt"; echo -n ' '; head -c 40 /tmp/v | one)"
           echo "::notice title=index.html::$(curl -s -m 20 -I "$B/" | grep -iE '^(HTTP|etag|age|date)' | one)"
           echo "::notice title=index-merkmale::$(curl -s -m 20 "$B/" | grep -oE '<html[^>]*>|retryBtn|id="inbox"|id="localBtn"|id="tiles"' | sort | uniq -c | one)"
-          echo "::notice title=app.js::$(curl -s -m 20 "$B/app.js" | grep -oE 'renderInbox|checkUpdate|startLocal|applyTpl|makeBackup|renderTiles' | sort | uniq -c | one)"
+          echo "::notice title=app.js::$(curl -s -m 20 "$B/app.js" | grep -oE 'renderInbox|checkUpdate|startLocal|applyTpl|makeBackup|renderTiles|msgTitle|guessCustomer' | sort | uniq -c | one)"
           echo "::notice title=sw.js::$(curl -s -m 20 "$B/sw.js" | grep -oE 'firmio-v[0-9]+' | head -1 | one)"
           echo "::notice title=api::$(curl -s -m 20 "$B/api/status" | one)"
           echo "::notice title=vorschau::$(curl -s -m 20 -A 'WhatsApp/2.24.20 A' "$B/" | grep -oE 'og:(title|image)" content="[^"]*"' | one)"
